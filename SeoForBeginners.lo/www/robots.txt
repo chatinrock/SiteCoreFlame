@@ -13,6 +13,7 @@ Host: SeoForBeginners.lo
 User-agent: *
 Crawl-delay: 0.5
 Host: SeoForBeginners.lo
-
+ 
+ 
 Disallow: /about/
 Sitemap: http://SeoForBeginners.lo/sitemap.xml
