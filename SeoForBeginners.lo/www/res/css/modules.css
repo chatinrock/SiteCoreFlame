@@ -1,0 +1,166 @@
+/* Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
+
+/*
+ * Modules Style Sheet - Defines general module defaults, headings, badges and icons
+ */
+
+
+/* Module Badges
+----------------------------------------------------------------------------------------------------*/
+
+.module { position: relative; }
+
+.module .badge {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	z-index: 1;
+}
+
+
+/* Module Icons
+----------------------------------------------------------------------------------------------------*/
+
+.module .module-title .icon {
+	display: block; 
+	position: relative;
+	top: -6px;
+	width: 30px;
+	height: 30px;
+	margin-right: 5px;
+	overflow: hidden;
+	float: left;
+}
+
+
+/* Module Defaults
+----------------------------------------------------------------------------------------------------*/
+
+.deepest > *:first-child { margin-top: 0; }
+.deepest > *:last-child { margin-bottom: 0; }
+
+
+/* Module Headings
+----------------------------------------------------------------------------------------------------*/
+
+.module .module-title { margin: 0 0 15px 0; }
+
+/* Subtitles */
+.module .module-title span.title { display: block; }
+
+.module .module-title span.subtitle {
+	display: block;
+	margin-top: 2px;
+	line-height: 14px;
+	font-size: 12px;
+	text-indent: 1px;
+}
+
+
+.module-title
+{
+	margin-bottom: 10px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #E8E8E8;
+	position: relative;
+}
+#sidebar-a .module, #sidebar-b .module
+{
+	padding: 20px 20px 10px;
+}
+#sidebar-a .articleList div.module, #sidebar-b .articleList div.module{
+    padding-top: 10px;
+
+}
+#sidebar-a .articleList h4, #sidebar-b .articleList h4{
+    text-align: left;
+    /*border-top: 1px solid #DDDDDD;*/
+}
+/*Module Title Dashes
+----------------------------------------------------------------------------------------------------*/
+#top-a .module-dash, #top-b .module-dash, #bottom-a .module-dash, #bottom-b .module-dash, #sidebar-a .module-dash, #sidebar-b .module-dash
+{
+	position: absolute;
+	bottom: -1px;
+	left: 0;
+	height: 5px;
+	width: 35px;
+}
+/*Module Badges
+----------------------------------------------------------------------------------------------------*/
+.module .badge
+{
+	width: 50px;
+	height: 50px;
+	background: url(../images/module_badges.png) no-repeat 0 0;
+}
+.module .badge-hot
+{
+	background-position: 0 0;
+}
+.module .badge-top
+{
+	background-position: 0 -50px;
+}
+.module .badge-free
+{
+	background-position: 0 -100px;
+}
+.module .badge-new
+{
+	background-position: 0 -150px;
+}
+/*Module Icons
+----------------------------------------------------------------------------------------------------*/
+.module .module-title .icon
+{
+	background: url(../images/module_icons.png) no-repeat 0 0;
+}
+.module .module-title .icon-download
+{
+	background-position: 0 0;
+}
+.module .module-title .icon-twitter
+{
+	background-position: 0 -30px;
+}
+.module .module-title .icon-mail
+{
+	background-position: 0 -60px;
+}
+.module .module-title .icon-bubble
+{
+	background-position: 0 -90px;
+}
+.module .module-title .icon-login
+{
+	background-position: 0 -120px;
+}
+.module .module-title .icon-cart
+{
+	background-position: 0 -150px;
+}
+/*Module Type: Box
+----------------------------------------------------------------------------------------------------*/
+.mod-box
+{
+	padding: 20px;
+	text-align: justify;
+}
+.mod-box .badge
+{
+	top: -1px;
+	right: -1px;
+}
+/*Module Type: Gradient
+----------------------------------------------------------------------------------------------------*/
+.mod-gradient
+{
+	padding: 15px;
+	background: #FFFFFF url(../images/back-gradient.png) repeat-x top;
+}
+.mod-gradient.badge
+{
+	top: -1px;
+	right: -1px;
+}

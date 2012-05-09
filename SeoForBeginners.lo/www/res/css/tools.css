@@ -1,0 +1,394 @@
+/* Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
+
+/*
+ * Tools Style Sheet - Provides a useful set of CSS classes to style your content
+ * Some classes are used in the Joomla and WordPress system markup
+ */
+
+
+/* Useful Classes for Content Creation
+----------------------------------------------------------------------------------------------------*/
+
+.display-block { display: block; }
+.remove-margin { margin: 0; }
+.remove-margin-t { margin-top: 0; }
+.remove-margin-b { margin-bottom: 0; }
+
+/* Fluid images and objects */
+.size-auto {
+	max-width: 100%;
+	height: auto;
+}
+
+/* Block Alignment (Needed for System Markup, without hyphen needed for WP) */
+.align-left,
+.alignleft {
+	display: block;
+	margin-right: 15px;
+	float: left;
+}
+
+.align-right,
+.alignright {
+	display: block;
+	margin-left: 15px;
+	float: right;
+}
+
+.align-center,
+.aligncenter {
+	display: block;
+	margin: auto;
+	margin-bottom: 10px;
+}
+
+/* Text Alignment */
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+.text-center { text-align: center; }
+.text-justify { text-align: justify; }
+
+
+/* Buttons (Needed for System Markup)
+----------------------------------------------------------------------------------------------------*/
+
+a.button-more { display: inline-block; }
+
+
+/* Lists (Needed for System Markup)
+----------------------------------------------------------------------------------------------------*/
+
+ul.blank,
+ul.space,
+ul.line,
+ul.check,
+ul.zebra {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+/* Space */
+ul.space li { margin-top: 15px; }
+ul.space li:first-child { margin-top: 0; }
+
+/* Line */
+ul.line > li {
+	margin-top: 5px;
+	padding-top: 5px;
+}
+
+ul.line > li:first-child {
+	margin-top: 0;
+	padding-top: 0;
+}
+
+/* Check */
+ul.check > li { margin-top: 5px; }
+ul.check > li:first-child { margin-top: 0; }
+
+/* Zebra */
+ul.zebra > li { padding: 5px; }
+
+ul.line > li > a:first-child,
+ul.check > li > a:first-child { display: block; }
+
+
+/* Tables (Needed for System Markup)
+----------------------------------------------------------------------------------------------------*/
+
+table.zebra { width: 100%; }
+
+table.zebra th {
+	font-size: 16px;
+	font-weight: normal;
+	text-align: left;
+}
+
+table.zebra th,
+table.zebra td { padding: 5px; }
+
+table.zebra tbody,
+table.zebra tfoot { font-size: 12px; }
+
+table.zebra .bold { font-weight: bold; }
+table.zebra .center { text-align: center; }
+
+table.zebra td * { vertical-align: middle; }
+
+table.zebra tfoot { font-style: italic; }
+
+table.zebra caption {
+	font-size: 11px;
+	text-align: left;
+	font-style: italic;
+}
+
+
+/* Definition Lists
+----------------------------------------------------------------------------------------------------*/
+
+dl.separator {
+	padding: 0;
+	overflow: hidden;
+}
+
+dl.separator dt {	
+	width: 160px;
+	padding-right: 10px;
+	float: left;
+	clear: both;
+}
+
+dl.separator dd {
+	margin-left: 170px;
+	padding-left: 20px;
+}
+
+
+/* Text
+----------------------------------------------------------------------------------------------------*/
+
+/* Inline Text Box */
+em.box { 
+	padding: 0 3px;
+	white-space: nowrap;
+}
+
+/* Dotted Horizontal Rule */
+hr.dotted { border: none; }
+
+/* Drop Caps */
+p.dropcap:first-letter {
+	display: block;
+	margin: 7px 4px 0px 0px;
+	float: left;
+	font-size: 280%;
+	font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+
+/* Boxes
+----------------------------------------------------------------------------------------------------*/
+
+.box-content,
+.box-note,
+.box-info,
+.box-warning,
+.box-hint,
+.box-download {
+	margin: 15px 0;
+	padding: 10px;
+	text-align: justify;
+}
+
+.box-content { padding: 20px; }
+
+.box-info,
+.box-warning,
+.box-hint,
+.box-download { padding-left: 40px; }
+
+
+/* Forms (Needed for System Markup)
+----------------------------------------------------------------------------------------------------*/
+
+/* Box */
+form.box fieldset {
+	margin-bottom: 30px;
+	padding: 0 10px 10px 10px;
+}
+form.box legend { padding: 0 10px; }
+form.box fieldset > div { margin: 15px 0; }
+
+form.box button,
+form.box input[type='button'],
+form.box input[type='reset'] { vertical-align: middle; }
+
+/* Short */
+form.short > div { margin: 10px 0; }
+
+form.short input { color: #333; }
+form.short input:-moz-placeholder { color: #999; }
+form.short input::-webkit-input-placeholder { color: #999; }
+form.short input.placeholder { color: #999; }
+
+
+/* Mobile Switcher (Needed for Mobile)
+----------------------------------------------------------------------------------------------------*/
+
+.mobile-switcher {
+	display: block;
+	width: 80%;
+	margin: 20px auto 40px auto;
+	padding: 40px 0;
+	font-size: 50px;
+	text-align: center;
+}
+
+/*Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL
+Buttons (Needed for System Markup)
+----------------------------------------------------------------------------------------------------*/
+A.button-more
+{
+	padding: 3px 10px;
+	border: 1px solid #DDD;
+}
+/*Images and Objects (Needed for System Markup)
+----------------------------------------------------------------------------------------------------*/
+IMG.border-box
+{
+	border: 1px solid #DDD;
+}
+/*Lists and Tables (Needed for System Markup)
+----------------------------------------------------------------------------------------------------
+Line*/
+UL.line > LI
+{
+	border-left-width: 3px;
+	border-left-style: solid;
+	padding: 7px 8px 5px;
+}
+UL.line > LI:first-child
+{
+	padding: 7px 8px 5px;
+}
+UL.line > LI:hover
+{
+	border-left-width: 3px;
+	border-left-style: solid;
+}
+/*Check*/
+UL.check > LI
+{
+	padding: 4px 0 0 30px;
+	background: url(../images/tools/list_check.png) no-repeat 0 0;
+}
+/*Zebra List and Table*/
+UL.zebra > LI, TABLE.zebra TBODY TD
+{
+	border-bottom: 1px solid #DDD;
+}
+UL.zebra > LI:first-child, TABLE.zebra TBODY TR:first-child TD
+{
+	border-top: 1px solid #DDD;
+}
+UL.zebra > LI.odd, TABLE.zebra TBODY TR.odd
+{
+	background: #FAFAFA;
+}
+UL.zebra > LI:nth-of-type(odd), TABLE.zebra TBODY TR:nth-of-type(odd)
+{
+	background: #FAFAFA;
+}
+TABLE.zebra CAPTION
+{
+	color: #999;
+}
+/*Definition Lists
+----------------------------------------------------------------------------------------------------*/
+DL.separator DT
+{
+	position: relative;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	text-transform: uppercase;
+}
+/*border code because of RTL*/
+DL.separator DD
+{
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-width: 0 0 0 1px;
+	border-style: solid;
+	border-color: #DDD;
+}
+DL.separator DT:before
+{
+	content: "";
+	position: absolute;
+	top: 0;
+	right: -15px;
+	width: 30px;
+	border-top: 1px solid #DDD;
+}
+DL.separator DT:after
+{
+	content: "";
+	position: absolute;
+	top: -3px;
+	right: -3px;
+	width: 5px;
+	height: 5px;
+	background: #FFF;
+	border: 1px solid #DDD;
+	border-radius: 6px;
+}
+DL.separator DT:first-child:before, DL.separator DT:first-child:after
+{
+	display: none;
+}
+/*Text
+----------------------------------------------------------------------------------------------------
+Inline Text Box*/
+EM.box
+{
+	border: 1px dotted #BBB;
+	background: #FAFAFA;
+	color: #444;
+}
+/*Dotted Horizontal Rule*/
+HR.dotted
+{
+	background: url(../images/tools/line_dotted.png) repeat-x 0 0;
+}
+/*Boxes
+----------------------------------------------------------------------------------------------------*/
+.box-content
+{
+	background: #FAFAFA;
+	border: 1px solid #DDD;
+}
+.box-note, .box-info, .box-warning, .box-hint, .box-download
+{
+	background: #FAFAFA;
+	border-top: 1px solid #DDD;
+	border-bottom: 1px solid #DDD;
+}
+.box-info
+{
+	background: #EBF5FA url(../images/tools/box_info.png) no-repeat 0 0;
+	border-color: #D2DCE1;
+}
+.box-warning
+{
+	background: #FFF0EB url(../images/tools/box_warning.png) no-repeat 0 0;
+	border-color: #FFD7CD;
+}
+.box-hint
+{
+	background: #FFFAE6 url(../images/tools/box_hint.png) no-repeat 0 0;
+	border-color: #FAE6BE;
+}
+.box-download
+{
+	background: #FAFFE6 url(../images/tools/box_download.png) no-repeat 0 0;
+	border-color: #DCE6BE;
+}
+/*Forms (Needed for System Markup)
+----------------------------------------------------------------------------------------------------*/
+FORM.box FIELDSET
+{
+	border: 1px solid #DDD;
+}
+FORM.box LEGEND
+{
+	background: #FFF;
+}
+/*Mobile Switcher (Needed for Mobile)
+----------------------------------------------------------------------------------------------------*/
+.mobile-switcher
+{
+	background: #EEE;
+	border: 1px solid #AAA;
+}
