@@ -1,0 +1,113 @@
+<rss version="2.0" xmlns:ya="http://blogs.yandex.ru/yarss/" xmlns:wfw="http://wellformedweb.org/CommentAPI/">
+    <channel>
+        <title></title>
+        <link>http://http://seoforbeginners.ru/</link>
+        <description></description>
+        <language>ru</language>
+        <!--<image>
+            <url>{IMG.jpg}</url>
+            <width>100</width>
+            <height>100</height>
+        </image>-->
+                    <item>
+                <guid isPermaLink='true'>http://seoforbeginners.ru/blog/seo/test/</guid>
+                <category>SEO</category>
+                <author>http://seoforbeginners.ru/blog/seo/test/aboutme/</author>
+                <pubDate>2012-05-10 14:14:32</pubDate>
+                <link>http://seoforbeginners.ru/blog/seo/test/</link>
+                <description><![CDATA[ [...]]]></description>
+                <title>Test</title>
+                <comments>http://seoforbeginners.ru/blog/seo/test/#comments</comments>
+            </item>
+                        <item>
+                <guid isPermaLink='true'>http://seoforbeginners.ru/blog/seo/1/</guid>
+                <category>SEO</category>
+                <author>http://seoforbeginners.ru/blog/seo/1/aboutme/</author>
+                <pubDate>2012-05-10 10:44:32</pubDate>
+                <link>http://seoforbeginners.ru/blog/seo/1/</link>
+                <description><![CDATA[уеые [...]]]></description>
+                <title>Новая статья</title>
+                <comments>http://seoforbeginners.ru/blog/seo/1/#comments</comments>
+            </item>
+                        <item>
+                <guid isPermaLink='true'>http://seoforbeginners.ru/blog/seo/2/</guid>
+                <category>SEO</category>
+                <author>http://seoforbeginners.ru/blog/seo/2/aboutme/</author>
+                <pubDate>2012-05-10 10:44:32</pubDate>
+                <link>http://seoforbeginners.ru/blog/seo/2/</link>
+                <description><![CDATA[ [...]]]></description>
+                <title>7</title>
+                <comments>http://seoforbeginners.ru/blog/seo/2/#comments</comments>
+            </item>
+                        <item>
+                <guid isPermaLink='true'>http://seoforbeginners.ru/blog/seo/3/</guid>
+                <category>SEO</category>
+                <author>http://seoforbeginners.ru/blog/seo/3/aboutme/</author>
+                <pubDate>2012-05-10 10:44:32</pubDate>
+                <link>http://seoforbeginners.ru/blog/seo/3/</link>
+                <description><![CDATA[ [...]]]></description>
+                <title>6</title>
+                <comments>http://seoforbeginners.ru/blog/seo/3/#comments</comments>
+            </item>
+                        <item>
+                <guid isPermaLink='true'>http://seoforbeginners.ru/blog/seo/4/</guid>
+                <category>SEO</category>
+                <author>http://seoforbeginners.ru/blog/seo/4/aboutme/</author>
+                <pubDate>2012-05-10 10:44:32</pubDate>
+                <link>http://seoforbeginners.ru/blog/seo/4/</link>
+                <description><![CDATA[ [...]]]></description>
+                <title>5</title>
+                <comments>http://seoforbeginners.ru/blog/seo/4/#comments</comments>
+            </item>
+                        <item>
+                <guid isPermaLink='true'>http://seoforbeginners.ru/blog/seo/5/</guid>
+                <category>SEO</category>
+                <author>http://seoforbeginners.ru/blog/seo/5/aboutme/</author>
+                <pubDate>2012-05-10 10:44:32</pubDate>
+                <link>http://seoforbeginners.ru/blog/seo/5/</link>
+                <description><![CDATA[ [...]]]></description>
+                <title>4</title>
+                <comments>http://seoforbeginners.ru/blog/seo/5/#comments</comments>
+            </item>
+                        <item>
+                <guid isPermaLink='true'>http://seoforbeginners.ru/blog/seo/6/</guid>
+                <category>SEO</category>
+                <author>http://seoforbeginners.ru/blog/seo/6/aboutme/</author>
+                <pubDate>2012-05-10 10:44:32</pubDate>
+                <link>http://seoforbeginners.ru/blog/seo/6/</link>
+                <description><![CDATA[ [...]]]></description>
+                <title>3</title>
+                <comments>http://seoforbeginners.ru/blog/seo/6/#comments</comments>
+            </item>
+                        <item>
+                <guid isPermaLink='true'>http://seoforbeginners.ru/blog/seo/7/</guid>
+                <category>SEO</category>
+                <author>http://seoforbeginners.ru/blog/seo/7/aboutme/</author>
+                <pubDate>2012-05-10 10:44:32</pubDate>
+                <link>http://seoforbeginners.ru/blog/seo/7/</link>
+                <description><![CDATA[ [...]]]></description>
+                <title>32</title>
+                <comments>http://seoforbeginners.ru/blog/seo/7/#comments</comments>
+            </item>
+                        <item>
+                <guid isPermaLink='true'>http://seoforbeginners.ru/blog/seo/8/</guid>
+                <category>SEO</category>
+                <author>http://seoforbeginners.ru/blog/seo/8/aboutme/</author>
+                <pubDate>2012-05-10 10:44:32</pubDate>
+                <link>http://seoforbeginners.ru/blog/seo/8/</link>
+                <description><![CDATA[ [...]]]></description>
+                <title>1</title>
+                <comments>http://seoforbeginners.ru/blog/seo/8/#comments</comments>
+            </item>
+                        <item>
+                <guid isPermaLink='true'>http://seoforbeginners.ru/blog/seo/sdfsfsdf/</guid>
+                <category>SEO</category>
+                <author>http://seoforbeginners.ru/blog/seo/sdfsfsdf/aboutme/</author>
+                <pubDate>2012-05-10 08:45:29</pubDate>
+                <link>http://seoforbeginners.ru/blog/seo/sdfsfsdf/</link>
+                <description><![CDATA[sdfsdf [...]]]></description>
+                <title>ssdfsdfsdf</title>
+                <comments>http://seoforbeginners.ru/blog/seo/sdfsfsdf/#comments</comments>
+            </item>
+                </channel>
+</rss>
