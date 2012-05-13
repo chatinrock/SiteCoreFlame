@@ -1,1 +1,0 @@
-a:11:{s:2:"id";s:1:"2";s:7:"caption";s:38:"Подбор ключевых слов";s:10:"prevImgUrl";s:0:"";s:8:"isPublic";s:2:"no";s:7:"seoName";s:3:"seo";s:8:"category";s:3:"SEO";s:11:"seoKeywords";s:0:"";s:8:"seoDescr";s:0:"";s:10:"isCloaking";s:1:"0";s:8:"date_add";s:14:"10.05.12 08:36";s:9:"canonical";s:32:"/blog/seo/podbor-kluchevyh-slov/";}
