@@ -1,15 +1,9 @@
 User-agent: Yandex
 Crawl-delay: 0.5
-Host: seoforbeginners.ru
-
 User-agent: Slurp
 Crawl-delay: 60
-Host: seoforbeginners.ru
-
 User-agent: Google
 Crawl-delay: 0.5
-Host: seoforbeginners.ru
-
 User-agent: *
 Crawl-delay: 0.5
 Host: seoforbeginners.ru

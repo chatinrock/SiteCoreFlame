@@ -18,7 +18,7 @@
                     <a class="vimeo" title="Follow us on Vimeo" href="#"></a>
                     <a class="youtube" title="Follow us on YouTube" href="#"></a>
                     <a class="delicious" title="Save to Delicious" href="#"></a>
-                    <a class="rss" title="Subscribe to RSS" href="#"></a>
+                    <a class="rss" title="Подписаться на RSS" href="/res/main.rss"></a>
                 </div>
             </div>
         </div>

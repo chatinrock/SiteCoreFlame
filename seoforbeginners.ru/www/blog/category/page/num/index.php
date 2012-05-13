@@ -101,15 +101,17 @@ try{}catch(Exception $ex){
         <meta charset="UTF-8" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <?
-        echo '<title></title>'.PHP_EOL;
-        echo '<meta name="description" content="" />'.PHP_EOL;
-        echo '<meta name="keywords" content="" />'.PHP_EOL;
+        echo '<title>SEO для начинающих. Категория: '.dbus::$vars['category']['caption'].' Страница '.dbus::$vars['num']['num'].'</title>'.PHP_EOL;
+        echo '<meta name="description" content="SEO для начинающих. Отвечаем на все вопросы по категории:'.dbus::$vars['category']['caption'].' " />'.PHP_EOL;
+        echo '<meta name="keywords" content="Seo, раскрутка сайта, новичкам о сео, сео для чайников" />'.PHP_EOL;
         site\core\comp\spl\artList\logic\artList::setListCategorySeo('artlist', ['linkNextTitle'=>'Блог | %s | Страница %s','linkNextUrl'=>'/blog/%s/page/%s/']);
 ?><script>var dbus={};</script>        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <link rel="shortcut icon" href="/res/favicon.ico" />
         <link rel="apple-touch-icon-precomposed" href="/res/favicon.png" />
-        <!--<link rel="alternate" type="application/rss+xml" title="RSS description" href="#!link to RSS" />-->
+        <link rel="alternate" type="application/rss+xml" title="Сео для начинающих" href="/res/main.rss" />
         <meta name="generator" content="Flame 0.9.1" />
+		<meta name='yandex-verification' content='5c04a07639a97105' />
+		<meta name="google-site-verification" content="SHmEYMurUyBJnmE2drBqqigVph0tKMcdDwtXDy1QvtE" />
         <style>
             body { min-width: 960px; }
             .wrapper { width: 960px; }
@@ -139,7 +141,7 @@ try{}catch(Exception $ex){
     </head>
     
     <body id="page" class="page sidebar-a-right sidebar-b-right isblog wp-single" data-config='{"twitter":0,"plusone":0,"facebook":0}'>
-                <div class="wrapper grid-block">
+        <div class="wrapper grid-block">
           <header id="header">
 
     <div id="toolbar" class="grid-block">
@@ -160,7 +162,7 @@ try{}catch(Exception $ex){
                     <a class="vimeo" title="Follow us on Vimeo" href="#"></a>
                     <a class="youtube" title="Follow us on YouTube" href="#"></a>
                     <a class="delicious" title="Save to Delicious" href="#"></a>
-                    <a class="rss" title="Subscribe to RSS" href="#"></a>
+                    <a class="rss" title="Подписаться на RSS" href="/res/main.rss"></a>
                 </div>
             </div>
         </div>
@@ -225,6 +227,20 @@ try{}catch(Exception $ex){
         <!-- Для выпадающего меню -->
         <!--<script src="/res/js/warp/dropdownmenu.js"></script>-->
         <!--<script src="/res/js/warp/search.js"></script>-->
+		<!-- Yandex.Metrika counter --><script type="text/javascript">(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter14469958 = new Ya.Metrika({id:14469958, enableAll: true, webvisor:true}); } catch(e) {} }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script><noscript><div><img src="//mc.yandex.ru/watch/14469958" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!-- /Yandex.Metrika counter -->
+		<script type="text/javascript">
+
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-31640327-1']);
+		  _gaq.push(['_trackPageview']);
+
+		  (function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+
+		</script>
 
                         <script>
             function $import(src){

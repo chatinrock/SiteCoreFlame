@@ -119,8 +119,10 @@ site\core\comp\spl\artCom\logic\simple::init('artcom');;
 ?><script>var dbus={};</script>        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <link rel="shortcut icon" href="/res/favicon.ico" />
         <link rel="apple-touch-icon-precomposed" href="/res/favicon.png" />
-        <!--<link rel="alternate" type="application/rss+xml" title="RSS description" href="#!link to RSS" />-->
+        <link rel="alternate" type="application/rss+xml" title="Сео для начинающих" href="/res/main.rss" />
         <meta name="generator" content="Flame 0.9.1" />
+		<meta name='yandex-verification' content='5c04a07639a97105' />
+		<meta name="google-site-verification" content="SHmEYMurUyBJnmE2drBqqigVph0tKMcdDwtXDy1QvtE" />
         <style>
             body { min-width: 960px; }
             .wrapper { width: 960px; }
@@ -150,7 +152,7 @@ site\core\comp\spl\artCom\logic\simple::init('artcom');;
     </head>
     
     <body id="page" class="page sidebar-a-right sidebar-b-right isblog wp-single" data-config='{"twitter":0,"plusone":0,"facebook":0}'>
-                <div class="wrapper grid-block">
+        <div class="wrapper grid-block">
           <header id="header">
 
     <div id="toolbar" class="grid-block">
@@ -171,7 +173,7 @@ site\core\comp\spl\artCom\logic\simple::init('artcom');;
                     <a class="vimeo" title="Follow us on Vimeo" href="#"></a>
                     <a class="youtube" title="Follow us on YouTube" href="#"></a>
                     <a class="delicious" title="Save to Delicious" href="#"></a>
-                    <a class="rss" title="Subscribe to RSS" href="#"></a>
+                    <a class="rss" title="Подписаться на RSS" href="/res/main.rss"></a>
                 </div>
             </div>
         </div>
@@ -222,7 +224,7 @@ site\core\comp\spl\artCom\logic\simple::init('artcom');;
                 </div>
 
                 <!--<span class="trackback"><a href="#wp-trackback.php?p=1">Trackback</a> from your site.</span>-->
-
+				<div id="vk_share"></div>
             </div>
             
             <!--<div class="meta-tags clearfix">
@@ -237,7 +239,19 @@ site\core\comp\spl\artCom\logic\simple::init('artcom');;
             <?php site\core\comp\spl\artCom\logic\simple::renderAction('artcom'); ?>
         </article>
     </div>
-</section></div>
+</section>
+
+<script type="text/javascript" src="http://vk.com/js/api/share.js?11" charset="windows-1251"></script>
+<script type="text/javascript">
+window.onload = function () {
+ document.getElementById('vk_share').innerHTML = VK.Share.button(
+	{title: 'Советую к прочтению: ' + document.title, noparse: false}, 
+	{type: "button", text: "Добавить на стенy"});
+
+}
+</script>
+</div>
+
 <aside id="sidebar-a" class="grid-box" style="min-height: 2442px;">
     <?php site\core\comp\spl\catalogCont\logic\catalogCont::renderAction('category'); ?>
 <?php site\core\comp\spl\artPopular\logic\main::renderAction('artpopular'); ?>
@@ -265,6 +279,20 @@ site\core\comp\spl\artCom\logic\simple::init('artcom');;
         <!-- Для выпадающего меню -->
         <!--<script src="/res/js/warp/dropdownmenu.js"></script>-->
         <!--<script src="/res/js/warp/search.js"></script>-->
+		<!-- Yandex.Metrika counter --><script type="text/javascript">(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter14469958 = new Ya.Metrika({id:14469958, enableAll: true, webvisor:true}); } catch(e) {} }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script><noscript><div><img src="//mc.yandex.ru/watch/14469958" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!-- /Yandex.Metrika counter -->
+		<script type="text/javascript">
+
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-31640327-1']);
+		  _gaq.push(['_trackPageview']);
+
+		  (function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+
+		</script>
 
                         <script>
             function $import(src){
