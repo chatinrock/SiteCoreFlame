@@ -5,7 +5,7 @@ use core\classes\request;
 use core\classes\dbus;
 use core\classes\DB\DB as DBCore;
 // Conf 
-use \site\conf\DIR;
+use \site\conf\DIR; 
 // ORM
 use ORM\tree\compContTree;
 
