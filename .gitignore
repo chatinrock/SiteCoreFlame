@@ -2,9 +2,9 @@
 /.idea
 /seoforbeginners.ru/
 !/seoforbeginners.ru/www/func/
-!/seoforbeginners.ru/www/func/res/
-/seoforbeginners.ru/www/res/file/
+!/seoforbeginners.ru/www/res/
 /seoforbeginners.ru/www/res/main.rss
+/seoforbeginners.ru/www/res/file/
 !/seoforbeginners.ru/tpl/
 !/seoforbeginners.ru/core/
 !/seoforbeginners.ru/conf/
