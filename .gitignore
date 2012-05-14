@@ -1,10 +1,9 @@
 
 /.idea
-/seoforbeginners.ru/
-!/seoforbeginners.ru/www/func/
-!/seoforbeginners.ru/www/res/
-/seoforbeginners.ru/www/res/main.rss
-/seoforbeginners.ru/www/res/file/
-!/seoforbeginners.ru/tpl/
-!/seoforbeginners.ru/core/
-!/seoforbeginners.ru/conf/
+/*/data/*
+/*/conf/*
+/*/www/*
+!/*/www/func/
+!/*/www/res/
+/*/www/res/main.rss
+/*/www/res/file/*
