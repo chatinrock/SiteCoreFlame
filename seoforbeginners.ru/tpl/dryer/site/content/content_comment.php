@@ -2,19 +2,7 @@
         <article class="item" data-permalink="">
             <?=self::block('content')?>
 
-            <div class="meta-bottom clearfix">
-
-                <div class="addthis">
-                    <!-- AddThis Button BEGIN -->
-                    <div class="addthis_toolbox addthis_default_style ">
-                        <a class="addthis_counter addthis_pill_style"></a>
-                    </div>
-                    <!-- AddThis Button END -->
-                </div>
-
-                <!--<span class="trackback"><a href="#wp-trackback.php?p=1">Trackback</a> from your site.</span>-->
-
-            </div>
+ 
             
             <!--<div class="meta-tags clearfix">
                <p class="taxonomy">

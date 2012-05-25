@@ -24,6 +24,7 @@ class number {
             $categoryId = dbus::$vars[$pPrevVarName]['id'] . '/';
         }
         $file = DIR::APP_DATA.'comp/'.$pCompId.'/'.$pContId.'/'.$categoryId.'prop.txt';
+		//print $file;
         $data = file_get_contents($file);
         if ($data) {
             $artListProp = \unserialize($data);
