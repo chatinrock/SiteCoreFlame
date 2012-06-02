@@ -1,0 +1,51 @@
+/*Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL
+
+* Print Style Sheet - Only used when printing
+* Thanks to HTML5 Boilerplate
+ */
+@media print
+{
+	*
+	{
+		background: transparent !important;
+		color: #000000 !important;
+		box-shadow: none !important;
+		text-shadow: none !important;
+		filter: none !important;
+		-ms-filter: none !important;
+	}
+	A, A:visited
+	{
+		text-decoration: underline;
+	}
+	PRE, BLOCKQUOTE
+	{
+		border: 1px solid #999;
+		page-break-inside: avoid;
+	}
+	THEAD
+	{
+		display: table-header-group;
+	}
+	TR, IMG
+	{
+		page-break-inside: avoid;
+	}
+	IMG
+	{
+		max-width: 100% !important;
+	}
+	@page
+	{
+		margin: 0.5cm;
+	}
+	P, H2, H3
+	{
+		orphans: 3;
+		widows: 3;
+	}
+	H2, H3
+	{
+		page-break-after: avoid;
+	}
+}

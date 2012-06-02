@@ -13,6 +13,7 @@ include DIR::CORE . 'core/classes/DB/adapter/mysql/adapter.php';
 DBCore::addParam('site', \site\conf\DB::$conf);
 umask(0002);
 
+
 $create = new site\core\comp\spl\artCom\func\create();
 try{
     $create->save();

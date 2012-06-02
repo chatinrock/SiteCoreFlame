@@ -1,0 +1,197 @@
+/* Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
+
+/*
+ * Layout Style Sheet - Provides a fluid grid and helper classes to create any layout and some layout defaults
+ */
+
+
+/* Grid and Clearing Tools
+----------------------------------------------------------------------------------------------------*/
+
+.clearfix:before,
+.clearfix:after,
+.grid-block:before,
+.grid-block:after,
+.deepest:before,
+.deepest:after {
+	content: "";
+    display: table;
+}
+.clearfix:after,
+.grid-block:after,
+.deepest:after { clear: both; }
+
+.grid-box { float: left; }
+
+/* Grid Units */
+.width16 { width: 16.666%; }
+.width20 { width: 20%; }
+.width25 { width: 25%; }
+.width33 { width: 33.333%; }
+.width40 { width: 40%; }
+.width50 { width: 50%; }
+.width60 { width: 60%; }
+.width66 { width: 66.666%; }
+.width75 { width: 75%; }
+.width80 { width: 80%; }
+.width100 { width: 100%; }
+
+/* Create new Block Formatting Contexts */
+.bfc-o { overflow: hidden; }
+.bfc-f {
+	width: 100%;
+	float: left;
+}
+
+/* Align Boxes */
+.float-left { float: left; }
+.float-right { float: right; }
+
+/* Grid Gutter */
+.grid-gutter.grid-block { margin: 15px -15px 0 -15px; }
+.grid-gutter.grid-block:first-child { margin-top: 0; }
+.grid-gutter > .grid-box > * { margin: 0 15px; }
+
+
+/* Layout Defaults
+----------------------------------------------------------------------------------------------------*/
+
+/* Center Page */
+.wrapper { margin: auto; }
+
+/* Header */
+#header { position: relative; }
+
+#toolbar .float-left .module,
+#toolbar .float-left > time {
+	margin: 0 15px 0 0;
+	float: left;
+}
+
+#toolbar .float-right .module {
+	margin: 0 0 0 15px;
+	float: right;
+}
+
+#headerbar .module {
+	max-width: 300px;
+	margin-right: 0;
+	float: right;
+}
+
+#logo, #logo > img,
+#menu { float: left; }
+#search { float: right; }
+
+#banner {
+	position: absolute;
+	top: 0;
+	right: -200px;
+}
+
+/* Footer */
+#footer {
+	position: relative;
+	text-align: center;
+}
+
+/* Absolute */
+#absolute {
+	position: absolute;
+	z-index: 15;
+	width: 100%;
+}
+Spacing
+----------------------------------------------------------------------------------------------------*/
+.module, #header, #breadcrumbs, #content, #footer
+{
+	margin: 0px;
+}
+#footer
+{
+	position: relative;
+	text-align: left;
+	padding: 15px 25px;
+}
+#footer .module
+{
+	margin: 0;
+}
+#headerbar
+{
+	margin: 0px;
+	padding: 15px;
+}
+.wrapper
+{
+	/*+border-radius:10px;*/
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-khtml-border-radius: 10px;
+	border-radius: 10px;
+	/*+box-shadow:0px 2px 5px #4F4F4F;*/
+	-moz-box-shadow: 0px 2px 5px #4F4F4F;
+	-webkit-box-shadow: 0px 2px 5px #4F4F4F;
+	-o-box-shadow: 0px 2px 5px #4F4F4F;
+	box-shadow: 0px 2px 5px #4F4F4F;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+.wp-search #content #system .page-title, .wp-archive #content #system .page-title
+{
+	background: #FFFFFF url(../images/back-gradient.png) repeat-x top;
+	padding: 15px 20px;
+	margin: 0px;
+}
+/*Side Border*/
+.sidebar-a-right #sidebar-a, .sidebar-b-right #sidebar-b
+{
+	border-left: 1px solid #E5E5E5;
+	/*+box-sizing:border-box;*/
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	padding-bottom: 10px;
+}
+.sidebar-b-left #sidebar-b, .sidebar-a-left #sidebar-a
+{
+	border-right: 1px solid #E5E5E5;
+	/*+box-sizing:border-box;*/
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	padding-bottom: 10px;
+}
+/*Dash*/
+.sidebar-a-right .article-dash
+{
+	position: absolute;
+	left: -25px;
+	bottom: 9px;
+	height: 30px;
+	width: 10px;
+}
+.sidebar-a-left .article-dash
+{
+	position: absolute;
+	right: -25px;
+	bottom: 9px;
+	height: 30px;
+	width: 10px;
+}
+/*Layout
+----------------------------------------------------------------------------------------------------*/
+#totop-scroller
+{
+	display: block;
+	position: absolute;
+	top: 33%;
+	right: 15px;
+	z-index: 1;
+	width: 20px;
+	height: 20px;
+	background: url(../images/totop_scroller.png) no-repeat 50% 50%;
+	text-decoration: none;
+}
