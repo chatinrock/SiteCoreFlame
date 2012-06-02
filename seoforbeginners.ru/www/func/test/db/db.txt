@@ -1,0 +1,30 @@
+HTTP_TE = deflate,gzip;q=0.3
+HTTP_CONNECTION = TE, close
+HTTP_HOST = seoforbeginners.ru
+HTTP_USER_AGENT = Pilesosik libwww-perl/5.837
+IP: 80.93.56.115
+======================
+
+HTTP_TE = deflate,gzip;q=0.3
+HTTP_CONNECTION = TE, close
+HTTP_ACCEPT_ENCODING = gzip
+HTTP_HOST = seoforbeginners.ru
+HTTP_USER_AGENT = WWW-Mechanize/1.66
+IP: 80.93.56.115
+======================
+
+HTTP_TE = deflate,gzip;q=0.3
+HTTP_CONNECTION = TE, close
+HTTP_HOST = seoforbeginners.ru
+HTTP_USER_AGENT = Pilesosik libwww-perl/5.837
+IP: 80.93.56.115
+======================
+
+HTTP_TE = deflate,gzip;q=0.3
+HTTP_CONNECTION = TE, close
+HTTP_ACCEPT_ENCODING = gzip
+HTTP_HOST = seoforbeginners.ru
+HTTP_USER_AGENT = WWW-Mechanize/1.66
+IP: 80.93.56.115
+======================
+

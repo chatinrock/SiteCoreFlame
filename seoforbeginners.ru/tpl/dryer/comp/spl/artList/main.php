@@ -19,7 +19,7 @@ for ($i = 0; $i < $artListCount; $i++) {
     echo '<article id="item-' . $i . '" class="item" data-permalink="' . $item['url'] . '">';
     ?><header>
         <h1 class="title">
-            <a href="<?= $item['url'] ?>" title="<?= $item['caption'] ?>"><?= $item['caption'] ?></a>
+            <a href="<?= $item['url'] ?>" rel="bookmark" title="<?= $item['caption'] ?>"><?= $item['caption'] ?></a>
             <span class="article-dash"></span>
         </h1>
         <p class="meta clearfix">
@@ -30,7 +30,7 @@ for ($i = 0; $i < $artListCount; $i++) {
 
     <? if ($item['prevImgUrl']) { ?>
         <div class="post-thumbnail">
-            <a href="<?= $item['url'] ?>" title="<?= $item['caption'] ?>">
+            <a href="<?= $item['url'] ?>" rel="bookmark" title="<?= $item['caption'] ?>">
                 <img width="960" height="300" src="<?= $item['prevImgUrl'] ?>" class="attachment-post-thumbnail wp-post-image" alt="<?= $item['caption'] ?>" title="<?= $item['caption'] ?>" />
             </a>
         </div>
