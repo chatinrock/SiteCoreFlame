@@ -26,8 +26,8 @@
     </form>
 </div>
 <script>
-    dbus.artComp = {param:{
+    dbus.oiComment = {param:{
         blockItemId: '<?= self::get('blockItemId') ?>',
-        acticleId: '<?= self::get('acticleId') ?>'
+        objItemId: '<?= self::get('objItemId') ?>'
     }};
 </script>
