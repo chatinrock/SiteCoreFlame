@@ -1,0 +1,20 @@
+@charset "UTF-8";
+/* CSS Document */
+
+
+/* ===== BUTTON ==== */
+
+.button-color, input[type=submit] { background: url(../../images/colors/blue/button-color-bg.gif) repeat-x top left; border: 1px solid #3d98d9; color: #ffffff; text-shadow: 0 1px 1px #4e84a9; box-shadow: 0 1px 2px #AAAAAA; }
+.button-color:hover, .button-color:focus, input[type=submit]:hover, input[type=submit]:focus { background: url(../../images/colors/blue/button-color-bg.gif) repeat-x left -35px; border: 1px solid #46a0e0; color: #ffffff; text-shadow: 0 1px 1px #5d93b8; }
+.button-color:active, input[type=submit]:active { background: url(../../images/colors/blue/button-color-bg.gif) repeat-x left top; border-top: 1px solid #5580a0; border-left: 1px solid #4d87b3; border-right: 1px solid #4d87b3; border-bottom: 1px solid #4d91c3; box-shadow: 0 1px 0 rgba(255, 255, 255, .5), inset 0 1px 3px #5580a0; color: #ffffff; text-shadow: 0 1px 1px #5d93b8; }
+	
+	#pagination ul li.current a { background: url(../../images/colors/blue/button-color-bg.gif) repeat-x left -1px; border: none; padding: 6px; color: #ffffff; text-shadow: 0 1px 1px #4e84a9; box-shadow: 0 1px 2px #AAAAAA; }
+	#pagination ul li.current a:hover { background: url(../../images/colors/blue/button-color-bg.gif) repeat-x left -36px; text-decoration: none; }
+	#pagination ul li.current a:active { background: url(../../images/colors/blue/button-color-bg.gif) repeat-x left top; border-top: 1px solid #5580a0; border-left: 1px solid #4d87b3; border-right: 1px solid #4d87b3; border-bottom: 1px solid #4d91c3; box-shadow: 0 1px 0 #ffffff, inset 0 1px 3px #5580a0; color: #ffffff; text-shadow: 0 1px 1px #5d93b8; padding: 5px; }
+
+
+
+/* ===== MENU ===== */
+
+#main-bar > ul > li > a, #logo { background: url(../../images/colors/blue/main-bar-bg.png); }
+#main-bar ul ul { background: #3286c1; }

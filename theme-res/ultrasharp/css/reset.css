@@ -1,0 +1,106 @@
+/* 
+   http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section { display: block; }
+
+body {	line-height: 1; }
+
+ol, ul { list-style: none; }
+
+blockquote, q {	quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {	content: ''; content: none; }
+
+table {	border-collapse: collapse; border-spacing: 0; }
+
+/* ----------------------------------------------------
+-------------------------------------------------------
+ RESET CSS FRAMEWORK OF GUILHERME SALUM - DDSTUDIOS
+-------------------------------------------------------
+---------------------------------------------------- */
+
+p, ul, ol, blockquote, code { margin: .5em 0 1.2em 0; }
+
+em { font-style: italic; }
+
+pre { font-family: "Courier New", Courier, monospace; background: #eee; padding: 8px 10px; display: block; white-space: pre; }
+code { font: normal 12px/18px "Courier New", Courier, monospace; border: 1px solid #ececec; border-bottom: none; white-space: pre; display: block; padding: 0 5px; }
+code br { display: none; }
+
+abbr, acronym { font-size: 80%; text-transform: uppercase; letter-spacing: 1px; }
+big { font-size: 120%; }
+strong { font-weight: bold; }
+
+a:link, a:visited, a { text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+ul { list-style: disc; padding-left: 15px; }
+ol { list-style: decimal; padding-left: 15px; }
+
+.alignleft, .left { float: left; }
+.alignright, .right { float: right; }
+img.alignleft { float: left; margin: 0 1em 1em 0; }
+img.alignright { float: left; margin: 0 0 1em 1em; }
+.hidden { display: none; }
+
+blockquote { display: block; padding: 10px 10px 10px 10px; border-left: 4px solid #666666; }
+
+.one-half, .one-third, .two-thirds,
+.one-fourth, .three-fourths, .one-fifth,
+.two-fifths, .three-fifths, .four-fifths,
+.one-sixth, .five-sixths, .one-seventh,
+.two-sevenths, .three-sevenths, .four-sevenths,
+.five-sevenths, .six-sevenths { float: left; margin: 0 4% 0 0; }
+.one { width: 100% !important; float: left; margin: 0 0 30px 0; }
+.one-half { width: 48%; }
+.one-third { width: 30.66%; }
+.two-thirds { width: 65.33%; }
+.one-fourth { width: 22%; }
+.three-fourths { width: 74%; }
+.one-fifth { width: 16.8%; }
+.two-fifths { width: 37.6%; }
+.three-fifths { width: 58.4%; }
+.four-fifths { width: 79.2%; }
+.one-sixth { width: 13.33%; }
+.five-sixths { width: 82.67%; }
+.one-seventh { width: 10.857%; }
+.two-sevenths { width: 25.714%; }
+.three-sevenths { width: 40.571%; }
+.four-sevenths { width: 55.428%; }
+.five-sevenths { width: 70.285%; }
+.six-sevenths { width: 85.142%; }
+.group { float: left; width: 100%; }
+.last { margin-right: 0 !important; margin-left: 0 !important; }
+.clear { clear: both; display: block; }
+small { font-size: 80%; }
+
+body { font: normal 12px/17px Helvetica, Arial, sans-serif; }
+
+h1, h2, h3 { margin: .5em 0 .5em 0; }
+h4, h5, h6 { margin: .8em 0 1em 0; }
+h1 { font: bold 32px/36px Helvetica, Arial, sans-serif; }
+h2 { font: bold 26px/30px Helvetica, Arial, sans-serif; }
+h3 { font: bold 22px/26px Helvetica, Arial, sans-serif; }
+h4 { font: bold 16px/20px Helvetica, Arial, sans-serif; }
+h5 { font: bold 14px/18px Helvetica, Arial, sans-serif; }
+h6 { font: bold 11px/16px Helvetica, Arial, sans-serif; }

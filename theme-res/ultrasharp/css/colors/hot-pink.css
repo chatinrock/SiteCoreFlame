@@ -1,0 +1,21 @@
+@charset "UTF-8";
+/* CSS Document */
+
+
+/* ===== BUTTON ==== */
+
+.button-color, input[type=submit] { background: #ff4c98 url(../../ddpanel/shortcodes/images/shortcodes/buttons/overlay-shadow.png) repeat-x top left; border: 1px solid #ff4c98; color: #ffffff; text-shadow: 0 1px 1px rgba(0, 0, 0, .3); box-shadow: 0 1px 2px #AAAAAA; }
+.button-color:hover, .button-color:focus, input[type=submit]:hover, input[type=submit]:focus { background: #ff4c98 url(../../ddpanel/shortcodes/images/shortcodes/buttons/overlay-shadow.png) repeat-x left -60px; border: 1px solid #ff4c98; color: #ffffff;  text-shadow: 0 1px 1px rgba(0, 0, 0, .3); }
+.button-color:active, input[type=submit]:active { background: #ff4c98; margin: 1px; margin-right: 8px;
+box-shadow: inset 0 1px 3px rgba(0, 0, 0, .35), 0 1px 0 rgba(255, 255, 255, .3);  -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, .35), 0 1px 0 rgba(255, 255, 255, .3);  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, .35), 0 1px 0 rgba(255, 255, 255, .3);  -o-box-shadow: inset 0 1px 3px rgba(0, 0, 0, .35), 0 1px 0 rgba(255, 255, 255, .3);  -ms-box-shadow: inset 0 1px 3px rgba(0, 0, 0, .35), 0 1px 0 rgba(255, 255, 255, .3); }
+	
+	#pagination ul li.current a { background: url(../../images/colors/hot-pink/button-color-bg.gif) repeat-x left -1px; border: none; padding: 6px; color: #ffffff; text-shadow: 0 1px 1px rgba(0, 0, 0, .3); box-shadow: 0 1px 2px #AAAAAA; }
+	#pagination ul li.current a:hover { background: url(../../images/colors/hot-pink/button-color-bg.gif) repeat-x left -36px; text-decoration: none; }
+	#pagination ul li.current a:active { background: url(../../images/colors/hot-pink/button-color-bg.gif) repeat-x left top; box-shadow: 0 1px 0 #ffffff, inset 0 1px 3px rgba(0, 0, 0, .4); color: #ffffff; text-shadow: 0 1px 1px rgba(0, 0, 0, .3); padding: 6px; }
+
+
+
+/* ===== MENU ===== */
+
+#main-bar > ul > li > a, #logo { background: url(../../images/colors/hot-pink/main-bar-bg.png); }
+#main-bar ul ul { background: #d36f79; }
