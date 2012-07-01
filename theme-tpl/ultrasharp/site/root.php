@@ -5,7 +5,11 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<?= $this->block('head') ?>
         <meta name="viewport" content="width=device-width" />
-		<link rel="shortcut icon" href="/res/favicon.ico" />
+		
+		<link rel="shortcut icon" href="/res/icons/favicon.ico" />
+		<link href="res/icons/icon128.png" rel="icon"/>
+		<link href="res/icons/icon128.png" rel="apple-touch-icon-precomposed"/>
+		
         <link rel="alternate" type="application/rss+xml" title="Rss лента" href="/res/main.rss" />
 		<meta name="generator" content="Flame 2.4" />
 
@@ -15,6 +19,7 @@
         <link rel="stylesheet" href="http://theme.codecampus.ru/ultrasharp/css/fixed.css" media="screen" />  
 		<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
 		<script type='text/javascript' src='http://theme.codecampus.ru/ultrasharp/js/scripts.js?ver=3.4'></script>
+		<script type='text/javascript' src='http://theme.codecampus.ru/ultrasharp/ddpanel/shortcodes/js/shortcodes.js?ver=3.4'></script>
 <style type="text/css">
 .recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}
 </style>
@@ -75,7 +80,6 @@
 				
 				//animates our menu
 				jQuery('#main-bar').mainBar('227dbd');
-		
 			});
 </script> 
 </head>
