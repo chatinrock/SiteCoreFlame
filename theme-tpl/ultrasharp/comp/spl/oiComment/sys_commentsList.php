@@ -1,28 +1,20 @@
 <?
-ob_start()
-?>
-<ul class="level1 nested">
-
-    <?
-    $comHandle = self::get('comHandle');
-
+$comHandle = self::get('comHandle');
+ob_start();
     $oldId = null;
     $levelCount = 0;
     // Количество комментариев
     $commentCount = 0;
     $levelBuff = array();
-
+	
     while ($item = $comHandle->fetch_object()) {
         $commentCount++;
         // Проверяем вложенный ли это комментарий
         if ($item->treeId == $oldId) {
+			++$levelCount;
             // Начало блоко ребёнка
-            echo '<ul class=\'children\'><li>';
-            ++$levelCount;
+            echo '<ul class=\'children\'>';
         } else {
-            //$levelBuffNum = isset($levelBuff[$item->treeId]) ? $levelBuff[$item->treeId] : '-';
-            //print "level: {$item->treeId}:{$levelBuffNum}  $levelCount\n";
-            
             if (isset($levelBuff[$item->treeId])) {
                 $iCount = $levelCount - $levelBuff[$item->treeId];
                 for ($i = 0; $i < $iCount; $i++) {
@@ -33,19 +25,19 @@ ob_start()
                 // Закрываем комментарий
                 echo '</li>';
             } // if
-            // Начало комментария
-            echo '<li>';
-        }
+        } // if ($item->treeId == $oldId)
+		
         if (!isset($levelBuff[$item->treeId])) {
             $levelBuff[$item->treeId] = $levelCount;
         } // if
 
         self::setVar('author', $item->userName);
         self::setVar('comment', $item->comment);
+        self::setVar('commentCount', $commentCount);
+        self::setVar('levelCount', $levelCount);
         self::setVar('dateAdd', $item->dateAdd);
         self::setVar('id', $item->id);
         self::includeBlock('comment');
-        //echo "\ncom id:{$item->id}  tree:{$item->treeId}\n";
 
         $oldId = $item->id;
     } // while
@@ -54,17 +46,16 @@ ob_start()
       // Закрываем блок ребёнка
       echo '</li></ul>';
       } // for
-    ?>
-</li>
-</ul>
-<?
+
 $data = ob_get_clean();
 ?>
-<h3 class="comments-meta">Комментарии (<?= $commentCount ?>)<span class="article-dash"></span></h3>
-<?
-print $data;
-if ( $commentCount ){
-?>
+<div id="comments" class="alt-bg-comments">
+    <h4>Комментарии (<?= $commentCount ?>)</h4>
+    <ol><?
+		print $data;
+	?></ol>
+</div>
+<?if ( $commentCount ){?>
 <script>
     $(function($) {
         $('#headerCommentCount').html('<?=$commentCount ?> коментариев');

@@ -1,25 +1,31 @@
 <? if ( self::get('isFirst')){?>
-<h3 class="comments-meta">Комментарии (1)<span class="article-dash"></span></h3>
-<?}?><article id="comment-<?=self::get('id')?>" class="comment">
+<div id="comments" class="alt-bg-comments">
+    <h4>Комментарии (1)</h4>
+    <ol>
+<?}?>
+<?
+$podsv = self::get('commentCount') % 2 ? 'odd' : 'even';
+?>
+<li class="comment byuser <?=$podsv?> thread-<?=$podsv?> level-<?=self::get('levelCount')?>" id="comment-<?=self::get('id')?>">
+<div class="comment-info">
 
-    <header class="comment-head">
+                <img alt=''
+                     src='/res/images/comments_avatar.png'
+                     class='avatar avatar-60 photo' height='60' width='60'/>
+                <span class="author"><?= self::get('author') ?></span>
 
-        <img alt='Аватар' src='/res/images/comments_avatar.png' class='avatar avatar-70 photo' height='70' width='70' />								
-        <h4 class="author"><a href='#author' rel='external nofollow' class='url'><?= self::get('author') ?></a></h4>
+                <span class="date">
+				<time datetime="<?=self::get('dateAddSys')?>" pubdate><?=self::get('dateAdd')?>
+				| <a class="permalink" href="#comment-<?=self::get('id')?>">#</a>
+				</time></span>
+            </div>
+            <div class="comment-content">
+				<p><?=self::get('comment')?></p>
+                <span class="reply"><a href="#" rel="<?=self::get('id')?>">Ответить</a></span></p>
+            </div>
+            <div class="clear"></div>
 
-        <p class="meta">
-            <time datetime="<?=self::get('dateAddSys')?>" pubdate><?=self::get('dateAdd')?></time>
-            | <a class="permalink" href="#comment-<?=self::get('id')?>">#</a>
-        </p>
-
-    </header>
-
-    <div class="comment-body">
-        
-        <div class="content">
-            <p><?= self::get('comment') ?></p>
-        </div>
-        <p class="reply"><a href="#" rel="<?=self::get('id')?>">Ответить</a></p>                                
-        
-    </div>
-</article>
+<? if ( self::get('isFirst')){?>
+</ol>
+</div>
+<?}?>

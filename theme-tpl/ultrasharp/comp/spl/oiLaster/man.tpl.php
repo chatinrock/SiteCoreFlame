@@ -1,18 +1,21 @@
-<div class="grid-box width100 grid-v">
-    <div class="module mod-box  deepest">
-        <h3 class="module-title"><span class="color">Последние</span> статьи<span class="module-dash"></span></h3>
-        <ul class="line">
-            <?
+<div class="sidebar-item">
+	<h5>Последние:</h5>
+	<ul class="tabbed-posts-popular"><?
                 $list = self::get('list');
                 $iCount = count($list);
                 for( $i = 0; $i < $iCount; $i++ ){
-                    ?>
-                    <li>
-                        <a href="<?=$list[$i]['url']?>" title="<?=$list[$i]['caption']?>"><?=$list[$i]['caption']?></a>
-                    </li>
-                    <?
+					$caption = $list[$i]['caption'];
+					$url = $list[$i]['url'];
+					$prevImgUrl = $list[$i]['prevImgUrl'];
+					$dateAdd = $list[$i]['dateAdd'];
+                    ?><li>
+							<a href="<?=$url?>" title="<?=$caption?>">
+							<?if ($prevImgUrl){?><img src="<?=$prevImgUrl?>" title="<?=$caption?>" alt="<?=$caption?>" /><?}?>
+							<span class="title"><?=$caption?></span>
+							<span class="date"><?=$dateAdd?></span>
+							<div class="clear"></div>
+							</a>
+					</li><?
                 } // for
-            ?>
-        </ul>
-    </div>
+            ?></ul>
 </div>

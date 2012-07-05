@@ -44,4 +44,6 @@ $infoData = self::get('infoData');
 $(window).load(function() {
 	$('.imagePreload').each( function() { $(this).ddImagePreload(); });
 });
-</script>                            
+</script>
+<div class="clear"></div>
+<div class="post-border-bottom"></div>                     

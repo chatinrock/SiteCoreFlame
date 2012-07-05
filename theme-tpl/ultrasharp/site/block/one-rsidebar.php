@@ -1,21 +1,17 @@
+<? $this->block('title'); ?>
 <div id="content">
     <div class="wrapper">
-		<?$this->block('title');?>	
+        <h1 class="page-title" id="pageTitle"><?$this->varible('pageTitle');?></h1>
+		<h3 class="page-slogan"><?$this->varible('pageSlogan');?></h3>
         <div id="content-wrapper">
             <div class="block main-content" id="sidebar-right">
                 <div id="sidebar">
                     <?$this->block('sidebar');?>
                 </div>
                 <div id="main-content">
-                    <?$this->block('breadcrumb');?>
-                    <?$this->block('artList');?>
-					<?$this->block('author');?>
-					<?$this->block('otherPosts');?>
-					<?$this->block('comments');?>
-					<?$this->block('respond');?>
+                    <?$this->block('breadcrumbs');?>
+                    <?$this->block('content');?>
                 </div>
-                <div class="clear"></div>
-                <?self::block('pagination');?>
             </div>
             <div class="clear"></div>
         </div>
