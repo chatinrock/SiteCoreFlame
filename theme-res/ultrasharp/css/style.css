@@ -750,7 +750,14 @@ box-shadow: 0 1px 3px rgba(0, 0, 0, .3); -moz-box-shadow: 0 1px 3px rgba(0, 0, 0
 .list-posts li .info { display: block; color: #888888; }
 .list-posts li > a:hover { text-decoration: none; background: #ffffff; }
 
-
+A:active:not([class]), A:focus:not([class]) {
+    position: relative;
+    top: 1px;
+}
+A:active:not([class]) > *, A:focus:not([class]) > * {
+    position: relative;
+    top: -1px;
+}
 
 
 /* ===== OTHER STUFF ===== */

@@ -1,5 +1,5 @@
 <div class="sidebar-item">
-	<h5>Последние:</h5>
+	<h5>Популярные:</h5>
 	<ul class="tabbed-posts-recent"><?
                 $list = self::get('list');
                 $iCount = count($list);

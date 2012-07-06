@@ -1,8 +1,14 @@
+<script>
+    dbus.oiComment = {param:{
+        blockItemId:'<?= self::get('blockItemId') ?>',
+        objItemId:'<?= self::get('objItemId') ?>',
+		noComment: false
+    }};
+</script>
 <div id="comments" class="alt-bg-comments"><?
 // Костыль, что бы избавить от is_file
-@self::loadFile(self::get('commFile'))
-?><!--<h4>Ни кто ни чего не писал. Вы будите первыми! &rarr;</h4>-->
-</div>
+if ( ! @self::loadFile(self::get('commFile')) ){
+?><h4>Ни кто ни чего не написал. Вы будите первыми! &rarr;</h4><script>dbus.oiComment.param.noComment=true;</script><?}?></div>
 <div id="respond">
 
     <div class="clear"></div>
@@ -31,9 +37,3 @@
     </form>
     <div class="clear"></div>
 </div>
-<script>
-    dbus.oiComment = {param:{
-        blockItemId:'<?= self::get('blockItemId') ?>',
-        objItemId:'<?= self::get('objItemId') ?>'
-    }};
-</script>

@@ -83,7 +83,10 @@ if (is_array($oiListData)) {
 } // is_array
 ?>
 <script type="text/javascript">
-$(window).load(function() {
+jQuery(document).ready(function() {
 	$('.imagePreload').each( function() { $(this).ddImagePreload(); });
+});
+$(window).load(function() {
+	$('.post-thumb img').ddFadeOnHover(0.7);
 });
 </script>

@@ -49,12 +49,11 @@ ob_start();
 
 $data = ob_get_clean();
 ?>
-<div id="comments" class="alt-bg-comments">
     <h4>Комментарии (<?= $commentCount ?>)</h4>
     <ol><?
 		print $data;
 	?></ol>
-</div>
+
 <?if ( $commentCount ){?>
 <script>
     $(function($) {
