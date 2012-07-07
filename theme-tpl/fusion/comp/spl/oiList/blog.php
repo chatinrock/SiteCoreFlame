@@ -6,7 +6,6 @@ $paginationUrlTpl = self::get('paginationUrlTpl');
 $pagionationUrlParam = self::get('pagionationUrlParam');
 $objItemDir = self::get('objItemDir');
 $categoryUrlTpl = self::get('categoryUrlTpl');
-
 if (is_array($oiListData)) {
     $oiListDataCount = count($oiListData);
     for ($i = 0; $i < $oiListDataCount; $i++) {
@@ -14,46 +13,43 @@ if (is_array($oiListData)) {
         $categoryUrl = vsprintf($categoryUrlTpl, $item['seoName']);
         // TODO: Вставить data-permalink
         ?>
-    <section>
-        <div
-            class="post-full post-full-left post-<?=$i?> post type-post status-publish format-standard hentry category-artists category-inspiration category-photography tag-example tag-featured tag-inspiration-2 tag-work "
-            id="post-<?=$i?>">
-            <article data-permalink="<?=$item['url']?>">
-                <header>
-                    <h2 class="post-title">
-                        <a title="<?= $item['caption']?>" href="<?= $item['url'] ?>"
-                           rel="bookmark"><?= $item['caption'] ?></a>
-                    </h2>
-
-                    <div class="post-info">
-
-                        <span class="date"><time datetime="<?= $item['dateAdd'] ?>"
-                                                 pubdate><?= $item['dateAdd'] ?></time></span>
-                        <span class="author">Козленко В.Л.</span>
-                        <span class="categories">
-							Категория: <a href="<?= $categoryUrl ?>"
-                                          title="<?= $item['category'] ?>"><?= $item['category'] ?></a>
-						</span>                                    
-						<span class="comments">
-							<a href="<?= $item['url'] ?>#comments" title="Комментировать">Комментировать</a>
-						</span>
-                    </div>
-                    <? if ($item['prevImgUrl']) { ?>
-                    <div class="post-thumb">
-                        <a href="<?= $item['url'] ?>"><span class="imagePreload" style="width: 560px; height: 250px;"
-                                                            title="<?= $item['caption'] ?>"><span><?= $item['prevImgUrl'] ?></span></span></a>
-
-                    </div>
-                    <? } ?>
-
-                    <!--<span class="post-tags">
-                     <a href="#tag/example/" rel="tag">example</a> + <a href="#tag/featured/" rel="tag">featured</a> + <a href="#tag/inspiration-2/" rel="tag">inspiration</a> + <a href="#ultrasharp/tag/work/" rel="tag">work</a>
-                 </span>-->
-                </header>
-
-                <div class="post-content">
-                    <!--<p>-->
-					<?
+		
+		<div class="post">
+		<? if ($item['prevImgUrl']) { ?>
+                            <div class="frame">
+								<img class="overlay-item-link" src="<?=$item['prevImgUrl']?>" width="692" height="262" alt="<?= $item['caption'] ?>" rel="<?= $item['url'] ?>"/>
+							</div>
+							<?}?>
+                            <div class="content">
+                                <div class="date">
+                                    <span class="day">31</span>
+                                    <span class="year">2012</span>
+                                    <span class="month">dec</span>
+									<!--<?= $item['dateAdd'] ?>-->
+                                </div>
+                                <div class="post-format-icon"></div>
+                                <h2>
+									<a class="bn" title="Читать <?= $item['caption']?>" href="<?= $item['url'] ?>" rel="bookmark">
+										<?= $item['caption'] ?>
+									</a>
+								</h2>
+                                <ul class="info">
+                                    <li class="icons author">Козленко В.Л.</li>
+                                    <li class="icons comment">
+										<a href="<?= $item['url'] ?>#comments" title="Комментировать">
+											Комментировать
+										</a>
+									</li>
+                                    <li>
+										Категория: 
+										<a href="<?= $categoryUrl ?>" title="<?= $item['category'] ?>">
+											<?= $item['category'] ?>
+										</a>
+									</li>
+                                </ul>
+                                <div class="clear"></div>
+                                <div class="tx-content">
+                                    <?
                         $text = @file_get_contents($objItemDir . $item['idSplit'] . 'kat.txt');
                         if ($text) {
                             echo $text;
@@ -61,32 +57,53 @@ if (is_array($oiListData)) {
                             self::loadFile($objItemDir . $item['idSplit'] . 'data.txt');
                         }
                         ?>
-                    <!--</p>-->
+                                    <a class="bn" title="<?= $item['caption']?>" href="<?= $item['url'] ?>" rel="bookmark">Читать далее&rarr;</a>
+                                </div>
 
-                    <div class="padding-10"></div>
-
-                    <p>
-                        <a href="<?= $item['url'] ?>" title="<?= $item['caption'] ?>" class="button-clear">
-							Читать далее
-						</a>
-                    </p>
-
-                </div>
-
-            </article>
-        </div>
-    </section>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+	
     <?
     } // for
 } else {
     echo 'Wrong $oiListData mainTpl.php';
 } // is_array
 ?>
-<script type="text/javascript">
-jQuery(document).ready(function() {
-	$('.imagePreload').each( function() { $(this).ddImagePreload(); });
-});
-$(window).load(function() {
-	$('.post-thumb img').ddFadeOnHover(0.7);
-});
-</script>
+
+<div class="pagination">
+    <!--<span class="pages">Страница 1 из 11</span>-->
+<?
+$paginationList = self::get('paginationList');
+$pageNum = self::get('pageNum');
+$paginationUrlTpl = self::get('paginationUrlTpl');
+$pagionationUrlParam = self::get('pagionationUrlParam');
+
+// Показывать ли prev
+if ( $paginationList['prev'] ){
+    $pagionationUrlParam[-1] = 1;
+	$href = vsprintf($paginationUrlTpl, 1);
+    echo '<a href="' . $href . '" title="В начало">В начало</a>';
+    $pagionationUrlParam[-1] = $pageNum-1;
+	$href = vsprintf($paginationUrlTpl, $pagionationUrlParam);
+    echo '<a href="' . $href . '" title="На страницу назад" class="prevlink">«</a>';
+}
+
+// Показываем числа
+for ($i = $paginationList['firstNum']; $i <= $paginationList['lastNum']; $i++) {
+    if ($i != $pageNum) {
+        $pagionationUrlParam[-1] = $i;
+		$href = vsprintf($paginationUrlTpl, $pagionationUrlParam);
+        echo '<a href="' . $href . '" title="Страница '.$i.'">' . $i . '</a></li>';
+    } else {
+        echo '<span class="current">' . $i . '</span>';
+    }
+}
+if ( $paginationList['next'] || true){
+    $pagionationUrlParam[-1] = $pageNum+1;
+	$href = vsprintf($paginationUrlTpl, $pagionationUrlParam);
+    echo '<a href="' . $href . '" title="Следующая страница" class="nextlink">»</a>';
+}
+?>
+<div class="clear"></div>
+</div>

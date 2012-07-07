@@ -42,16 +42,7 @@
                     </div>
                 </div>
         		<div class="four columns">
-                    <div class="catogories-widget">
-                        <h4>Categories</h4>
-                        <ul>
-                            <li><a href="#">Frameworks</a> &nbsp;(17)</li>
-                            <li><a href="#">Javascript Programming</a> &nbsp;(17)</li>
-                            <li><a href="#">Brand Identity</a> &nbsp;(17)</li>
-                            <li><a href="#">Web & Mobile Applications</a> &nbsp;(17)</li>
-                            <li><a href="#">Search Engine Optimization</a> &nbsp;(17)</li>
-                        </ul>
-                    </div>
+                    <?self::block('catogories');?>
                 </div>
         	</div><!-- container -->
         </div>
