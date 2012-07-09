@@ -13,17 +13,17 @@
             ?>
 			&nbsp;→&nbsp;
 			<a href="<?=$url?>" title="<?=$caption?>" itemprop="url">
-				<block itemscope itemtype="http://data-vocabulary.org/Breadcrumb">'
+				<block itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
 					<block itemprop="title"><?=$caption?></block>
 				</block>
 			</a>
         <?}
 		if ( isset($breadcrumbs[$i]) ){?>
 			&nbsp;→&nbsp;
-			<a href="#" itemprop="url">
+			<span class="current" itemprop="url">
 				<block itemscope="itemscope" itemtype="http://data-vocabulary.org/Breadcrumb">
 					<block itemprop="title"><?=$breadcrumbs[$i]['caption']?></block>
 				</block>
-			</a>
+			</span>
         <?} ?>
 </span>

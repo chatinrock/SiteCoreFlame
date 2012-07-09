@@ -4,15 +4,14 @@
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 <head>
-
+	
 	<!-- Basic Page Needs
   ================================================== -->
     <meta charset="utf-8" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta name="author" content="lidplussdesign" />
 
-	<title>Fusion Html/Css Site Template</title>
+    <meta name="author" content="EdusGroup" />
+
+	<?self::block('head');?>
 
 	<!-- Mobile Specific Metas
   ================================================== -->
@@ -129,7 +128,7 @@
     
 </head>
 <body>
-    <div id="wrap" class="home">
+    <div id="wrap">
         <?self::block('headerMeta');?>
         <?self::block('header');?>
         <?self::block('preContent');?>

@@ -2,48 +2,36 @@
 $categoryUrlTpl = self::get('categoryUrlTpl');
 $infoData = self::get('infoData');
 ?>
-<h1 class="single-title"><?= $infoData['caption'] ?></h1>
-	<div class="post-info">
-        <span class="date">
-			<time datetime="<?=$infoData['date_add']?>" pubdate>
-				<?=$infoData['date_add']?>
-			</time>
-		</span>
-		<? if ( $infoData ) {?>
-			<span class="categories">
-				<a href="<?= vsprintf($categoryUrlTpl, $infoData['seoName']) ?>" title="Все посты в <?= $infoData['category'] ?>" rel="category tag">
-					<?= $infoData['category'] ?>
-				</a>
-			</span>
-		<?}?>
-		<span class="comments">
-			<a href="#comments" id="headerCommentCount" title="Комментировать">
-				Нет коментариев
-			</a>
-		</span>
-                 
-    </div>
-	<div class="post-thumb">
-		<span class="imagePreload" style="width: 560px; height: 250px;" title="<?= $infoData['category'] ?>">
-			<span>
-				<?=$infoData['prevImgUrl']?>
-			</span>
-		</span>
-	</div>
-    <div class="post-social" id="socialBox"></div>
 
-<article>	
-<? if ( $infoData['isCloaking'] ){
-    self::loadFile(self::get('dir') . 'cloak.txt');
-}else{
-    self::loadFile(self::get('dir') . 'kat.txt');
-    self::loadFile(self::get('dir') . 'data.txt');
-}?>
-</article>
-<script type="text/javascript">
-$(window).load(function() {
-	$('.imagePreload').each( function() { $(this).ddImagePreload(); });
-});
-</script>
-<div class="clear"></div>
-<div class="post-border-bottom"></div>                     
+<div class="frame"><img src="<?=$infoData['prevImgUrl']?>" alt="<?= $infoData['caption'] ?>"/></div>
+                        <div class="content">
+                            <div class="date">
+                                <span class="day">31</span>
+                                <span class="year">2012</span>
+                                <span class="month">dec</span>
+                            </div>
+							
+                            <ul class="info">
+                                <li>Козленко В.Л.</li>
+                                <li><a href="#comments">Нет коментариев</a></li>
+                                <li>
+									<a href="<?= vsprintf($categoryUrlTpl, $infoData['seoName']) ?>" title="Все посты в <?= $infoData['category'] ?>" rel="category tag">
+									<?= $infoData['category'] ?>
+									</a>
+								</li>
+                            </ul>
+	<div class="clear"></div>
+	<div class="twelve columns alpha omega">
+		<h1>Lorem ipsum dolor sit amet, consectetuer adipiscing elit</h1>
+		<article>	
+			<? if ( $infoData['isCloaking'] ){
+				self::loadFile(self::get('dir') . 'cloak.txt');
+			}else{
+				self::loadFile(self::get('dir') . 'kat.txt');
+				self::loadFile(self::get('dir') . 'data.txt');
+			}?>
+		</article>
+	</div>
+	<div class="clear"></div>
+                        </div>      
+					

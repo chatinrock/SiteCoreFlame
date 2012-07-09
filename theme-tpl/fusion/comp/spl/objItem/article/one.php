@@ -1,4 +1,3 @@
-
 <section id="content" class="grid-block"><div id="system">
         <article class="item" data-permalink="">
             <?

@@ -99,7 +99,7 @@ for ($i = $paginationList['firstNum']; $i <= $paginationList['lastNum']; $i++) {
         echo '<span class="current">' . $i . '</span>';
     }
 }
-if ( $paginationList['next'] || true){
+if ( $paginationList['next']){
     $pagionationUrlParam[-1] = $pageNum+1;
 	$href = vsprintf($paginationUrlTpl, $pagionationUrlParam);
     echo '<a href="' . $href . '" title="Следующая страница" class="nextlink">»</a>';
