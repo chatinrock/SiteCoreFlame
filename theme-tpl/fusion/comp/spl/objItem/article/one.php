@@ -1,18 +1,17 @@
-<section id="content" class="grid-block"><div id="system">
-        <article class="item" data-permalink="">
-            <?
-$categoryUrlTpl = self::get('categoryUrlTpl');
+<?
 $infoData = self::get('infoData');
 ?>
-<header>
-    <h1 class="title"><?= $infoData['caption'] ?><span class="article-dash"></span></h1>
-</header>
-
-<div class="content clearfix">
-<?
-   self::loadFile(self::get('dir') . 'data.txt');
-?>
-</div>
- </article>
-    </div>
-</section>
+<?if($infoData['prevImgUrl']){?>
+<div class="frame"><img src="<?=$infoData['prevImgUrl']?>" alt="<?= $infoData['caption'] ?>"/></div>
+<?}?>
+	<div class="twelve columns alpha omega">
+		<h1><?= $infoData['caption'] ?></h1>
+		<article>	
+			<? if ( $infoData['isCloaking'] ){
+				self::loadFile(self::get('dir') . 'cloak.txt');
+			}else{
+				self::loadFile(self::get('dir') . 'kat.txt');
+				self::loadFile(self::get('dir') . 'data.txt');
+			}?>
+		</article>
+	</div>

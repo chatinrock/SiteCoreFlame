@@ -22,7 +22,7 @@ $infoData = self::get('infoData');
                             </ul>
 	<div class="clear"></div>
 	<div class="twelve columns alpha omega">
-		<h1>Lorem ipsum dolor sit amet, consectetuer adipiscing elit</h1>
+		<h1><?= $infoData['caption'] ?></h1>
 		<article>	
 			<? if ( $infoData['isCloaking'] ){
 				self::loadFile(self::get('dir') . 'cloak.txt');
