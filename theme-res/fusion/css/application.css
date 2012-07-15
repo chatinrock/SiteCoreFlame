@@ -2907,6 +2907,29 @@ input::-moz-focus-inner {
 		position: relative;
 		top: -1px;
 	}
+	
+	.contactBox .skype{
+		background: url("../images/contact/skype32.png") no-repeat scroll 0px center;
+	}
+	.contactBox .phone{
+		background: url("../images/contact/phone32.png") no-repeat scroll 0px center;
+	}
+	.contactBox .icq{
+		background: url("../images/contact/icq32.png") no-repeat scroll 0px center;
+	}
+	.contactBox .email{
+		background: url("../images/contact/email32.png") no-repeat scroll 0px center;
+	}
+	.contactBox .map{
+		background: url("../images/contact/map32.png") no-repeat scroll 0px center;
+	}
+	
+	.contactBox p{
+		padding-left: 37px;
+		height: 32px;
+		font-size: 18px;
+		line-height: 32px;
+	}
 
 	/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 	@media only screen and (max-width: 479px) {}
