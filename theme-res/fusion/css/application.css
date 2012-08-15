@@ -100,6 +100,7 @@ code,pre{
 #slogan,
 #slider,
 #header,
+#imgGallary,
 #main{
     width: auto;
     padding: 0 10px;
@@ -368,6 +369,19 @@ ul.bullet li{
 .meta-tweet a:hover{
     color: #fff;
 }
+/* imgGallary
+-------------------------------------------------- */
+#imgGallary{
+    margin-bottom: 18px;
+    -moz-box-shadow:    0 0 10px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow:         0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#imgGallary img{
+				width: 150px;
+				margin-left: 5px;
+			}
 /* `header
 -------------------------------------------------- */
 #header{
@@ -847,7 +861,7 @@ ul.bullet li{
     color: #fafafa;
 }
 #footer a{
-    text-decoration: none;
+    /*text-decoration: none;*/
     padding: 0 1px;
 	-webkit-transition: 0.1s linear all;
 	-moz-transition: 0.1s linear all;

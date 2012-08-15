@@ -10,6 +10,7 @@
     <meta charset="utf-8" />
 
     <meta name="author" content="EdusGroup" />
+	<meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
 
 	<?self::block('head');?>
 
@@ -97,13 +98,13 @@
 	<script src="http://theme.codecampus.ru/fusion/layerslider/layerslider/jQuery/jquery-easing-1.3.js" type="text/javascript"></script>
 	<script src="http://theme.codecampus.ru/fusion/layerslider/layerslider/js/layerslider.kreaturamedia.jquery.js" type="text/javascript"></script>
 	<script type="text/javascript">
-		$(document).ready(function(){
+		/*$(document).ready(function(){
 			$('#layerslider').layerSlider({
 			    navPrevNext         : false,
 				skinsPath : 'http://theme.codecampus.ru/fusion/layerslider/layerslider/skins/',
                 skin : 'fusionskin',
 			});
-		});		
+		});	*/	
 	</script>
     <!-- layerslider END-->
         

@@ -15,7 +15,7 @@ $(document).ready(function() {
 	$('#mainMenu a').each(function(ind, obj){
 		var rgx = /[^/]+$/i;
 		var href = document.location.href.replace(rgx ,"");
-		if ( !href.indexOf(obj.href) ){
+		if ( href === obj.href ){
 			$(obj).parent().addClass('current');
 		}
 	});

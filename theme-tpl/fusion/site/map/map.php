@@ -1,11 +1,15 @@
 <div class="five columns">
 	<h3>Контакты</h3>
 	<div class="contactBox">
-		<p class="skype">iOrator</p>
-		<p class="phone">+7 905 150 12 02</p>
-		<p class="icq">256 985 563</p>
-		<p class="email">iorator@mail.ru</p>
-		<p class="map">Тридевятое царство</p>
+		<p class="skype"><?=self::varible('skype','Skype');?></p>
+		<p class="phone"><?=self::varible('phone','Телефон');?></p>
+		<p class="icq"><?=self::varible('icq','ICQ');?></p>
+		<p class="email">
+			<a href="mailto:<?=self::varible('email');?>?subject=Запись%20на%20курс" title="Нажмите что бы написать письмо">
+				<?=self::varible('email','Email');?>
+			</a>
+		</p>
+		<p class="map"><?=self::varible('address','Адрес');?></p>
 	</div>
 	
 	<p>

@@ -1,6 +1,6 @@
 jQuery(document).ready(function() {	
 
-    fluidResizeFrontVideo();
+    //fluidResizeFrontVideo();
     fluidResizeCaruselSitemapVideo();
     portfolioGallery();
     fluidResizePortfolioImg();
@@ -22,7 +22,7 @@ jQuery(document).ready(function() {
     fluidResizeCaruselWidget();
     fluidResizePostIframe();
     fluidResizePostImg();
-    fluidResizeLayerSlider();
+    //fluidResizeLayerSlider();
     sloganButton();
     fluidResizePost();
     homeOverlayItemWork();
@@ -30,7 +30,7 @@ jQuery(document).ready(function() {
 	hoverEffects();
 	
 });
-function fluidResizeFrontVideo() {
+/*function fluidResizeFrontVideo() {
 
 	var $allImages = $("#slider iframe"),
 	    $fluidEl = $("#slider");
@@ -52,7 +52,7 @@ function fluidResizeFrontVideo() {
 		});
 	}).resize();
 
-}
+}*/
 function fluidResizeFrontVideo() {
 
 	var $allImages = $("#slider iframe"),
@@ -497,7 +497,7 @@ function fluidResizePostImg() {
 	}).resize();
 
 }
-function fluidResizeLayerSlider() {
+/*function fluidResizeLayerSlider() {
 
 	var $allImages = $("#layerslider img"),
 	    $fluidEl = $("#layerslider");
@@ -519,7 +519,7 @@ function fluidResizeLayerSlider() {
 		});
 	}).resize();
 
-}
+}*/
 
 function sloganButton() {
     

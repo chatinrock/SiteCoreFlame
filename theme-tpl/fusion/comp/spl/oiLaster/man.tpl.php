@@ -10,9 +10,9 @@
         $dateAdd = $list[$i]['dateAdd'];
         ?><div class="post">
             <a href="<?=$url?>" title="<?=$caption?>" class="icon-format">
-				<img src="<?=$prevImgUrl?>"  title="<?=$caption?>" alt="<?=$caption?>" height="82" width="82"/>
+				<img src="<?=$prevImgUrl?>" title="<?=$caption?>" alt="<?=$caption?>" height="82" width="82"/>
 			</a>
-            <h5><a href="<?=$url?>"><?=$caption?></a></h5>
+            <h5><a href="<?=$url?>" title="<?=$caption?>"><?=$caption?></a></h5>
             <div class="icons">
                 <div class="iconWrap">
                     <div class="icon author tooltip text_replace">
@@ -23,7 +23,7 @@
                 <div class="iconWrap">
                     <div class="icon tag tooltip text_replace">
                         <p class="hoveralls_text">Комментировать</p>
-                        <a href="<?=$url?>#comments" class="hoveralls_link"></a>
+                        <a href="<?=$url?>#comments" title="Комментировать: <?=$caption?>" class="hoveralls_link"></a>
                     </div>
                 </div>
                 <div class="clear"></div>

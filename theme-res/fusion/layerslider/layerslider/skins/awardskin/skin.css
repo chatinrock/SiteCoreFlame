@@ -1,0 +1,131 @@
+/* LayerSlider Default Skin */
+
+
+
+.ls-awardskin {
+	padding: 5px;
+	background: #f7f7f7;
+	box-shadow: 0px 3px 15px -5px #000;
+	-moz-box-shadow: 0px 3px 15px -5px #000;
+	-webkit-box-shadow: 0px 3px 15px -5px #000;
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+}
+
+.ls-awardskin .ls-bottom-nav-wrapper {
+	text-align: center;
+	margin: 15px auto 0px auto;
+	position: relative;
+}
+
+
+
+.ls-awardskin .ls-nav-sides,
+.ls-awardskin .ls-bottom-slidebuttons a,
+.ls-awardskin .ls-nav-prev,
+.ls-awardskin .ls-nav-next,
+.ls-awardskin .ls-nav-start,
+.ls-awardskin .ls-nav-stop {
+	background-image: url(skin.png);	
+}
+
+.ls-awardskin .ls-nav-prev {
+	background-position: 0px 0px;
+}
+
+.ls-awardskin .ls-nav-prev:hover {
+	background-position: 0px -75px;
+}
+
+.ls-awardskin .ls-nav-next {
+	background-position: -150px 0px;
+}
+
+.ls-awardskin .ls-nav-next:hover {
+	background-position: -150px -75px;
+}
+
+.ls-awardskin .ls-nav-start {
+	background-position: -300px 0px;
+}
+
+.ls-awardskin .ls-nav-start:hover {
+	background-position: -300px -75px;
+}
+
+.ls-awardskin .ls-nav-stop {
+	background-position: -450px 0px;
+}
+
+.ls-awardskin .ls-nav-stop:hover {
+	background-position: -450px -75px;
+}
+
+.ls-awardskin .ls-bottom-slidebuttons a {
+	background-position: 0px -150px;
+}
+
+.ls-awardskin .ls-bottom-slidebuttons a.ls-nav-active {
+	background-position: -75px -150px;
+}
+
+.ls-awardskin .ls-nav-sideleft {
+	background-position: -150px -150px;	
+}
+
+.ls-awardskin .ls-nav-sideright {
+	background-position: -225px -150px;	
+}
+
+
+
+.ls-awardskin .ls-nav-prev,
+.ls-awardskin .ls-nav-next {
+	width: 45px;
+	height: 55px;
+	z-index: 10000;
+	top: 50%;
+	margin-top: -10px;	
+	position: absolute;
+}
+
+.ls-awardskin .ls-nav-prev {
+	left: 5px;	
+}
+
+.ls-awardskin .ls-nav-next {
+	right: 5px;	
+}
+
+
+
+.ls-awardskin .ls-bottom-slidebuttons,
+.ls-awardskin .ls-bottom-slidebuttons a,
+.ls-awardskin .ls-nav-start,
+.ls-awardskin .ls-nav-stop,
+.ls-awardskin .ls-bottom-nav-wrapper,
+.ls-awardskin .ls-nav-sides {
+	height: 28px;
+}
+
+.ls-awardskin .ls-bottom-slidebuttons,
+.ls-awardskin .ls-bottom-slidebuttons a,
+.ls-awardskin .ls-nav-start,
+.ls-awardskin .ls-nav-stop,
+.ls-awardskin .ls-nav-sides {
+	display: inline-block;
+}
+
+.ls-awardskin .ls-nav-start,
+.ls-awardskin .ls-nav-stop {
+	width: 24px;
+}
+
+.ls-awardskin .ls-bottom-slidebuttons a {
+	width: 20px;
+}
+
+.ls-awardskin .ls-nav-sides {
+	width: 6px;	
+}
