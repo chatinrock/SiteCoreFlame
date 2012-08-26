@@ -919,7 +919,7 @@ ul.bullet li{
     outline: 0 none;
     text-indent: -9999px;
 }
-.social a.vimeo{
+.social a.vkontakte{
     background: #242424 url(../images/social.png) 0 0 no-repeat;
 }
 .social a.twitter{
@@ -2923,26 +2923,38 @@ input::-moz-focus-inner {
 	}
 	
 	.contactBox .skype{
-		background: url("../images/contact/skype32.png") no-repeat scroll 0px center;
+		background: url("../images/contact/skype32.png") no-repeat left top;
 	}
 	.contactBox .phone{
-		background: url("../images/contact/phone32.png") no-repeat scroll 0px center;
+		background: url("../images/contact/phone32.png") no-repeat left top;
 	}
 	.contactBox .icq{
-		background: url("../images/contact/icq32.png") no-repeat scroll 0px center;
+		background: url("../images/contact/icq32.png") no-repeat left top;
 	}
 	.contactBox .email{
-		background: url("../images/contact/email32.png") no-repeat scroll 0px center;
+		background: url("../images/contact/email32.png") no-repeat left top;
 	}
 	.contactBox .map{
-		background: url("../images/contact/map32.png") no-repeat scroll 0px center;
+		background: url("../images/contact/map32.png") no-repeat left top;
 	}
 	
 	.contactBox p{
 		padding-left: 37px;
-		height: 32px;
-		font-size: 18px;
+		
+		font-size: 16px;
 		line-height: 32px;
+	}
+
+	/* ---------- Review ------------------- */
+	#portfolio div.img{
+		width: 300px;
+		height: 200px;
+	}
+	
+	#portfolio img.portfolio-overlay-item{
+		width: 75px; 
+		height: 78px;
+		margin: 67px 110px;
 	}
 
 	/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */

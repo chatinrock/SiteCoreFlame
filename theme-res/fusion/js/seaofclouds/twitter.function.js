@@ -1,6 +1,6 @@
     jQuery(function($){
         $(".tweet").tweet({
-            username: "seaofclouds",
+            username: "username",
             join_text: "auto",
             count: 3,
             auto_join_text_default: "we said,",
@@ -13,7 +13,7 @@
     });
     jQuery(function($){
         $(".meta-tweet").tweet({
-            username: "seaofclouds",
+            username: "username",
             join_text: "auto",
             count: 1,
             auto_join_text_default: "we said,",

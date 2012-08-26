@@ -14,12 +14,12 @@
         		<div class="four columns">
 					<?self::block('footerLastList');?>
                 </div>
-        		<div class="four columns">
+        		<!--<div class="four columns">
                     <div class="twitter-widget">
                         <h4>Из Twitter-а</h4>
                         <div class="tweet"></div>
                     </div>
-                </div>
+                </div>-->
         		<div class="four columns">
                     <?self::block('catogories');?>
                 </div>

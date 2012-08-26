@@ -1,22 +1,22 @@
-jQuery(document).ready(function() {	
+$(document).ready(function() {	
 
     //fluidResizeFrontVideo();
     fluidResizeCaruselSitemapVideo();
     portfolioGallery();
-    fluidResizePortfolioImg();
+    //fluidResizePortfolioImg();
     fluidResizeFullIframe();
     fluidResizeFullImg();
     postTagsHeight();
     fluidResizePostVideo();
     fluidResizeWorkVideo();
     homeOverlayItemWorkVideo();
-    fluidResizePortfolioVideo1Column();
-    fluidResizePortfolio1Column();
-    fluidResizePortfolioVideo();
-    portfolioOverlayItemWorkVideo();
-    portfolioFilter(); 
+    //fluidResizePortfolioVideo1Column();
+    //fluidResizePortfolio1Column();
+    //fluidResizePortfolioVideo();
+    //portfolioOverlayItemWorkVideo();
+    //portfolioFilter(); 
 	portfolioOverlayItemWork();
-    fluidResizePortfolio();
+    //fluidResizePortfolio();
     footerWidget();
     fluidResizeCaruselSitemap();
     fluidResizeCaruselWidget();
@@ -27,6 +27,7 @@ jQuery(document).ready(function() {
     fluidResizePost();
     homeOverlayItemWork();
     fluidResizeWork();
+	// Придание соц кноком, изменение цвета при наведении
 	hoverEffects();
 	
 });
@@ -105,7 +106,7 @@ function portfolioGallery() {
     $(".portfolio-gallery li.three:nth-child(3n)").addClass('omega');
 
 }
-function fluidResizePortfolioImg() {
+/*function fluidResizePortfolioImg() {
 
 	var $allImages = $(".portfolio-gallery .three img"),
 	    $fluidEl = $(".portfolio-gallery .three");
@@ -127,7 +128,7 @@ function fluidResizePortfolioImg() {
 		});
 	}).resize();
 
-}
+}*/
 function fluidResizeFullIframe() {
 
 	var $allImages = $(".sixteen .frame iframe"),
@@ -235,7 +236,7 @@ function homeOverlayItemWorkVideo() {
   });
 
 }
-function fluidResizePortfolioVideo1Column() {
+/*function fluidResizePortfolioVideo1Column() {
 
 	var $allImages = $(".function1 #portfolio .item .vimeoOrYoutube iframe"),
 	    $fluidEl = $(".function1 #portfolio .img");
@@ -363,7 +364,7 @@ function portfolioFilter() {
     
 	$('.filter_navi li a').eq(0).click();	
 	
-}
+}*/
 function portfolioOverlayItemWork() {
 
   $("#portfolio .img").mouseenter(function() {
@@ -373,6 +374,7 @@ function portfolioOverlayItemWork() {
   });
 
 }
+/*
 function fluidResizePortfolio() {
 
 	var $allImages = $(".function #portfolio .item img"),
@@ -395,7 +397,7 @@ function fluidResizePortfolio() {
 		});
 	}).resize();
 
-}
+}*/
 
 function footerWidget() {
    
@@ -587,35 +589,35 @@ function homeOverlayItemWork() {
 }
 
 function hoverEffects() {
-    
-jQuery("a.vimeo").hover(function() {
-	jQuery(this).animate({ backgroundColor: "#44bbff" },{duration:200,queue:false}, 'easeInSine');
-},function() {
-	jQuery(this).animate({ backgroundColor: "#242424" },{duration:300,queue:false}, 'easeOutSine');
-});
-jQuery("a.twitter").hover(function() {
-	jQuery(this).animate({ backgroundColor: "#1ec7ff" },{duration:200,queue:false}, 'easeInSine');
-},function() {
-	jQuery(this).animate({ backgroundColor: "#242424" },{duration:300,queue:false}, 'easeOutSine');
-});
-jQuery("a.facebook").hover(function() {
-	jQuery(this).animate({ backgroundColor: "#3b5998" },{duration:200,queue:false}, 'easeInSine');
-},function() {
-	jQuery(this).animate({ backgroundColor: "#242424" },{duration:300,queue:false}, 'easeOutSine');
-});
-jQuery("a.youtube").hover(function() {
-	jQuery(this).animate({ backgroundColor: "#c4302b" },{duration:200,queue:false}, 'easeInSine');
-},function() {
-	jQuery(this).animate({ backgroundColor: "#242424" },{duration:300,queue:false}, 'easeOutSine');
-});
-jQuery("a.google").hover(function() {
-	jQuery(this).animate({ backgroundColor: "#d84937" },{duration:200,queue:false}, 'easeInSine');
-},function() {
-	jQuery(this).animate({ backgroundColor: "#242424" },{duration:300,queue:false}, 'easeOutSine');
-});
-jQuery("a.linkedin").hover(function() {
-	jQuery(this).animate({ backgroundColor: "#006699" },{duration:200,queue:false}, 'easeInSine');
-},function() {
-	jQuery(this).animate({ backgroundColor: "#242424" },{duration:300,queue:false}, 'easeOutSine');
-});
+ 
+	$("a.vkontakte").hover(function() {
+		$(this).animate({ backgroundColor: "#44bbff" },{duration:200,queue:false}, 'easeInSine');
+	},function() {
+		$(this).animate({ backgroundColor: "#242424" },{duration:300,queue:false}, 'easeOutSine');
+	});
+	$("a.twitter").hover(function() {
+		$(this).animate({ backgroundColor: "#1ec7ff" },{duration:200,queue:false}, 'easeInSine');
+	},function() {
+		$(this).animate({ backgroundColor: "#242424" },{duration:300,queue:false}, 'easeOutSine');
+	});
+	$("a.facebook").hover(function() {
+		$(this).animate({ backgroundColor: "#3b5998" },{duration:200,queue:false}, 'easeInSine');
+	},function() {
+		$(this).animate({ backgroundColor: "#242424" },{duration:300,queue:false}, 'easeOutSine');
+	});
+	$("a.youtube").hover(function() {
+		$(this).animate({ backgroundColor: "#c4302b" },{duration:200,queue:false}, 'easeInSine');
+	},function() {
+		$(this).animate({ backgroundColor: "#242424" },{duration:300,queue:false}, 'easeOutSine');
+	});
+	$("a.google").hover(function() {
+		$(this).animate({ backgroundColor: "#d84937" },{duration:200,queue:false}, 'easeInSine');
+	},function() {
+		$(this).animate({ backgroundColor: "#242424" },{duration:300,queue:false}, 'easeOutSine');
+	});
+	$("a.linkedin").hover(function() {
+		$(this).animate({ backgroundColor: "#006699" },{duration:200,queue:false}, 'easeInSine');
+	},function() {
+		$(this).animate({ backgroundColor: "#242424" },{duration:300,queue:false}, 'easeOutSine');
+	});
 }

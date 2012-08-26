@@ -90,8 +90,8 @@
     <!-- for footer icons  hoverEffects() END-->
     
     <!-- seaofclouds-->
-    <script src="http://theme.codecampus.ru/fusion/js/seaofclouds/jquery.tweet.js"></script>
-    <script src="http://theme.codecampus.ru/fusion/js/seaofclouds/twitter.function.js"></script>
+    <!--<script src="http://theme.codecampus.ru/fusion/js/seaofclouds/jquery.tweet.js"></script>
+    <script src="http://theme.codecampus.ru/fusion/js/seaofclouds/twitter.function.js"></script>-->
     <!-- seaofclouds END -->
     
     <!-- layerslider -->

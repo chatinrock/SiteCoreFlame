@@ -9,10 +9,9 @@
                 $class = $i == 0 ? 'alpha' : 'omega';
                 ?>
                 <li class="one-third column item all webdesign <?=$class?>">
-                    <div class="img">
+                    <div class="img" style="background-image: url('<?=$oiListData[$i]['prevImgUrl']?>')">
                         <a rel="prettyPhoto" href="<?=$oiListData[$i]['videoUrl']?>">
-                            <img class="portfolio-overlay-item" src="<?=$oiListData[$i]['prevImgUrl']?>" width="300"
-                                 height="200" alt="Смотреть" rel="#"/>
+                            <img class="portfolio-overlay-item" src="http://theme.codecampus.ru/fusion/images/review/play-mask.png" alt="Смотреть" rel="#"/>
                         </a>
                     </div>
                     <div class="info">
@@ -36,7 +35,7 @@
 		});
 	}
 
-	if ( $.prettyPhoto ){
+	if ( typeof $.prettyPhoto == undefined ){
 		initReview();
 	}else{
 		importResList["css"].push('http://theme.codecampus.ru/fusion/prettyPhoto/prettyPhoto.css');

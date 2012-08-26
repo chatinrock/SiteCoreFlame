@@ -7,6 +7,7 @@
 			
 			#imgGallary img{
 				width: 150px;
+				height: 100px;
 				margin-left: 5px;
 			}
 			
@@ -36,8 +37,9 @@
 			/*
 				$item = ['file' => '{filename}', 'capt' => '{caption}'];
 			*/
-			
-			echo '<img src="'.$imgHref.$item['file'].'" alt="'.$item['capt'].'"/>';
+			$caption = $item['capt'];
+			$imgSrc = $imgHref.$item['file'];
+			echo '<img src="'.$imgSrc.'" alt="'.$caption.'" title="'.$caption.'"/>';
 		} // foreach
 		?>
 		</div>
