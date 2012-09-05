@@ -34,7 +34,7 @@ if (is_array($oiListData)) {
 									</a>
 								</h2>
                                 <ul class="info">
-                                    <li class="icons author">Козленко В.Л.</li>
+                                    <li class="icons author">Автор</li>
                                     <li class="icons comment">
 										<a href="<?= $item['url'] ?>#comments" title="Комментировать">
 											Комментировать

@@ -1,13 +1,17 @@
-<div id="footer">
+<?
+$phone = self::varible('phone','Телефон');
+$email = self::varible('email','Email');
+$address = self::varible('address','Адрес');
+?><div id="footer">
             <div class="container">
         		<div class="four columns">
                     <div class="contact-widget">
                         <h4>Контакты</h4>
                         <!--<p></p>-->
                         <ul>
-                            <li><span>Телефон : </span><?=self::varible('phone','Телефон');?></li>
-                            <li><span>Email : </span><a href="mailto:<?=self::varible('email');?>?subject=Запись%20на%20курс" title="Нажмите что бы написать письмо"><?=self::varible('email','E-mail');?></a></li>
-                            <li><span>Адрес : </span><?=self::varible('address','Адрес');?></li>
+                            <?if ($phone){?><li><span>Телефон : <?=$phone?></span></li><?}?>
+                            <?if ($email){?><li><span>Email : </span><a href="mailto:<?=$email?>?subject=Запись%20на%20курс" title="Нажмите что бы написать письмо"><?=$email?></a></li><?}?>
+                            <?if ($address){?><li><span>Адрес : </span><?=$address?></li><?}?>
                         </ul>
                     </div>
                 </div>
