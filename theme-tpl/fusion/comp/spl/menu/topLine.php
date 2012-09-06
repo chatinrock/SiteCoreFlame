@@ -1,9 +1,13 @@
-<?$tree = self::get('menuTree');
-$count = count($tree['item']);?>
+<?
+$tree = self::get('menuTree');
+$count = count($tree['item']);
+?>
 
 <div class="navi" id="mainMenu">
 	<ul class="sf-menu">
-	<?for( $i = 0; $i < $count; $i++ ){ $item = $tree['item'][$i];?>
+	<?for( $i = 0; $i < $count; $i++ ){
+        $item = current($tree['item']);
+        next($tree['item']);?>
 		<li class="<?=$item['class']?>">
 			<a href="<?=$item['link']?>"><em class="hover"></em><span><?=$item['name']?></a>
 		</li>
