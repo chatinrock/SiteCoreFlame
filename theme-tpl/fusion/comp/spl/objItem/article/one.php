@@ -1,7 +1,6 @@
 <?
 $infoData = self::get('infoData');
-?>
-<?if($infoData['prevImgUrl']){?>
+if($infoData['prevImgUrl']){?>
 <div class="frame"><img src="<?=$infoData['prevImgUrl']?>" alt="<?= $infoData['caption'] ?>"/></div>
 <?}?>
 	<div class="twelve columns alpha omega">

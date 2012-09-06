@@ -1,5 +1,6 @@
 <article>	
 <? 
+$infoData = self::get('infoData');
 if ( $infoData['isCloaking'] ){
 	self::loadFile(self::get('dir') . 'cloak.txt');
 }else{
