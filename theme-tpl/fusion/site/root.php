@@ -129,6 +129,7 @@
     
 </head>
 <body>
+	<?self::block('bodyBegin');?>
     <div id="wrap">
         <?self::block('headerMeta');?>
         <?self::block('header');?>
