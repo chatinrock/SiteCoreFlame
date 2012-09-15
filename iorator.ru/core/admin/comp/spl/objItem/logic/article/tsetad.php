@@ -9,19 +9,21 @@ use \DIR;
  * @author Козленко В.Л.
  */
 class tsetad extends \core\classes\component\abstr\admin\comp{
-    public function indexAction(){
 
+    public function init(){
+        // func. init
+    }
+
+    public function indexAction(){
         $this->view->setBlock('panel', $this->tplFile);
         $this->view->setTplPath(DIR::getTplPath('manager'));
         $this->view->setMainTpl('main.tpl.php');
+        // func. indexAction
     }
 
     public static function compPropAction(){
-
+        // func. compPropAction
     }
 
-    public function init(){
-
-    }
-// class tsetad
+    // class tsetad
 }
