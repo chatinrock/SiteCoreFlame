@@ -1,0 +1,22 @@
+#markerBox .marker {
+    background-image: url('../img/marker.png');
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 81px;
+    top: 316px;
+    cursor: pointer;
+}
+
+#map {
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+
+#markerBox {
+    position: relative;
+    width: 809px;
+    height: 863px;
+    background-color: #DDDDDD;
+}
