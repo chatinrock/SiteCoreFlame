@@ -15,12 +15,20 @@ use admin\library\mvc\plugin\fileManager\fileManager;
 use \DIR;
 
 // ORM
-use ORM\comp\spl\objItem\review\review as reviewOrm;
 use ORM\comp\spl\objItem\objItem as objItemOrm;
+use ORM\comp\spl\objItem\metroStation as metroStationOrm;
+use ORM\tree\compcontTree;
+use ORM\tree\componentTree;
+
+// Custom ORM
+use site\core\admin\comp\spl\objItem\ORM\trener as trenerOrm;
 
 // Model
 use admin\library\mvc\comp\spl\objItem\help\model\base\model as objItemModel;
 use admin\library\mvc\comp\spl\objItem\help\model\base\model as baseModel;
+
+// Plugin
+use admin\library\mvc\plugin\dhtmlx\model\tree as dhtmlxTree;
 
 // Event
 use admin\library\mvc\comp\spl\objItem\help\event\base\event as eventBase;
@@ -47,6 +55,16 @@ class people extends \core\classes\component\abstr\admin\comp implements \core\c
         $itemObjId = self::getInt('id');
         self::setVar('objItemId', $itemObjId, -1);
 
+        $loadData = (new trenerOrm())->selectFirst('*', 'objItemId='.$itemObjId);
+        if ( $loadData ){
+            $sexList['val']  = $loadData['sex'];
+            $experienceList['list'] = $loadData['experience'];
+            $ageList['list'] = $loadData['age'];
+            foreach( $loadData as $key => $val){
+               self::setVar($key, $val);
+            } // foreach
+        } // if
+
         $sexList['list'] = ['male' => 'Муж', 'fem' => 'Жен'];
         self::setVar('sexList', $sexList);
 
@@ -56,6 +74,21 @@ class people extends \core\classes\component\abstr\admin\comp implements \core\c
         $ageList['list'] = range(18, 75);
         self::setVar('ageList', $ageList);
 
+        $stationIdList = (new metroStationOrm())->selectList('stationId', 'stationId', 'objItemId='.$itemObjId);
+        self::setJson('stationIdList', $stationIdList);
+
+        // Получаем данные по компоненту imgGallery
+        //$objItemProp = (new componentTree())->selectFirst('*', 'sysname="imgGallery"');
+        // Получаем весь список контента по oiList
+        $contData = (new compcontTree())
+            ->select('cc.*', 'cc')
+            ->join(componentTree::TABLE.' c', 'c.id = cc.comp_id')
+            ->where('cc.isDel="no" AND c.sysname="imgGallery"')
+            ->fetchAll();
+        // Преобразуем список в дерево Контента
+        $contTree = dhtmlxTree::all($contData, 0);
+        self::setJson('contTree', $contTree);
+
         $this->view->setBlock('panel', $this->tplFile);
         $this->view->setTplPath(dirFunc::getAdminTplPathIn('manager'));
         $this->view->setMainTpl('main.tpl.php');
@@ -63,7 +96,6 @@ class people extends \core\classes\component\abstr\admin\comp implements \core\c
     }
 
     public function metroManagerAction(){
-
         $this->view->setTplPath(dirFunc::getAdminTplPathIn('plugin'));
         $this->view->setMainTpl('metroStation/window.tpl.php');
         // func. metroManager
@@ -75,7 +107,34 @@ class people extends \core\classes\component\abstr\admin\comp implements \core\c
         $contId = $this->contId;
         $compId = $this->compId;
 
+        $objItemId = self::postInt('objItemId');
 
+        $aprice = self::postSafe('aprice');
+        $descrip = self::postSafe('descrip');
+
+        $saveData = [
+            'fio' => self::post('fio'),
+            'address' => self::post('address'),
+            'age' => self::postInt('age'),
+            'experience' => self::postInt('experience'),
+            'price' => self::postInt('price'),
+            'sex' => self::post('sex'),
+            'videoUrl' => self::post('videoUrl'),
+            'email' => self::post('email'),
+            'phone' => self::post('phone'),
+            'photoUrl' => self::post('photoUrl'),
+            'photoUrlPreview' => self::post('photoUrlPreview'),
+            'galleryId' => self::postInt('galleryId')
+        ];
+        (new trenerOrm())->saveExt(['objItemId'=>$objItemId], $saveData);
+
+        $stationList = self::post('stationList');
+        $stationList = explode(',', $stationList);
+        $stationList = array_map('intVal', $stationList);
+
+        $metroStationOrm = new metroStationOrm();
+        $metroStationOrm->delete(['objItemId' => $objItemId]);
+        $metroStationOrm->insertMulti(['stationId' => $stationList], ['objItemId' => $objItemId]);
 
         /*$itemObjId= self::postInt('itemObjId');
 
