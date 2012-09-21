@@ -62,6 +62,13 @@ class people extends \core\classes\component\abstr\admin\comp implements \core\c
         // func. itemAction
     }
 
+    public function metroManagerAction(){
+
+        $this->view->setTplPath(dirFunc::getAdminTplPathIn('plugin'));
+        $this->view->setMainTpl('metroStation/window.tpl.php');
+        // func. metroManager
+    }
+
     public function saveDataAction() {
         $this->view->setRenderType(render::JSON);
 

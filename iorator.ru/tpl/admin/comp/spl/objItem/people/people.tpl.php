@@ -41,6 +41,13 @@
         width: 70%;
         height: 200px;;
     }
+
+    textarea.address{
+        width: 50%;
+        height: 100px;;
+    }
+
+
 </style>
 <!-- start panel right column -->
 <div class="column" >
@@ -106,13 +113,26 @@
                     <div class="vspace10"><?=self::text('name="price" class="price"', self::get('price'))?> руб</div>
 
                     <div class="caption">Метро</div>
-                    <div class="vspace10"></div>
+                    <div class="vspace10">
+                        <a href="#" id="metroBtn">
+                            <img src="<?= self::res('images/help/metro_20.png') ?>" alt="Выбрать" />
+                            Выбрать
+                        </a>
+                    </div>
 
                     <div class="caption">Url видео</div>
                     <div class="vspace10"><?=self::text('name="videoUrl" class="videoUrl"', self::get('videoUrl'))?></div>
 
                     <div class="caption">Галлерея</div>
-                    <div class="vspace10"></div>
+                    <div class="vspace10">
+                        <a href="#" id="galleryBtn">
+                            <img src="<?= self::res('images/folder_16.png') ?>" alt="Выбрать" />
+                            Выбрать
+                        </a>
+                    </div>
+
+                    <div class="caption">Адрес</div>
+                    <div class="vspace10"><?=self::textarea('name="address" class="address"', self::get('address'))?></div>
 
                     <div class="caption">Общие цены</div>
                     <div class="vspace10"><?=self::textarea('name="aprice" class="aprice"', self::get('aprice'))?></div>
@@ -131,7 +151,8 @@
 <script type="text/javascript">
     var peopleData = {
         contid: <?= self::get('contId') ?>,
-        itemObjId: <?= self::get('objItemId') ?>
+        itemObjId: <?= self::get('objItemId') ?>,
+        stationIdList: <?= self::get('stationIdList', '[]') ?>
     } // var peopleData
 
     var contrName = peopleData.contid;
@@ -144,12 +165,34 @@
 var peopleMvc = (function(){
     var options = {};
 
+    function cbMetroStationSelect(pStationList){
+        peopleData.stationIdList = pStationList;
+        //alert("I'm a function in the parent window " + stationList.length);
+        // func. cbMetroStationSelect
+    }
+
+    function metroBtnClick(){
+        var urlWindow = utils.url({
+            method: 'metroManager',
+            query: {id: peopleData.itemObjId}
+        });
+        var win = window.open( urlWindow, 'Выберите станции',
+                'width=810,height=874,scrollbars=yes,resizable=yes,'
+                        +'location=no,status=no,menubar=no');
+        win.onload = function() {
+            win.panel.cbReturnMetroSelect = cbMetroStationSelect;
+            win.stationMap.setStationSelect(peopleData.stationIdList);
+        };
+        win.focus();
+        // func. metroBtnClick
+    }
+
 
     function init(pOptions){
         options = pOptions;
-
         // Ссылка для кнопки Назад
         $(options.backBtn).attr('href', utils.url({}));
+        $(options.metroBtn).click(metroBtnClick);
 
         // func. init
     }
@@ -161,7 +204,9 @@ var peopleMvc = (function(){
 
 $(document).ready(function(){
     peopleMvc.init({
-        backBtn: '#backBtn'
+        backBtn: '#backBtn',
+        // Кнопка выбора метро
+        metroBtn: '#metroBtn'
     });
 });
 </script>
