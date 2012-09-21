@@ -39,6 +39,18 @@ var stationMap = (function () {
         return false;
         // func. pStationId
     }
+	
+	function selectStation(pStationId){
+		// Проверяем на удаление
+        if (_remove(pStationId)) {
+            return false;
+        }
+        // Если он не удалился, значит можно добавлять
+        _markerAdd(pStationId);
+        // Помечаем pStationId, что она выделена
+        stationSel.push(pStationId);
+		// func. selectStation
+	}
 
     /**
      * Удаление маркера и, то что он был помечен из буффера
@@ -73,14 +85,7 @@ var stationMap = (function () {
         var href = pEvent.originalEvent.target.href;
         var begin = href.lastIndexOf('#') + 1;
         var stationId = href.substr(begin);
-        // Проверяем на удаление
-        if (_remove(stationId)) {
-            return false;
-        }
-        // Если он не удалился, значит можно добавлять
-        _markerAdd(stationId);
-        // Помечаем stationId, что она выделена
-        stationSel.push(stationId);
+        selectStation(stationId);
         return false;
         // func. mapClick
     }
@@ -97,7 +102,8 @@ var stationMap = (function () {
     // Public методы
     return {
         init:init,
-        removeClick:removeClick
+        removeClick:removeClick,
+		selectStation: selectStation
     }
     // class stationMap
 })();
@@ -272,6 +278,14 @@ var animPng = (function () {
         } // if
         // func. play
     }
+	
+	function clearAll(){
+		markerList = [];
+        // Останавливаем таймер
+        clearInterval(intervalId);
+		$(options.markerBox+' .'+options.markerClass).remove();
+		// func. clearAll
+	}
 
     /**
      * Добавляет новый маркер на карту
@@ -324,7 +338,8 @@ var animPng = (function () {
     return {
         init:init,
         addMarker:addMarker,
-        getOptions:getOptions
+        getOptions:getOptions,
+		clearAll: clearAll
     }
     // class animPng
 })();
@@ -340,3 +355,27 @@ $(document).ready(function(){
 		frameYCount:4
 	});
 });
+
+
+var panel = {
+	init: function() {
+		this.start = new findBtn("#findDrop", function() {
+			if ( this.selected ){
+				var stationId = this.selected.id.substr(4);
+				stationMap.selectStation(stationId);
+			} // if
+
+		});
+		var that = this;
+		$('#findIcon').click(function(event) {
+			that.start.select();
+			that.start.click();
+		});
+		
+		$('#clearBtn').click(animPng.clearAll);
+	},
+	selectBtnClick: function() {
+		console.log('panel.js selectBtnClick');
+	},
+
+};

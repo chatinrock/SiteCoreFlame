@@ -20,3 +20,52 @@
     height: 863px;
     background-color: #DDDDDD;
 }
+
+#findDrop{
+	position: absolute;
+	top: 10px;
+	left: 75px;
+}
+#findDrop .bgr{
+	background-position: 0 -30px;
+}
+
+#clearBtn {
+	position: absolute;
+	left: 340px; top: 2px;
+	background: url(panel/clearBtn.png) no-repeat;
+	height: 40px;
+	padding-left: 32px;
+	cursor: pointer;
+}
+
+#clearBtn a{
+	position: relative;
+	top: 9px;
+	font: 13px/15px Arial, sans-serif;
+}
+
+#selectBtn{
+	cursor: pointer;
+	position: absolute;
+	left: 450px; top: 8px;
+	width: 128px;
+	height: 40px;
+	background: url(panel/selectBtn.png) no-repeat;
+}
+
+#clearBtn .action {
+	color: #DDD;
+	border-color: #DDD;
+}
+
+#findIcon {
+    height: 26px;
+    left: 30px;
+    overflow: hidden;
+    top: 8px;
+    width: 25px;
+	cursor: pointer;
+	background: url("panel/find.png") no-repeat scroll 0 0 transparent;
+    position: absolute;
+}
