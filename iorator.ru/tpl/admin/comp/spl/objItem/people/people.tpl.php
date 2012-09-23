@@ -8,6 +8,8 @@
 <script type="text/javascript" src="/res/plugin/fancybox/source/jquery.fancybox.js"></script>
 <link rel="stylesheet" type="text/css" href="/res/plugin/fancybox/source/jquery.fancybox.css" media="screen"/>
 
+<link rel="stylesheet" type="text/css" href="/res/plugin/jquery/css/jquery.ui.autocomplete.css"/>
+
 <style type="text/css">
     .bold {font-weight: bold}
     .vmiddle{vertical-align: middle; height: 40px}
@@ -29,7 +31,7 @@
         padding-bottom: 10px;
     }
 
-    input.fio{
+    input.fio, input.galleryItem{
         width: 300px;
     }
     textarea.descrip{
@@ -46,7 +48,6 @@
         width: 50%;
         height: 100px;;
     }
-
 
 </style>
 <!-- start panel right column -->
@@ -132,10 +133,15 @@
 
                         <div class="caption">Галлерея</div>
                         <div class="vspace10">
-                            <a href="#contTreeDlg" id="imgGalleryBtn" >
-                                <img src="<?= self::res('images/folder_16.png') ?>" alt="Выбрать" />
-                                <span id="imgGalleryText"></span>
-                            </a>
+                            <div>
+                                <a href="#contTreeDlg" id="imgGalleryBtn" >
+                                    <img src="<?= self::res('images/folder_16.png') ?>" alt="Выбрать" />
+                                    <span id="imgGalleryText"></span>
+                                </a>
+                            </div>
+                            <div>
+                                <?=self::text('id="galleryItem" class="galleryItem"', self::get('galleryItem'))?>
+                            </div>
                         </div>
 
                         <div class="caption">Адрес</div>
@@ -165,7 +171,8 @@
         photoUrlPreview: '<?= self::get('photoUrlPreview')?>',
         photoUrl: '<?= self::get('photoUrl')?>',
         contTreeJson: <?= self::get('contTree') ?>,
-        galleryId: <?=self::get('galleryId')?>
+        galleryId: '<?=self::get('galleryId')?>',
+        galleryItemid: '<?=self::get('galleryItemId')?>'
     } // var peopleData
 
     var contrName = peopleData.contid;
@@ -215,6 +222,7 @@ var peopleMvc = (function(){
         data += '&photoUrl='+peopleData.photoUrl;
         data += '&stationList='+peopleData.stationIdList.join(',');
         data += '&galleryId='+peopleData.galleryId;
+        data += '&galleryItemid='+peopleData.galleryItemid;
 
         HAjax.saveData({
             data: data,
@@ -293,6 +301,16 @@ var peopleMvc = (function(){
         var text = utils.getTreeUrl(pTree, pBrunchId);
         peopleData.galleryId = pBrunchId;
         $(options.imgGalleryText).html(text);
+
+        var url = utils.url({
+            method: 'loadGalleryItemList',
+            query: {galleryId: peopleData.galleryId}
+        });
+
+        $( options.galleryItem ).autocomplete({
+            source: url
+        });
+
         $.fancybox.close();
         // class classBrunchDbClick
     }
@@ -300,6 +318,17 @@ var peopleMvc = (function(){
     function beforeContDlgShow(){
         contTree.selectItem(peopleData.galleryId);
         // func. beforeContDlgShow
+    }
+
+    function galleryItemSelect(event, ui){
+            /*log( ui.item ?
+                    "Selected: " + ui.item.value + " aka " + ui.item.id :
+                    "Nothing selected, input was " + this.value );*/
+        console.log(ui.item.id);
+        peopleData.galleryItemid= ui.item.id;
+        $(options.galleryItem).val(ui.item.value);
+
+        // func. galleryItemSelect
     }
 
 
@@ -330,6 +359,17 @@ var peopleMvc = (function(){
             $(options.imgGalleryText).html(text);
         } // if
 
+        var url = utils.url({
+            method: 'loadGalleryItemList',
+            query: {galleryId: peopleData.galleryId}
+        });
+
+        $( options.galleryItem ).autocomplete({
+            source: url,
+            minLength: 2,
+            select: galleryItemSelect
+        });
+
         // func. init
     }
 
@@ -348,7 +388,8 @@ $(document).ready(function(){
         saveBtn: '#saveBtn',
         ptohoImgBtn: '#ptohoImgBtn',
         imgGalleryBtn: '#imgGalleryBtn',
-        imgGalleryText: '#imgGalleryText'
+        imgGalleryText: '#imgGalleryText',
+        galleryItem: '#galleryItem'
     });
 });
 </script>

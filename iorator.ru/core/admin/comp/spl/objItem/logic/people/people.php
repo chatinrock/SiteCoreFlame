@@ -50,19 +50,26 @@ class people extends \core\classes\component\abstr\admin\comp implements \core\c
 
     public function itemAction() {
         $contId = $this->contId;
+        $compId = $this->compId;
         self::setVar('contId', $contId);
 
-        $itemObjId = self::getInt('id');
-        self::setVar('objItemId', $itemObjId, -1);
+        $objItemId = self::getInt('id');
+        self::setVar('objItemId', $objItemId, -1);
 
-        $loadData = (new trenerOrm())->selectFirst('*', 'objItemId='.$itemObjId);
+        $loadData = (new trenerOrm())
+                ->select('t.*, oi.caption galleryItem', 't')
+                ->joinLeftOuter(objItemOrm::TABLE.' oi', 'oi.id=t.galleryItemid')
+                ->where('objItemId='.$objItemId)
+                ->fetchFirst();
         if ( $loadData ){
-            $sexList['val']  = $loadData['sex'];
-            $experienceList['list'] = $loadData['experience'];
-            $ageList['list'] = $loadData['age'];
             foreach( $loadData as $key => $val){
                self::setVar($key, $val);
             } // foreach
+
+            $sexList['val']  = $loadData['sex'];
+            $experienceList['val'] = $loadData['experience'];
+            $ageList['val'] = $loadData['age'];
+
         } // if
 
         $sexList['list'] = ['male' => 'Муж', 'fem' => 'Жен'];
@@ -74,20 +81,27 @@ class people extends \core\classes\component\abstr\admin\comp implements \core\c
         $ageList['list'] = range(18, 75);
         self::setVar('ageList', $ageList);
 
-        $stationIdList = (new metroStationOrm())->selectList('stationId', 'stationId', 'objItemId='.$itemObjId);
+        $stationIdList = (new metroStationOrm())->selectList('stationId', 'stationId', 'objItemId='.$objItemId);
         self::setJson('stationIdList', $stationIdList);
 
-        // Получаем данные по компоненту imgGallery
-        //$objItemProp = (new componentTree())->selectFirst('*', 'sysname="imgGallery"');
         // Получаем весь список контента по oiList
         $contData = (new compcontTree())
             ->select('cc.*', 'cc')
-            ->join(componentTree::TABLE.' c', 'c.id = cc.comp_id')
-            ->where('cc.isDel="no" AND c.sysname="imgGallery"')
+            ->where('cc.isDel="no" AND cc.comp_id = '.$this->compId)
             ->fetchAll();
         // Преобразуем список в дерево Контента
         $contTree = dhtmlxTree::all($contData, 0);
         self::setJson('contTree', $contTree);
+
+        // Директория с данными статьи
+        $loadDir = baseModel::getPath($compId, $contId, $objItemId);
+        $loadDir = dirFunc::getSiteDataPath($loadDir);
+
+        $aprice = filesystem::loadFileContent($loadDir . 'aprice.txt');
+        self::setVar('aprice', $aprice);
+
+        $descrip = filesystem::loadFileContent($loadDir . 'descrip.txt');
+        self::setVar('descrip', $descrip);
 
         $this->view->setBlock('panel', $this->tplFile);
         $this->view->setTplPath(dirFunc::getAdminTplPathIn('manager'));
@@ -101,6 +115,18 @@ class people extends \core\classes\component\abstr\admin\comp implements \core\c
         // func. metroManager
     }
 
+    public function loadGalleryItemListAction(){
+        $this->view->setRenderType(render::JSON);
+        $galleryId = self::getInt('galleryId');
+        $term = self::get('term');
+
+        $objItem = new objItemOrm();
+        $term = $objItem->escape($term);
+        $list = $objItem->selectAll('id, caption label, caption value', 'treeId='.$galleryId.' AND caption like "%'.$term.'%"');
+        self::setVar('json', $list);
+        // func. loadGalleryItemListAction
+    }
+
     public function saveDataAction() {
         $this->view->setRenderType(render::JSON);
 
@@ -109,8 +135,22 @@ class people extends \core\classes\component\abstr\admin\comp implements \core\c
 
         $objItemId = self::postInt('objItemId');
 
+        eventCore::callOffline(
+            eventBase::NAME,
+            eventArticle::ACTION_SAVE,
+            ['compId' => $compId, 'contId' => $contId],
+            $objItemId
+        );
+
+        // Директория с данными статьи
+        $saveDir = baseModel::getPath($compId, $contId, $objItemId);
+        $saveDir = dirFunc::getSiteDataPath($saveDir);
+
         $aprice = self::postSafe('aprice');
+        filesystem::saveFile($saveDir, 'aprice.txt', $aprice);
+
         $descrip = self::postSafe('descrip');
+        filesystem::saveFile($saveDir, 'descrip.txt', $descrip);
 
         $saveData = [
             'fio' => self::post('fio'),
@@ -124,7 +164,8 @@ class people extends \core\classes\component\abstr\admin\comp implements \core\c
             'phone' => self::post('phone'),
             'photoUrl' => self::post('photoUrl'),
             'photoUrlPreview' => self::post('photoUrlPreview'),
-            'galleryId' => self::postInt('galleryId')
+            'galleryId' => self::postInt('galleryId'),
+            'galleryItemid' => self::postInt('galleryItemid')
         ];
         (new trenerOrm())->saveExt(['objItemId'=>$objItemId], $saveData);
 
@@ -136,31 +177,6 @@ class people extends \core\classes\component\abstr\admin\comp implements \core\c
         $metroStationOrm->delete(['objItemId' => $objItemId]);
         $metroStationOrm->insertMulti(['stationId' => $stationList], ['objItemId' => $objItemId]);
 
-        /*$itemObjId= self::postInt('itemObjId');
-
-        $caption = self::post('caption');
-        $prevImgUrl = self::post('prevImgUrl');
-        $videoUrl = self::post('videoUrl');
-
-        eventCore::callOffline(
-            eventBase::NAME,
-            eventArticle::ACTION_SAVE,
-            ['compId' => $compId, 'contId' => $contId],
-            $itemObjId
-        );
-
-        (new reviewOrm())->saveExt(['itemObjId' => $itemObjId],
-                                   ['caption' => $caption,
-                                   'imgPrevUrl' => $prevImgUrl,
-                                   'videoUrl' => $videoUrl]);
-
-        // Директория с данными статьи
-        $saveDir = baseModel::getPath($compId, $contId, $itemObjId);
-        $saveDir = dirFunc::getSiteDataPath($saveDir);
-
-        $textDesc = self::post('textDesc');
-        filesystem::saveFile($saveDir, 'text.txt', $textDesc);*/
-
         // func. saveDataAction
     }
 
@@ -168,6 +184,61 @@ class people extends \core\classes\component\abstr\admin\comp implements \core\c
         $this->view->setRenderType(render::NONE);
         echo 'article::blockItemShowAction() | No settings in this';
         // func. blockItemShowAction
+    }
+
+    /* Настройка метода для buildsys\library\event\comp\spl\objItem\article\model
+
+    */
+    public function saveDataInfo($pObjItemId, $pObjItemOrm){
+        $objItemData = $pObjItemOrm
+            ->select('i.id, i.seoUrl, i.treeId, i.caption, i.isPublic'
+                         . ',cc.seoName, cc.name category, a.urlTpl, i.date_add dateunf', 'i')
+            ->joinLeftOuter(trenerOrm::TABLE. ' a', 'i.id=a.objItemId')
+            ->join(compContTree::TABLE . ' cc', 'i.treeId=cc.id')
+            ->where('i.id=' . $pObjItemId)
+            ->comment(__METHOD__)
+            ->fetchFirst();
+
+        // Данные предыдушей статьи
+        $return['prev'] = $pObjItemOrm
+            ->select('i.id, i.seoUrl, i.caption, cc.seoName, a.urlTpl', 'i')
+            ->joinLeftOuter(trenerOrm::TABLE. ' a', 'i.id=a.objItemId')
+            ->join(compContTree::TABLE . ' cc', 'i.treeId=cc.id')
+            ->where(
+            'date("' . $objItemData['dateunf'] . ' ") >= date(i.date_add)
+                AND i.isPublic = "yes"
+                AND i.isDel = 0
+                And i.treeId = ' . $objItemData['treeId'] . '
+                AND i.id < ' . $objItemData['id'])
+            ->order('i.date_add DESC, i.id desc')
+            ->fetchFirst();
+
+        // Данные следующей статьи
+        $return['next'] = $pObjItemOrm
+            ->select('i.id, i.seoUrl, i.caption, cc.seoName, a.urlTpl', 'i')
+            ->joinLeftOuter(trenerOrm::TABLE. ' a', 'i.id=a.objItemId')
+            ->join(compContTree::TABLE . ' cc', 'i.treeId=cc.id')
+            ->where(
+            'date("' . $objItemData['dateunf'] . ' ") <= date(i.date_add)
+                AND i.isPublic = "yes"
+                AND i.isDel = 0
+                And i.treeId = ' . $objItemData['treeId'] . '
+                AND i.id > ' . $objItemData['id'])
+            ->order('i.date_add ASC')
+            ->fetchFirst();
+
+        $objItemData['canonical'] = sprintf($objItemData['urlTpl'], $objItemData['seoName'], $objItemData['seoUrl']);
+
+        unset($objItemData['seoUrl'], $objItemData['urlTpl'], $objItemData['treeId'], $objItemData['dateunf']);
+
+        $return['obj'] = $objItemData;
+
+        return $return;
+        // func. saveDataInfo
+    }
+
+    public function getTableCustom(){
+        return trenerOrm::TABLE;
     }
 
     // class review
