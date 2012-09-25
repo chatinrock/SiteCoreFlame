@@ -105,6 +105,11 @@
                                     <div class="caption">Стаж</div>
                                     <div class="vspace10"><?self::select(self::get('experienceList'), 'name="experience" class="experience"');?></div>
                                 </div>
+
+                                <div>
+                                    <div class="caption">Рейтинг</div>
+                                    <div class="vspace10"><?self::select(self::get('ratingList'), 'name="rating" class="rating"');?></div>
+                                </div>
                             </div>
                         </div>
                     </div>

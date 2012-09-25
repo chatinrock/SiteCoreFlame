@@ -69,6 +69,7 @@ class people extends \core\classes\component\abstr\admin\comp implements \core\c
             $sexList['val']  = $loadData['sex'];
             $experienceList['val'] = $loadData['experience'];
             $ageList['val'] = $loadData['age'];
+            $ratingList['val'] = $loadData['rating'];
 
         } // if
 
@@ -77,6 +78,9 @@ class people extends \core\classes\component\abstr\admin\comp implements \core\c
 
         $experienceList['list'] = range(0, 50);
         self::setVar('experienceList', $experienceList);
+
+        $ratingList['list'] = range(0, 5);
+        self::setVar('ratingList', $ratingList);
 
         $ageList['list'] = range(18, 75);
         self::setVar('ageList', $ageList);
@@ -165,7 +169,8 @@ class people extends \core\classes\component\abstr\admin\comp implements \core\c
             'photoUrl' => self::post('photoUrl'),
             'photoUrlPreview' => self::post('photoUrlPreview'),
             'galleryId' => self::postInt('galleryId'),
-            'galleryItemid' => self::postInt('galleryItemid')
+            'galleryItemid' => self::postInt('galleryItemid'),
+            'rating' => self::postInt('rating')
         ];
         (new trenerOrm())->saveExt(['objItemId'=>$objItemId], $saveData);
 
@@ -176,6 +181,9 @@ class people extends \core\classes\component\abstr\admin\comp implements \core\c
         $metroStationOrm = new metroStationOrm();
         $metroStationOrm->delete(['objItemId' => $objItemId]);
         $metroStationOrm->insertMulti(['stationId' => $stationList], ['objItemId' => $objItemId]);
+
+        $data = serialize($saveData);
+        filesystem::saveFile($saveDir, 'data.txt', $data);
 
         // func. saveDataAction
     }
