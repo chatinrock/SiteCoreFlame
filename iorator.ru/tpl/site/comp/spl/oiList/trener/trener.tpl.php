@@ -168,7 +168,7 @@
                 </div>
 
                 <div>
-                    <input type="button" value="Сбросить" id="searchClearBtn"/>
+                    <input type="button" value="Сбросить поиск" id="searchClearBtn"/>
                     <input type="button" class="greenBtn" value="Начать поиск" id="searchStartBtn"/>
                 </div>
             </div>
@@ -284,123 +284,197 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
-    var sliderOpt = {
-        from: 0,
-        to: 3000,
-        step: 100,
-        round: 1,
-        dimension: '&nbsp;руб.',
-        skin: 'plastic'
-    };
-    $("#priceInp").slider(sliderOpt);
 
-    sliderOpt.from = 0;
-    sliderOpt.to = 40;
-    sliderOpt.dimension = '&nbsp;лет.';
-    sliderOpt.step = 1;
-    $("#extInp").slider(sliderOpt);
+    var trenerMvc = (function () {
 
-    sliderOpt.from = 18;
-    sliderOpt.to = 80;
-    $("#ageInp").slider(sliderOpt);
+        var stationList = [];
+        var options;
 
-    sliderOpt.from = 0;
-    sliderOpt.to = 5;
-    sliderOpt.dimension = '&nbsp;&#9734;';
-    $("#ratingInp").slider(sliderOpt);
+        // Flag init slider
+        var isFlagInit;
 
-    var stationList = [];
+        function cbSliderChange(pValue){
+            var name = '#'+this.inputNode[0].id;
+            var val = $.cookie(name);
+            if ( !isFlagInit ){
+                $.cookie(name, pValue);
+            }
+            // func. cbSliderChange
+        }
 
-    function cbMetroStationSelect(pStatList){
-        setMetroText(pStatList.length);
-        $('#metroClearBtn').toggle(pStatList.length != 0);
-        $.cookie('stationList', pStatList);
-        stationList = pStatList;
-        // func. cbMetroStationSelect
-    }
+        function initSliders(){
+            isFlagInit = true;
+            var sliderOpt = {
+                from: 0,
+                to: 3000,
+                step: 100,
+                round: 1,
+                dimension: '&nbsp;руб.',
+                skin: 'plastic',
+                onstatechange: cbSliderChange
+            };
+            $(options.slider.priceInp).slider(sliderOpt);
 
-    function metroClearBtnClick(){
-        stationList = [];
-        $.cookie('stationList', stationList);
-        setMetroText(0);
-        $('#metroClearBtn').hide();
-        return false;
-        // func. metroClearBtnClick
-    }
+            sliderOpt.from = 0;
+            sliderOpt.to = 40;
+            sliderOpt.dimension = '&nbsp;лет.';
+            sliderOpt.step = 1;
+            $(options.slider.extInp).slider(sliderOpt);
 
-    function metroBtnClick(){
-        var urlWindow = '/res/plugin/metroStation/win.html';
-        var win = window.open( urlWindow, 'Выберите станции',
-                'width=810,height=874,scrollbars=yes,resizable=yes,'
-                        +'location=no,status=no,menubar=no');
-        win.onload = function() {
-            win.panel.cbReturnMetroSelect = cbMetroStationSelect;
-            win.stationMap.setStationSelect(stationList);
-        };
+            sliderOpt.from = 18;
+            sliderOpt.to = 80;
+            $(options.slider.ageInp).slider(sliderOpt);
 
-        return false;
-        // func. metroBtnClick
-    }
+            sliderOpt.from = 0;
+            sliderOpt.to = 5;
+            sliderOpt.dimension = '&nbsp;&#9734;';
+            $(options.slider.ratingInp).slider(sliderOpt);
 
 
-    function selAnketBtnClick(pEvent){
-        var anketList = $.cookie('anketList');
-        anketList = anketList ? anketList : '';
+            for( var key in options.slider ){
+                var val = $.cookie(options.slider[key]);
+                if ( val ){
+                    val = val.split(';');
+                    $(options.slider[key]).slider('value', val[0], val[1]);
+                } // if
+            } // ofr
 
-        var $obj = $(pEvent.target);
-        var anketId = $obj.attr('id').substr(5);
+            isFlagInit = false;
+            // func. initSliders
+        }
 
-        if ( $obj.hasClass('red')){
-            $obj.removeClass('red')
-                    .html('&raquo; Пометить анкету')
-                    .parents('li:first')
-                    .removeClass('selAnket');
-            anketList = anketList.replace('|' + anketId, '');
-            $.cookie('anketList', anketList);
-        }else{
-            $obj.addClass('red')
-                    .html('&raquo; Убрать метку')
-                    .parents('li:first')
-                    .addClass('selAnket');
-            anketList = '|' + anketId + anketList;
-            $.cookie('anketList', anketList);
-        } // if
 
-        return false;
-        // func. selAnketBtnClick
-    }
 
-    function initSelectData(){
-        var anketList = $.cookie('anketList');
-        if ( anketList ){
-            var list = anketList.substr(1).split('|');
-            for( var i in list ){
-                var id = list[i];
-                $('#anket'+id).addClass('red')
+        function cbMetroStationSelect(pStatList){
+            setMetroText(pStatList.length);
+            $(options.metroClearBtn).toggle(pStatList.length != 0);
+            $.cookie('stationList', pStatList, {expires: 60*60*24*7});
+            stationList = pStatList;
+            // func. cbMetroStationSelect
+        }
+
+        function metroClearBtnClick(){
+            stationList = [];
+            $.cookie('stationList', stationList, {expires: 60*60*24*7});
+            setMetroText(0);
+            $(options.metroClearBtn).hide();
+            return false;
+            // func. metroClearBtnClick
+        }
+
+        function metroBtnClick(){
+            var urlWindow = '/res/plugin/metroStation/win.html';
+            var win = window.open( urlWindow, 'Выберите станции',
+                    'width=810,height=874,scrollbars=yes,resizable=yes,'
+                            +'location=no,status=no,menubar=no');
+            win.onload = function() {
+                win.panel.cbReturnMetroSelect = cbMetroStationSelect;
+                win.stationMap.setStationSelect(stationList);
+            };
+
+            return false;
+            // func. metroBtnClick
+        }
+
+
+        function selAnketBtnClick(pEvent){
+            var anketList = $.cookie('anketList');
+            anketList = anketList ? anketList : '';
+
+            var $obj = $(pEvent.target);
+            var anketId = $obj.attr('id').substr(5);
+
+            if ( $obj.hasClass('red')){
+                $obj.removeClass('red')
+                        .html('&raquo; Пометить анкету')
+                        .parents('li:first')
+                        .removeClass('selAnket');
+                anketList = anketList.replace('|' + anketId, '');
+                $.cookie('anketList', anketList, {expires: 60*60*24*7});
+            }else{
+                $obj.addClass('red')
                         .html('&raquo; Убрать метку')
                         .parents('li:first')
                         .addClass('selAnket');
-            } // for
-        } // if
+                anketList = '|' + anketId + anketList;
+                $.cookie('anketList', anketList, {expires: 60*60*24*7});
+            } // if
+
+            return false;
+            // func. selAnketBtnClick
+        }
+
+        function initSelectData(){
+            var anketList = $.cookie('anketList');
+            if ( anketList ){
+                var list = anketList.substr(1).split('|');
+                for( var i in list ){
+                    var id = list[i];
+                    $('#anket'+id).addClass('red')
+                            .html('&raquo; Убрать метку')
+                            .parents('li:first')
+                            .addClass('selAnket');
+                } // for
+            } // if
 
 
-        stationList = $.cookie('stationList');
-        stationList = stationList.length > 0 ? stationList.split(',') : [];
-        $('#metroClearBtn').toggle(stationList.length != 0);
-        setMetroText(stationList.length);
-        // func. initSelectData
-    }
+            stationList = $.cookie('stationList');
+            var len = stationList ? stationList.length : 0;
+            stationList = len > 0 ? stationList.split(',') : [];
+            $(options.metroClearBtn).toggle(len != 0);
+            setMetroText(len);
 
-    function setMetroText(pCount){
-        var text = pCount == 0 ? 'Учитываются все' : 'Выбрано: ' + pCount;
-        $('#metroText').html(text);
-        // func. setMetroText
-    }
+            //$(".selector").slider("value", p1, p2)
+            // func. initSelectData
+        }
 
-    initSelectData();
+        function searchClearBtnClick(){
+            $(options.slider.priceInp).slider('value', 0, 3000);
+            $(options.slider.extInp).slider('value', 0, 40);
+            $(options.slider.ageInp).slider('value', 18, 80);
+            $(options.slider.ratingInp).slider('value', 0, 5);
+            cbMetroStationSelect([]);
 
-    $('#metroClearBtn').click(metroClearBtnClick);
-    $('#metroBtn').click(metroBtnClick);
-    $('#portfolio div.photoAction a.selAnketBtn').click(selAnketBtnClick);
+            return false;
+            // func. searchClearBtnClick
+        }
+
+        function setMetroText(pCount){
+            var text = pCount == 0 ? 'Учитываются все' : 'Выбрано: ' + pCount;
+            $('#metroText').html(text);
+            // func. setMetroText
+        }
+
+        function init(pOptions){
+            options = pOptions;
+
+            initSliders();
+            initSelectData();
+
+            $(options.metroClearBtn).click(metroClearBtnClick);
+            $(options.searchClearBtn).click(searchClearBtnClick)
+            $('#metroBtn').click(metroBtnClick);
+            $('#portfolio div.photoAction a.selAnketBtn').click(selAnketBtnClick);
+            // func. init
+        }
+
+        return {
+            init:init
+        }
+    })();
+
+    $(document).ready(function () {
+
+        trenerMvc.init({
+            slider: {
+                priceInp: "#priceInp",
+                extInp: "#extInp",
+                ageInp: "#ageInp",
+                ratingInp: "#ratingInp"
+            },
+            metroClearBtn: '#metroClearBtn',
+            searchClearBtn: '#searchClearBtn'
+        });
+    }); // $(document).ready
 
 </script>
