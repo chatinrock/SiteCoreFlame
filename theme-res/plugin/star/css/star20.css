@@ -1,0 +1,52 @@
+div.star > div{
+	height: 20px;
+	float: left;
+	margin-bottom: 5px;
+	background-image: url('../img/star20.png');
+}
+
+div.star5 div:first-child{
+	width: 100px;
+	background-position: 0px -20px;
+}
+
+div.star4 div{
+	width: 20px;
+}
+
+div.star4 div:first-child{
+	width: 80px;
+	background-position: -0px -20px;
+}
+
+div.star3 div{
+	width: 40px;
+}
+
+div.star3 div:first-child{
+	width: 60px;
+	background-position: -0px -20px;
+}
+
+div.star2 div{
+	width: 60px;
+}
+
+div.star2 div:first-child{
+	width: 40px;
+	background-position: -0px -20px;
+}
+
+div.star1 div{
+	width: 80px;
+}
+
+div.star1 div:first-child{
+	width: 20px;
+	background-position: -0px -20px;
+}
+
+
+div.star0 div:first-child{
+	width: 100px;
+}
