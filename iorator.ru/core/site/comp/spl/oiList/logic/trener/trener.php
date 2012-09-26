@@ -54,12 +54,14 @@ class trener{
                 ->setVar('pageNum', $pageNum)
                 ->setVar('pageNavTpl', $pageNavTpl)
                 ->setVar('pagUrlParam', $pagUrlParam)
+                ->setVar('typeRmMark', 'rmClass')
                 ->setMainTpl($tpl)
                 ->setContentType(null)
                 ->render();
         } // if ( $oiListData )
         // func. render
     }
+
     // class trener
 }
 
