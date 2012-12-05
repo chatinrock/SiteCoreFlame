@@ -26,6 +26,7 @@ class myanket{
         $compId = $comp['compId'];
 
         $anketList = cookie::getListNum('anketList');
+        $oiListData = [];
         if ( count($anketList) > 1 ){
             unset($anketList[0]);
             $where = implode(',', $anketList);
@@ -35,10 +36,7 @@ class myanket{
                 ->join(compcontTree::TABLE.' cc', 'cc.id=oi.treeId')
                 ->where('t.objItemId in ('.$where.') and oi.isPublic="yes" and oi.isDel = 0')
                 ->fetchAll();
-        }else{
-            $oiListData = [];
-        } // if
-
+        }
 
         if ($oiListData) {
             $tpl = userUtils::getCompTpl($comp);
