@@ -191,7 +191,6 @@ function fileManagerCallBack(pFuncNum, pUrl, pPreviewUrl){
    // func fileManagerCallBack
 }
 
-
 var peopleMvc = (function(){
     var options = {};
 
