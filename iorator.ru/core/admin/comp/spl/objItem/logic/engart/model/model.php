@@ -2,6 +2,13 @@
 
 namespace site\core\admin\comp\spl\objItem\logic\engart\model;
 
+// ORM
+use site\core\admin\comp\spl\objItem\ORM\engword as engwordOrm;
+use site\core\admin\comp\spl\objItem\ORM\engsent as engsentOrm;
+use ORM\comp\spl\objItem\objItem as objItemOrm;
+
+// Engine
+use core\classes\arrays;
 
 /**
  * Логика по управлению английской статьёй
@@ -60,6 +67,72 @@ I";*/
         //exit;
         return $htmlData;
         // func. loadHtmlData
+    }
+
+    public static function saveSentenceRule($itemId, $sentId, $ruleData){
+        $saveData = ['objItemId' => $itemId];
+        $saveData['data'] = json_encode($ruleData);
+        (new engsentOrm())->saveExt(['sentId'=>$sentId], $saveData);
+        // func. saveSentenceRule
+    }
+
+    public static function saveWordRule($itemId, $ruleData){
+        $saveData = ['osnWordId'=>'', 'secondWordId' => '', 'data' => []];
+        $wordId = [];
+        foreach($ruleData as $key=>$val){
+            if ( $key[0] == 'w' && is_numeric(substr($key, 1))){
+                $num = (int)substr($key, 1);
+                if ( !$wordId ){
+                    $wordId['wordId'] = $num;
+                    continue;
+                } // if ( !$firstSave )
+
+                if ( $val == 'osn' ){
+                    $saveData['osnWordId'] .= ','.$num;
+                }else{
+                    $saveData['secondWordId'] .= ','.$num;
+                }
+                continue;
+            } // if ( $key[0] == 'w' )
+
+            $saveData['data'][$key] = $val;
+
+        } // foreach
+
+        $saveData['data'] = json_encode($saveData['data']);
+        $saveData['objItemId'] = $itemId;
+        $saveData['osnWordId'] = (string)substr($saveData['osnWordId'], 1);
+        $saveData['secondWordId'] = (string)substr($saveData['secondWordId'], 1);
+
+        (new engwordOrm())->saveExt($wordId, $saveData);
+        // func. saveWordRule
+    }
+
+    private static function getItemIdFormRule(&$objItemIdList, $saveData){
+        foreach( $saveData as $obj ){
+            $dataJson = json_decode($obj['data'], true);
+            foreach( $dataJson as $key=>$value){
+                if ( substr($key, 0, 7) != 'ruleart' || !trim($value)){
+                    continue;
+                }
+                $objItemIdList[] = $value;
+            } // foreach
+        } // foreach
+        return $objItemIdList;
+        // func. getItemIdFormRule
+    }
+
+    public static function getObjItemCaptionList($saveWordData, $saveSentData){
+        $objItemIdList = [];
+        self::getItemIdFormRule($objItemIdList, $saveWordData);
+        self::getItemIdFormRule($objItemIdList, $saveSentData);
+
+        $objItemData = [];
+        if ( $objItemIdList ){
+            $objItemData = (new objItemOrm())->selectAll('id, caption', ['id'=>$objItemIdList]);
+            $objItemData = arrays::dbQueryToAssoc($objItemData, 'id', 'caption');
+        }
+        return $objItemData;
     }
 
     // class model ( engart )

@@ -18,6 +18,7 @@ use admin\library\mvc\plugin\dhtmlx\model\tree as dhtmlxTree;
 
 // ORM
 use site\core\admin\comp\spl\objItem\ORM\engword as engwordOrm;
+use site\core\admin\comp\spl\objItem\ORM\engsent as engsentOrm;
 use ORM\tree\compContTree;
 use ORM\tree\componentTree;
 use ORM\comp\spl\objItem\objItem as objItemOrm;
@@ -44,32 +45,20 @@ class art extends \core\classes\component\abstr\admin\comp implements \core\clas
         $objItemId = self::getInt('id');
         self::setVar('objItemId', $objItemId, -1);
 
-        $saveData = (new engwordOrm())->selectAll('*');
-        $saveData = arrays::dbQueryToAssocAll($saveData, 'wordId');
-        $saveData = $saveData?: new \stdClass();
-        self::setJson('saveData', $saveData);
+        $saveWordData = (new engwordOrm())->selectAll('*', ['objItemId'=>$objItemId]);
+        $saveWordData = arrays::dbQueryToAssocAll($saveWordData, 'wordId');
+        $saveWordData = $saveWordData?: new \stdClass();
+        self::setJson('saveWordData', $saveWordData);
 
-        // TODO: Вынести в модель данных
-        $objItemIdList = [];
-        foreach( $saveData as $obj ){
-            $dataJson = json_decode($obj['data'], true);
-            foreach( $dataJson as $key=>$value){
-                if ( substr($key, 0, 7) != 'ruleart'){
-                    continue;
-                }
-                $objItemIdList[] = $value;
-            } // foreach
-        } // foreach
-        $objItemData = [];
-        if ( $objItemIdList ){
-            $objItemData = (new objItemOrm())->select('id, caption')->where(['id'=>$objItemIdList])->fetchAll();
-            $objItemData = arrays::dbQueryToAssoc($objItemData, 'id', 'caption');
-        }
+        $saveSentData = (new engsentOrm())->selectAll('*', ['objItemId'=>$objItemId]);
+        $saveSentData = arrays::dbQueryToAssocAll($saveSentData, 'sentId');
+        self::setJson('saveSentData', $saveSentData);
+
+        $objItemData = engartModel::getObjItemCaptionList($saveWordData, $saveSentData);
         self::setJson('objItemNameListJson', $objItemData);
 
         $engartText = engartModel::html2data();
         self::setVar('engartText', $engartText, false);
-
 
         $compcontTree = new compcontTree();
         $artRuleTreeData = $compcontTree->select('cc.*', 'cc')
@@ -96,44 +85,36 @@ class art extends \core\classes\component\abstr\admin\comp implements \core\clas
             return;
         }
 
-        $saveData = [
-                'osnWordId'=>'',
-                'secondWordId' => '',
-                'data' => []
-             ];
-        $wordId = [];
-        foreach($ruleData as $key=>$val){
-            if ( $key[0] == 'w' && is_numeric(substr($key, 1))){
-                $num = (int)substr($key, 1);
-                if ( !$wordId ){
-                    $wordId['wordId'] = $num;
-                    continue;
-                } // if ( !$firstSave )
+        $itemId = self::postInt('itemId');
 
-                if ( $val == 'osn' ){
-                    $saveData['osnWordId'] .= ','.$num;
-                }else{
-                    $saveData['secondWordId'] .= ','.$num;
-                }
-                continue;
-            } // if ( $key[0] == 'w' )
+        $type = self::post('type');
+        switch($type){
+            case 'sentence':
+                $sentId = self::postInt('id');
+                engartModel::saveSentenceRule($itemId, $sentId, $ruleData);
+                break;
+            case 'word':
+                engartModel::saveWordRule($itemId, $ruleData);
+                break;
+        } // switch
 
-            $saveData['data'][$key] = $val;
-
-        } // foreach
-
-        $saveData['data'] = json_encode($saveData['data']);
-        $saveData['osnWordId'] = (string)substr($saveData['osnWordId'], 1);
-        $saveData['secondWordId'] = (string)substr($saveData['secondWordId'], 1);
-
-        (new engwordOrm())->saveExt($wordId, $saveData);
         // func. saveDataAction
     }
 
     public function removeRuleAction(){
         $this->view->setRenderType(render::JSON);
         $wordId = self::post('rel');
-        (new engwordOrm())->delete(['wordId'=>$wordId]);
+        $objItemId = self::postInt('itemId');
+        $type = self::post('type');
+        switch($type){
+            case 'sentence':
+                (new engwordOrm())->delete(['sentId'=>$wordId, 'objItemId'=>$objItemId]);
+                break;
+            case 'word':
+                (new engwordOrm())->delete(['wordId'=>$wordId, 'objItemId'=>$objItemId]);
+                break;
+        }
+
         self::setVar('json', ['rel'=>$wordId]);
         // func. removeRuleAction
     }
