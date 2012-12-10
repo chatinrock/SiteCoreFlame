@@ -103,6 +103,10 @@
         cursor: pointer;
     }
 
+    span.sentence.select{
+        background-color: #dcdcdc;
+    }
+
     span.sentence:hover{
         text-decoration: underline;
         /*background-position: right center;
@@ -239,6 +243,12 @@
             <td>Passive</td>
             <td><input type="checkbox" name="passive" value="1"/></td>
         </tr>
+        <tr>
+            <td>Фраз. глагол</td>
+            <td><input type="checkbox" name="phraze" value="1"/></td>
+        </tr>
+
+
         </tbody>
     </table>
 </div>
@@ -274,10 +284,9 @@
                         <select id="classWord" name="classWord">
                             <option value="none">{Выбрать}</option>
                             <option value="phrasa">Фраза</option>
-                            <option value="sentence">Предложение</option>
+
                             <option value="noun">Существительное</option>
                             <option value="verb">Глагол</option>
-                            <option value="phrasalverb">Фраз. глагол</option>
                             <option value="particle">Частица</option>
                             <option value="idiom">Идиома</option>
                             <option value="infinitiv">Инфинитив</option>
@@ -291,6 +300,7 @@
                             <option value="determine">Определитель</option>
                             <option value="interjection">Междометье</option>
                             <option value="numeral">Чистительное</option>
+                            <option value="sentence">Предложение</option>
                         </select>
                     </td>
                 </tr>
@@ -365,6 +375,9 @@
         var wordRelMouseOn = null;
 
         var wordRelSelect = null;
+
+
+        var sentIdMouseOn = null;
         /**
          * Список опорных слов для правил, т.е. это входных слова для получения правила.
          * Заполняется в момент наведения мыши на слово
@@ -440,13 +453,29 @@
                 // engartData.wordList
             }else
             if ( $(pEvent.target).hasClass('sentence') ){
-                /*console.log('log');
-                if ( engartData.sentList[saveRuleObj.id] ){
+                var sentId = pEvent.target.id.substr(4);
+
+                if ( sentIdMouseOn == sentId ){
                     return;
-                }*/
+                }
+                sentIdMouseOn = sentId;
+                if ( engartData.sentList[sentId]){
+                    $(pEvent.target).addClass('select');
+                    $(pEvent.target).mouseout(sentenceMouseOut);
+                }
+
+                //console.log($(pEvent.target).position().left + $(pEvent.target).width() )
 
             }
             // func. htmlDataBoxMouseMove
+        }
+
+        function sentenceMouseOut(pEvent){
+            sentIdMouseOn = null;
+            $(pEvent.target).unbind('mouseout');
+            $(pEvent.target).removeClass('select');
+
+            // func.
         }
 
         function addWordClassRule(pRel){
@@ -520,29 +549,14 @@
             // Установка формы динамичного контента
             $('#tabs-dynamic').html($('#'+ruleData.classWord+'AdvBox').html());
 
-
-
-
             unserializeRule(ruleData);
-            /*for( var key in ruleData ){
-                if ( !/ruleart\[\d+\]/.test(key)){
-                    continue;
-                }
-                addArtRuleLine();
-            } // for
 
-            unserializeForm(options.tabsBox, ruleData)
-
-            for( var key in engartData.objItemNameListJson ){
-                var value = engartData.objItemNameListJson[key];
-                $(options.rulesArtBox + ' input[name^=ruleart][value='+key+']').parent().find('td[rel="set"]').html(value);
-            }*/
             // func. setRuleField
         }
 
         function unserializeRule(ruleData){
             ruleArtNumNew = 0;
-            $(options.rulesArtBox + ' tbody:first').html('');
+
             for( var key in ruleData ){
                 if ( !/ruleart\[\d+\]/.test(key)){
                     continue;
@@ -584,6 +598,11 @@
             // func. unserializeForm
         }
 
+        function clearDisableTab(){
+            $( options.tabsBox ).tabs('enable', 0);
+            // func. clearDisableTab
+        }
+
         function htmlDataBoxClick(pEvent){
             wordRelSelect = wordRelMouseOn;
             saveRuleObj = {type:'word'};
@@ -598,7 +617,7 @@
                 setRuleBtnClick();
                 // Установка ранее выбранных правил в элементы формы
                 setRuleField();
-
+                clearDisableTab();
             }else
             // Выделение слова
             if ( $(pEvent.target).hasClass('word') ){
@@ -608,6 +627,7 @@
                 clearFormValue(options.tabsBox);
                 $( options.tabsBox ).tabs('select', 0);
                 wordClick(pEvent.target);
+                clearDisableTab();
             }else
             // Выделение предложения
             if ( $(pEvent.target).hasClass('sentence') ){
@@ -616,14 +636,20 @@
 
                 $( options.tabsBox ).tabs('select', 1);
                 $( options.tabsBox ).tabs({disabled: [0]});
-                $( options.classWord ).val('sentence');
+
                 // Установка формы динамичного контента
                 $('#tabs-dynamic').html($('#sentenceAdvBox').html());
 
+                $(options.rulesArtBox + ' tbody:first').html('');
                 if ( engartData.sentList[saveRuleObj.id]){
                     var ruleData = JSON.parse(engartData.sentList[saveRuleObj.id]['data']);
                     unserializeRule(ruleData);
+                }else{
+                    clearFormValue(options.tabsBox);
                 }
+
+                $( options.classWord ).val('sentence');
+                clearSelected();
 
                 $.fancybox.open([{
                     href: '#ruleDlg',
@@ -696,14 +722,8 @@
             // func. cbSaveDataSuccess
         }
 
-        /**
-         * Сохраняем заполненые правила на сервер
-         */
-        function saveFormRuleBtnClick(){
+        function getWordSaveData(serialArr){
             var ruleData = {};
-            var serialArr = $('#ruleDlg').serializeArray();
-            var relOsn = selectedBuff[0];
-
             var osnWordId = '';
             var secondWordId = '';
             for( var i in serialArr ){
@@ -717,11 +737,11 @@
 
                 switch(serialArr[i].value){
                     case 'osn':
-                        if ( relOsn == relWord ){
+                        if ( wordRelSelect == relWord ){
                             continue;
                         }
                         osnWordId += ','+relWord;
-                        wordListLink[parseInt(relWord)] = relOsn;
+                        wordListLink[parseInt(relWord)] = wordRelSelect;
                         break;
                     case 'scn':
                         secondWordId += ','+name.substr(1);
@@ -732,18 +752,52 @@
             osnWordId = osnWordId.substr(1);
             secondWordId = secondWordId.substr(1);
 
-            var data2jsonStr = JSON.stringify(ruleData);
+            var result = JSON.stringify(ruleData);
 
-            engartData.wordList[relOsn] = {
-                data: data2jsonStr,
+            engartData.wordList[wordRelSelect] = {
+                data: result,
                 osnWordId: osnWordId,
                 secondWordId: secondWordId
             };
 
+            return result;
+            // func. getWordSaveData
+        }
+
+        function getSentenceSaveData(serialArr){
+            var ruleData = {};
+            for( var i in serialArr ){
+                var name = serialArr[i].name;
+                ruleData[name] = serialArr[i].value;
+            }
+            var result = JSON.stringify(ruleData);
+            engartData.sentList[saveRuleObj.id] = {
+                data: result
+            }
+            return result;
+            // func. getSentenceSaveData
+        }
+
+        /**
+         * Сохраняем заполненые правила на сервер
+         */
+        function saveFormRuleBtnClick(){
+            var serialArr = $('#ruleDlg').serializeArray();
+
+            var saveData = '';
+            if ( saveRuleObj.type == 'word'){
+                saveData = getWordSaveData(serialArr);
+            }else
+            if ( saveRuleObj.type == 'sentence'){
+                saveData = getSentenceSaveData(serialArr);
+                sentIdMouseOn = null;
+            } // if
+
             $.fancybox.close();
             clearSelected();
+
             HAjax.saveData({
-                data: 'json='+data2jsonStr+'&type='+saveRuleObj.type+'&id='+saveRuleObj.id+'&itemId='+engartData.objItemId,
+                data: 'json='+saveData+'&type='+saveRuleObj.type+'&id='+saveRuleObj.id+'&itemId='+engartData.objItemId,
                 methodType: 'POST'
             });
             // func. saveFormRuleBtnClick
@@ -810,14 +864,19 @@
                 return;
             }
             // Удаляем данные по правилу
-            delete engartData.wordList[pData['rel']];
-            // Удаляем линки
-            for( var i in wordListLink ){
-                if ( wordListLink[i] != pData['rel']){
-                    continue;
+            if ( pData['type'] == 'word'){
+                delete engartData.wordList[pData['rel']];
+                // Удаляем линки
+                for( var i in wordListLink ){
+                    if ( wordListLink[i] != pData['rel']){
+                        continue;
+                    }
+                    delete wordListLink[i];
                 }
-                delete wordListLink[i];
-            }
+            }else
+            if ( pData['type'] == 'sentence'){
+                delete engartData.sentList[pData['rel']];
+            } // if
 
             $.fancybox.close();
 

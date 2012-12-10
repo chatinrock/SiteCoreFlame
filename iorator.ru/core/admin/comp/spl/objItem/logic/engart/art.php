@@ -52,6 +52,7 @@ class art extends \core\classes\component\abstr\admin\comp implements \core\clas
 
         $saveSentData = (new engsentOrm())->selectAll('*', ['objItemId'=>$objItemId]);
         $saveSentData = arrays::dbQueryToAssocAll($saveSentData, 'sentId');
+        $saveSentData = $saveSentData?: new \stdClass();
         self::setJson('saveSentData', $saveSentData);
 
         $objItemData = engartModel::getObjItemCaptionList($saveWordData, $saveSentData);
@@ -108,14 +109,14 @@ class art extends \core\classes\component\abstr\admin\comp implements \core\clas
         $type = self::post('type');
         switch($type){
             case 'sentence':
-                (new engwordOrm())->delete(['sentId'=>$wordId, 'objItemId'=>$objItemId]);
+                (new engsentOrm())->delete(['sentId'=>$wordId, 'objItemId'=>$objItemId]);
                 break;
             case 'word':
                 (new engwordOrm())->delete(['wordId'=>$wordId, 'objItemId'=>$objItemId]);
                 break;
         }
 
-        self::setVar('json', ['rel'=>$wordId]);
+        self::setVar('json', ['rel'=>$wordId, 'type'=> $type]);
         // func. removeRuleAction
     }
 
