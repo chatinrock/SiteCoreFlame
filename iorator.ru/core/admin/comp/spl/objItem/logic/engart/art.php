@@ -6,12 +6,15 @@ namespace site\core\admin\comp\spl\objItem\logic\engart;
 use core\classes\render;
 use core\classes\admin\dirFunc;
 use core\classes\arrays;
+use core\classes\event as eventCore;
+use core\classes\filesystem;
 
 // Conf
 use \DIR;
 
 // Model
 use site\core\admin\comp\spl\objItem\logic\engart\model\model as engartModel;
+use admin\library\mvc\comp\spl\objItem\help\model\base\model as baseModel;
 
 // Plugin
 use admin\library\mvc\plugin\dhtmlx\model\tree as dhtmlxTree;
@@ -22,6 +25,11 @@ use site\core\admin\comp\spl\objItem\ORM\engsent as engsentOrm;
 use ORM\tree\compContTree;
 use ORM\tree\componentTree;
 use ORM\comp\spl\objItem\objItem as objItemOrm;
+
+// Event
+use admin\library\mvc\comp\spl\objItem\help\event\base\event as eventBase;
+use admin\library\mvc\comp\spl\objItem\help\event\article\event as eventArticle;
+
 
 /**
  * Description of review
@@ -58,7 +66,15 @@ class art extends \core\classes\component\abstr\admin\comp implements \core\clas
         $objItemData = engartModel::getObjItemCaptionList($saveWordData, $saveSentData);
         self::setJson('objItemNameListJson', $objItemData);
 
-        $engartText = engartModel::html2data();
+        // Директория с данными статьи
+        $saveDir = baseModel::getPath($compId, $contId, $objItemId);
+        $saveDir = dirFunc::getSiteDataPath($saveDir);
+
+        $engartText = filesystem::loadFileContent($saveDir.'engart.txt');
+        if ( !$engartText ){
+            $engartText = engartModel::html2data();
+            filesystem::saveFile($saveDir, 'engart.txt', $engartText);
+        }
         self::setVar('engartText', $engartText, false);
 
         $compcontTree = new compcontTree();
@@ -76,7 +92,31 @@ class art extends \core\classes\component\abstr\admin\comp implements \core\clas
         // func. itemAction
     }
 
-    public function saveDataAction(){
+    public function publishArticleAction(){
+        $this->view->setRenderType(render::JSON);
+
+        $objItemId = self::postInt('itemId');
+
+        $compId = $this->compId;
+        $contId = $this->contId;
+
+        eventCore::callOffline(
+            eventBase::NAME,
+            'article::eng:build',
+            ['compId' => $compId, 'contId' => $contId],
+            $objItemId
+        );
+
+        eventCore::callOffline(
+            eventBase::NAME,
+            eventArticle::ACTION_SAVE,
+            ['compId' => $compId, 'contId' => $contId],
+            $objItemId
+        );
+        // func. publishArticleAction
+    }
+
+    public function saveWordDataAction(){
         $this->view->setRenderType(render::JSON);
         $json = self::post('json');
         // $json = '{"w7":"osn","w8":"osn","w9":"scn","transcr":"","translate":"","comment":""}';

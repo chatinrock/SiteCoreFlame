@@ -134,8 +134,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#save" id="saveBtn" title="Сохранить">
-                        <img src="<?= self::res('images/save_32.png') ?>" alt="Сохранить" /><span>Сохранить</span>
+                    <a href="#publishArtBtn" id="publishArtBtn" title="Опубликовать">
+                        <img src="<?= self::res('images/save_32.png') ?>" alt="Опубликовать" /><span>Опубл.</span>
                     </a>
                 </li>
              </ul>
@@ -195,7 +195,7 @@
 
             </script>-->
 
-            <div id="htmlDataBox" style=""><?=self::get('engartText')?></div>
+            <?=self::get('engartText')?>
 
         </div>
     </div>
@@ -402,6 +402,8 @@
         // Какой объект правил сохряняем: слова или предложения
         var saveRuleObj;
 
+        var chooseMode = 'none';
+
         /**
          * Обработка клика по кноке очистке выделенных слов
          */
@@ -416,6 +418,7 @@
         function clearSelected(){
             selectedBuff = [];
             $(options.htmlDataBox+' span.selected').removeClass('selected');
+            chooseMode = 'none';
             // func. clearSelected
         }
 
@@ -432,7 +435,7 @@
          * @param pEvent
          */
         function htmlDataBoxMouseMove(pEvent){
-            if ( $(pEvent.target).hasClass('word') ){
+            if ( $(pEvent.target).hasClass('word') && chooseMode != 'newword' ){
                 var rel = $(pEvent.target).attr('rel');
                 if ( !engartData.wordList[rel]){
                     if ( !wordListLink[rel]){
@@ -607,7 +610,7 @@
             wordRelSelect = wordRelMouseOn;
             saveRuleObj = {type:'word'};
             // Слово имеет уже правило, нужно показать окно
-            if ( $(pEvent.target).hasClass('ruleOsn') ){
+            if ( $(pEvent.target).hasClass('ruleOsn') && chooseMode != 'newword' ){
                 $( options.tabsBox ).tabs('select', 1);
                 // Очищаем выделнные
                 clearSelected();
@@ -621,6 +624,7 @@
             }else
             // Выделение слова
             if ( $(pEvent.target).hasClass('word') ){
+                chooseMode = 'newword';
                 $(options.rulesArtBox + ' tbody:first').html('');
                 ruleArtNumNew = 0;
 
@@ -628,6 +632,9 @@
                 $( options.tabsBox ).tabs('select', 0);
                 wordClick(pEvent.target);
                 clearDisableTab();
+                if ( selectedBuff.length == 0 ){
+                    chooseMode = 'none';
+                }
             }else
             // Выделение предложения
             if ( $(pEvent.target).hasClass('sentence') ){
@@ -684,19 +691,45 @@
          */
         function setRuleBtnClick(){
             var htmlTmpBuff = '';
+            var num = 0;
             for( var i in selectedBuff ){
                 var rel = selectedBuff[i];
+
+                var isOsn = engartData.wordList[rel] != undefined;
+                if ( !isOsn){
+                    isOsn = $.inArray(rel, wordListLink ) != -1;
+                }
+                var disableStr = ' disabled="disabled"';
+                var checkedStr = ' checked="checked"';
+                var osnStr = '<input type="hidden" name="w'+rel+'" value="osn"/>';
+
+
+                var advStr1 = (isOsn?disableStr:'');
+                var advStr2 = (isOsn?checkedStr+disableStr:'');
+                if ( num == 0 ){
+                    advStr1 += checkedStr+disableStr;
+                    advStr2 = disableStr;
+                }
+
+                var input1 = '<input type="radio" name="w'+rel+'" value="osn"'+advStr1+'/>';
+                input1 += isOsn ? osnStr : (num == 0? osnStr: '');
+
+                var input2  = '<input type="radio" name="w'+rel+'" value="scn"'+advStr2+'/>';
+                input2 += isOsn ? '<input type="hidden" name="w'+rel+'" value="scn"/>' : '';
+
                 var name = $(options.htmlDataBox + ' span.word[rel='+rel+']:first').html();
                 htmlTmpBuff += '<tr><td>'+name+'</td>'
-                        +'<td rel="osn"><input type="radio" name="w'+rel+'" value="osn"/></td>'
-                        +'<td rel="scn"><input type="radio" name="w'+rel+'" value="scn"/></td>'
+                        +'<td rel="osn">'+input1+'</td>'
+                        +'<td rel="scn">'+input2+'</td>'
                         +'<td rel="remove" num="'+rel+'">'
                             +'<a href="#rmTypeWord"><img src="'+engartData.resUrl+'del_16.png" alt="Удалить"/></a>'
                         +'</td>'
                         +'</tr>';
-            } // for
 
+                num++;
+            } // for
             $(options.tabsType +' table>tbody').html(htmlTmpBuff);
+
             $.fancybox.open([{
                 href: '#ruleDlg',
                 width: 700,
@@ -712,14 +745,14 @@
             // func. classWordChange
         }
 
-        function cbSaveDataSuccess(pData){
+        function cbSaveWordDataSuccess(pData){
             if (pData['error']) {
                 alert(pData['error']['msg']);
                 return;
             }
 
             alert('Данные успешно сохранены');
-            // func. cbSaveDataSuccess
+            // func. cbSaveWordDataSuccess
         }
 
         function getWordSaveData(serialArr){
@@ -753,8 +786,8 @@
             secondWordId = secondWordId.substr(1);
 
             var result = JSON.stringify(ruleData);
-
-            engartData.wordList[wordRelSelect] = {
+            var wordId = wordRelSelect ? wordRelSelect : selectedBuff[0];
+            engartData.wordList[wordId] = {
                 data: result,
                 osnWordId: osnWordId,
                 secondWordId: secondWordId
@@ -796,7 +829,7 @@
             $.fancybox.close();
             clearSelected();
 
-            HAjax.saveData({
+            HAjax.saveWordData({
                 data: 'json='+saveData+'&type='+saveRuleObj.type+'&id='+saveRuleObj.id+'&itemId='+engartData.objItemId,
                 methodType: 'POST'
             });
@@ -832,12 +865,25 @@
             // func. initWordList
         }
 
+        function cbPublishArticle(pData){
+            if (pData['error']) {
+                alert(pData['error']['msg']);
+                return;
+            }
+
+            alert('Данные поставлены в очередь публикации');
+            // func. cbPublishArticle
+        }
+
         /**
          * Выставление события на сервер, о пересоздании файл для публикации
          */
-        function saveBtnClick(){
-
-            // func. saveBtnClick
+        function publishArtBtnClick(){
+            HAjax.publishArticle({
+                data: 'itemId='+engartData.objItemId,
+                methodType: 'POST'
+            });
+            // func. publishArtBtnClick
         }
 
         function rmRuleBtnClick(){
@@ -1022,8 +1068,9 @@
             options = pOptions;
 
             HAjax.create({
-                saveData: cbSaveDataSuccess,
-                removeRule: cbRemoveRule
+                saveWordData: cbSaveWordDataSuccess,
+                removeRule: cbRemoveRule,
+                publishArticle: cbPublishArticle
             });
 
             initWordList();
@@ -1043,7 +1090,7 @@
             // Сохранение результата формы на сервер
             $(options.saveFormRuleBtn).click(saveFormRuleBtnClick);
             // Выставление события на сервер, о пересоздании файл для публикации
-            $(options.saveBtn).click(saveBtnClick);
+            $(options.publishArtBtn).click(publishArtBtnClick);
             // Закрытие окна правил
             $(options.cancelRuleBtn).click(cancelRuleBtnClick);
             $(options.addArtRuleBtn).click(addArtRuleBtnClick);
@@ -1069,7 +1116,7 @@
             saveFormRuleBtn: '#saveFormRuleBtn',
             cancelRuleBtn: '#cancelRuleBtn',
             rmRuleBtn: '#rmRuleBtn',
-            saveBtn: '#saveBtn',
+            publishArtBtn: '#publishArtBtn',
             addArtRuleBtn: '#addArtRuleBtn',
             rulesArtBox: '#rulesArtBox',
             artRuleTreeBox: '#artRuleTreeBox'

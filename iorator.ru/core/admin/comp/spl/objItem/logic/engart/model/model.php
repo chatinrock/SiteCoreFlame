@@ -65,7 +65,7 @@ I";*/
         //exit;
 
         //exit;
-        return $htmlData;
+        return '<div id="htmlDataBox" style="">'.$htmlData.'</div>';
         // func. loadHtmlData
     }
 
