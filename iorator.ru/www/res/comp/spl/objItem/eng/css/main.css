@@ -1,0 +1,55 @@
+
+/** Debug **/
+#htmlDataBox{
+    margin-top: 40px;
+    margin-left: 40px;
+    cursor: pointer;
+}
+
+#htmlDataBox div.part{
+    height: 20px;
+}
+
+span.word.osn{
+    /*text-decoration: underline;*/
+    color: #00739e;
+    font-weight: bold;
+}
+
+span.word.sec{
+    color: #7eb5ca;
+    font-weight: bold;
+    /*text-decoration: underline;*/
+}
+
+#hintBox{
+    position: absolute;
+    left:  100px;
+    top:  100px;
+    border: 1px solid black;
+    padding: 0px 10px 0px 10px;
+    height: 20px;
+    background-color: white;
+    display: none;
+}
+
+img.button{
+    cursor: pointer;
+}
+
+#sentBtnBox{
+    position: absolute;
+    left:  300px;
+    top:  100px;
+    border: 1px solid black;
+    background-color: white;
+    display: none;
+}
+
+span.translt{
+    font-weight: bold;
+}
+
+span.transkr{
+
+}
