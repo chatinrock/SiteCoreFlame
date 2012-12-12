@@ -1,7 +1,7 @@
 var engMvc = (function(){
         var options = {};
         /**
-         * Номер cлова, на которое наведена мышка, для сущ. правил
+         * РќРѕРјРµСЂ cР»РѕРІР°, РЅР° РєРѕС‚РѕСЂРѕРµ РЅР°РІРµРґРµРЅР° РјС‹С€РєР°, РґР»СЏ СЃСѓС‰. РїСЂР°РІРёР»
          * @type {Number}
          */
         var wordRelMouseOn = null;
@@ -15,8 +15,12 @@ var engMvc = (function(){
         //var mouseHintPos = {x:0, y:0};
         var wordObjMouseOn = null;
 
+        var partSecMouseOn = 0;
+
+        var lastHighlightPartNum = 0;
+
         /**
-         * Очистка выделенных слов
+         * РћС‡РёСЃС‚РєР° РІС‹РґРµР»РµРЅРЅС‹С… СЃР»РѕРІ
          */
         function clearSelected(){
             $(options.htmlDataBox+' span.selected').removeClass('selected');
@@ -25,7 +29,7 @@ var engMvc = (function(){
 
         function showRuleSentence(pObjDom){
             var $divPart = $(pObjDom).parents('div.part:first');
-            if ( !$divPart){
+            if ( $divPart.length == 0){
                 if ( !$(pObjDom).hasClass('part')){
                     return;
                 }
@@ -38,10 +42,12 @@ var engMvc = (function(){
             console.log($divPart.width());*/
 
             var $lastSent = $divPart.find('span.sentence:last');
+
             var x = $lastSent.position().left + $lastSent.width() + 10;
             var y = $divPart.position().top;
             $('#sentBtnBox').css({left: x+'px', top: y+'px'}).show();
 
+            partSecMouseOn = $divPart.attr('id').substr(6);
 
             // func. showRuleSentence
         }
@@ -84,20 +90,22 @@ var engMvc = (function(){
         }
 
         /**
-         * Обработка наведения мыши на слово
+         * РћР±СЂР°Р±РѕС‚РєР° РЅР°РІРµРґРµРЅРёСЏ РјС‹С€Рё РЅР° СЃР»РѕРІРѕ
          * @param pEvent
          */
         function htmlDataBoxMouseMove(pEvent){
             mousePos.x = pEvent.pageX;
             mousePos.y = pEvent.pageY;
 
+            showRuleSentence(pEvent.target);
+
             if ( $(pEvent.target).hasClass('word') ){
                 wordObjMouseOn = pEvent.target;
-                // Получаем ID слова
+                // РџРѕР»СѓС‡Р°РµРј ID СЃР»РѕРІР°
                 var rel = $(pEvent.target).attr('rel');
-                // есть ли определине слова в словаре
+                // РµСЃС‚СЊ Р»Рё РѕРїСЂРµРґРµР»РёРЅРµ СЃР»РѕРІР° РІ СЃР»РѕРІР°СЂРµ
                 if ( !engData.osnWord[rel]){
-                    // Если нету в словаре может это быть ссылка на другой ID слова
+                    // Р•СЃР»Рё РЅРµС‚Сѓ РІ СЃР»РѕРІР°СЂРµ РјРѕР¶РµС‚ СЌС‚Рѕ Р±С‹С‚СЊ СЃСЃС‹Р»РєР° РЅР° РґСЂСѓРіРѕР№ ID СЃР»РѕРІР°
                     if ( !engData.linkWord[rel]){
                         return;
                     }
@@ -112,10 +120,6 @@ var engMvc = (function(){
 
                 $(pEvent.target).mouseout(wordMouseOut);
                 addWordClassRule(rel);
-
-
-
-                showRuleSentence(pEvent.target);
 
                 // engartData.wordList
             }else
@@ -203,7 +207,8 @@ var engMvc = (function(){
             var rel = $(pEvent.target).attr('rel');
             switch( rel ){
                 case 'play':
-                    console.log('sent play');
+                    singlePlayerMvc.soundSeek(parseInt(partSecMouseOn));
+                    highlightPart(partSecMouseOn);
                     break;
                 case 'rule':
                     console.log('sent rule');
@@ -215,12 +220,53 @@ var engMvc = (function(){
             // func. sentBtnBoxClick
         }
 
+        function highlightPart(pTime){
+            var $part = $('#second' + pTime);
+            if ( $part.length == 0 ){
+                return;
+            }
+            $('#second' + lastHighlightPartNum).removeClass('highlight');
+            $('#second' + pTime).addClass('highlight');
+            lastHighlightPartNum = pTime;
+            // func. highlightPart
+        }
+
+        function cbPlayComplete(){
+            $('#second' + lastHighlightPartNum).removeClass('highlight');
+            // func. cbPlayComplete
+        }
+
+        function cbSoundSeekPlayer(pTime){
+            var time = Math.round(parseFloat(pTime));
+            for( var i = time; i >= 0; i-- ){
+                var $part = $('#second' + i);
+                if ( $part.length == 0 ){
+                    continue;
+                }
+                highlightPart(i);
+                break;
+            }
+            // func. cbSoundSeekPlayer
+        }
+
+        function cbInitPlayer(){
+            //console.log('cbInitPlayer');
+            // func. cbInitPlayer
+        }
+
         function init(pOptions){
             options = pOptions;
-            // движение мышкой и клик по словам
+            // РґРІРёР¶РµРЅРёРµ РјС‹С€РєРѕР№ Рё РєР»РёРє РїРѕ СЃР»РѕРІР°Рј
             $(options.htmlDataBox).mousemove(htmlDataBoxMouseMove).click(htmlDataBoxClick);
             $(options.hintBox).click(hintBoxClick);
             $(options.sentBtnBox).click(sentBtnBoxClick);
+
+            if ( singlePlayerMvc ){
+                singlePlayerMvc.cbSetTime = highlightPart ;
+                singlePlayerMvc.cbSoundSeekPlayer = cbSoundSeekPlayer ;
+                singlePlayerMvc.cbPlayComplete = cbPlayComplete ;
+                singlePlayerMvc.cbInitPlayer = cbInitPlayer ;
+            }
 
             //setInterval(button, 500);
             // func. init
