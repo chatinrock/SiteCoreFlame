@@ -15,9 +15,12 @@ var engMvc = (function(){
         //var mouseHintPos = {x:0, y:0};
         var wordObjMouseOn = null;
 
-        var partSecMouseOn = 0;
+        var paryMouseOn = 0;
+        var sentMouseOn = null;
 
         var lastHighlightPartNum = 0;
+
+        var isHintShow = false;
 
         /**
          * Очистка выделенных слов
@@ -27,29 +30,27 @@ var engMvc = (function(){
             // func. clearSelected
         }
 
-        function showRuleSentence(pObjDom){
-            var $divPart = $(pObjDom).parents('div.part:first');
-            if ( $divPart.length == 0){
+        function showPartBox(pObjDom){
+            var $trPart = $(pObjDom).parents('tr.part:first');
+            if ( $trPart.length == 0){
                 if ( !$(pObjDom).hasClass('part')){
                     return;
                 }
-                $divPart = $(pObjDom);
+                $trPart = $(pObjDom);
             } // if
 
+            var $partBtnBox = $(options.partBtnBox);
 
-            /*var pos = $divPart.position();
-            var x = pos.left + $divPart.width();
-            console.log($divPart.width());*/
+            $htmlDataBox = $(options.htmlDataBox);
 
-            var $lastSent = $divPart.find('span.sentence:last');
+            var marginLeft = parseInt($('#htmlDataBox').css('margin-left').replace('px', ''));
+            var x = $htmlDataBox.position().left + marginLeft - $partBtnBox.outerWidth() + 20;
+            var y = $trPart.position().top;
 
-            var x = $lastSent.position().left + $lastSent.width() + 10;
-            var y = $divPart.position().top;
-            $('#sentBtnBox').css({left: x+'px', top: y+'px'}).show();
+            $(options.partBtnBox).css({left: x+'px', top: y+'px'}).show();
 
-            partSecMouseOn = $divPart.attr('id').substr(6);
-
-            // func. showRuleSentence
+            paryMouseOn = $trPart.attr('id').substr(6);
+            // func. showPartBox
         }
 
         function wordMouseOut(pEvent){
@@ -76,17 +77,44 @@ var engMvc = (function(){
         function addWordClassRule(pRel){
             $(options.htmlDataBox+' span[rel="'+pRel+'"]').addClass('osn');
 
-            var list = engData.osnWord[pRel].link;
+            var list = engWord.osnWord[pRel].link;
             wordOsnList = list;
             for( var i in list ){
                 $(options.htmlDataBox+' span[rel="'+list[i]+'"]').addClass('osn');
             }
-            var list = engData.osnWord[pRel].sec;
+            var list = engWord.osnWord[pRel].sec;
             wordSecondList = list;
             for( var i in list ){
                 $(options.htmlDataBox+' span[rel="'+list[i]+'"]').addClass('sec');
             }
             // func. addWordClassRule
+        }
+
+        function showSentBox(pObjDom){
+
+            var $sentObj = $(pObjDom).parents('span.sentence:first');
+            if ( $sentObj.length == 0){
+                if ( !$(pObjDom).hasClass('sentence')){
+                    return;
+                }
+                $sentObj = $(pObjDom);
+            } // if
+
+            var sentId = $sentObj.attr('id').substr(4);
+            var pos = $sentObj.position();
+            var  $sentBtnBox = $(options.sentBtnBox);
+            var x = pos.left + $sentObj.outerWidth() - $sentBtnBox.outerWidth();
+            var y = pos.top;
+            $sentBtnBox.css({left: x+'px', top: y + 'px'}).show();
+
+            /*if ( sentMouseOn == sentId ){
+                //$sentBtnBox.css({left: x+'px'})
+                return;
+            }*/
+
+            sentMouseOn = sentId;
+
+            // func. showSentBox
         }
 
         /**
@@ -97,19 +125,20 @@ var engMvc = (function(){
             mousePos.x = pEvent.pageX;
             mousePos.y = pEvent.pageY;
 
-            showRuleSentence(pEvent.target);
+            showPartBox(pEvent.target);
+            showSentBox(pEvent.target);
 
             if ( $(pEvent.target).hasClass('word') ){
                 wordObjMouseOn = pEvent.target;
                 // Получаем ID слова
                 var rel = $(pEvent.target).attr('rel');
                 // есть ли определине слова в словаре
-                if ( !engData.osnWord[rel]){
+                if ( !engWord.osnWord[rel]){
                     // Если нету в словаре может это быть ссылка на другой ID слова
-                    if ( !engData.linkWord[rel]){
+                    if ( !engWord.linkWord[rel]){
                         return;
                     }
-                    rel = engData.linkWord[rel];
+                    rel = engWord.linkWord[rel];
                 } // if
 
                 if (wordRelMouseOn == rel ){
@@ -122,21 +151,6 @@ var engMvc = (function(){
                 addWordClassRule(rel);
 
                 // engartData.wordList
-            }else
-            if ( $(pEvent.target).hasClass('sentence') ){
-                /*var sentId = pEvent.target.id.substr(4);
-
-                if ( sentIdMouseOn == sentId ){
-                    return;
-                }
-                sentIdMouseOn = sentId;
-                if ( engartData.sentList[sentId]){
-                    $(pEvent.target).addClass('select');
-                    $(pEvent.target).mouseout(sentenceMouseOut);
-                }*/
-
-                //console.log($(pEvent.target).position().left + $(pEvent.target).width() )
-
             }
             // func. htmlDataBoxMouseMove
         }
@@ -144,32 +158,39 @@ var engMvc = (function(){
 
 
         function htmlDataBoxClick(pEvent){
+            if ( isHintShow && wordRelSelect == wordRelMouseOn ){
+                isHintShow = false;
+                $(options.hintBox).hide();
+                return;
+            }
             wordRelSelect = wordRelMouseOn;
             hintShow();
             // func. htmlDataBoxClick
         }
 
         function hintShow(){
-            if (!engData.osnWord[wordRelMouseOn]){
+            if (!engWord.osnWord[wordRelMouseOn]){
                 return;
             }
 
             var $hintBox = $(options.hintBox).show();
 
-            var text = '<span class="translt">'+engData.osnWord[wordRelMouseOn].translt+'</span>';
-            text += '<span class="transkr"> ['+engData.osnWord[wordRelMouseOn].transkr +']</span>'
+            var text = '<span class="translt">'+engWord.osnWord[wordRelMouseOn].translt+'</span>';
+            text += '<span class="transkr"> ['+engWord.osnWord[wordRelMouseOn].transkr +']</span>'
             $hintBox.find('span:first').html(text);
 
-            var $divParty = $(wordObjMouseOn).parents('div.part:first');
+            var $trParty = $(wordObjMouseOn).parents('tr.part:first');
 
-            var y = $divParty.position().top - $hintBox.outerHeight();
+            var y = $trParty.position().top - $hintBox.outerHeight();
             y = y <= 10 ? 10 : y;
 
             var x = mousePos.x - $hintBox.width() / 2
             x = x <= 10 ? 10 : x;
 
             $hintBox.css({left:x+'px', top: y+'px'});
-            console.log('showHint');
+
+            isHintShow = true;
+            //console.log('showHint');
 
             // func. hintInverval
         }
@@ -177,12 +198,15 @@ var engMvc = (function(){
         function hintBoxButtonClick(pButtonRel){
             switch(pButtonRel){
                 case 'rule':
-                    console.log('word rule');
+                    var url = '/webcore/func/utils/ajax/?name=eng&type=word&path='+engWord.path + '&id='+wordRelSelect;
+                    url += '&lightbox[width]=600&lightbox[height]=400'
                     break;
                 case 'viprule':
-                    console.log('word vipRule');
+                    var url = '/webcore/func/utils/ajax/?name=eng&type=vip&path='+engWord.osnWord[wordRelSelect].vipId;
+                    url += '&lightbox[width]=800&lightbox[height]=600'
                     break;
             }
+            $.lightbox(url);
             // func. hintBoxButtonClick
         }
 
@@ -193,31 +217,26 @@ var engMvc = (function(){
             }
 
             var $hintBox = $(pEvent.target).parents('div[id="hintBox"]:first');
-            if ( !$hintBox ){
+            if ( $hintBox.length == 0 ){
                 if ( !$(pEvent.target).attr('id') == 'hintBox' ){
                     return;
                 }
                 $hintBox = $(pEvent.target);
             }
             $hintBox.hide();
+            isHintShow = false;
             // func. hintBoxClick
         }
 
-        function sentBtnBoxClick(pEvent){
+        function partBtnBoxClick(pEvent){
             var rel = $(pEvent.target).attr('rel');
             switch( rel ){
                 case 'play':
-                    singlePlayerMvc.soundSeek(parseInt(partSecMouseOn));
-                    highlightPart(partSecMouseOn);
-                    break;
-                case 'rule':
-                    console.log('sent rule');
-                    break;
-                case 'viprule':
-                    console.log('set viprule');
+                    singlePlayerMvc.soundSeek(parseInt(paryMouseOn));
+                    highlightPart(paryMouseOn);
                     break;
             }
-            // func. sentBtnBoxClick
+            // func. partBtnBoxClick
         }
 
         function highlightPart(pTime){
@@ -249,8 +268,28 @@ var engMvc = (function(){
             // func. cbSoundSeekPlayer
         }
 
+        function sentBtnBoxClick(pEvent){
+            var rel = $(pEvent.target).attr('rel');
+            switch( rel ){
+                case 'rule':
+                    var url = '/webcore/func/utils/ajax/?name=eng&type=sent&path='+engWord.path + '&id='+sentMouseOn
+                    url += '&lightbox[width]=600&lightbox[height]=400'
+                    break;
+                case 'viprule':
+                    if ( !engSent[sentMouseOn] ){
+                        break;
+                    }
+                    var url = '/webcore/func/utils/ajax/?name=eng&type=vip&path='+engSent[sentMouseOn].vipId;
+                    url += '&lightbox[width]=800&lightbox[height]=600'
+                    break;
+            }
+            $.lightbox(url);
+            // func. sentBtnBoxClick
+        }
+
         function cbInitPlayer(){
-            //console.log('cbInitPlayer');
+            console.log('cbInitPlayer');
+            singlePlayerMvc.setSoundUrl(paramOptions.resUrl);
             // func. cbInitPlayer
         }
 
@@ -259,6 +298,7 @@ var engMvc = (function(){
             // движение мышкой и клик по словам
             $(options.htmlDataBox).mousemove(htmlDataBoxMouseMove).click(htmlDataBoxClick);
             $(options.hintBox).click(hintBoxClick);
+            $(options.partBtnBox).click(partBtnBoxClick);
             $(options.sentBtnBox).click(sentBtnBoxClick);
 
             if ( singlePlayerMvc ){
@@ -276,11 +316,3 @@ var engMvc = (function(){
             init: init
         }
     })(); // engMvc
-
-    $(document).ready(function(){
-        engMvc.init({
-            htmlDataBox: '#htmlDataBox',
-            hintBox: '#hintBox',
-            sentBtnBox: '#sentBtnBox'
-        });
-    }); // $(document).ready

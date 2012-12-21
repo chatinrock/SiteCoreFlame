@@ -53,38 +53,63 @@ class art extends \core\classes\component\abstr\admin\comp implements \core\clas
         $objItemId = self::getInt('id');
         self::setVar('objItemId', $objItemId, -1);
 
-        $saveWordData = (new engwordOrm())->selectAll('*', ['objItemId'=>$objItemId]);
-        $saveWordData = arrays::dbQueryToAssocAll($saveWordData, 'wordId');
-        $saveWordData = $saveWordData?: new \stdClass();
-        self::setJson('saveWordData', $saveWordData);
-
-        $saveSentData = (new engsentOrm())->selectAll('*', ['objItemId'=>$objItemId]);
-        $saveSentData = arrays::dbQueryToAssocAll($saveSentData, 'sentId');
-        $saveSentData = $saveSentData?: new \stdClass();
-        self::setJson('saveSentData', $saveSentData);
-
-        $objItemData = engartModel::getObjItemCaptionList($saveWordData, $saveSentData);
-        self::setJson('objItemNameListJson', $objItemData);
-
         // Директория с данными статьи
         $saveDir = baseModel::getPath($compId, $contId, $objItemId);
         $saveDir = dirFunc::getSiteDataPath($saveDir);
+        self::setVar('saveData', $saveDir);
 
-        $engartText = filesystem::loadFileContent($saveDir.'engart.txt');
-        if ( !$engartText ){
-            $engartText = engartModel::html2data();
-            filesystem::saveFile($saveDir, 'engart.txt', $engartText);
+        $paramData = [];
+        if ( self::isPost() ){
+            $paramData['textfile'] = self::post('textfile');
+            $paramData['resurl'] = self::post('resurl');
+            $paramData['type'] = self::post('type');
+            filesystem::saveFile($saveDir, 'param.txt', serialize($paramData));
         }
-        self::setVar('engartText', $engartText, false);
 
-        $compcontTree = new compcontTree();
-        $artRuleTreeData = $compcontTree->select('cc.*', 'cc')
-            ->join(componentTree::TABLE . ' c', 'c.id=cc.comp_id')
-            ->where('c.sysname="objItem" AND cc.isDel="no"')
-            ->fetchAll();
+        if ( is_file($saveDir.'param.txt') || $paramData){
+            $paramData = $paramData?: filesystem::loadFileContentUnSerialize($saveDir.'param.txt');
+            $textfile = $paramData['textfile'];
 
-        $artRuleTreeJson = dhtmlxTree::all($artRuleTreeData, 0);
-        self::setJson('artRuleTreeJson', $artRuleTreeJson);
+            // Получаем ранее сохранённые данные по словам ( если они есть )
+            $saveWordData = (new engwordOrm())->selectAll('*', ['objItemId'=>$objItemId]);
+            // Преобразуем массив для удобства
+            $saveWordData = arrays::dbQueryToAssocAll($saveWordData, 'wordId');
+            // Если данных не будет, то создадим в JS массив
+            $saveWordData = $saveWordData?: new \stdClass();
+            self::setJson('saveWordData', $saveWordData);
+
+            // Получаем ранее сохранённые данные по предложениям ( если они есть )
+            $saveSentData = (new engsentOrm())->selectAll('*', ['objItemId'=>$objItemId]);
+            // Преобразуем массив для удобства
+            $saveSentData = arrays::dbQueryToAssocAll($saveSentData, 'sentId');
+            // Если данных не будет, то создадим в JS массив
+            $saveSentData = $saveSentData?: new \stdClass();
+            self::setJson('saveSentData', $saveSentData);
+
+            // Получаем названия-заголовки для правил к предложениям и словам
+            $objItemData = engartModel::getObjItemCaptionList($saveWordData, $saveSentData);
+            self::setJson('objItemNameListJson', $objItemData);
+
+
+
+            $engartText = filesystem::loadFileContent($saveDir.'engart.txt');
+            if ( !$engartText || true ){
+                $engartText = engartModel::html2data($textfile);
+                filesystem::saveFile($saveDir, 'engart.txt', $engartText);
+            }
+            self::setVar('engartText', $engartText, false);
+
+            $compcontTree = new compcontTree();
+            $artRuleTreeData = $compcontTree->select('cc.*', 'cc')
+                ->join(componentTree::TABLE . ' c', 'c.id=cc.comp_id')
+                ->where('c.sysname="objItem" AND cc.isDel="no"')
+                ->fetchAll();
+
+            $artRuleTreeJson = dhtmlxTree::all($artRuleTreeData, 0);
+            self::setJson('artRuleTreeJson', $artRuleTreeJson);
+        }else{
+            self::setVar('isNew', 1);
+        }
 
         $this->view->setBlock('panel', $this->tplFile);
         $this->view->setTplPath(dirFunc::getAdminTplPathIn('manager'));
@@ -127,15 +152,16 @@ class art extends \core\classes\component\abstr\admin\comp implements \core\clas
         }
 
         $itemId = self::postInt('itemId');
+        $ruleMaxId = self::postInt('ruleMaxId');
 
         $type = self::post('type');
         switch($type){
             case 'sentence':
                 $sentId = self::postInt('id');
-                engartModel::saveSentenceRule($itemId, $sentId, $ruleData);
+                engartModel::saveSentenceRule($itemId, $sentId, $ruleData, $ruleMaxId);
                 break;
             case 'word':
-                engartModel::saveWordRule($itemId, $ruleData);
+                engartModel::saveWordRule($itemId, $ruleData, $ruleMaxId);
                 break;
         } // switch
 

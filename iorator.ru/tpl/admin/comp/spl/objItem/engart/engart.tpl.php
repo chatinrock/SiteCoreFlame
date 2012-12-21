@@ -67,6 +67,10 @@
         height: 300px;
     }
 
+    .panel{
+        margin-bottom: 10px;
+    }
+
 </style>
 
 <style>
@@ -125,6 +129,7 @@
                 <span id="history"><?=self::get('caption')?></span>
             </div>
         </div>
+        <div class="panel"><?=self::get('saveData')?></div>
 
         <div class="boxmenu corners">
             <ul class="menu-items">
@@ -195,7 +200,22 @@
 
             </script>-->
 
-            <?=self::get('engartText')?>
+            <? if (self::get('isNew')){?>
+                <div class="panel">
+                    <form id="paramArt" method="POST">
+                        <div><input type="radio" name="type" value="sound"/> Звук</div>
+                        <div><input type="radio" name="type" value="video"/> Видео</div>
+                        <div>Text Link: <input type="text" name="textfile"/></div>
+                        <div>Res URL: <input type="text" name="resurl"/></div>
+                        <div><input type="submit" value="Отправить"/></div>
+
+                    </form>
+                </div>
+            <? }else{
+                echo self::get('engartText');
+
+            }?>
+
 
         </div>
     </div>
@@ -305,6 +325,10 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>Слово</td>
+                    <td><input type="text" name="word"/></td>
+                </tr>
+                <tr>
                     <td>Транскрип.</td>
                     <td><input type="text" name="transcr"/></td>
                 </tr>
@@ -343,10 +367,10 @@
         contid: <?= self::get('contId') ?>,
         objItemId: <?= self::get('objItemId') ?>,
         // Список ранее сохранённых правил
-        wordList: <?= self::get('saveWordData') ?>,
-        sentList: <?= self::get('saveSentData') ?>,
-        artRuleTreeJson: <?= self::get('artRuleTreeJson') ?>,
-        objItemNameListJson: <?= self::get('objItemNameListJson') ?>,
+        wordList: <?= self::get('saveWordData', '{}') ?>,
+        sentList: <?= self::get('saveSentData', '{}') ?>,
+        artRuleTreeJson: <?= self::get('artRuleTreeJson', '{}') ?>,
+        objItemNameListJson: <?= self::get('objItemNameListJson', '{}') ?>,
         resUrl: '<?= self::res('images/') ?>'
     };
 
@@ -558,33 +582,19 @@
         }
 
         function unserializeRule(ruleData){
-            ruleArtNumNew = 0;
-
             for( var key in ruleData ){
-                if ( !/ruleart\[\d+\]/.test(key)){
+                var num = key.match(/ruleart\[(\d+)\]/);
+                if ( num == null ){
                     continue;
                 }
-                addArtRuleLine();
+                addArtRuleLine(num[1]);
+                var text = engartData.objItemNameListJson[ruleData[key]];
+                $('#rart'+num[1]+' td[rel="set"]').html(text);
             } // for
 
+
+
             unserializeForm(options.tabsBox, ruleData)
-
-            ruleArtNumNew = 0;
-            for( var key in ruleData){
-                if ( !/^ruleart\[\d+\]$/.test(key) ){
-                    continue;
-                }
-                var text = engartData.objItemNameListJson[ruleData[key]];
-                $('#rart'+ruleArtNumNew+' td[rel="set"]').html(text);
-                ruleArtNumNew++;
-            }
-
-
-            // TODO: Переделать
-            /*for( var key in engartData.objItemNameListJson ){
-                var value = engartData.objItemNameListJson[key];
-                $(options.rulesArtBox + ' input[name^=ruleart][value='+key+']').parent().find('td[rel="set"]').html(value);
-            }*/
             // func. unserializeRule
         }
 
@@ -612,10 +622,14 @@
             // Слово имеет уже правило, нужно показать окно
             if ( $(pEvent.target).hasClass('ruleOsn') && chooseMode != 'newword' ){
                 $( options.tabsBox ).tabs('select', 1);
+                $(options.rulesArtBox + ' tbody:first').html('');
                 // Очищаем выделнные
                 clearSelected();
                 selectedBuff = [wordRelSelect];
                 selectedBuff = selectedBuff.concat(wordOsnList, wordSecondList);
+
+                ruleArtNumNew = engartData.wordList[wordRelSelect]['ruleMaxId'];
+
                 // Отображение формы Установка правил
                 setRuleBtnClick();
                 // Установка ранее выбранных правил в элементы формы
@@ -649,10 +663,12 @@
 
                 $(options.rulesArtBox + ' tbody:first').html('');
                 if ( engartData.sentList[saveRuleObj.id]){
+                    ruleArtNumNew = engartData.sentList[saveRuleObj.id]['ruleMaxId'];
                     var ruleData = JSON.parse(engartData.sentList[saveRuleObj.id]['data']);
                     unserializeRule(ruleData);
                 }else{
                     clearFormValue(options.tabsBox);
+                    ruleArtNumNew = 0;
                 }
 
                 $( options.classWord ).val('sentence');
@@ -692,6 +708,7 @@
         function setRuleBtnClick(){
             var htmlTmpBuff = '';
             var num = 0;
+            var nameWord = '';
             for( var i in selectedBuff ){
                 var rel = selectedBuff[i];
 
@@ -703,12 +720,14 @@
                 var checkedStr = ' checked="checked"';
                 var osnStr = '<input type="hidden" name="w'+rel+'" value="osn"/>';
 
+                var name = $(options.htmlDataBox + ' span.word[rel='+rel+']:first').html();
 
                 var advStr1 = (isOsn?disableStr:'');
                 var advStr2 = (isOsn?checkedStr+disableStr:'');
                 if ( num == 0 ){
                     advStr1 += checkedStr+disableStr;
                     advStr2 = disableStr;
+                    nameWord += name + ' ';
                 }
 
                 var input1 = '<input type="radio" name="w'+rel+'" value="osn"'+advStr1+'/>';
@@ -717,7 +736,7 @@
                 var input2  = '<input type="radio" name="w'+rel+'" value="scn"'+advStr2+'/>';
                 input2 += isOsn ? '<input type="hidden" name="w'+rel+'" value="scn"/>' : '';
 
-                var name = $(options.htmlDataBox + ' span.word[rel='+rel+']:first').html();
+
                 htmlTmpBuff += '<tr><td>'+name+'</td>'
                         +'<td rel="osn">'+input1+'</td>'
                         +'<td rel="scn">'+input2+'</td>'
@@ -729,6 +748,8 @@
                 num++;
             } // for
             $(options.tabsType +' table>tbody').html(htmlTmpBuff);
+
+            $(options.tabsSettings+' input[name="word"]:first').val(nameWord.trim());
 
             $.fancybox.open([{
                 href: '#ruleDlg',
@@ -790,7 +811,8 @@
             engartData.wordList[wordId] = {
                 data: result,
                 osnWordId: osnWordId,
-                secondWordId: secondWordId
+                secondWordId: secondWordId,
+                ruleMaxId: ruleArtNumNew
             };
 
             return result;
@@ -805,7 +827,8 @@
             }
             var result = JSON.stringify(ruleData);
             engartData.sentList[saveRuleObj.id] = {
-                data: result
+                data: result,
+                ruleMaxId: ruleArtNumNew
             }
             return result;
             // func. getSentenceSaveData
@@ -829,8 +852,9 @@
             $.fancybox.close();
             clearSelected();
 
+            var id = saveRuleObj.id == undefined ? '' : saveRuleObj.id;
             HAjax.saveWordData({
-                data: 'json='+saveData+'&type='+saveRuleObj.type+'&id='+saveRuleObj.id+'&itemId='+engartData.objItemId,
+                data: 'json='+saveData+'&type='+saveRuleObj.type+'&id='+id+'&itemId='+engartData.objItemId+'&ruleMaxId='+ruleArtNumNew,
                 methodType: 'POST'
             });
             // func. saveFormRuleBtnClick
@@ -969,11 +993,11 @@
             // func. initTrees
         }
 
-        function addArtRuleLine(){
-            $(options.rulesArtBox + ' tbody:first').append('<tr id="rart' + ruleArtNumNew + '">' +
-                        '<input type="hidden" name="ruleart[' + ruleArtNumNew + ']" value=""/>'+
-                        '<input type="hidden" name="rcontid[' + ruleArtNumNew + ']" value=""/>'+
-                        '<td rel="vip"><input type="radio" name="vip" value="'+ruleArtNumNew+'"/>' +
+        function addArtRuleLine(num){
+            $(options.rulesArtBox + ' tbody:first').append('<tr id="rart' + num + '">' +
+                        '<input type="hidden" name="ruleart[' + num + ']" value=""/>'+
+                        '<input type="hidden" name="rcontid[' + num + ']" value=""/>'+
+                        '<td rel="vip"><input type="radio" name="vip" value="'+num+'"/>' +
                         '<td rel="set">' +
                             '{Click and select rule}'+
                         '</td>' +
@@ -981,12 +1005,12 @@
                             '<a href="#ruleArt"><img src="'+engartData.resUrl+'del_16.png" alt="Удалить правило" /></a>'+
                         '</td>' +
                     '</tr>');
-            ++ruleArtNumNew;
             // func. addArtRuleLine
         }
 
         function addArtRuleBtnClick(){
-            addArtRuleLine();
+            addArtRuleLine(ruleArtNumNew);
+            ++ruleArtNumNew;
             // func. addArtRuleBtnClick
         }
 
@@ -1106,6 +1130,7 @@
     })();
 
     $(document).ready(function(){
+        <?if ( !self::get('isNew')){?>
         engartMvc.init({
             htmlDataBox: '#htmlDataBox',
             setRuleBtn: '#setRuleBtn',
@@ -1119,8 +1144,10 @@
             publishArtBtn: '#publishArtBtn',
             addArtRuleBtn: '#addArtRuleBtn',
             rulesArtBox: '#rulesArtBox',
-            artRuleTreeBox: '#artRuleTreeBox'
+            artRuleTreeBox: '#artRuleTreeBox',
+            tabsSettings: '#tabs-settings'
         });
+        <?}?>
     }); // $(document).ready
 
 </script>

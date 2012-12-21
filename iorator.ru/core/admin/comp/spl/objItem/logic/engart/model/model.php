@@ -15,26 +15,17 @@ use core\classes\arrays;
  * @author Козленко В.Л.
  */
 class model{
-    public static function html2data(){
-        $htmlData = file_get_contents('W:/hosting/engdata/eng.txt');
+    public static function html2data($pFile){
+        $htmlData = file_get_contents($pFile);
 
-        /*$htmlData = "
-02:18:13,632 --> 02:18:16,254
-A:
-
-1184
-02:18:16,468 --> 02:18:22,257
-I";*/
-
-        //$time = microtime(true);
         $htmlData = preg_replace_callback('/(\d+)\s+(\d+):(\d+):(\d+),\d+\s-->\s\d+:\d+:\d+,\d+/Smsiu', function($matches)use(&$relCount){
             $number = $matches[1];
             $second = $matches[2] * 60 * 60 + $matches[3] * 60 + $matches[4];
-            return '</div><div class="part" id="second'.$second.'" line="line'.$number.'">';
+            return '</tr><tr class="part" id="second'.$second.'" line="line'.$number.'"><td>';
         }, $htmlData);
 
 
-        $htmlData = substr($htmlData, 6);
+        $htmlData = substr($htmlData, 5);
 
         $relCount = 0;
         // Вставка слов
@@ -58,26 +49,22 @@ I";*/
             return $return.$matches[0].'</span>';
         }, $htmlData);
 
-        $htmlData .= '</div>';
-        //echo microtime(true) - $time;
-        //echo $htmlData;
-
-        //exit;
-
-        //exit;
-        return '<div id="htmlDataBox" style="">'.$htmlData.'</div>';
+        $htmlData .= '</td></tr>';
+        return '<table id="htmlDataBox" style="">'.$htmlData.'</table>';
         // func. loadHtmlData
     }
 
-    public static function saveSentenceRule($itemId, $sentId, $ruleData){
+    public static function saveSentenceRule($itemId, $sentId, $ruleData, $ruleMaxId){
         $saveData = ['objItemId' => $itemId];
         $saveData['data'] = json_encode($ruleData);
+        $saveData['ruleMaxId'] = $ruleMaxId;
         (new engsentOrm())->saveExt(['sentId'=>$sentId], $saveData);
         // func. saveSentenceRule
     }
 
-    public static function saveWordRule($itemId, $ruleData){
+    public static function saveWordRule($itemId, $ruleData, $ruleMaxId){
         $saveData = ['osnWordId'=>'', 'secondWordId' => '', 'data' => []];
+        $saveData['ruleMaxId'] = $ruleMaxId;
         $wordId = [];
         foreach($ruleData as $key=>$val){
             if ( $key[0] == 'w' && is_numeric(substr($key, 1))){
