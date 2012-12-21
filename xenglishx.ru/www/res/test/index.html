@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <style>
+            /*#divBox{
+           width: 768px;
+           height: 10px;
+           background-color: blue;
+       }*/
+
+        .divBox {
+            border: 1px red solid;
+            margin: 30px 30px 30px;
+            padding: 10px 10px 10px 10px;
+        }
+
+    </style>
+   <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+    <script type="text/javascript">
+            google.load("jquery", "1.5.2");
+            google.load("jqueryui", "1.8.15");
+    </script>
+    <!--<script src="http://iorator.ru:6875/socket.io/socket.io.js"></script>-->
+</head>
+<body>
+<img src="http://codecampus.ru/res/img/cur.png" alt="Курсор пользователя" id="cursor"/>
+
+<div class="divBox"> 1
+    <div class="divBox">2
+        <div class="divBox">3
+        </div>
+    </div>
+</div>
+
+<div id="debug"></div>
+
+<a href="#" id="data">Data</a>
+
+
+
+<script>
+
+/*function dump(obj) {
+    var out = "";
+    if(obj && typeof(obj) == "object"){
+        for (var i in obj) {
+            var str = obj[i];
+            if ( typeof(obj[i]) == 'object'){
+                out += i + ':{' + dump(obj[i]) + '}, &nbsp;';
+                continue;
+            }
+            out += i + ": " + str + " ";
+        }
+    } else {
+        out = obj;
+    }
+    return out;
+    // dump
+}
+
+    var cookieManager = (function () {
+         var gOptions = {};
+
+        var pluses = /\+/g;
+
+        function raw(s) {
+            return s;
+        }
+
+        function decoded(pStr) {
+            return decodeURIComponent(pStr.replace(pluses, ' '));
+        }
+
+        function write(key, value, options) {
+            options = options ? options : gOptions;
+            if (value !== undefined) {
+                if (value === null) {
+                    options.expires = -1;
+                } // if
+
+                if (typeof options.expires === 'number') {
+                    var days = options.expires;
+                    var t = options.expires = new Date();
+                    t.setDate(t.getDate() + days);
+                } // if
+
+                value = options.json ? JSON.stringify(value) : String(value);
+
+                return (document.cookie = [
+                    encodeURIComponent(key), '=', options.json ? encodeURIComponent(value) : value,
+                    options.expires ? '; expires=' + options.expires.toUTCString() : '',
+                    options.path ? '; path=' + options.path : '',
+                    options.domain ? '; domain=' + options.domain : '',
+                    options.secure ? '; secure' : ''
+                ].join(''));
+            } // if
+            return null;
+            // func. write
+        }
+
+        function read(key, options) {
+            options = options ? options : gOptions;
+            var decode = options.json ? decoded : raw;
+            var cookies = document.cookie.split('; ');
+            for (var i = 0, parts; (parts = cookies[i] && cookies[i].split('=')); i++) {
+                if (decode(parts.shift()) === key) {
+                    var cookie = decode(parts.join('='));
+                    return options.json ? JSON.parse(cookie) : cookie;
+                } // if
+            } // for
+            return null;
+            // func. read
+        }
+
+        function remove(key, options) {
+            if (read(key) !== null) {
+                write(key, null, options);
+                return true;
+            } // if
+            return false;
+            // remove
+        }
+
+        function init(pOptions) {
+            gOptions = pOptions;
+            // func. init
+        }
+
+        return{
+            init:init,
+            write:write,
+            read:read,
+            remove: remove
+        } // return
+    })();
+
+    var tabManager = (function(){
+        var tabID;
+        var tabLiveSecond = 3;
+        var tabDeadSecond = 6;
+
+        function getID(fs){
+            for( var i = 0; i < 100; i++){
+                if ( !fs[i] ){
+                    return i;
+                } // if
+            } // for
+            return null;
+            // func. getID
+        }
+
+        function shinigami(){
+            var currentTime = (new Date()).getTime();
+            var fs = cookieManager.read('tabFs');
+            for( var lTabID in fs ){
+                // Если tab не сказал что он жив, больше tabLiveSecond + 1 секунд ( умн. на 1000 ), таб мёртв(закрыт)
+
+                if ( ( currentTime - fs[lTabID].time ) > ( tabLiveSecond + 1 ) * 1000 ){
+                    //console.log(lTabID);
+                    if ( fs[lTabID].status == 'c' ){
+                        continue;
+                    }
+                    fs[lTabID].status = 'd';
+                } // if
+            } // for
+            cookieManager.write('tabFs', fs);
+            // func. shinigami
+        }
+
+        function iAmLive() {
+            var fs = cookieManager.read('tabFs');
+            fs[tabID].time = (new Date()).getTime();
+            cookieManager.write('tabFs', fs);
+            //console.log('aimlive');
+            // func. iamlive
+        }
+
+        function init(){
+            var fs = cookieManager.read('tabFs');
+            if ( !fs){
+                fs = {};
+                cookieManager.write('tabFs', fs);
+            } // if
+
+            tabID = getID(fs);
+            // TODO: if tabId is null обдумать что делать
+            fs[tabID] = {time: (new Date()).getTime(), status: 'l'};
+            cookieManager.write('tabFs', fs);
+
+            setInterval(iAmLive, 1000 * tabLiveSecond);
+            setInterval(shinigami, 1000 * tabDeadSecond);
+
+            console.log(document.referrer);
+
+
+            //console.log(fs);
+            $('#debug').html(dump(fs));
+            console.log('tabId='+tabID);
+            // func. init
+        }
+
+        return {
+            init: init
+        }
+    })();*/
+
+    var spyAgent = (function () {
+        var options;
+        var socket;
+
+        function onWindowResize() {
+
+            var browserWindow = $(window);
+            var width = browserWindow.width();
+            var height = browserWindow.height();
+
+
+            // func. windowResize
+        }
+
+        function onMouseMove(e) {
+            //socket.emit('mousemove', e.pageX, e.pageY);
+            //$('#debug').html('x='+e.pageX + ' y='+ e.pageY);
+            //console.log('x='+e.pageX + ' y='+ e.pageY);
+            // func. onMouseMove
+        }
+
+        function onWinFocus(e) {
+            console.log('Connect');
+            // func. onFocus
+        }
+
+        function onWinBlur(e) {
+            console.log('Disconnect');
+            // func. onWinBlur
+        }
+
+        function onWinUnload(e) {
+            // func. onWinUnload
+        }
+
+        function onWinError(e) {
+            // func. onWinError
+        }
+
+        function initWinEvent(){
+            window.onfocus = onWinFocus;
+            window.onblur = onWinBlur;
+            window.onunload = onWinUnload;
+            window.onerror = onWinError;
+            // func. initWinEvent
+        }
+
+        function init(pOptions) {
+            /*cookieManager.init({json: false});
+            cookieManager.write('il', 3);
+
+            console.log(cookieManager.read('il'));*/
+
+            /*cookieManager.remove('il');
+
+            options = pOptions;*/
+
+            //$(window).resize(onWindowResize);
+            //$(window).mousemove(onMouseMove);
+
+
+            //tabManager.init();
+            initWinEvent();
+
+            // func. init
+        }
+
+        return {
+            init:init
+        }
+    })();
+
+    /*cookieManager.init({
+        json: true,
+        path: '/'
+    });*/
+    spyAgent.init({
+    });
+
+
+</script>
+</body>
+</html>

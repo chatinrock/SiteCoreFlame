@@ -1,0 +1,19 @@
+div.searchBox span.caption{
+  font-weight: bold;
+}
+
+div.searchBox div.line{
+    height: 40px;;
+}
+
+div.searchBox div.line>div{
+   float: left;
+   width: 33%;
+}
+
+span.sliderBox{
+  display: inline-block;
+  width: 200px;
+  padding: 0 5px;
+  margin-right: 20px;
+}

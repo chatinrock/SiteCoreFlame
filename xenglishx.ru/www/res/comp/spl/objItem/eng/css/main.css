@@ -1,0 +1,74 @@
+
+/** Debug **/
+#htmlDataBox{
+    margin-top: 40px;
+    margin-left: 40px;
+
+}
+
+#htmlDataBox .part{
+    height: 22px;
+}
+
+#htmlDataBox .part td:first-child{
+    padding-left: 20px;
+}
+
+#sentBtnBox{
+    position: absolute;
+    display: none;
+}
+
+span.word.osn{
+    /*text-decoration: underline;*/
+    color: #00739e;
+    font-weight: bold;
+}
+
+span.word{
+    cursor: pointer;
+}
+
+span.word.sec{
+    color: #7eb5ca;
+    font-weight: bold;
+    /*text-decoration: underline;*/
+}
+
+#hintBox{
+    position: absolute;
+    left:  100px;
+    top:  100px;
+    border: 1px solid black;
+    padding: 0px 10px 0px 10px;
+    height: 20px;
+    background-color: white;
+    display: none;
+}
+
+img.button{
+    cursor: pointer;
+}
+
+#partBtnBox{
+    position: absolute;
+    display: none;
+    width: 20px;
+    height: 20px;
+}
+
+span.translt{
+    font-weight: bold;
+}
+
+span.transkr{
+
+}
+
+.highlight{
+    background-color: #d3d3d3;
+}
+
+span.sentence{
+    padding-right: 40px;
+}
