@@ -25,6 +25,7 @@ use site\core\admin\comp\spl\objItem\ORM\engsent as engsentOrm;
 use ORM\tree\compContTree;
 use ORM\tree\componentTree;
 use ORM\comp\spl\objItem\objItem as objItemOrm;
+use ORM\comp\spl\objItem\article\article as articleOrm;
 
 // Event
 use admin\library\mvc\comp\spl\objItem\help\event\base\event as eventBase;
@@ -40,6 +41,7 @@ class art extends \core\classes\component\abstr\admin\comp implements \core\clas
     use \admin\library\mvc\comp\spl\objItem\help\table;
     use \admin\library\mvc\comp\spl\objItem\help\file;
     use \admin\library\mvc\comp\spl\objItem\help\prop;
+    use \admin\library\mvc\comp\spl\objItem\help\common;
 
     public function init(){
         // func. init
@@ -116,6 +118,28 @@ class art extends \core\classes\component\abstr\admin\comp implements \core\clas
         $this->view->setMainTpl('main.tpl.php');
         // func. itemAction
     }
+	
+	public function loadParamAction(){
+		$compId = $this->compId;
+        $contId = $this->contId;
+	
+		$objItemId = self::getInt('objItemId');
+		$paramData = (new articleOrm())->selectFirst( '*', [ 'objItemId' => $objItemId ] );
+		
+		// Директория с данными статьи
+        $loadDir = baseModel::getPath($compId, $contId, $objItemId);
+        $loadDir = dirFunc::getSiteDataPath($loadDir);
+	
+		$shortText = filesystem::loadFileContent($loadDir.'kat.txt');
+		self::setVar('shortText', $shortText); 
+		
+		self::setVar('prevImgUrl', $paramData['prevImgUrl']); 
+		self::setVar('seoDescr', $paramData['seoDescr']); 
+		self::setVar('seoKeywords', $paramData['seoKeywords']); 
+		
+		$this->view->setMainTpl('engart/param/param.tpl.php');
+		// func. loadParamAction
+	}
 
     public function publishArticleAction(){
         $this->view->setRenderType(render::JSON);
@@ -124,6 +148,10 @@ class art extends \core\classes\component\abstr\admin\comp implements \core\clas
 
         $compId = $this->compId;
         $contId = $this->contId;
+		
+		// Директория с данными статьи
+        $saveDir = baseModel::getPath($compId, $contId, $objItemId);
+        $saveDir = dirFunc::getSiteDataPath($saveDir);
 
         eventCore::callOffline(
             eventBase::NAME,
@@ -167,6 +195,11 @@ class art extends \core\classes\component\abstr\admin\comp implements \core\clas
 
         // func. saveDataAction
     }
+	
+	// Возвращает частную таблицу с которой работает данных класс
+    public function getTableCustom(){
+        return articleOrm::TABLE;
+    }
 
     public function removeRuleAction(){
         $this->view->setRenderType(render::JSON);
@@ -185,6 +218,46 @@ class art extends \core\classes\component\abstr\admin\comp implements \core\clas
         self::setVar('json', ['rel'=>$wordId, 'type'=> $type]);
         // func. removeRuleAction
     }
+	
+	public function saveParamDataAction(){
+		if ( !self::isPost()){
+			die('Only post');
+		}
+		$this->view->setRenderType(render::JSON);
+		
+		$compId = $this->compId;
+        $contId = $this->contId;
+		
+		$objItemId = self::postInt('objItemId');
+		
+		// Директория с данными статьи
+        $saveDir = baseModel::getPath($compId, $contId, $objItemId);
+        $saveDir = dirFunc::getSiteDataPath($saveDir);
+		
+		$shortText = self::post('shortText');
+		filesystem::saveFile($saveDir, 'kat.txt', $shortText);
+		
+		$prevImgUrl = self::post('imgurl');
+		$seoKeywords = self::post('keywords');
+		$seoDescr = self::post('descript');
+		
+		eventCore::callOffline(
+            eventBase::NAME,
+            eventArticle::ACTION_SAVE,
+            ['compId' => $compId, 'contId' => $contId],
+            $objItemId
+        );
+
+		(new articleOrm())->saveExt(
+            [ 'objItemId' => $objItemId ]
+            ,['prevImgUrl' => $prevImgUrl,
+             'seoKeywords' => $seoKeywords,
+			 'seoDescr' => $seoDescr,
+             'isCloaking' => false]
+        );
+		
+		// func. saveParamData
+	}
 
     // class art
 }

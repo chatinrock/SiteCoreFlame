@@ -26,35 +26,34 @@ var engMvc = (function(){
          * Очистка выделенных слов
          */
         function clearSelected(){
-            $(options.htmlDataBox+' span.selected').removeClass('selected');
+            jQuery(options.htmlDataBox+' span.selected').removeClass('selected');
             // func. clearSelected
         }
 
         function showPartBox(pObjDom){
-            var $trPart = $(pObjDom).parents('tr.part:first');
+            var $trPart = jQuery(pObjDom).parents('tr.part:first');
             if ( $trPart.length == 0){
-                if ( !$(pObjDom).hasClass('part')){
+                if ( !jQuery(pObjDom).hasClass('part')){
                     return;
                 }
-                $trPart = $(pObjDom);
+                $trPart = jQuery(pObjDom);
             } // if
 
-            var $partBtnBox = $(options.partBtnBox);
+            var $partBtnBox = jQuery(options.partBtnBox);
 
-            $htmlDataBox = $(options.htmlDataBox);
+            $htmlDataBox = jQuery(options.htmlDataBox);
 
-            var marginLeft = parseInt($('#htmlDataBox').css('margin-left').replace('px', ''));
+            var marginLeft = parseInt(jQuery('#htmlDataBox').css('margin-left').replace('px', ''));
             var x = $htmlDataBox.position().left + marginLeft - $partBtnBox.outerWidth() + 20;
             var y = $trPart.position().top;
-
-            $(options.partBtnBox).css({left: x+'px', top: y+'px'}).show();
+            jQuery(options.partBtnBox).css({left: 10+'px', top: y+'px'}).show();
 
             paryMouseOn = $trPart.attr('id').substr(6);
             // func. showPartBox
         }
 
         function wordMouseOut(pEvent){
-            $(pEvent.target).unbind('mouseout');
+            jQuery(pEvent.target).unbind('mouseout');
             removeWordClassRule(wordRelMouseOn);
             wordRelMouseOn = null;
             wordObjMouseOn = null;
@@ -62,47 +61,47 @@ var engMvc = (function(){
         }
 
         function removeWordClassRule(pRel){
-            $(options.htmlDataBox+' span[rel="'+pRel+'"]').removeClass('osn');
+            jQuery(options.htmlDataBox+' span[rel="'+pRel+'"]').removeClass('osn');
 
             for( var i in wordOsnList ){
-                $(options.htmlDataBox+' span[rel="'+wordOsnList[i]+'"]').removeClass('osn');
+                jQuery(options.htmlDataBox+' span[rel="'+wordOsnList[i]+'"]').removeClass('osn');
             }
 
             for( var i in wordSecondList ){
-                $(options.htmlDataBox+' span[rel="'+wordSecondList[i]+'"]').removeClass('sec');
+                jQuery(options.htmlDataBox+' span[rel="'+wordSecondList[i]+'"]').removeClass('sec');
             }
             // func. removeWordClassRule
         }
 
         function addWordClassRule(pRel){
-            $(options.htmlDataBox+' span[rel="'+pRel+'"]').addClass('osn');
+            jQuery(options.htmlDataBox+' span[rel="'+pRel+'"]').addClass('osn');
 
             var list = engWord.osnWord[pRel].link;
             wordOsnList = list;
             for( var i in list ){
-                $(options.htmlDataBox+' span[rel="'+list[i]+'"]').addClass('osn');
+                jQuery(options.htmlDataBox+' span[rel="'+list[i]+'"]').addClass('osn');
             }
             var list = engWord.osnWord[pRel].sec;
             wordSecondList = list;
             for( var i in list ){
-                $(options.htmlDataBox+' span[rel="'+list[i]+'"]').addClass('sec');
+                jQuery(options.htmlDataBox+' span[rel="'+list[i]+'"]').addClass('sec');
             }
             // func. addWordClassRule
         }
 
         function showSentBox(pObjDom){
 
-            var $sentObj = $(pObjDom).parents('span.sentence:first');
+            var $sentObj = jQuery(pObjDom).parents('span.sentence:first');
             if ( $sentObj.length == 0){
-                if ( !$(pObjDom).hasClass('sentence')){
+                if ( !jQuery(pObjDom).hasClass('sentence')){
                     return;
                 }
-                $sentObj = $(pObjDom);
+                $sentObj = jQuery(pObjDom);
             } // if
 
             var sentId = $sentObj.attr('id').substr(4);
             var pos = $sentObj.position();
-            var  $sentBtnBox = $(options.sentBtnBox);
+            var  $sentBtnBox = jQuery(options.sentBtnBox);
             var x = pos.left + $sentObj.outerWidth() - $sentBtnBox.outerWidth();
             var y = pos.top;
             $sentBtnBox.css({left: x+'px', top: y + 'px'}).show();
@@ -128,10 +127,10 @@ var engMvc = (function(){
             showPartBox(pEvent.target);
             showSentBox(pEvent.target);
 
-            if ( $(pEvent.target).hasClass('word') ){
+            if ( jQuery(pEvent.target).hasClass('word') ){
                 wordObjMouseOn = pEvent.target;
                 // Получаем ID слова
-                var rel = $(pEvent.target).attr('rel');
+                var rel = jQuery(pEvent.target).attr('rel');
                 // есть ли определине слова в словаре
                 if ( !engWord.osnWord[rel]){
                     // Если нету в словаре может это быть ссылка на другой ID слова
@@ -147,7 +146,7 @@ var engMvc = (function(){
 
                 wordRelMouseOn = rel;
 
-                $(pEvent.target).mouseout(wordMouseOut);
+                jQuery(pEvent.target).mouseout(wordMouseOut);
                 addWordClassRule(rel);
 
                 // engartData.wordList
@@ -160,7 +159,7 @@ var engMvc = (function(){
         function htmlDataBoxClick(pEvent){
             if ( isHintShow && wordRelSelect == wordRelMouseOn ){
                 isHintShow = false;
-                $(options.hintBox).hide();
+                jQuery(options.hintBox).hide();
                 return;
             }
             wordRelSelect = wordRelMouseOn;
@@ -173,20 +172,20 @@ var engMvc = (function(){
                 return;
             }
 
-            var $hintBox = $(options.hintBox).show();
+            var $hintBox = jQuery(options.hintBox).show();
 
             var text = '<span class="translt">'+engWord.osnWord[wordRelMouseOn].translt+'</span>';
             text += '<span class="transkr"> ['+engWord.osnWord[wordRelMouseOn].transkr +']</span>'
             $hintBox.find('span:first').html(text);
 
-            var $trParty = $(wordObjMouseOn).parents('tr.part:first');
+            var $trParty = jQuery(wordObjMouseOn).parents('tr.part:first');
 
             var y = $trParty.position().top - $hintBox.outerHeight();
             y = y <= 10 ? 10 : y;
 
-            var x = mousePos.x - $hintBox.width() / 2
+            var x = mousePos.x - $trParty.offset().left - $hintBox.width() / 2;
             x = x <= 10 ? 10 : x;
-
+			//console.log(mousePos.x - $trParty.offset().left);
             $hintBox.css({left:x+'px', top: y+'px'});
 
             isHintShow = true;
@@ -206,22 +205,22 @@ var engMvc = (function(){
                     url += '&lightbox[width]=800&lightbox[height]=600'
                     break;
             }
-            $.lightbox(url);
+            jQuery.lightbox(url);
             // func. hintBoxButtonClick
         }
 
         function hintBoxClick(pEvent){
-            var rel = $(pEvent.target).attr('rel');
+            var rel = jQuery(pEvent.target).attr('rel');
             if ( rel){
                 hintBoxButtonClick(rel);
             }
 
-            var $hintBox = $(pEvent.target).parents('div[id="hintBox"]:first');
+            var $hintBox = jQuery(pEvent.target).parents('div[id="hintBox"]:first');
             if ( $hintBox.length == 0 ){
-                if ( !$(pEvent.target).attr('id') == 'hintBox' ){
+                if ( !jQuery(pEvent.target).attr('id') == 'hintBox' ){
                     return;
                 }
-                $hintBox = $(pEvent.target);
+                $hintBox = jQuery(pEvent.target);
             }
             $hintBox.hide();
             isHintShow = false;
@@ -229,7 +228,7 @@ var engMvc = (function(){
         }
 
         function partBtnBoxClick(pEvent){
-            var rel = $(pEvent.target).attr('rel');
+            var rel = jQuery(pEvent.target).attr('rel');
             switch( rel ){
                 case 'play':
                     singlePlayerMvc.soundSeek(parseInt(paryMouseOn));
@@ -240,25 +239,25 @@ var engMvc = (function(){
         }
 
         function highlightPart(pTime){
-            var $part = $('#second' + pTime);
+            var $part = jQuery('#second' + pTime);
             if ( $part.length == 0 ){
                 return;
             }
-            $('#second' + lastHighlightPartNum).removeClass('highlight');
-            $('#second' + pTime).addClass('highlight');
+            jQuery('#second' + lastHighlightPartNum).removeClass('highlight');
+            jQuery('#second' + pTime).addClass('highlight');
             lastHighlightPartNum = pTime;
             // func. highlightPart
         }
 
         function cbPlayComplete(){
-            $('#second' + lastHighlightPartNum).removeClass('highlight');
+            jQuery('#second' + lastHighlightPartNum).removeClass('highlight');
             // func. cbPlayComplete
         }
 
         function cbSoundSeekPlayer(pTime){
             var time = Math.round(parseFloat(pTime));
             for( var i = time; i >= 0; i-- ){
-                var $part = $('#second' + i);
+                var $part = jQuery('#second' + i);
                 if ( $part.length == 0 ){
                     continue;
                 }
@@ -269,7 +268,7 @@ var engMvc = (function(){
         }
 
         function sentBtnBoxClick(pEvent){
-            var rel = $(pEvent.target).attr('rel');
+            var rel = jQuery(pEvent.target).attr('rel');
             switch( rel ){
                 case 'rule':
                     var url = '/webcore/func/utils/ajax/?name=eng&type=sent&path='+engWord.path + '&id='+sentMouseOn
@@ -283,12 +282,12 @@ var engMvc = (function(){
                     url += '&lightbox[width]=800&lightbox[height]=600'
                     break;
             }
-            $.lightbox(url);
+            jQuery.lightbox(url);
             // func. sentBtnBoxClick
         }
 
         function cbInitPlayer(){
-            console.log('cbInitPlayer');
+            //console.log('cbInitPlayer');
             singlePlayerMvc.setSoundUrl(paramOptions.resUrl);
             // func. cbInitPlayer
         }
@@ -296,10 +295,10 @@ var engMvc = (function(){
         function init(pOptions){
             options = pOptions;
             // движение мышкой и клик по словам
-            $(options.htmlDataBox).mousemove(htmlDataBoxMouseMove).click(htmlDataBoxClick);
-            $(options.hintBox).click(hintBoxClick);
-            $(options.partBtnBox).click(partBtnBoxClick);
-            $(options.sentBtnBox).click(sentBtnBoxClick);
+            jQuery(options.htmlDataBox).mousemove(htmlDataBoxMouseMove).click(htmlDataBoxClick);
+            jQuery(options.hintBox).click(hintBoxClick);
+            jQuery(options.partBtnBox).click(partBtnBoxClick);
+            jQuery(options.sentBtnBox).click(sentBtnBoxClick);
 
             if ( singlePlayerMvc ){
                 singlePlayerMvc.cbSetTime = highlightPart ;

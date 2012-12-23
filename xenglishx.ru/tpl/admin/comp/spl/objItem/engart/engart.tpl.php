@@ -20,6 +20,11 @@
     div .dd{ padding-left: 25px}
 
     #cloakingBox{width: 800px}
+	
+	.shortText{
+		width: 400px;
+		height: 200px;
+	}
 </style>
 
 <style>
@@ -120,7 +125,6 @@
           margin-right: 18px;*/
     }
 </style>
-
 <div class="column">
     <div class="panel corners">
 
@@ -134,13 +138,18 @@
         <div class="boxmenu corners">
             <ul class="menu-items">
                 <li>
-                    <a href="#back" id="backBtn" title="Назад">
+                    <a href="#back1" id="backBtn" title="Назад">
                         <img src="<?= self::res('images/back_32.png') ?>" alt="Назад" /><span>Назад</span>
                     </a>
                 </li>
                 <li>
                     <a href="#publishArtBtn" id="publishArtBtn" title="Опубликовать">
                         <img src="<?= self::res('images/save_32.png') ?>" alt="Опубликовать" /><span>Опубл.</span>
+                    </a>
+                </li>
+				<li>
+                    <a href="#paramBtn" id="paramBtn" title="Параметры">
+                        <img src="<?= self::res('images/prop_32.png') ?>" alt="Параметры" /><span>Параметры.</span>
                     </a>
                 </li>
              </ul>
@@ -224,6 +233,10 @@
 <div id="ruleBtnPanel">
     <input type="button" value="Clear Sel" id="clearSelectedBtn"/>
     <input type="button" value="Set Rule" id="setRuleBtn"/>
+</div>
+
+<div id="paramBox" class="hidden">
+	
 </div>
 
 <!-- Расширенные настройка для Предложения -->
@@ -1087,6 +1100,20 @@
             return false;
             // func. rulesArtBoxClick
         }
+		
+		function paramBtnClick(){
+			var url = utils.url({
+                method: 'loadParam',
+                query: {objItemId: engartData.objItemId}
+            });
+ 			$.get(url, null, function(responseText){
+				$.fancybox({
+				  'content': responseText,
+			  });
+			});
+			  
+			// func. paramBtnClick
+		}
 
         function init(pOptions){
             options = pOptions;
@@ -1119,7 +1146,12 @@
             $(options.cancelRuleBtn).click(cancelRuleBtnClick);
             $(options.addArtRuleBtn).click(addArtRuleBtnClick);
             $(options.rulesArtBox).click(rulesArtBoxClick);
+            
             $(options.tabsType+' table').click(tabsTypeTableClick);
+			
+			$(options.backBtn).attr('href', utils.url({}));
+			
+			$(options.paramBtn).click(paramBtnClick);
 
             // func. init
         }
@@ -1132,6 +1164,7 @@
     $(document).ready(function(){
         <?if ( !self::get('isNew')){?>
         engartMvc.init({
+			backBtn: '#backBtn',
             htmlDataBox: '#htmlDataBox',
             setRuleBtn: '#setRuleBtn',
             clearSelectedBtn: '#clearSelectedBtn',
@@ -1145,7 +1178,9 @@
             addArtRuleBtn: '#addArtRuleBtn',
             rulesArtBox: '#rulesArtBox',
             artRuleTreeBox: '#artRuleTreeBox',
-            tabsSettings: '#tabs-settings'
+            tabsSettings: '#tabs-settings',
+			paramBox: '#paramBox',
+			paramBtn: '#paramBtn'
         });
         <?}?>
     }); // $(document).ready

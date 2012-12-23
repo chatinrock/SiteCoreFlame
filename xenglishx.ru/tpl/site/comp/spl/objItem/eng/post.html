@@ -1,0 +1,100 @@
+<?
+	$item=self::get('item');
+	$categoryUrlTpl = self::get('categoryUrlTpl');
+?>
+<link type="text/css" rel="stylesheet" href="/res/comp/spl/objItem/eng/css/main.css"/>
+<div class="post-head">
+	<div class="post-title">
+		<h1><?=$item['caption']?></h1>
+	</div>
+</div>
+<div class="clear"></div>
+<div class="post-meta">
+	<ul>
+		<li class="post-date">
+			<div class="meta-info">
+				Дата: <?=substr($item['date_add'], 0, 8)?>
+			</div>
+			<div class="clear"></div>
+		</li>
+		<li class="post-cat">
+			<div class="meta-info">
+				Категория:<a href="<?=sprintf($categoryUrlTpl, $item['seoName'])?>" title="Посмотреть все материалы в <?=$item['category']?>" rel="category"><?=$item['category']?></a>					
+			</div>
+			<div class="clear"></div>
+		</li>
+	</ul>	
+</div>
+<div class="clear"></div>
+<div class="post-text">
+
+	<div id="hintBox" class="hidden">
+		<span>Текст [фыва]</span>
+		<img src="/res/comp/spl/objItem/eng/img/rule16.png" alt="Правила" title="Правила" class="button" rel="rule"/>
+		<img src="/res/comp/spl/objItem/eng/img/vip16.png" alt="VIP комментарии" title="VIP комментарии" class="button" rel="viprule"/>
+	</div>
+
+	<div id="sentBtnBox" class="hidden">
+		<img src="/res/comp/spl/objItem/eng/img/rule16.png" alt="Правила" title="Правила" class="button" rel="rule"/>
+		<img src="/res/comp/spl/objItem/eng/img/vip16.png" alt="VIP комментарии" title="VIP комментарии" class="button" rel="viprule"/>
+	</div>
+
+	<div id="partBtnBox" class="hidden">
+		<img src="/res/comp/spl/objItem/eng/img/play16.png" alt="Воспроизвести предложение" title="Воспроизвести предложение" class="button" rel="play"/>
+		<!--<img src="/res/comp/spl/objItem/eng/img/repeat-d16.png" alt="Повторять предложение" title="Повторять предложение" class="button"/>-->
+	</div>
+
+	<div id="playerFlashBox">
+		<div id="playerBox">
+			<p>
+				<a href="http://www.adobe.com/go/getflashplayer">
+					<img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player"/>
+				</a>
+			</p>
+		</div>
+	</div>
+
+	<?$this->loadFile(self::get('dir').'publish.txt')?>
+	
+</div>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+<script src="/res/plugin/singlePlayer/js/singlePlayerMvc.js" type="text/javascript"></script>
+<script src="/res/comp/spl/objItem/eng/js/mvc.js" type="text/javascript"></script>
+<script src="http://theme.codecampus.ru/plugin/lightbox/jquery.lightbox.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="http://theme.codecampus.ru/plugin/lightbox/themes/default/jquery.lightbox.css" />
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        engMvc.init({
+            htmlDataBox: '#htmlDataBox',
+            hintBox: '#hintBox',
+            partBtnBox: '#partBtnBox',
+            sentBtnBox: '#sentBtnBox'
+        });
+
+        swfobject.embedSWF(
+                "/res/plugin/singlePlayer/swf/player.swf?cache=1",
+                "playerBox",
+                265,
+                80,
+                "9.0.124",
+                "js/expressInstall.swf",
+                {},
+                {
+                    menu: "false",
+                    wmode: "opaque"
+                },
+                {
+                    id: "playerObjId",
+                    name: "playerObjId"
+                },
+                function(pEvent){
+                    if ( !pEvent.success ){
+                        alert('Ошибка: Не удалось загрузить плееер');
+                        return;
+                    }
+                    singlePlayerMvc.init({playerObjId:'playerObjId'});
+                }
+        );
+    }); // $(document).ready
+</script>
+

@@ -1,0 +1,1 @@
+a:1:{i:3;a:4:{s:7:"caption";s:69:"Низкие ожидания или высокие ожидания?";s:3:"url";s:60:"/blog/testcategory/nizkie-ozhidaniya-ili-vysokie-ozhidaniya/";s:10:"prevImgUrl";s:68:"http://lifetooth.ru/res/file/resize/comp/19/26/5/1//1.jpg?1341562739";s:9:"miniDesck";s:0:"";}}

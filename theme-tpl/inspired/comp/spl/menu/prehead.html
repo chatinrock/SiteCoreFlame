@@ -1,0 +1,13 @@
+<ul id="menu-pre-header-menu" class="menu"><?
+$tree = self::get('menuTree');
+$count = count($tree['item']);
+for( $i = 0; $i < $count; $i++ ){
+    $item = $tree['item'][$i];//['name'];
+    echo '<li id="menu-item-'.$i.'" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-'.$i.' '.$item['class'].'">'.
+             '<a href="'.$item['link'].'">'.
+                $item['name'].
+             '</a>'.
+          '</li>';
+} // for
+?>
+</ul>

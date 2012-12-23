@@ -1,0 +1,36 @@
+<?
+if ( !function_exists('menuChild') ){
+function menuChild($item, $inc){
+	$count = count($item);
+	for( $i = 0; $i < $count; $i++ ){
+		$num = $i + ($inc*($i+1));
+	?>
+		<li id="menu-item-<?=$num?>" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-<?=$num?> '<?=$item[$i]['class']?>">
+			<a href="<?=$item[$i]['link']?>"><?=$item[$i]['name']?></a>
+
+		<?if(isset($item[$i]['item'])){?>
+			<ul class="sub-menu">
+			<?menuChild($item[$i]['item'], $inc * 10);?>
+			</ul>
+		<?}?>
+		</li>
+	<?}
+}
+}
+$tree = self::get('menuTree'); ?>
+<ul id="menu-main-nav-menu-1" class="sf-menu clearfix">
+<? menuChild($tree['item'], 100); ?>
+</ul>
+
+<script type="text/javascript">
+	jQuery ('#mainMenu a').each(function(ind, obj){
+		var rgx = /[^/]+$/i;
+		var href = document.location.href.replace(rgx ,"");
+		if ( href === obj.href ){
+			$(obj).parent().addClass('current-menu-parent');
+		}
+	});
+</script>
+		
+		
+		

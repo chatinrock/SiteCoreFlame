@@ -1,8 +1,7 @@
 
-/** Debug **/
 #htmlDataBox{
-    margin-top: 40px;
-    margin-left: 40px;
+    margin-top: 20px;
+    margin-left: 20px;
 
 }
 
@@ -19,9 +18,17 @@
     display: none;
 }
 
+#sentBtnBox img{
+	border: 0px ;
+}
+
+#partBtnBox img{
+	border: 0px ;
+}
+
 span.word.osn{
     /*text-decoration: underline;*/
-    color: #00739e;
+    color: #FF8400;
     font-weight: bold;
 }
 
@@ -46,6 +53,10 @@ span.word.sec{
     display: none;
 }
 
+#hintBox  img{
+	border: 0px ;
+}
+
 img.button{
     cursor: pointer;
 }
@@ -66,9 +77,17 @@ span.transkr{
 }
 
 .highlight{
-    background-color: #d3d3d3;
+    background-color: #ffd09d;
 }
 
 span.sentence{
     padding-right: 40px;
+}
+
+#playerFlashBox{
+	text-align:	center;
+}
+
+.linkRule, .commentCaption{
+	font-weight: bold;
 }

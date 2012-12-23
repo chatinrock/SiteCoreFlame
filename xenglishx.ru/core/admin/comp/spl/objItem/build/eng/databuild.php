@@ -8,6 +8,8 @@ use core\classes\filesystem;
 
 // Model
 use admin\library\mvc\comp\spl\objItem\help\model\base\model as baseModel;
+// Model
+use site\core\admin\comp\spl\objItem\build\eng\model\model;
 
 // ORM
 use site\core\admin\comp\spl\objItem\ORM\engword as engwordOrm;
@@ -50,12 +52,12 @@ class databuild{
             rename($loadDir.$filename, $loadDir.'publish.txt');
         }// foreach
 
+			//echo "\n".'create end data';
+		//exit;
+       // 
 
 
-        echo "\n".'create end data';
-
-
-        exit;
+       // exit;
         // func. createFile.
     }
 

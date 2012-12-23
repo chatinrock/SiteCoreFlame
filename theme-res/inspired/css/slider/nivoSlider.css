@@ -1,0 +1,173 @@
+
+/*
+ * jQuery Nivo Slider v2.3
+ * http://nivo.dev7studios.com
+ *
+ * Copyright 2010, Gilbert Pellegrom
+ * Free to use and abuse under the MIT license.
+ * http://www.opensource.org/licenses/mit-license.php
+ * 
+ * March 2010
+ */
+ 
+ 
+/* The Nivo Slider styles */
+.responsiveSlider{
+	display: none;
+	line-height: 0;
+}
+.responsiveSpacer{
+	display: none;
+	height: 20px;
+}
+.nivoPreloader{
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+.nivoSlider {
+	position:relative;
+}
+.nivoSlider img {
+	position:absolute;
+	top:0px;
+	left:0px;
+	display:none;
+}
+.nivoSlider a.nivo-imageLink {
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+	border:0;
+	padding:0;
+	margin:0;
+	z-index:60;
+	display:none;
+}
+.nivo-slice {
+	display:block;
+	position:absolute;
+	z-index:50;
+	height:100%;
+}
+.nivo-caption {
+	position:absolute;
+	left:0px;
+	bottom:0px;
+	width:100%;
+	z-index:89;
+    text-shadow:none;
+    font-family: Helvetica, Arial, sans-serif;
+}
+.nivo-caption p {
+	padding:10px;
+	font-style: italic; font-size: 14px; line-height: 14px;font-family:Georgia,"Times New Roman",Times,serif;
+	margin-bottom:0px !important;
+}
+.nivo-caption a {
+	display:inline !important;
+}
+.nivo-html-caption {
+    display:none;
+}
+.nivo-controlNav {
+	position:absolute;
+}
+.nivo-controlNav a.active {
+	background-position:0 -22px; 
+}
+.nivo-directionNav a {
+	display:block;
+	height:44px;
+	text-indent:-9999px;
+	border:0;
+	position:absolute;
+	top:43%;
+	z-index:99;
+	cursor:pointer;
+}
+a.nivo-nextNav {
+	background-position:-38px 0;
+}
+.nivo-prevNav {
+	left:0px;
+}
+.nivo-nextNav {
+	right:0px;
+}
+.nivo-controlNav a.active {
+	font-weight:bold;
+}
+.nivo-controlNav {
+	position:absolute;
+	line-height: 0;
+}
+.nivo-controlNav img {
+	display:inline; /* Unhide the thumbnails */
+	position:relative;
+	margin-right:15px;
+	cursor:pointer;
+	padding:3px;
+}
+
+.kwicks {
+	list-style: 	none;
+	position: 		relative;
+	margin: 		0;
+	padding: 		0;
+}
+.kwicks li img{
+	
+}
+.kwicksPreloader{
+	position:absolute;
+	top:0px;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.kwicks li{
+	display: 		block;
+	overflow: 		hidden;
+	padding: 		0;
+	float: 			left;
+}
+.kwicks.horizontal li {
+	/* This is optional and will be disregarded by the script.  However, it should be provided for non-JS enabled browsers. */
+	margin-right: 5px; /*Set to same as spacing option. */	
+	float: left;
+}
+
+.kwickShadow{
+	display:		none;
+	position:		absolute;
+	top:			0px;
+	right: 			0px;
+	width: 			25px;
+	height: 		100%;
+	background: 	url(../images/kwickShadow.png) repeat-y;
+}
+
+.kwickTitle{
+	position:absolute;
+	padding: 15px;
+	bottom: 0px;
+	display:none;
+}
+
+.kwickDesc{
+	position:absolute;
+	padding: 15px;
+	padding-right:25px;
+	bottom: 0px;
+	width: 100%;
+	display:none;
+}
+
+.kwickTitle h1,.kwickTitle  h2,.kwickTitle  h3, .kwickTitle  h4, .kwickTitle  h5, .kwickTitle  h6, .kwickTitle p{
+	margin-bottom: 0px !important;
+}
+.kwickDesc h1, .kwickDesc  h2, .kwickDesc  h3, .kwickDesc  h4, .kwickDesc  h5, .kwickDesc  h6, .kwickDesc  p{
+	margin-bottom: 0px !important;
+}

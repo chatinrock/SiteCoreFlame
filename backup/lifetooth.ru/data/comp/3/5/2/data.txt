@@ -1,0 +1,2 @@
+<p>
+	Please note that some requests are more complicated than others and need further investigation. In this case support is extensively offered through email.Requests that include customisation are considered as a side job. Free support is extensively offered to any problems that the theme may have and includes but is not limited to plugin issues, jQuery conflicts and problems directly related to the theme.</p>

@@ -1,0 +1,123 @@
+
+/*
+	AnythingSlider v1.5.10+ Default (base) theme
+	By Chris Coyier: http://css-tricks.com
+	with major improvements by Doug Neiner: http://pixelgraphics.us/
+	based on work by Remy Sharp: http://jqueryfordesigners.com/
+*/
+.sliderAnything{
+	display:none;
+}
+div.anythingSlider {
+	display: block;
+	/*overflow: hidden;  needed for Opera and Safari */
+}
+
+div.anythingSlider, div.anythingSlider .anythingWindow, div.anythingSlider .thumbNav a, div.anythingSlider .arrow a{
+	transition-duration: 0;
+	-o-transition-duration: 0;
+	-moz-transition-duration: 0;
+	-webkit-transition-duration: 0;
+}
+
+div.anythingSlider .anythingWindow {
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+div.anythingSlider {
+	position: relative;
+	padding: 0;
+}
+
+/* anythingSlider base UL */
+ul.anythingBase {
+	background: transparent;
+	list-style: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 0;
+	padding: 0;
+}
+ul.anythingBase li.panel {
+	background: transparent;
+	display: block;
+	overflow: hidden;
+	float: left;
+	padding: 0;
+	margin: 0;
+}
+
+
+
+/* Anything Slider */
+.anythingVimeo{
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+div.anythingSlider .arrow {
+	top: 48%;
+	position: absolute;
+	display: block;
+	z-index:2;
+}
+div.anythingSlider .arrow a {
+	display: block;
+	height: 32px;
+	margin: -16px 0 0 0; /* half height of image */
+	width: 34px;
+	text-align: center;
+	outline: 0;
+}
+div.anythingSlider .arrow a span { display: block; text-indent: -9999px; }
+div.anythingSlider .forward { right: 10px; }
+div.anythingSlider .back { left: 10px; }
+div.anythingSlider .forward a { background-position: -34px 0px; }
+div.anythingSlider .back a { background-position: 0px 0px; }
+div.anythingSlider .forward.disabled { display: none; } /* disabled arrows, hide or reduce opacity: opacity: .5; filter: alpha(opacity=50); */
+div.anythingSlider .back.disabled { display: none; }
+
+/* END Navigation Arrows */
+
+
+
+/* Controls - Bullets */
+
+div.anythingSlider .anythingControls { 
+	outline: 0; 
+	display: none; 
+	position:absolute;
+	line-height:0;
+}
+
+div.anythingSlider .thumbNav { margin: 0; padding: 0; line-height:0; }
+div.anythingSlider .thumbNav li { display: inline; }
+
+
+div.anythingSlider .thumbNav a {
+	display: inline-block;
+	text-decoration: none;
+	padding: 0px 0px;
+	width:	22px;
+	height: 22px;
+	margin: 0 0 0 0;
+	background-image: url(../images/bullets/bullets-3.png);
+	outline: 0;
+}
+div.anythingSlider .thumbNav a:hover, div.anythingSlider .thumbNav a.cur{
+	background-position: 0 -22px;
+}
+/* END Controls - Bullets */
+
+
+/* ADDED TO REMOVE START STOP BUTTON */
+div.anythingControls .start-stop{
+	display:none !important;
+}
+div.anythingControls span{
+	display:none !important;
+}
