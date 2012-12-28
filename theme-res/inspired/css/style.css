@@ -1737,6 +1737,14 @@ label{
 	clear: both;
 }
 
+.spacer10{
+	height:10px;
+}
+
+.spacer20{
+	height:10px;
+}
+
 /* SHORTCODE - Images */
 
 .imageBorder{
@@ -1839,6 +1847,8 @@ label{
 }
 .imageShadow{
 	line-height: 0px;
+	margin-left:						auto;
+	margin-right:						auto;
 }
 
 /* SHORTCODE unordered and ordered lists */
@@ -1874,7 +1884,7 @@ ul.style5 li{
 	background-position: 		-378px -72px;
 }
 ul.style6 li{
-	background-position: 		-360px -90px;
+	background-position: 		-360px -90px !important;
 }
 ul.style7 li{
 	background-position: 		-342px -108px;
@@ -2636,4 +2646,38 @@ pre, code {
 
 .hidden{
 	display: none;
+}
+
+/* Boxing */
+.box {
+    border-style: solid;
+    border-width: 1px;
+    font-size: 14px;
+    line-height: 1.2em;
+    margin: 5px 0 5px;
+    padding: 10px 50px;
+    position: relative;
+}
+
+.box.error {
+    background: url("../images/boxing/error32.png") no-repeat scroll 5px center #FFC8C7;
+    background-color: #FFD4D4;
+    border-color: #D97676;
+    color: #CD0A0A;
+}
+
+.box.waiting {
+    background: url("../images/preloader/ajax-loader.gif") no-repeat scroll 5px center #FFC8C7;
+    background-color: #fff1ca;
+    border-color: #ffcc43;
+    color: #6c4f00;
+	text-align: center;
+}
+
+.box.success {
+    background: url("../images/boxing/success32.png") no-repeat scroll 5px center #FFC8C7;
+    background-color: #8cff9a;
+    border-color: #00e81b;
+    color: #00720d;
+	text-align: center;
 }

@@ -548,6 +548,12 @@ a:hover{
 	color:#ff8400;
 	font-size: 12px;
 }
+
+#sideBar a.button.tiny.orange{  
+	color:#FFF4E9;
+	font-size: 11px;
+}
+
 #sideBar a:hover{
 	color:#555555;
 }

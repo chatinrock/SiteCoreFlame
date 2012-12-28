@@ -9,6 +9,7 @@ var recordPlayerMvc = (function(){
     var playInterval;
     var $progress;
     var options;
+	var serverUrl = '';
     /**
      * Получен ли доступ к микрофону
      * @type {Boolean} true - в случае если получен, false в ином
@@ -23,11 +24,11 @@ var recordPlayerMvc = (function(){
     function cbfMicStatus(pMicStatus){
         if ( pMicStatus ){
             recordInterval = setInterval(recordTime, 1000);
-            $('#swfObjBox').css({visibility:'hidden'});
+            jQuery('#swfObjBox').css({visibility:'hidden'});
             accessMic = true;
         }else{
-            //$('#remoteControlBox .status:first').html('Неправильный выбор.<br/>Попробуйте снова');
-            //$('#swfObjBox').hide();
+            //jQuery('#remoteControlBox .status:first').html('Неправильный выбор.<br/>Попробуйте снова');
+            //jQuery('#swfObjBox').hide();
             initSWF(Math.random());
         }
         // func. micStatus
@@ -53,8 +54,8 @@ var recordPlayerMvc = (function(){
     }
 
     function initSWF(cache){
-        $('#swfObjBox').html('<div id="playerBox"></div><img src="/res/comp/spl/objItem/eng/img/allowPanel.png">');
-        $('#swfObjBox>img:first').mousemove(swfObjBoxImgMouseMove);
+        jQuery('#swfObjBox').html('<div id="playerBox"></div><img src="/res/comp/spl/objItem/eng/img/allowPanel.png">');
+        jQuery('#swfObjBox>img:first').mousemove(swfObjBoxImgMouseMove);
 
         var flashvars = {};
 
@@ -108,7 +109,7 @@ var recordPlayerMvc = (function(){
             return;
         }
         if ( actionType == 'none' ||  actionType == 'stop'){
-            playerObj.loadAndPlay('/records/'+options.userId+'.flv');
+            playerObj.loadAndPlay('/pub/records/'+options.userId+'.flv');
             actionType = 'play';
             setProgress(0);
         }else
@@ -128,7 +129,7 @@ var recordPlayerMvc = (function(){
         if ( recordTimeCurrent == recordTimeCount){
             stopRecord();
             //console.log('End timer');
-            $('#remoteControlBox .status:first').html('');
+            jQuery('#remoteControlBox .status:first').html('');
         }
         ++recordTimeCurrent;
         // func. recordTime
@@ -141,19 +142,19 @@ var recordPlayerMvc = (function(){
         // Указываем что актиновсти нет
         micActivity = false;
         // Активируем кнопку записи
-        $('#remoteControlBox .record:first').addClass('on');
-        //$('#remoteControlBox .play:first').addClass('off');
+        jQuery('#remoteControlBox .record:first').addClass('on');
+        //jQuery('#remoteControlBox .play:first').addClass('off');
         // Указываем статус
-        $('#remoteControlBox .status:first').html('Идёт запись');
+        jQuery('#remoteControlBox .status:first').html('Идёт запись');
         // Меняем прогресс бар на режим записи
         $progress.addClass('record');
         // Устанавливаем текущее время записи в 0, т.е. запись только начинается
         recordTimeCurrent = 0;
         // Указываем плееру соеденится
-        playerObj.startRecord('rtmp://127.0.0.1/Timer/', options.userId);
+        playerObj.startRecord(serverUrl, options.userId);
         // Если доступа к мирофону нет, т.е. это первая запись, то нужно показать флеш контейнер
         if ( !accessMic ){
-            $('#swfObjBox').css({visibility:'visible'})
+            jQuery('#swfObjBox').css({visibility:'visible'})
         }
         // Устанавливаем стутас - запись
         actionType = 'record';
@@ -167,10 +168,10 @@ var recordPlayerMvc = (function(){
         // Устанавливаем стутас - пусто
         actionType = 'none';
         // Убираем активный статус у кноки
-        $('#remoteControlBox .record:first').removeClass('on');
+        jQuery('#remoteControlBox .record:first').removeClass('on');
         // Если была активность по микрофону, убивараем блокировку с кнопки
         if ( micActivity ){
-            $('#remoteControlBox .play:first').removeClass('off');
+            jQuery('#remoteControlBox .play:first').removeClass('off');
         }
         // убераем режим отображения "запись" с прогресс бара
         $progress.removeClass('record');
@@ -181,7 +182,7 @@ var recordPlayerMvc = (function(){
         // Дисконнектим плеер от сервера
         playerObj.stopRecord();
         // Убераем статус
-        $('#remoteControlBox .status:first').html('');
+        jQuery('#remoteControlBox .status:first').html('');
         // func. stopRecord
     }
 
@@ -245,33 +246,34 @@ var recordPlayerMvc = (function(){
 
     function sendRecord(){
         if ( !micActivity ){
-            $('#remoteControlBox .status:first').html('Сначала сделайте запись');
+            jQuery('#remoteControlBox .status:first').html('Сначала сделайте запись');
             return;
         }
         var url = '/webcore/func/utils/ajax/?name=sendRecord';
-        $.ajax({
+        jQuery.ajax({
             type: "POST",
             url: url,
             data: {
                 time: recordTimeCurrent,
                 userId: options.userId,
-                text: $('#remoteControlBox textarea[name="comment"]').val()
+                text: jQuery('#remoteControlBox textarea[name="comment"]').val()
             }
         }).done(function( pData ) {
              var text = 'Данные успешно отправлены';
              if ( pData && pData['error'] ){
                  text = pData['msg'];
              }
-             $('#remoteControlBox').html(text);
+             jQuery('#remoteControlBox').html(text);
         });
+		return false;
         // func. sendRecord
     }
 
     function remoteControlBoxClick(pEvent){
-        var $obj = $(pEvent.target);
+        var $obj = jQuery(pEvent.target);
         var rel = $obj.attr('rel');
         if ( !rel ){
-            var $obj = $(pEvent.target).parents('*[rel]:first');
+            var $obj = jQuery(pEvent.target).parents('*[rel]:first');
             rel = $obj.attr('rel');
             if ( !rel){
                 return;
@@ -299,11 +301,11 @@ var recordPlayerMvc = (function(){
     }
 
     function swfObjBoxImgMouseMove(pEvent){
-        var parentOffset = $(this).offset();
+        var parentOffset = jQuery(this).offset();
         var relX = pEvent.pageX - parentOffset.left;
         var relY = pEvent.pageY - parentOffset.top;
         if ( relX >= 51 && relY >= 111 && relX <= 130  && relY <= 130 ){
-            $(this).hide();
+            jQuery(this).hide();
         }
         // func. swfObjBoxImgMouseMove
     }
@@ -356,12 +358,13 @@ var recordPlayerMvc = (function(){
 
     function init(pOptions){
         options = pOptions;
+		serverUrl = options.serverUrl;
         // Панель управления кнопками
-        $('#remoteControlBox').click(remoteControlBoxClick);
+        jQuery('#remoteControlBox').click(remoteControlBoxClick);
         // Время записи звука
         recordTimeCount = 7 * 60;
         // Объект прогресс бара для позиции проигрывания
-        $progress = $('#remoteControlBox div.progress:first');
+        $progress = jQuery('#remoteControlBox div.progress:first');
         // Инициализация флеша
         initSWF(1);
     }

@@ -1,16 +1,15 @@
 <?
 	$oiListData=self::get('oiListData');
 	$categoryUrlTpl = self::get('categoryUrlTpl');
+	$objItemDir = self::get('objItemDir');
 ?>
 
-            <?
-
+<?
             $previewCount = count($oiListData);
             for ($i = 0; $i < $previewCount; $i++) {
                 $item = $oiListData[$i];
                 $caption = $item['caption'];
                 $categoryUrl = vsprintf($categoryUrlTpl, $item['seoName']);
-				//var_dump($item);
                 ?>
 <div id="post-155" class="post-155 post type-post status-publish format-standard hentry category-lightbox-posts tag-17-shadows tag-big-image tag-lightbox">
 	<div class="post-head">
@@ -49,7 +48,7 @@
 	<div class="spacer" style="height:10px;"></div>
 	<div class="clear"></div>							
 	<div class="post-text">
-		<p>blog test&#8230;</p>
+		<p><?self::loadFile($objItemDir . $item['idSplit'] . 'kat.txt'); ?></p>
 		<a class="skinSwitch button small white" href="<?=$item['url']?>" style="float:left;" target="_parent"><?=$caption?></a>
 		<!--<div class="post-tags">
 			Tags: <a href="http://themes.curtycurt.com/inspired/tag/17-shadows/" rel="tag">17 Shadows</a><a href="http://themes.curtycurt.com/inspired/tag/big-image/" rel="tag">Big Image</a><a href="http://themes.curtycurt.com/inspired/tag/lightbox/" rel="tag">Lightbox</a>								</div>-->
