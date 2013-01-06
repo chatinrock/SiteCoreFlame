@@ -105,6 +105,12 @@ var engMvc = (function(){
             var x = pos.left + $sentObj.outerWidth() - $sentBtnBox.outerWidth();
             var y = pos.top;
             $sentBtnBox.css({left: x+'px', top: y + 'px'}).show();
+			
+			if ( !engSent[sentId] ){
+				$sentBtnBox.find('img[rel="viprule"]').hide();
+			}else{
+				$sentBtnBox.find('img[rel="viprule"]').show();
+			}
 
             /*if ( sentMouseOn == sentId ){
                 //$sentBtnBox.css({left: x+'px'})
@@ -171,6 +177,13 @@ var engMvc = (function(){
             if (!engWord.osnWord[wordRelMouseOn]){
                 return;
             }
+			
+			
+			if ( engWord.osnWord[wordRelMouseOn].vipId){
+				jQuery('#hintBox img[rel="viprule"]').show();
+			}else{
+				jQuery('#hintBox img[rel="viprule"]').hide();
+			}
 
             var $hintBox = jQuery(options.hintBox).show();
 
@@ -197,11 +210,11 @@ var engMvc = (function(){
         function hintBoxButtonClick(pButtonRel){
             switch(pButtonRel){
                 case 'rule':
-                    var url = '/webcore/func/utils/ajax/?name=eng&type=word&path='+engWord.path + '&id='+wordRelSelect;
+                    var url = '/webcore/func/utils/ajax/?name=eng&type=word&path='+paramOptions.path + '&id='+wordRelSelect;
                     url += '&lightbox[width]=600&lightbox[height]=400'
                     break;
                 case 'viprule':
-                    var url = '/webcore/func/utils/ajax/?name=eng&type=vip&path='+engWord.osnWord[wordRelSelect].vipId;
+                    var url = '/webcore/func/utils/ajax/?name=eng&type=vip&objid='+paramOptions.objId+'&obj=word&id='+wordRelSelect+'&path='+paramOptions.path;
                     url += '&lightbox[width]=800&lightbox[height]=600'
                     break;
             }
@@ -271,14 +284,14 @@ var engMvc = (function(){
             var rel = jQuery(pEvent.target).attr('rel');
             switch( rel ){
                 case 'rule':
-                    var url = '/webcore/func/utils/ajax/?name=eng&type=sent&path='+engWord.path + '&id='+sentMouseOn
+                    var url = '/webcore/func/utils/ajax/?name=eng&type=sent&path='+paramOptions.path + '&id='+sentMouseOn
                     url += '&lightbox[width]=600&lightbox[height]=400'
                     break;
                 case 'viprule':
                     if ( !engSent[sentMouseOn] ){
                         break;
                     }
-                    var url = '/webcore/func/utils/ajax/?name=eng&type=vip&path='+engSent[sentMouseOn].vipId;
+                    var url = '/webcore/func/utils/ajax/?name=eng&type=vip&objid='+paramOptions.objId+'&id='+sentMouseOn+'&obj=sent&path='+paramOptions.path;;
                     url += '&lightbox[width]=800&lightbox[height]=600'
                     break;
             }

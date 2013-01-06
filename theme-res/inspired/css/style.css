@@ -2681,3 +2681,22 @@ pre, code {
     color: #00720d;
 	text-align: center;
 }
+
+.socialBtnBox{
+	padding-left: 20px;
+}
+
+.articlePrivate{
+	background: url('../images/access-limited.png') no-repeat;
+	height: 100px;
+	width: 100px;
+	position: absolute;
+	right: 5px;
+	bottom: 5px;
+	opacity: 0.5;
+}
+
+.pwdInput{
+	width: 200px;
+}
+

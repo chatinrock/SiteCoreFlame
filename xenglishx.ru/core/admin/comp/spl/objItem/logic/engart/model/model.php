@@ -27,21 +27,21 @@ class model{
 
         $htmlData = substr($htmlData, 5);
 
-        $relCount = 0;
+        $wordCount = 0;
         // Вставка слов
-        $htmlData = preg_replace_callback('/(<[^>]*>)|([\w\']+)|(&#\d+;)/siu', function($matches)use(&$relCount){
+        $htmlData = preg_replace_callback('/(<[^>]*>)|([\w\']+)|(&#\d+;)/siu', function($matches)use(&$wordCount){
             if ($matches[0][0] == '<' || $matches[0][0] == '&'){
                 return $matches[0];
             }
-            ++$relCount;
-            return '<span class="word" rel="'.$relCount.'">'.$matches[0].'</span>';;
+            ++$wordCount;
+            return '<span class="word" rel="'.$wordCount.'">'.$matches[0].'</span>';;
         }, $htmlData);
 
         // Обработка предложений
-        $relCount = 0;
-        $htmlData = preg_replace_callback('/(<span class="word"[^>]*>[^<]*<\/span>[^.!?<]*)+([.!?<])/siu', function($matches)use(&$relCount){
-            ++$relCount;
-            $return = '<span class="sentence" id="sent'.$relCount.'">';
+        $sentCount = 0;
+        $htmlData = preg_replace_callback('/(<span class="word"[^>]*>[^<]*<\/span>[^.!?<]*)+([.!?<])/siu', function($matches)use(&$sentCount){
+            ++$sentCount;
+            $return = '<span class="sentence" id="sent'.$sentCount.'">';
             if ( substr($matches[0], -1) == '<' ){
                 return $return.substr($matches[0], 0, strlen($matches[0])-1).'</span><';
             }
@@ -50,7 +50,7 @@ class model{
         }, $htmlData);
 
         $htmlData .= '</td></tr>';
-        return '<table id="htmlDataBox" style="">'.$htmlData.'</table>';
+        return ['text' => '<table id="htmlDataBox" style="">'.$htmlData.'</table>', 'sentNum'=>$sentCount, 'wordNum'=> $wordCount];
         // func. loadHtmlData
     }
 

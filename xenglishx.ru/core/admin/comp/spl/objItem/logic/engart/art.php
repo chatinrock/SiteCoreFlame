@@ -95,9 +95,12 @@ class art extends \core\classes\component\abstr\admin\comp implements \core\clas
 
 
             $engartText = filesystem::loadFileContent($saveDir.'engart.txt');
-            if ( !$engartText || true ){
-                $engartText = engartModel::html2data($textfile);
+            if ( !$engartText  ){
+                $engartData = engartModel::html2data($textfile);
+                $engartText = $engartData['text'];
                 filesystem::saveFile($saveDir, 'engart.txt', $engartText);
+                unset($engartData['text']);
+                filesystem::saveFile($saveDir, 'count.txt', serialize($engartData));
             }
             self::setVar('engartText', $engartText, false);
 

@@ -1,0 +1,59 @@
+.socialBtn{
+        height: 30px;
+        display: inline-block;
+        padding-left: 78px;
+        padding-right: 2px;
+        color: #196881
+    }
+
+.socialBtn span{
+	height: 30px;
+	padding: 0 4px 0 4px;
+	line-height: 30px;
+	display: inline-block;
+}
+
+.socialBtn.twitter{
+	background: url('images/twitter/logo.gif') no-repeat,
+	url('images/twitter/left.png') 68px no-repeat,
+	url('images/twitter/right.png') right no-repeat;
+}
+
+.socialBtn.twitter span.count{
+	background: url('images/twitter/center.png');
+}
+
+
+.socialBtn.facebook{
+	background: url('images/facebook/logo.gif') no-repeat,
+	url('images/facebook/left.png') 68px no-repeat,
+	url('images/facebook/right.png') right no-repeat;
+}
+
+.socialBtn.facebook span.count{
+	background: url('images/facebook/center.png');
+}
+
+.socialBtn.vkontakte{
+	background: url('images/vkontakte/logo.gif') no-repeat,
+	url('images/vkontakte/left.png') 68px no-repeat,
+	url('images/vkontakte/right.png') right no-repeat;
+}
+
+.socialBtn.vkontakte span.count{
+	background: url('images/vkontakte/center.png');
+}
+
+
+.socialBtnList li:before {
+	content: "";
+}
+.socialBtnList li {
+	display: block;
+	float: left;
+	margin: 0 10px 10px 0 !important;
+}
+
+div.socailBtnclear {
+    clear: both;
+}

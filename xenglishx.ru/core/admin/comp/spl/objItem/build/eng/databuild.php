@@ -43,6 +43,8 @@ class databuild{
 
             $paramData = filesystem::loadFileContentUnSerialize($loadDir.'param.txt');
             $paramOptions['resUrl'] = $paramData['resurl'];
+            $paramOptions['objId'] = $objItemId;
+            $paramOptions['path'] = trim(substr($longId, 5), '/');
             $paramOptions = json_encode($paramOptions);
 
             $fa = fopen($loadDir.$filename, 'a' );

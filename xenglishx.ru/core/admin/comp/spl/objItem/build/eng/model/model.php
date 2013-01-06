@@ -134,12 +134,13 @@ class model{
                 return rtrim(substr($vipId, 5), '/');
             }
         }
-        return null;
+        return '';
         // func. getVIPId
     }
 
     public static function createSentFile($objItemId, $longId, $loadDir, $objItemProp){
-        $saveWordData = (new engsentOrm())->selectAll('*', ['objItemId'=>$objItemId]);
+        $engsentOrm = new engsentOrm();
+        $saveWordData = $engsentOrm->selectAll('*', ['objItemId'=>$objItemId]);
         $osnWord = [];
         foreach( $saveWordData as $value){
             $sentId = $value['sentId'];
@@ -148,8 +149,9 @@ class model{
             $osnWord[$sentId] = [];
             $osnWord[$sentId]['translt'] = $formData['translate'];
 
-            $osnWord[$sentId]['vipId'] = model::getVIPId($formData, $objItemProp);
-
+            $vipId = model::getVIPId($formData, $objItemProp);
+            $osnWord[$sentId]['vipId'] = (boolean)$vipId;
+            $engsentOrm->update(['path'=>$vipId], ['objItemId'=>$objItemId, 'sentId'=>$sentId]);
         } // foreach
 
         $result = json_encode($osnWord);
@@ -162,7 +164,8 @@ class model{
 
     public static function createWordFile($objItemId, $longId, $loadDir, $objItemProp){
 
-            $saveWordData = (new engwordOrm())->selectAll('*', ['objItemId'=>$objItemId]);
+            $engwordOrm = new engwordOrm();
+            $saveWordData = $engwordOrm->selectAll('*', ['objItemId'=>$objItemId]);
 
             $osnWord = [];
             $linkWord = [];
@@ -175,7 +178,9 @@ class model{
                 $osnWord[$wordId]['transkr'] = $formData['transcr'];
                 $osnWord[$wordId]['link'] = explode(',', $value['osnWordId']);
                 $osnWord[$wordId]['sec'] = explode(',', $value['secondWordId']);
-                $osnWord[$wordId]['vipId'] = model::getVIPId($formData, $objItemProp);
+                $vipId = model::getVIPId($formData, $objItemProp);;
+                $osnWord[$wordId]['vipId'] = (boolean)$vipId;
+                $engwordOrm->update(['path'=>$vipId], ['objItemId'=>$objItemId, 'wordId'=>$wordId]);
 
                 foreach($osnWord[$wordId]['link'] as $secondId ){
                     $linkWord[$secondId] = $wordId;
@@ -184,8 +189,7 @@ class model{
 
             $result = [
                 'osnWord' => $osnWord,
-                'linkWord' => $linkWord,
-                'path' => trim(substr($longId, 5), '/')
+                'linkWord' => $linkWord
             ];
             $result = json_encode($result);
 

@@ -417,6 +417,9 @@ jQuery(document).ready(function($) {
 	$("#sideBar .widget_nav_menu ul li").menu();
 	$("#footer .widget_nav_menu ul li").menu();
 	
+	var socialActiveAlpha = 0.5;
+	var socialInactiveAlpha = 1;
+	
 	//Social Icon Opacity Animation
 	$('.socialIcons li').each(function(index) {
 		$(this).hover(

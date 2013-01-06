@@ -23,11 +23,11 @@ $tree = self::get('menuTree'); ?>
 </ul>
 
 <script type="text/javascript">
-	jQuery ('#mainMenu a').each(function(ind, obj){
+	jQuery ('#horizontalNavigation a').each(function(ind, obj){
 		var rgx = /[^/]+$/i;
 		var href = document.location.href.replace(rgx ,"");
 		if ( href === obj.href ){
-			$(obj).parent().addClass('current-menu-parent');
+			jQuery(obj).parent().addClass('current-menu-parent');
 		}
 	});
 </script>

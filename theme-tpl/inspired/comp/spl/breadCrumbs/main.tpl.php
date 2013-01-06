@@ -1,5 +1,5 @@
 <div class="breadcrumbs">
-	<a class="breadcrumbs-begin" rel="home" href="/" itemprop="url">
+	<a class="breadcrumbs-begin" rel="home" href="/" itemprop="url" title="Вернуться на главную">
 		<block itemscope="itemscope" itemtype="http://data-vocabulary.org/Breadcrumb">
 			<block itemprop="title">Главная</block>
 		</block>
@@ -13,7 +13,7 @@
 			$caption = $breadcrumbs[$i]['caption'];
             ?>
 			<span class="breadcrumbs-separator">&nbsp;>&nbsp;</span>
-			<a href="<?=$url?>" title="<?=$caption?>" itemprop="url">
+			<a href="<?=$url?>" title="Перейти к <?=$caption?>" itemprop="url">
 				<block itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
 					<block itemprop="title"><?=$caption?></block>
 				</block>

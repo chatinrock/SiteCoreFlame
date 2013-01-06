@@ -611,19 +611,6 @@
             // func. unserializeRule
         }
 
-        /**
-         * Заполнение объектов формы значениями из pData
-         * @param pData {Object} содержит название поля в ключе и значение поля в результате.
-         */
-        function unserializeForm(idForm, pData){
-            for( var key in pData){
-                var value = pData[key];
-                $(idForm + ' input[type="checkbox"][name="'+ key +'"][value="'+ value +'"],input[type="radio"][name="'+ key +'"][value="'+ value +'"]').attr('checked', 'checked');
-                $(idForm + ' select[name="'+ key +'"],input[type="text"][name="'+ key +'"],input[type="password"][name="'+ key +'"],input[type="hidden"][name="'+ key +'"],textarea[name="'+ key +'"]').val(value);
-            }
-            // func. unserializeForm
-        }
-
         function clearDisableTab(){
             $( options.tabsBox ).tabs('enable', 0);
             // func. clearDisableTab

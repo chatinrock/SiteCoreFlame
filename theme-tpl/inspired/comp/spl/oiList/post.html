@@ -28,7 +28,7 @@
 			</li>
 			<li class="post-cat">
 				<div class="meta-info">
-					Категория: <a href="<?=$categoryUrl?>" title="View all posts in Lightbox Posts" rel="category tag"><?=$item['category']?></a>										</div>
+					Категория: <a href="<?=$categoryUrl?>" title="Открыть все статьи категории: <?=$item['category']?>" rel="category tag"><?=$item['category']?></a></div>
 				<div class="clear"></div>
 			</li>
 			<!--<li class="post-user">
@@ -50,6 +50,7 @@
 	<div class="post-text">
 		<p><?self::loadFile($objItemDir . $item['idSplit'] . 'kat.txt'); ?></p>
 		<a class="skinSwitch button small white" href="<?=$item['url']?>" style="float:left;" target="_parent"><?=$caption?></a>
+		<!--<a class="skinSwitch button small white" href="#how" style="float:left;" target="_parent">Как стать членом клуба?</a>-->
 		<!--<div class="post-tags">
 			Tags: <a href="http://themes.curtycurt.com/inspired/tag/17-shadows/" rel="tag">17 Shadows</a><a href="http://themes.curtycurt.com/inspired/tag/big-image/" rel="tag">Big Image</a><a href="http://themes.curtycurt.com/inspired/tag/lightbox/" rel="tag">Lightbox</a>								</div>-->
 	</div>

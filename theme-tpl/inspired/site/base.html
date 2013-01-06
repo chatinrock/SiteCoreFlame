@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="ru">
+<html dir="ltr" lang="ru" xmlns:fb="http://ogp.me/ns/fb#">
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name='yandex-verification' content='<?=self::varible('yandex-verification')?>' />
+	<meta name='google-site-verification' content='<?=self::varible('google-site-verification')?>' />
+	
 	<meta name="author" content="EdusGroup" />
 	<meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
 	
@@ -25,11 +28,11 @@
 	<link rel="stylesheet" href="http://theme.codecampus.ru/inspired/css/theme/light-grey-orange.css?v=1">
 	<link rel="stylesheet" href="http://theme.codecampus.ru/inspired/css/responsive.css?v=1">
 	
-	
-	
+
 	<?self::block('head');?>
 </head>
 <body>
+	<?self::block('htmlcounter', 'Счётчик')?>
 	<?self::block('bodyBegin');?>
 	<div id="backgroundImage"></div>
 	<div id="backgroundPattern"></div>
@@ -40,6 +43,5 @@
 	<?self::block('contener');?>
 	<?self::block('scriptStatic') ?>
     <?self::block('scriptDyn') ?>
-	<?self::block('htmlcounter', 'Счётчик')?>
 </body>  
 </html>

@@ -9,27 +9,10 @@
 	</div>
 	<div class="clear"></div>
 	<div class="widgetColumnContent">
-		<a href="#" id="exitBtn" class="button tiny white lightbox">Выход</a>
+        <div><a href="/user/" class="button tiny orange">Личный кабинет</a></div>
+        <div style="height:5px;" class="hr"></div>
+		<div><a href="#" id="exitBtn" class="button tiny white lightbox">Выход</a></div>
 	</div>
 	<div class="clear"></div>
 </div>
-<script type="text/javascript">
-	var authMvc = (function(){
-		
-		function exitBtnClick(){
-			jQuery.cookie("userExit", "1", {expires: 7*60*30, path: "/"});
-			window.location.reload();
-			return false;
-			// func. exitBtnClick
-		}
-		
-		function init(){
-			jQuery('#exitBtn').click(exitBtnClick);
-		}
-	
-		return {
-			init: init
-		}
-	})();
-	authMvc.init();
-</script>
+<script type="text/javascript" src="/res/comp/spl/freeScript/js/profile.js"></script>

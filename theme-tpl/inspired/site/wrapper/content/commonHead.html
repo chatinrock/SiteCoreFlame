@@ -1,17 +1,33 @@
 <div id="headerSocial">
     <ul class="socialIcons">
-        <li><a href="#" target="_blank" rel="nofollow"><img class="vtip" title="Follow Us on Twitter"
-                                                            src="http://theme.codecampus.ru/inspired/images/skins/light-grey-orange/socialTwitter.png"
-                                                            alt=""/></a></li>
-        <li><a href="#" target="_blank" rel="nofollow"><img class="vtip" title="Our Facebook Page"
-                                                            src="http://theme.codecampus.ru/inspired/images/skins/light-grey-orange/socialFacebook.png"
-                                                            alt=""/></a></li>
-        <li><a href="#" target="_blank" rel="nofollow"><img class="vtip" title="Our Photos"
-                                                            src="http://theme.codecampus.ru/inspired/images/skins/light-grey-orange/socialFlickr.png"
-                                                            alt=""/></a></li>
-        <li><a href="#" target="_blank" rel="nofollow"><img class="vtip" title="Our Videos"
-                                                            src="http://theme.codecampus.ru/inspired/images/skins/light-grey-orange/socialVimeo.png"
-                                                            alt=""/></a></li>
+        <li>
+            <a href="<?=self::varible('vkUrl', 'VKontakte URL');?>" target="_blank" rel="nofollow">
+                <img class="vtip" title="Наша страница ВКонтакте"
+                     src="http://theme.codecampus.ru/inspired/images/skins/light-grey-orange/social/vkontakte.png"
+                     alt=""/>
+            </a>
+        </li>
+        <li>
+            <a href="<?=self::varible('fbUrl', 'Facebook URL');?>" target="_blank" rel="nofollow">
+                <img class="vtip" title="Наша страница Facebook"
+                     src="http://theme.codecampus.ru/inspired/images/skins/light-grey-orange/social/facebook.png"
+                     alt=""/>
+            </a>
+        </li>
+        <li>
+            <a href="<?=self::varible('twitterUrl');?>" target="_blank" rel="nofollow">
+                <img class="vtip" title="Наша страница Twitter"
+                     src="http://theme.codecampus.ru/inspired/images/skins/light-grey-orange/social/twitter.png"
+                     alt=""/>
+            </a>
+        </li>
+        <li>
+            <a href="<?=self::varible('googleUrl');?>" target="_blank" rel="nofollow">
+                <img class="vtip" title="Наша страница Google+"
+                     src="http://theme.codecampus.ru/inspired/images/skins/light-grey-orange/social/googlep.png"
+                     alt=""/>
+            </a>
+        </li>
     </ul>
 </div>
 <div class="clear"></div>
@@ -29,8 +45,8 @@
         <div class="headerSearchBox">
             <div>
                 <div id="headerSearchDiv" style="padding-right:0px;">
-                    <form role="search" method="get" action="http://themes.curtycurt.com/inspired">
-                        <input name="s" id="headerSearchField" title="Поиск на сайте" value="" onclick="this.value = '';"
+                    <form role="search" method="get" action="#search">
+                        <input name="text" id="headerSearchField" title="Поиск на сайте" value="" onclick="this.value = '';"
                                style="opacity: 0; ">
                         <input id="headerSearchSubmit" type="submit" value="">
                     </form>
