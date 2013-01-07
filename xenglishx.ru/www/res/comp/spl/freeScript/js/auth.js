@@ -130,6 +130,7 @@ var authMvc = (function(){
 				$lightboxObj.click(lightboxObjClick);
 			}
 		}); 
+		// func. init
 	}
 
 	return {

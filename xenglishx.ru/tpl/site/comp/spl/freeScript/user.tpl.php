@@ -10,13 +10,19 @@
     <div style="height:20px;" class="hr"></div>
 </div>-->
 
-<h3>Личный кабинет</h3>
+<script src="http://theme.codecampus.ru/plugin/lightbox/jquery.lightbox.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="http://theme.codecampus.ru/plugin/lightbox/themes/default/jquery.lightbox.css" />
+<!--[if IE 6]>
+    <link rel="stylesheet" type="text/css" href="http://theme.codecampus.ru/plugin/lightbox/themes/default/jquery.lightbox.ie6.css" />
+<![endif]-->
+
+<h3>Логин: <?=self::get('login')?></h3>
 <div style="height:20px;" class="hr"></div>
 
 <h4>Балланс</h4>
 <p>
-    <div>Ваш балланс состовляет: 6820 руб.</div>
-    <div><a href="/user/?type=billhistory" title="Открыть историю операций по вашему счету">&raquo; История операций</a></div>
+    <div>Ваш балланс состовляет: <?=self::get('balance')?> руб.</div>
+    <div><a href="/webcore/func/utils/ajax/?name=user&act=billhistory&lightbox[width]=600&lightbox[height]=480" class="lightbox" title="Открыть историю операций по вашему счету">&raquo; История операций</a></div>
 </p>
 
 <div class="clear"></div>

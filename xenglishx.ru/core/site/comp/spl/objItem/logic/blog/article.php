@@ -40,22 +40,18 @@ class article extends \core\comp\spl\objItem\logic\article\article{
                 return;
             }
 
+            // До какого числа разрешено пользователю просматривать приватные статьи блога
             $isAllow = (boolean)(new usersOrm())->selectFirst('1', 'accessDate >= now() AND id='.dbus::$user['id']);
             if (!$isAllow){
                 $file = DIR::SITE_CORE.'tpl/site/other/user/badbalance.html';
                 self::_showForbid($file);
                 return;
-            }
+            } // if !$isAllow
 
-            /*$render = new $render();
-            $render->setMainTpl($tpl)
-                ->setVar('dir', $comp['dir'])
-                ->setVar('infoData', $infoData)
-                ->setContentType(null)
-                ->render();*/
-        }
+        } // if isset(isPrivate)
 
         parent::renderAction($pName);
+        // func. renderAction
     }
 
 

@@ -16,7 +16,14 @@ class userRoomMvc{
 
     public function run($comp){
         $tplPath = sitePath::getSiteCompTplPath($comp['isTplOut'], $comp['nsPath']);
+
+        if ( !dbus::$user){
+            echo '<p>Авторизуйтесь</p>';
+            return;
+        }
         $render = new render($tplPath, '');
+
+        $usersOrm = new usersOrm();
 
         $type = request::get('type');
         switch($type){
@@ -28,25 +35,24 @@ class userRoomMvc{
 
                 $code = request::get('code');
                 $email = request::get('email');
-                $isExists = (boolean)(new usersOrm())->selectFirst('1', ['login'=>$email, 'restoreCode'=>$code]);
+                $isExists = (boolean)$usersOrm->selectFirst('1', ['login'=>$email, 'restoreCode'=>$code]);
                 if ( !$isExists ){
                     $tpl = 'user/wrongcode.tpl.php';
                     break;
                 }
-
 
                 $tpl = 'user/restore.tpl.php';
                 $render->setVar('code', $code);
                 $render->setVar('email', $email);
                 break;
             case 'newpwd':
-                $tpl = userUtils::getCompTpl($comp);
+                $tpl = self::_defaultView($comp, $render, $usersOrm);
                 if ( isset($comp['cstatus']) ){
                     $render->setVar('cstatus', $comp['cstatus']);
                 }
                 break;
             default:
-                $tpl = userUtils::getCompTpl($comp);
+                $tpl = self::_defaultView($comp, $render, $usersOrm);
         }
 
         $render->setMainTpl($tpl)
@@ -54,6 +60,15 @@ class userRoomMvc{
             ->render();
 
         // func. run
+    }
+
+    private function _defaultView($comp, $render, $usersOrm){
+        $userData = $usersOrm->selectFirst('balance, login', ['id'=>dbus::$user['id']]);
+
+        $render->setVar('balance', $userData['balance']);
+        $render->setVar('login', $userData['login']);
+        return userUtils::getCompTpl($comp);
+        // func. _defaultView
     }
 
     public function init(&$comp){
@@ -77,13 +92,14 @@ class userRoomMvc{
                 $comp['rstatus'] = 1;
                 break;
             case 'newpwd':
+                if ( !dbus::$user){
+                    return;
+                }
                 $newPwd = trim(request::post('newpwd'));
                 if ( strlen($newPwd) < 5 ){
                     return;
                 }
-                if ( !dbus::$user){
-                    return;
-                }
+
 
                 $oldPwd = trim(request::post('oldpwd'));
 

@@ -2674,6 +2674,14 @@ pre, code {
 	text-align: center;
 }
 
+.box.information {
+    background: url("../images/boxing/information32.png") no-repeat scroll 5px center #93daff;
+    background-color: #93daff;
+    border-color: #93daff;
+    color: #002e46;
+	text-align: center;
+}
+
 .box.success {
     background: url("../images/boxing/success32.png") no-repeat scroll 5px center #FFC8C7;
     background-color: #8cff9a;
@@ -2698,5 +2706,9 @@ pre, code {
 
 .pwdInput{
 	width: 200px;
+}
+
+.childLeft>div{
+	float:left;
 }
 

@@ -11,10 +11,10 @@ class userMvc{
 	public function run($comp){
 		$tpl= userUtils::getCompTpl($comp);
 		
-		if ( isset($_SESSION['userData'])){
+		if ( dbus::$user ){
 			$tpl = 'profile.tpl.php';
 		}
-			
+
 		$tplPath = sitePath::getSiteCompTplPath($comp['isTplOut'], $comp['nsPath']);
 		$render = new render($tplPath, ''); 
 				
@@ -29,8 +29,12 @@ class userMvc{
 			session_destroy();
 			setCookie("userExit", "", time() - 3600, '/');
 			setCookie("userId", "", time() - 3600, '/');
-			unset($_SESSION['userData']);
+			//unset($_SESSION['userData']);
+			dbus::$user = null;
 		}
+        if ( !dbus::$user && isset($_COOKIE['userId'])){
+            setCookie("userId", "", time() - 3600, '/');
+        }
 		// func. init
 	}
 	

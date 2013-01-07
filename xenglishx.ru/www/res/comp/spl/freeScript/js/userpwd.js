@@ -6,7 +6,7 @@
 var userPwdMvc = (function(){
 
 	function showErrorBox(){
-		jQuery('#pwdErrorBox').html('Длина пароля должна быть больше 4 символов').show();
+		jQuery('#pwdErrorBox').html('Длина нового пароля должна быть больше 4 символов').show();
 		// func. showErrorBox
 	}
 
@@ -23,6 +23,15 @@ var userPwdMvc = (function(){
 
 	function init(){
 		jQuery('#pwdForm').submit(newPwdFormSubmit);
+		jQuery('.lightbox').lightbox({
+			/*'onOpen'  : function() {
+				if ( $lightboxObj != null ){
+					return;
+				}
+				$lightboxObj = jQuery(this).next();
+				$lightboxObj.click(lightboxObjClick);
+			}*/
+		}); 
 		// func. init
 	}
 
