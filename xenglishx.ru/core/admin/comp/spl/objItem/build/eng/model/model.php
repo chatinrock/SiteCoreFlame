@@ -154,11 +154,9 @@ class model{
             $engsentOrm->update(['path'=>$vipId], ['objItemId'=>$objItemId, 'sentId'=>$sentId]);
         } // foreach
 
-        $result = json_encode($osnWord);
-
         model::createSentCard($loadDir, $saveWordData);
 
-        return $result;
+        return $osnWord;
         // func. createSentFile
     }
 
@@ -191,7 +189,7 @@ class model{
                 'osnWord' => $osnWord,
                 'linkWord' => $linkWord
             ];
-            $result = json_encode($result);
+
 
             model::createWordCard($loadDir, $saveWordData);
 

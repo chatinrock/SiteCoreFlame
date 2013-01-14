@@ -2,6 +2,7 @@
 namespace site\core\admin\comp\spl\freeScript\ajax;
 
 // Engine
+use core\classes\render;
 use core\classes\mvc\controllerAbstract;
 use core\classes\filesystem;
 use core\classes\admin\dirFunc;

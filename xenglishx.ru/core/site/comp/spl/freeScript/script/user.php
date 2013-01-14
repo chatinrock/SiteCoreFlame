@@ -8,7 +8,7 @@ use core\classes\render;
 use core\classes\site\dir as sitePath;
 
 class userMvc{
-	public function run($comp){
+	public static function run($comp){
 		$tpl= userUtils::getCompTpl($comp);
 		
 		if ( dbus::$user ){
@@ -24,7 +24,7 @@ class userMvc{
 		// func. run
 	}
 	
-	public function init($comp){
+	public static function init($comp){
 		if ( isset($_COOKIE['userExit'])){
 			session_destroy();
 			setCookie("userExit", "", time() - 3600, '/');

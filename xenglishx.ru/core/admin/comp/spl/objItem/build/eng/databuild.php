@@ -38,28 +38,63 @@ class databuild{
             $wordData = model::createWordFile($objItemId, $longId, $loadDir, $objItemProp);
             $sentData = model::createSentFile($objItemId, $longId, $loadDir, $objItemProp);
 
-            $filename = md5(time().rand()).'.txt';
-            filesystem::copy($loadDir.'engart.txt', $loadDir, $filename );
+            $filename = 'temp.txt';
+            $engHtml = file_get_contents($loadDir.'engart.txt');
+            //filesystem::copy($loadDir.'engart.txt', $loadDir, $filename );
+
+            // Добавляем title для слов
+            foreach( $wordData['osnWord'] as $rel => $data ){
+                $title = isset($data['translt']) ? $data['translt'] : '';
+                $searchStr = 'rel="'.$rel.'"';
+                $targetStr = 'rel="'.$rel.'" title="'.$title.'"';
+                $engHtml = str_replace($searchStr, $targetStr, $engHtml);
+            } // for
+
+            // Добавляем title для предложения
+            foreach( $sentData as $num => $data ){
+                $title = isset($data['translt']) ? $data['translt'] : '';
+                $searchStr = 'id="sent'.$num.'"';
+                $targetStr = 'id="sent'.$num.'" stitle="'.$title.'"';
+                $engHtml = str_replace($searchStr, $targetStr, $engHtml);
+            } // for
+
+            $engHtml = preg_replace_callback('/<\/tr (\d+)>/', function($matches){
+                $second = $matches[1];
+
+                $time[0] = floor($second/3600%24);
+                $time[1] = floor($second/60%60);
+                $time[2] = floor($second%60);
+
+                $time = array_map(function($val){
+                    return str_pad($val, 2, "0", STR_PAD_LEFT);
+                }, $time);
+
+                return '<td class="time">'.implode(':', $time).'</td></tr>';
+            }, $engHtml);
 
             $paramData = filesystem::loadFileContentUnSerialize($loadDir.'param.txt');
+
+            $engHtml = str_replace('<table', '<table class="'.$paramData['type'].'"', $engHtml);
+
+            file_put_contents($loadDir.$filename, $engHtml);
+
+
+
             $paramOptions['resUrl'] = $paramData['resurl'];
+            $paramOptions['type'] = $paramData['type'];
             $paramOptions['objId'] = $objItemId;
             $paramOptions['path'] = trim(substr($longId, 5), '/');
             $paramOptions = json_encode($paramOptions);
 
             $fa = fopen($loadDir.$filename, 'a' );
-            fputs($fa, '<script type="text/javascript">var engWord = '.$wordData.'; var engSent='.$sentData.'; var paramOptions='.$paramOptions.';</script>');
+            fputs($fa, '<script type="text/javascript">var engWord = '.json_encode($wordData).'; var engSent='.json_encode($sentData).'; var paramOptions='.$paramOptions.';</script>');
             fclose($fa);
             filesystem::unlink($loadDir.'publish.txt');
             rename($loadDir.$filename, $loadDir.'publish.txt');
+            // Удаляем временный файл
+            filesystem::unlink($loadDir.$filename);
         }// foreach
 
-			//echo "\n".'create end data';
-		//exit;
-       // 
-
-
-       // exit;
         // func. createFile.
     }
 

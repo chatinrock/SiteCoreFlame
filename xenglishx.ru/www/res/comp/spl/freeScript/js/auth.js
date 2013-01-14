@@ -5,6 +5,9 @@
 var authMvc = (function(){
 	var $lightboxObj = null;
 	
+	/**
+	* Отправка данных о авторизации на сервер
+	*/
 	function enterUserAction(){
 		jQuery('#ajaxLoadBox').show();
 		jQuery('#wrongLoginBox').hide();
@@ -26,6 +29,9 @@ var authMvc = (function(){
 		// func. cbEnterUserAction
 	}
 	
+	/**
+	* Результат по регистрации
+	*/
 	function cbRegistrUserAction(pData){
 		if ( pData['result'] ){
 			jQuery('#eventBox').removeClass('waiting').addClass('error').html('Такой логин уже существует');
@@ -37,6 +43,9 @@ var authMvc = (function(){
 		// func. cbRegistrUserAction
 	}
 	
+	/**
+	* Отправка данных о регистрации на сервер
+	*/
 	function registrUserAction(){
 		jQuery('#eventBox').removeClass('error').addClass('waiting').html('Проверка Email. Ожидайте.').show();
 		jQuery.ajax({
@@ -47,6 +56,9 @@ var authMvc = (function(){
 		// func. registrUserAction
 	}
 
+	/**
+	* отображение формы: Забыл пароль
+	*/
 	function forgetUserAction(){
 		$lightboxObj.load('/pubform/forgetUser.html');
 		// func. forgetUserAction
@@ -64,6 +76,9 @@ var authMvc = (function(){
 		// func. cbRestorePwdAction
 	}
 
+	/**
+	* Отправка данных о восстановлении пароля на сервер
+	*/
 	function restorePwdAction(){
 		jQuery.ajax({
 			url: "/webcore/func/utils/user/",
@@ -120,8 +135,11 @@ var authMvc = (function(){
 		// func. pwdInputKeyPress
 	}
 	
-	function init(){
-		jQuery('.lightbox').lightbox({
+	/**
+	* Функция пользоваляет биндить сторонние кнопки для авторизации и регистрации
+	*/
+	function initLigtbox(pSelector){
+		jQuery(pSelector).lightbox({
 			'onOpen'  : function() {
 				if ( $lightboxObj != null ){
 					return;
@@ -129,7 +147,12 @@ var authMvc = (function(){
 				$lightboxObj = jQuery(this).next();
 				$lightboxObj.click(lightboxObjClick);
 			}
-		}); 
+		});
+		// func. initLigtbox
+	}
+	
+	function init(){
+		 initLigtbox('.lightbox');
 		// func. init
 	}
 
@@ -137,7 +160,8 @@ var authMvc = (function(){
 		init: init,
 		pwdInputKeyPress: pwdInputKeyPress,
 		regEmailKeyPress: regEmailKeyPress,
-		restorePwdKeyPress: restorePwdKeyPress
+		restorePwdKeyPress: restorePwdKeyPress,
+		initLigtbox: initLigtbox
 	}
 })();
 authMvc.init();

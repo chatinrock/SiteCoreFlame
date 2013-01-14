@@ -9,9 +9,9 @@
 	</div>
 	<div class="clear"></div>
 	<div class="widgetColumnContent">
-		<a href="/pubform/authUser.html?lightbox[width]=400&lightbox[height]=300" class="button tiny orange lightbox">Вход</a>
+		<a href="/pubform/authUser.html?lightbox[width]=400&lightbox[height]=300" class="button tiny orange lightbox" title="Нажмите, что бы авторизоваться">Вход</a>
 		/ 
-		<a href="/pubform/regUser.html?lightbox[width]=300&lightbox[height]=200" class="button tiny orange lightbox">Регистрация</a>
+		<a href="/pubform/regUser.html?lightbox[width]=300&lightbox[height]=200" class="button tiny orange lightbox" title="Нажмите, что бы зарегистрироваться">Регистрация</a>
 	</div>
 	<div class="clear"></div>
 </div>

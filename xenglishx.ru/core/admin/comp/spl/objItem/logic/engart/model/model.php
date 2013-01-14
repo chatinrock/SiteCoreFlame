@@ -18,14 +18,21 @@ class model{
     public static function html2data($pFile){
         $htmlData = file_get_contents($pFile);
 
-        $htmlData = preg_replace_callback('/(\d+)\s+(\d+):(\d+):(\d+),\d+\s-->\s\d+:\d+:\d+,\d+/Smsiu', function($matches)use(&$relCount){
+        $timeSecond = '';
+
+        $htmlData = preg_replace_callback('/(\d+)\s+(\d+):(\d+):(\d+),\d+\s-->\s\d+:\d+:\d+,\d+/Smsiu', function($matches)use(&$relCount, &$timeSecond){
             $number = $matches[1];
             $second = $matches[2] * 60 * 60 + $matches[3] * 60 + $matches[4];
-            return '</tr><tr class="part" id="second'.$second.'" line="line'.$number.'"><td>';
+
+            // При первом заходе в $timeSecond пустая строка
+            $data = '</td></tr '.$timeSecond.'><tr class="part" id="second'.$second.'" line="line'.$number.'"><td>';
+            $timeSecond = $second;
+
+            return $data;
         }, $htmlData);
 
-
-        $htmlData = substr($htmlData, 5);
+        // 11 это длина начальной строки </td></tr > т.е. мусорной части, которую мы удаляем
+        $htmlData = substr($htmlData, 11);
 
         $wordCount = 0;
         // Вставка слов
@@ -49,7 +56,7 @@ class model{
             return $return.$matches[0].'</span>';
         }, $htmlData);
 
-        $htmlData .= '</td></tr>';
+        $htmlData .= '</td></tr '.$timeSecond.'>';
         return ['text' => '<table id="htmlDataBox" style="">'.$htmlData.'</table>', 'sentNum'=>$sentCount, 'wordNum'=> $wordCount];
         // func. loadHtmlData
     }

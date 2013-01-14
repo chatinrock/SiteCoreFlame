@@ -186,6 +186,7 @@
 	padding:3px;
 	position:relative;
 	text-align:center;
+	color: white;
 }
 #pricer2 .price .payment {
 	font-size:14px;

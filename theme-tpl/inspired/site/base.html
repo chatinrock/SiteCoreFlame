@@ -3,8 +3,8 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta name='yandex-verification' content='<?=self::varible('yandex-verification')?>' />
-	<meta name='google-site-verification' content='<?=self::varible('google-site-verification')?>' />
+	<meta name='yandex-verification' content="<?=self::varible('yandex-verification')?>" />
+	<meta name='google-site-verification' content="<?=self::varible('google-site-verification')?>" />
 	
 	<meta name="author" content="EdusGroup" />
 	<meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
@@ -15,15 +15,28 @@
 	
 	<link rel="shortcut icon" href="/res/icons/favicon.ico"/>
 	<link href="/res/icons/icon-128.png" rel="icon"/>
-	
+
+    <script src="http://theme.codecampus.ru/plugin/conf.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/yepnope/1.5.4/yepnope.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        if ( typeof(yepnope) == 'undefined'){
+            document.write('<script src="'+pluginResConf.yepnope+'" type="text/javascript"><\/script>');
+        }
+    </script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="//yandex.st/jquery/cookie/1.0/jquery.cookie.min.js"></script>
+
 	<!--<script src="http://www.google.com/jsapi" type="text/javascript"></script>
     <script type="text/javascript">
         google.load("jquery", "1");
         //google.load("jqueryui", "1.8.15");
     </script>-->
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-	<script src="http://theme.codecampus.ru/inspired/js/all.js" type="text/javascript"></script>
-	
+
+    <script>
+        yepnope('http://theme.codecampus.ru/inspired/js/all.js');
+    </script>
+
 	<link rel="stylesheet" href="http://theme.codecampus.ru/inspired/css/style.css?v=1">
 	<link rel="stylesheet" href="http://theme.codecampus.ru/inspired/css/theme/light-grey-orange.css?v=1">
 	<link rel="stylesheet" href="http://theme.codecampus.ru/inspired/css/responsive.css?v=1">

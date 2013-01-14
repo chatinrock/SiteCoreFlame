@@ -95,7 +95,7 @@ class art extends \core\classes\component\abstr\admin\comp implements \core\clas
 
 
             $engartText = filesystem::loadFileContent($saveDir.'engart.txt');
-            if ( !$engartText  ){
+            if ( !$engartText || true  ){
                 $engartData = engartModel::html2data($textfile);
                 $engartText = $engartData['text'];
                 filesystem::saveFile($saveDir, 'engart.txt', $engartText);
@@ -241,8 +241,8 @@ class art extends \core\classes\component\abstr\admin\comp implements \core\clas
 		filesystem::saveFile($saveDir, 'kat.txt', $shortText);
 		
 		$prevImgUrl = self::post('imgurl');
-		$seoKeywords = self::post('keywords');
-		$seoDescr = self::post('descript');
+		//$seoKeywords = self::post('keywords');
+		//$seoDescr = self::post('descript');
 		
 		eventCore::callOffline(
             eventBase::NAME,
@@ -254,10 +254,18 @@ class art extends \core\classes\component\abstr\admin\comp implements \core\clas
 		(new articleOrm())->saveExt(
             [ 'objItemId' => $objItemId ]
             ,['prevImgUrl' => $prevImgUrl,
-             'seoKeywords' => $seoKeywords,
-			 'seoDescr' => $seoDescr,
+             /*'seoKeywords' => $seoKeywords,
+			 'seoDescr' => $seoDescr,*/
              'isCloaking' => false]
         );
+
+        $seoData = serialize([
+             'keywords' => self::post('keywords'),
+             'descr' =>  self::post('descript'),
+             'imgUrl' => self::post('imgUrl'),
+             'videoUrl' => self::post('videoUrl')
+        ]);
+        filesystem::saveFile($saveDir, 'seo.txt', $seoData);
 		
 		// func. saveParamData
 	}

@@ -1,16 +1,14 @@
-
 #htmlDataBox{
     margin-top: 20px;
-    margin-left: 20px;
-
+    margin-left: 0px;
 }
 
 #htmlDataBox .part{
     height: 22px;
 }
 
-#htmlDataBox .part td:first-child{
-    padding-left: 20px;
+#htmlDataBox .sentence:first-child{
+	padding-left: 28px;
 }
 
 #sentBtnBox{
@@ -53,6 +51,7 @@ img.button{
     display: none;
     width: 20px;
     height: 20px;
+	padding-left: 4px;
 }
 
 span.translt{
@@ -130,4 +129,51 @@ span.sentence{
 	border-color: #444444 transparent transparent transparent;
 }
 
+#flashBox{
+	visibility: hidden;
+}
+.spa-tracks-container, .spa-next-button, .spa-previous-button{
+	display: none !important;
+}
+
+/*#sourceBox{
+	overflow: auto;
+	height: 300px;
+	width: 700px;
+}
+
+#sourceBox.video{
+	border: 1px solid #999;
+}
+
+#playerObjId.video{
+	width: 640px;
+	height: 333px;
+}*/
+
+#sourceBox.video{
+	border-top: 1px solid #d9d9d9;
+	border-bottom: 1px solid #d9d9d9;
+	border-left: 1px solid #d9d9d9;
+	padding: 10px 0;
+}
+
+/** Debug **/
+#sourceBox{
+	width: 640px;
+	max-height: 300px;
+	overflow: auto;
+}
+
+#htmlDataBox.sound td.time{
+	display: none;
+}
+
+#htmlDataBox.video td.time{
+	color: #dddddd;
+}
+
+#htmlDataBox.video td.time:hover{
+	color: #393939;
+}
 

@@ -1,0 +1,44 @@
+#preload{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0.8;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #c7c7c7;
+    background:#FFFFFF url(http://theme.codecampus.ru/inspired/images/preloader/loader-16.gif) no-repeat center center;
+    display: none;
+}
+
+#timePanel{
+    margin-left: 20px;
+    width: 400px;
+    position: relative;
+}
+
+#datepicker{
+     margin-bottom: 10px;
+}
+
+#selectBtn{
+    width: 198px;
+    text-align: center;
+}
+
+td.taken{
+    background-color: #ffb1b1;
+    text-decoration: line-through;
+}
+
+td.taken input{
+    display: none;
+}
+
+td.select{
+    background-color: #9aff8c;
+    border: 1px solid #118e00 !important;
+}
+
+.grey{
+    color: #818181;
+}

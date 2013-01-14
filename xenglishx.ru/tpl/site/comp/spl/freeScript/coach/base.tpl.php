@@ -1,68 +1,67 @@
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="http://theme.codecampus.ru/plugin/jQueryUI/datepicker/style/grey/css/datepicker.css?v=1">
+<!-- Перевод календаря -->
 <script src="http://theme.codecampus.ru/plugin/jQueryUI/datepicker/js/jquery.ui.datepicker-ru.min.js"></script>
-<h3>Выбирите время для разговора:</h3>
-<div style="height:10px;" class="hr"></div>
+
+<link rel="stylesheet" href="/res/comp/spl/freeScript/css/coach.css?v=1">
+
 <div class="box error hidden" id="errorBox"></div>
-<div style="height:10px;" class="hr"></div>
+<div class="box success hidden" id="successBox"></div>
+<div class="box information hidden" id="informationBox"></div>
 
-    <style>
-#preload{
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    opacity: 0.8;
-    width: 100%;
-    height: 100%;
-    border: 1px solid #c7c7c7;
-    background:#FFFFFF url(http://theme.codecampus.ru/inspired/images/preloader/loader-16.gif) no-repeat center center;
-    display: none;
-}
-
-#timePanel{
-    margin-left: 20px;
-    width: 400px;
-    position: relative;
-}
-
-        #datepicker{
-            margin-bottom: 10px;
-        }
-
-        #selectBtn{
-            width: 198px;
-            text-align: center;
-        }
-
-    </style>
-
-<div class="childLeft">
-    <div>
-        <div id="datepicker"></div>
-        <div><a href="#confirmBox" id="selectBtn" class="button tiny orange">Выбрать/Сохранить</a></div>
-    </div>
-    <div class="lightTable" id="timePanel">
-        <table id="timeBox">
-            <thead>
-                <th>12-13</th>
-                <th>14-15</th>
-                <th>16-17</th>
-                <th>18-19</th>
-            </thead>
-            <tbody>
-                <tr></tr>
-            </tbody>
-        </table>
-        <div id="preload" title="Загрузка"></div>
-    </div>
+<div id="timeStatusBox" class="hidden">
+    <h3>Статус общения</h3>
+    <div style="height:10px;" class="hr"></div>
+    <p>Репетитор ожидает вас в <span id="waitTime" class="strong"></span>. Skype репетитора: xxxxx</p>
+    <div><a href="#confirmRemoveBox" id="cancelTimeBtn" class="button orange medium">Отменить встречу</a></div>
 </div>
-<div class="clear"></div>
+
+<div id="chouseTimeBox" class="hidden">
+    <h3>Выбирите время для разговора:</h3>
+
+    <div style="height:20px;" class="hr"></div>
+
+    <div class="childLeft">
+        <div>
+            <div id="datepicker"></div>
+            <div><a href="#confirmBox" id="selectBtn" class="button tiny orange" title="Нажмите, что бы забронировать время">Сохранить</a></div>
+        </div>
+        <div class="lightTable" id="timePanel">
+            <table id="timeBox">
+                <thead>
+                    <th>12-13</th>
+                    <th>14-15</th>
+                    <th>16-17</th>
+                    <th>18-19</th>
+                </thead>
+                <tbody>
+                    <tr><td title="Свободно" id="time1200">12:00<input name="time" value="12:00" type="radio"></td><td title="Свободно" id="time1400">14:00<input name="time" value="14:00" type="radio"></td><td title="Свободно" id="time1600">16:00<input name="time" value="16:00" type="radio"></td><td title="Свободно" id="time1800">18:00<input name="time" value="18:00" type="radio"></td></tr><tr><td title="Свободно" id="time1215">12:15<input name="time" value="12:15" type="radio"></td><td title="Свободно" id="time1415">14:15<input name="time" value="14:15" type="radio"></td><td title="Свободно" id="time1615">16:15<input name="time" value="16:15" type="radio"></td><td title="Свободно" id="time1815">18:15<input name="time" value="18:15" type="radio"></td></tr><tr><td title="Свободно" id="time1230">12:30<input name="time" value="12:30" type="radio"></td><td title="Свободно" id="time1430">14:30<input name="time" value="14:30" type="radio"></td><td title="Свободно" id="time1630">16:30<input name="time" value="16:30" type="radio"></td><td title="Свободно" id="time1830">18:30<input name="time" value="18:30" type="radio"></td></tr><tr><td title="Свободно" id="time1245">12:45<input name="time" value="12:45" type="radio"></td><td title="Свободно" id="time1445">14:45<input name="time" value="14:45" type="radio"></td><td title="Свободно" id="time1645">16:45<input name="time" value="16:45" type="radio"></td><td title="Свободно" id="time1845">18:45<input name="time" value="18:45" type="radio"></td></tr><tr><td title="Свободно" id="time1300">13:00<input name="time" value="13:00" type="radio"></td><td title="Свободно" id="time1500">15:00<input name="time" value="15:00" type="radio"></td><td title="Свободно" id="time1700">17:00<input name="time" value="17:00" type="radio"></td><td title="Свободно" id="time1900">19:00<input name="time" value="19:00" type="radio"></td></tr><tr><td title="Свободно" id="time1315">13:15<input name="time" value="13:15" type="radio"></td><td title="Свободно" id="time1515">15:15<input name="time" value="15:15" type="radio"></td><td title="Свободно" id="time1715">17:15<input name="time" value="17:15" type="radio"></td><td title="Свободно" id="time1915">19:15<input name="time" value="19:15" type="radio"></td></tr><tr><td title="Свободно" id="time1330">13:30<input name="time" value="13:30" type="radio"></td><td title="Свободно" id="time1530">15:30<input name="time" value="15:30" type="radio"></td><td title="Свободно" id="time1730">17:30<input name="time" value="17:30" type="radio"></td><td title="Свободно" id="time1930">19:30<input name="time" value="19:30" type="radio"></td></tr><tr><td title="Свободно" id="time1345">13:45<input name="time" value="13:45" type="radio"></td><td title="Свободно" id="time1545">15:45<input name="time" value="15:45" type="radio"></td><td title="Свободно" id="time1745">17:45<input name="time" value="17:45" type="radio"></td><td title="Свободно" id="time1945">19:45<input name="time" value="19:45" type="radio"></td></tr>
+                </tbody>
+            </table>
+            <div id="preload" title="Загрузка"></div>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+
+    <div style="height:10px;" class="hr"></div>
+    <h3>Стоимость:</h3>
+    <p>Стоимость <strong>общения/корректировки с репетитором</strong>, составляет всего <span class="grey" id="priceText"></span> руб. за 20 минут.</p>
+
+</div> <!-- <div id="chouseTimeBox"> -->
 
 <div id="confirmBox" class="hidden">
     <h3>Подтвердите выбранное время</h3>
     <div class="box information">Вы выбрали: <br/><span class="strong date">23.02.12</span> в <span class="strong time">12:24</span></div>
-    <p>Внимание: При отмене заявки менее, чем за 24 часа, возвращаеться 50% оплаты, более чем 24 часа возвращается полная оплата</p>
+    <p>Внимание: При отмене заявки менее, чем за 24 часа, возвращаеться 50% оплаты, более чем за 24 часа возвращается полная оплата</p>
     <div style="text-align: center;"><a href="#confirm" id="confirmBtn" class="button tiny orange">Все правильно. Сохранить</a></div>
+</div>
+
+<div id="confirmRemoveBox" class="hidden">
+    <h3>Подтвердите отмену</h3>
+    <div class="box information">Вы собираетесь отменить встречу?</div>
+    <p>Внимание: При отмене заявки менее, чем за 24 часа, возвращаеться 50% оплаты, более чем за 24 часа возвращается полная оплата</p>
+    <div style="text-align: center;"><a href="#confirmRemove" id="confirmRemoveBtn" class="button tiny orange">Да.Все правильно</a></div>
 </div>
 
 <script>
@@ -73,100 +72,12 @@
     <link rel="stylesheet" type="text/css" href="http://theme.codecampus.ru/plugin/lightbox/themes/default/jquery.lightbox.ie6.css" />\
 <![endif]-->');
     }
-</script>
-<script type="text/javascript">
     var timeData = {
         // Коррекция с временем сервера
-        time: Math.round((new Date).getTime()/1000-<?=self::get('timeServer')?>)
+        time: Math.round((new Date).getTime()/1000-<?=self::get('timeServer')?>),
+        speakTime: <?=self::get('speakTime')?>,
+        isBalance: <?=self::get('isBalance')?'true':'false'?>,
+        userData: <?=self::get('userData', '{}')?>
     }
-
-    var timeMvc = (function(){
-
-        function confirmBtnClick(){
-
-            return false;
-            // func. confirmBtnClick
-        }
-
-        function selectBtnClick(){
-            var selectTimeVal = jQuery('#timeBox input[name="time"]:checked').val();
-            if ( selectTimeVal == undefined ){
-                jQuery('#errorBox').html('Выбирите время').show();
-                return false;
-            }
-            var selectTime = selectTimeVal.split(':');
-            selectTime = parseInt(selectTime[0]) * 60 * 60 + parseInt(selectTime[1]) * 60;
-
-            var selectDateVal = jQuery( "#datepicker" ).datepicker( "getDate" );
-            if ( selectDateVal == null ){
-                jQuery('#errorBox').html('Выбирите дату').show();
-                return false;
-            }
-            var selectDate = selectDateVal.getTime()/1000;
-            selectDate += selectTime;
-
-            var timeNow = (new Date()).getTime()/1000 - timeData.time;
-            if ( selectDate <= timeNow ){
-                jQuery('#errorBox').html('Нельзя выбрать в прошлом').show();
-                return false;
-            }
-            jQuery('#errorBox').hide();
-
-
-            var date = selectDateVal.getDate();
-            date = date < 10 ? '0'+date : date;
-            var month = selectDateVal.getMonth()+1;
-            date = date + '.' + (month < 10 ? '0'+month : month) + '.'+selectDateVal.getFullYear();
-
-            jQuery('#confirmBox span.date:first').html(date);
-            jQuery('#confirmBox span.time:first').html(selectTimeVal);
-
-            jQuery.lightbox('#confirmBox', {
-                width: 250,
-                height: 250
-            });
-
-            return false;
-            // func. selectBtnClick
-        }
-
-        function init(){
-            jQuery('#confirmBtn').click(confirmBtnClick);
-            jQuery('#selectBtn').click(selectBtnClick);/*.lightbox({
-                width: 250,
-                height: 250
-
-            });*/
-
-            var $timeTBodyBox = jQuery('#timeBox tbody:first');
-            var timeBegin = 12;
-            var flag = true;
-            for( var i = 0; i < 60; i+= 15){
-                var min = i == 0 ? '00' : i;
-                var time1 = (timeBegin)+':'+min;
-                var time2 = (timeBegin+2)+':'+min;
-                var time3 = (timeBegin+4)+':'+min;
-                var time4 = (timeBegin+6)+':'+min;
-                $timeTBodyBox.append('<tr>'+
-                        '<td id="time'+time1+'">'+time1+'<input type="radio" name="time" value="'+time1+'"/></td>'+
-                        '<td id="time'+time2+'">'+time2+'<input type="radio" name="time" value="'+time2+'"/></td>'+
-                        '<td id="time'+time3+'">'+time3+'<input type="radio" name="time" value="'+time3+'"/></td>'+
-                        '<td id="time'+time4+'">'+time4+'<input type="radio" name="time" value="'+time4+'"/></td>'
-                        +'</tr>')
-                if ( i == 45 && flag ){
-                    ++timeBegin;
-                    flag = false;
-                    i = -15;
-                }
-            } // for
-            jQuery( "#datepicker" ).datepicker({ minDate: 0, maxDate: "+3M" });
-        }
-        return{
-            init: init
-        }
-    })();
-    jQuery(function() {
-        timeMvc.init();
-    });
-
 </script>
+<script type="text/javascript" src="/res/comp/spl/freeScript/js/coach.js"></script>
