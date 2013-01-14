@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+    <html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Fancy Music Player Example</title>
+    
+    <!-- Style sheets -->
+	<link rel="stylesheet" type="text/css" href="css/jquery.fancyMusicPlayer-lila.css">
+    
+    <style type="text/css">
+         body { 
+		     background: #262631; 
+		 }
+		 
+		 #fancyMusicPlayer {
+			 margin: 100px 0 50px;
+			 width: 270px; 
+		 }
+		 
+		 ul {
+			 margin: 0;
+			 padding: 0;
+			 list-style: none;
+			 
+		 }
+		 
+		 ul li {
+			 margin: 0;
+			 padding: 0;
+		 }
+		 
+		 a {
+			 color: #aeaec6;
+		 }
+		 
+		 h2 { 
+			 color: #8d8da8;
+		 }
+        
+    </style>
+    
+    <!-- Include js files -->
+	<script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="js/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="js/jquery.mousewheel.js" type="text/javascript"></script>
+    <script src="js/jquery.jscrollpane.min.js" type="text/javascript"></script>
+    <script src="js/soundmanager2-nodebug-jsmin.js" type="text/javascript"></script>
+    <script src="js/jquery.fancyMusicPlayer.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	
+	//some soundmanager settings
+	soundManager.url = 'swf/';
+	soundManager.flashVersion = 9;
+	soundManager.useHTML5Audio = true;
+	soundManager.debugMode = false;
+    
+    $(document).ready(function(){
+		//comment the next line and uncomment the line after it for using the xml playlist
+    	$('#fancyMusicPlayer').fancyMusicPlayer({onReady: playerReady });
+		
+		//$('#fancyMusicPlayer').fancyMusicPlayer({xmlPath: 'playlist.xml', xmlPlaylist: 'pl1', startIndex: 1 });
+		
+		function playerReady() {
+			$.fancyMusicPlayer.volume(0.5);
+            $.fancyMusicPlayer.addTrack('http://xenglishx.ru/pub/content/joke/a_cute_dog.mp3', 'test');
+		};
+    });
+   	 
+    </script>
+    
+    </head>
+    
+    <body>
+      <!-- Playlist in div -->
+      <div id="fancyMusicPlayer">
+        <!--<a href="music/adg3com_bustedchump.mp3" title="Aritst 1 - Title 1" target=" "></a>
+        <a href="music/adg3com_chuckedknuckles.mp3" title="Artist 2  - Title 2" target="http://google.de"></a>-->
+      </div>
+      
+      <!-- External custom Playlist -->
+      <h2>My custom Playlist</h2>
+      <ul class="fmp-my-playlist">     
+        <li><a href="music/adg3com_cloudlessdays.mp3" title="Artist  - List Track 1" target="http://google.de">My List Track 1</a></li>
+        <li><a href="music/adg3com_chuckedknuckles.mp3" title="Artist - List Track 2" target=" ">My List Track 2</a></li>
+      </ul>
+      
+      <!-- Single track -->
+      <h2>My single track</h2>
+      <a href="music/adg3com_cloudlessdays.mp3" title="Artist - Single Track" target="http://google.de" class="fmp-my-track">My single Track</a>
+      
+      <h2>My XML Playlists</h2>
+      <div class="fmp-xml-playlist" id="pl2" title="My XML Playlist 2"></div>
+      
+    </body>
+</html>
