@@ -1,0 +1,1 @@
+a:1:{i:0;a:9:{s:7:"caption";s:12:"Born Of Hope";s:2:"id";s:1:"8";s:3:"url";s:28:"/lessons/movie/born-of-hope/";s:7:"idSplit";s:11:"comp/3/6/8/";s:8:"category";s:12:"Фильмы";s:7:"seoName";s:5:"movie";s:9:"isPrivate";s:1:"0";s:7:"dateAdd";s:19:"2013-01-11 18:21:33";s:10:"prevImgUrl";s:63:"http://xenglishx.ru/res/file/source/comp/3/6/8/born-of-hope.jpg";}}

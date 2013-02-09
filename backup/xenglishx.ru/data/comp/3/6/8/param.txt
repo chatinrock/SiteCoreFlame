@@ -1,0 +1,1 @@
+a:3:{s:8:"textfile";s:72:"/opt/www/SiteCoreFlame/xenglishx.ru/data/content/file/b/Born Of Hope.srt";s:6:"resurl";s:42:"http://www.youtube.com/watch?v=qINwCRM8acM";s:4:"type";s:5:"video";}

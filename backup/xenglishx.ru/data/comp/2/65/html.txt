@@ -1,0 +1,33 @@
+<div class="services">
+
+
+                <div class="one-third column alpha">
+                    <div class="service">
+                        <h3>15 минут в неделю! Всего 15 минут!</h3>
+                        <p> 15 минут в неделю, и вы скоро начнёте думать на  английском. Всего 15 минут в неделю! 
+                        </p>
+                    </div>
+                    <img src="http://theme.codecampus.ru/landing/xafira/img/services/battery.png" alt="">
+                </div> <!-- three columns -->
+
+                <div class="one-third column">
+                    <div class="service">
+                        <h3>Услышал, сказал, закрепил!</h3>
+                        <p>
+						Только на трёх принципах вы сможете изучить английский: услышали, сказали, закрепили. Вспомните, как учат язык дети, они слушают и повторяют, а дети очень быстро учатся.  
+                        </p>
+                    </div>
+                    <img src="http://theme.codecampus.ru/landing/xafira/img/services/heart.png" alt="">
+                </div> <!-- three columns -->
+
+                <div class="one-third column omega">
+                    <div class="service">
+                        <h3>Вы сможите понять быструю речь</h3>
+                        <p>
+						Только изучая современную, быструю речь, вы сможете овладеть пониманием услышанного. Англичане не будут говорить с вами медленно. Курс поможет вам научиться слышать и понимать их речь.
+                        </p>
+                    </div>
+                    <img src="http://theme.codecampus.ru/landing/xafira/img/services/clock.png" alt="">
+                </div> <!-- three columns -->
+
+            </div> <!-- end services -->

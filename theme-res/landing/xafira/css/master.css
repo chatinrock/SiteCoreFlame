@@ -1,0 +1,265 @@
+/*
+* XAFIRA V.1
+* Copyright 2012, manuelvega
+* DATE : 19/12/2012
+*/
+
+
+
+/* Table of Contents
+==================================================
+    
+	
+	
+	1. GENERAL STYLES
+	2. HEADER
+   3. SPONSORS
+   4. INTRODUCE
+	5. SERVICES
+	6. SHOTS & HOVER IMAGES
+   7. FOOTER
+   8. BANNER
+   9. SWITCHER ( 2 Styles )
+  10. MEDIA QUERYS
+
+
+	
+/* 1 - GENERAL STYLES 
+================================================== */
+
+
+body img {max-width:100%}
+p {line-height:20px; font-family:Arial; font-size:12px; color:#7d7d7d;}
+span {color:#565656; font-size:12px;}
+a {text-decoration:none; color:#565656;}
+a:visited {color:#565656;}
+strong {font-weight:bold;}
+h2 {font-family: 'open_sans_lightregular'; font-size:40px; color:#fff; letter-spacing: -2px;}
+h3 {font-family: 'open_sans_lightregular'; font-size:30px; color:#252525; letter-spacing: -2px;}
+h4 {font-family: 'open_sans_lightregular'; font-size:20px; color:#fff; line-height:25px;}
+.center {width:960px; margin:0 auto;}
+.divider {margin-bottom: 100px;}
+.clear {clear:both; height:1px;}
+.fullwidth {width:100%;}
+::selection {background-color:#767676; color:#fff;}
+
+  
+/* 2 - HEADER
+================================================== */
+
+
+header {background:url(../img/bg.jpg) repeat; background-position: center; height: 600px;}
+.top_header {background:url(../img/border-line.jpg); height: 8px;border-bottom:1px solid #4bbdf5;}
+.logo, .nav {padding: 50px 0;}
+.nav ul {padding-right: 0; margin-top: 20px; font-family:'open_sans_lightregular'; margin-left: 40px;}
+.nav ul li {display: inline; padding-left: 45px; font-size:15px;}
+.nav ul li a {color: #b6e7ff;}
+.nav ul li a:hover {color: #fff;}
+.nav ul li img {float:right; margin-top: 7px;}
+
+.promo_text h2 {margin-bottom: 50px;}
+.promo_text h4 {margin-bottom: 70px;}
+
+
+ul.number li{
+	padding-left: 35px;
+	height: 28px;
+	margin-bottom: 3px;
+	line-height: 28px;
+	vertical-align: middle;
+	color: white;
+	font-size: 25px;
+}
+
+ul.number li span{
+	color: white;
+	font-size: 25px;
+}
+
+ul.number li.num1{
+	background: url("/landing/xafira/img/list/number_01.png") no-repeat scroll left center transparent;
+}
+ul.number li.num2{
+	background: url("/landing/xafira/img/list/number_02.png") no-repeat scroll left center transparent;
+}
+ul.number li.num3{
+	background: url("/landing/xafira/img/list/number_03.png") no-repeat scroll left center transparent;
+}
+ul.number li.num4{
+	background: url("/landing/xafira/img/list/number_04.png") no-repeat scroll left center transparent;
+}
+ul.number li.num5{
+	background: url("/landing/xafira/img/list/number_05.png") no-repeat scroll left center transparent;
+}
+ul.number li.num6{
+	background: url("/landing/xafira/img/list/number_06.png") no-repeat scroll left center transparent;
+}
+ul.number li.num7{
+	background: url("/landing/xafira/img/list/number_07.png") no-repeat scroll left center transparent;
+}
+ul.number li.num8{
+	background: url("/landing/xafira/img/list/number_08.png") no-repeat scroll left center transparent;
+}
+ul.number li.num9{
+	background: url("/landing/xafira/img/list/number_09.png") no-repeat scroll left center transparent;
+}
+
+.promo_image img {margin-top: 70px;}
+.some_text p {margin-top: 40px;font-family: 'open_sans_lightregular'; color: #fff;}
+.download_button a { border-top: 1px solid #fff;border-bottom:1px solid #26620f;background: #328505;background: -webkit-gradient(linear, left top, left bottom, from(#9aed63), to(#328505));
+background: -webkit-linear-gradient(top, #9aed63, #328505);background: -moz-linear-gradient(top, #9aed63, #328505);background: -ms-linear-gradient(top, #9aed63, #328505);
+background: -o-linear-gradient(top, #9aed63, #328505);padding: 20px 50px;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;text-shadow: rgba(0,0,0,.4) 0 1px 0;
+color: #ffffff;font-size: 20px;font-family: Arial;text-decoration: none;vertical-align: middle;font-weight: bold;
+box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1), 0 0 0 5px rgba(255, 255, 255, 0.3),0 1px 2px rgba(0, 0, 0, 0.1);
+display: block; 
+width: 200px;
+margin-top: 50px;
+}
+.download_button a:hover {box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1), 0 0 0 5px rgba(255, 255, 255, 0.2),0 1px 2px rgba(0, 0, 0, 0.1);}
+
+
+/* 3 - SPONSORS
+================================================== */
+
+/*
+.sponsors {background-color: #f2f2f2;height: 117px; border-bottom: 1px solid #dadada; margin-bottom: 100px}
+ul.sponsors img {opacity:0.5;}
+ul.sponsors img:hover {opacity:1;}
+ul.sponsors {float:left;width:940px;position:relative;margin: 0;}
+ul.sponsors li {display:inline;}
+ul.sponsors li img {width:19.7%;float:left;border:1px solid #ddd;margin-right:-1px;margin-top:-1px;}
+*/
+
+
+/* 4 - INTRODUCE
+================================================== */
+
+
+.introduce h3 {margin-bottom: 50px;}
+.introduce p{
+	font-size: 14px;
+}
+
+/* 5 - SERVICES
+================================================== */
+
+
+.service h3 {margin-bottom: 50px; width:290px;}
+.service p {width: 250px; float: left;}
+
+
+/* 6 - SHOTS & HOVER IMAGES
+================================================== */
+
+
+.shots h3 {margin-bottom: 30px;}
+.shots_img img {border:5px solid #efefef;}
+.shot_container {margin-bottom: 30px;}
+.shot_container_last {margin-bottom: 50px;}
+
+span.roll {background:url(../img/video.png) center center no-repeat #3eb2ea;position: absolute;width: 290px; height: 180px;z-index:1;} 
+span.rollover {opacity: 1;-o-transition-duration: 1s;-moz-transition-duration: 1s;-webkit-transition: -webkit-transform 1s;background:url(../img/video.png) center center no-repeat #000;
+cursor: pointer;position: absolute;z-index: 10;}
+span.rollover:hover {opacity: .7;-o-transition-duration: 1s;-moz-transition-duration: 1s;-webkit-transition: -webkit-transform 1s;-webkit-box-shadow: 0px 0px 4px #000;
+-moz-box-shadow: 0px 0px 4px #000;box-shadow: 0px 0px 4px #000;}
+
+
+/* 7 - FOOTER
+================================================== */
+
+
+footer {background:url(../img/bg.jpg) repeat; background-position: center;padding-bottom: 1px;}
+.sub_footer {margin:50px 0; border-top:1px solid #4bbdf5; padding-top:50px;}
+.sub_footer p {color: #fff; font-family:'open_sans_lightregular'; font-size: 13px;}
+.sub_footer a {color: #fff;}
+.sub_footer a:hover {color: #336983;}
+.bline {background:url(../img/border-line.jpg); height: 8px;border-bottom:1px solid #4bbdf5;}
+.about h3, .contact h3, .how_works h3 {color: #fff; margin:50px 0;}
+.about p, .contact p, .how_works p {color: #fff; font-family: 'open_sans_lightregular'; font-size:13px;}
+.about p {margin-bottom: 20px;}
+.how_works p {margin-bottom: 5px;}
+.how_works p:hover {color:#336983;}
+.social_icons ul {margin-top: 20px;}
+.social_icons ul li {display: inline; opacity:0.8;}
+.social_icons ul li:hover {opacity:1;}
+
+
+/* 8 - BANNER
+================================================== */
+
+
+.banner {background-color: #f4f4f4; padding: 100px 0; border-top:1px solid #d2d2d2; border-bottom:1px solid #d2d2d2;
+box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 1), inset 0 0 0 1px rgba(255, 255, 255, 1),0 1px 2px rgba(0, 0, 0, 0.1);}
+.banner h3 {color: #8d8d8d;text-align:center;}
+.banner h3 a {color: #2892ff; font-size:30px;}
+
+
+/* 9 - SWITCHER
+================================================== */
+
+/*
+#switch {float:left;display:block;background:#fff;-moz-border-radius:0 10px 10px 0;-webkit-border-radius:0 10px 10px 0;border-radius:0 10px 10px 0;position:absolute;left:0;top:20%;padding:15px 20px 15px 10px;}
+#switch h4 {font-size:12px; color:#000; font-family:'Arial'; margin-bottom: 10px;}
+#switch ul li {font-size:12px; font-family: 'Arial'; margin:20px 0; }
+#switch ul li a {color:#4d4d4d;}
+#show {position:absolute;left:0;top:20%;background:#fff;-moz-border-radius:0 10px 10px 0;-webkit-border-radius:0 10px 10px 0;border-radius:0 10px 10px 0;margin-top:10px;behavior:url(PIE.html);
+padding:15px 20px 15px 10px; color: #000;}
+#show h4, #hide {cursor:pointer;color: #000; font-size:12px; font-family: Arial;}
+#show h4 span,#hide span {font-weight:400;display:block;clear:both;}
+*/
+
+/* 10 - MEDIA QUERYS
+================================================== */
+
+
+/* #Tablet (Portrait)
+================================================== */
+
+    /* Note: Design for a width of 768px */
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+
+
+/*.switch_out {display: none;}*/
+.nav ul li {display: inline; padding-left: 20px; font-size:15px;}
+.sponsors {background-color: #f2f2f2;height: 91px; border-bottom: 1px solid #dadada; margin-bottom: 100px}
+ul.sponsors li img {float:left;border:1px solid #ddd;margin-right:-1px;margin-top:-1px;}
+.service h3 {margin-bottom: 50px; width:180px;}
+.services img {display: none;}
+span.roll {background:url(../img/video.png) center center no-repeat #3eb2ea;position: absolute;width: 245px; height:153px; z-index:1;} 
+}
+
+
+/*  #Mobile (Portrait)
+================================================== */
+
+    /* Note: Design for a width of 320px */
+
+@media only screen and (max-width: 767px) {
+
+body {text-align: center;}
+.nav ul {margin: -50px 0 0 -40px;}
+.nav ul img {display:none;}
+.promo_image img {position:absolute; top:20%; left:5%;}
+header {height: 900px;}
+.promo_text {margin-top: 250px;}
+.sponsors {background-color: #f2f2f2;height: 51px; border-bottom: 1px solid #dadada; margin-bottom: 100px}
+.introduce {margin-bottom: 50px;}
+.service p {margin-bottom: 50px;}
+.shots_img img {margin-bottom: 20px;}
+
+}
+
+
+/* #Mobile (Landscape)
+================================================== */
+
+    /* Note: Design for a width of 480px */
+
+@media only screen and (min-width: 400px) {
+
+}
+
+/* Target Mozilla */
+@-moz-document url-prefix() { 
+}

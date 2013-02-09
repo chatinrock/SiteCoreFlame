@@ -1,0 +1,1 @@
+a:2:{s:7:"sentNum";i:7;s:7:"wordNum";i:61;}

@@ -1,0 +1,7 @@
+location ^~ /pub/ {
+   root /opt/www/SiteCoreFlame/xenglishx.ru/www/;
+}
+
+location ^~ /pubform/ {
+   root /opt/www/SiteCoreFlame/theme-tpl/inspired/;
+}

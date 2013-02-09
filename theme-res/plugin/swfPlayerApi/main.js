@@ -299,6 +299,8 @@
 					return;
 				}
 				_setSliderPosition( posSec / ( duration / 1000 ) );
+				_setMainButtonIcon('pause');
+				isPlay = true;
 				// func. setSliderPosition
 			}
 
@@ -329,12 +331,20 @@
 			// func. mainButtonClick
         }
 		
+		$.swfPlayerApi.toogle = mainButtonClick;
+		
 		function _setMainButtonIcon(icon){
 			var antiicon = icon == 'pause' ? 'play' : 'pause';
 			$elem.find('.spa-pp-button div').removeClass().addClass('spa-'+icon);
             $elem.find('.spa-pp-button').removeClass('spa-'+antiicon+'-button-normal').addClass('spa-'+icon+'-button-normal');
 			// func. _setMainButtonIcon
 		}
+		
+		$.swfPlayerApi.play = function(){
+			options.onPlay();
+			_setMainButtonIcon('pause');
+			isPlay = true;
+		};
 
 
         return this.each(function() {_init(this)});

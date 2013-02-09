@@ -1,0 +1,29 @@
+
+
+
+@font-face {
+    font-family: 'open_sans_extraboldregular';
+    src: url('../fonts/opensans-extrabold_0.eot');
+    src: url('../fonts/opensans-extrabold_0.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/opensans-extrabold_0.woff') format('woff'),
+         url('../fonts/opensans-extrabold_0.ttf') format('truetype'),
+         url('../fonts/opensans-extrabold_0.html#open_sans_extraboldregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'open_sans_lightregular';
+    src: url('../fonts/opensans-light_0.eot');
+    src: url('../fonts/opensans-light_0.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/opensans-light_0.woff') format('woff'),
+         url('../fonts/opensans-light_0.ttf') format('truetype'),
+         url('../fonts/opensans-light_0.html#open_sans_lightregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}

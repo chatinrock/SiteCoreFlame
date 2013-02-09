@@ -1,0 +1,6 @@
+<div class="sidebar-item" id="bookmarkBox">
+    <h5>Закладка</h5>
+    <div>
+		<a href="#bookmark" class="button white" title="Нажмите, что бы перейти к закладке" id="bookmarkBtn">Открыть закладку</a>
+    </div>
+</div>

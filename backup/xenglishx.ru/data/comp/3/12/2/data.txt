@@ -1,0 +1,323 @@
+
+<h1>
+	Present simple tense</h1>
+<h2>
+	Как оно образуется?</h2>
+<div class="spacer spacer10">
+	&nbsp;</div>
+<h3>
+	Простое предложение</h3>
+<p>
+	&nbsp;</p>
+<ul class="listItem style6">
+	<li>
+		Я работаю - I work.</li>
+	<li>
+		Он работает &ndash; He work<strong>s</strong></li>
+</ul>
+<div class="spacer spacer10">
+	&nbsp;</div>
+<p>
+	Для местоимений He, She, It в конец глагола добавляется окончание &ldquo;s&rdquo; или &ldquo;es&rdquo;, &nbsp;для всех других местоимений, окончание глагола не меняется.</p>
+<div class="imageBorder smallBorder" style="text-align: center;">
+	<div class="imageWrapper">
+		<img alt="Схема простого предложения Present Simple" class="responsiveImage" src="http://xenglishx.ru/res/file/source/comp/3/12/2/affirmative.png" title="Схема простого предложения Present Simple" /></div>
+	<div class="imageShadow" style="max-width:360px;">
+		<img alt="" src="http://themes.curtycurt.com/inspired/wp-content/themes/options/images/shadows/shadow7.png" title="" /></div>
+</div>
+<p>
+	Примеры:</p>
+<ul class="listItem style6">
+	<li>
+		Я люблю суши - I like sushi</li>
+	<li>
+		Он любит суши - He like<strong>s</strong> sushi</li>
+	<li>
+		Мы любим суши - We like sushi</li>
+	<li>
+		Они любят суши - They like sushi</li>
+	<li>
+		Она любит суши - She like<strong>s</strong> sushi</li>
+</ul>
+<p>
+	&nbsp;</p>
+<div class="spacer spacer10">
+	&nbsp;</div>
+<h3>
+	Предложение с отрицанием</h3>
+<p>
+	&nbsp;</p>
+<ul class="listItem style6">
+	<li>
+		Я не люблю суши &ndash; I do not like sushi</li>
+	<li>
+		Он не любит суши &ndash; He <strong>does</strong> not like sushi</li>
+	<li>
+		Солнце восходит на востоке - The sun rise<strong>s</strong> in the East</li>
+</ul>
+<p>
+	&nbsp;</p>
+<div class="imageBorder smallBorder" style="text-align: center;">
+	<div class="imageWrapper">
+		<img alt="Предложение с отрицанием Present Simple" class="responsiveImage" src="http://xenglishx.ru/res/file/source/comp/3/12/2/negative.png" style="width: 425px; height: 115px;" title="Предложение с отрицанием Present Simple" /></div>
+	<div class="imageShadow" style="max-width:360px;">
+		<img alt="" src="http://themes.curtycurt.com/inspired/wp-content/themes/options/images/shadows/shadow7.png" title="" /></div>
+</div>
+<p>
+	После местоимения или существительного ставим do/does, убираем окончание &ldquo;s&rdquo; у глагола.</p>
+<p>
+	Примеры:</p>
+<ul class="listItem style6">
+	<li>
+		Я не люблю суши - I do not like sushi</li>
+	<li>
+		Он не любит суши - He <strong>does</strong> not like<strong>s</strong> sushi</li>
+	<li>
+		Мы не любим суши - We do not like sushi</li>
+	<li>
+		Они не любят суши - They do not like sushi</li>
+	<li>
+		Она не любит суши - She <strong>does</strong> not like<strong>s</strong> sushi</li>
+</ul>
+<p>
+	&nbsp;</p>
+<h3>
+	Вопросительное предложение</h3>
+<p>
+	Правило: Выносим Do/Does в начало предложения.</p>
+<div class="imageBorder smallBorder" style="text-align: center;">
+	<div class="imageWrapper">
+		<img alt="Вопросительное предложение Present Simple" class="responsiveImage" src="http://xenglishx.ru/res/file/source/comp/3/12/2/interrogative.png" style="width: 425px; height: 115px;" title="Вопросительное предложение Present Simple" /></div>
+	<div class="imageShadow" style="max-width:360px;">
+		<img alt="" src="http://themes.curtycurt.com/inspired/wp-content/themes/options/images/shadows/shadow7.png" title="" /></div>
+</div>
+<p>
+	Примеры:</p>
+<ul class="listItem style6">
+	<li>
+		Ты любишь суши? - Do you like sushi?</li>
+	<li>
+		Он любит суши? - <strong>Does</strong> he like sushi?</li>
+</ul>
+<p>
+	&nbsp;</p>
+<h2>
+	Сводная общая таблица</h2>
+<div class="lightTable">
+	<table border="1" cellpadding="0" cellspacing="0">
+		<tbody>
+			<tr>
+				<td style="width:213px;">
+					<p align="center">
+						<strong>Простое предложение</strong></p>
+				</td>
+				<td style="width:213px;">
+					<p align="center">
+						<strong>Отрицание предложение</strong></p>
+				</td>
+				<td style="width:213px;">
+					<p align="center">
+						<strong>Вопросительное предложение</strong></p>
+				</td>
+			</tr>
+			<tr>
+				<td style="width:213px;">
+					<p>
+						I like sushi</p>
+				</td>
+				<td style="width:213px;">
+					<p>
+						I don&rsquo;t like sushi</p>
+				</td>
+				<td style="width:213px;">
+					<p>
+						Do I like sushi</p>
+				</td>
+			</tr>
+			<tr>
+				<td style="width:213px;">
+					<p>
+						He likes sushi</p>
+				</td>
+				<td style="width:213px;">
+					<p>
+						He doesn&rsquo;t like sushi</p>
+				</td>
+				<td style="width:213px;">
+					<p>
+						Does he like suhsi</p>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<h2>
+	Сокращения</h2>
+<p>
+	При письме, для данного времени, существует сокращения:</p>
+<p>
+	&nbsp;</p>
+<p>
+	Пример:</p>
+<ul class="listItem style6">
+	<li>
+		I do not like sushi = I don&rsquo;t like sushi</li>
+	<li>
+		He does not like sushi = He doesn&rsquo;t like sushi</li>
+</ul>
+<p>
+	<img alt="" /></p>
+<div class="imageBorder smallBorder" style="text-align: center;">
+	<div class="imageWrapper">
+		<img alt="Сокращения Present Simple" class="responsiveImage" src="http://xenglishx.ru/res/file/source/comp/3/12/2/doesnt.png" style="width: 192px; height: 102px;" title="Сокращения Present Simple" /></div>
+	<div class="imageShadow" style="max-width:360px;">
+		<img alt="" src="http://themes.curtycurt.com/inspired/wp-content/themes/options/images/shadows/shadow7.png" title="" /></div>
+</div>
+<h2>
+	Грамматика</h2>
+<p>
+	У времени есть особенности с окончанием &ldquo;s&rdquo; у глаголов, когда используем It, She, He.</p>
+<ul class="listItem style13">
+	<li>
+		<strong>Глаголы оканчивающиеся на букву &ldquo;y&rdquo;, а перед &ldquo;y&rdquo; идёт согласная буква, то&nbsp; буква &ldquo;s&rdquo; превращается в &ldquo;es&rdquo;, заменяя &nbsp;&ldquo;y&rdquo; на&nbsp; &ldquo;i&rdquo;.</strong><br />
+		Пример:
+		<ul class="listItem style6">
+			<li>
+				I hurry &ndash; he hurr<strong>ies</strong> &ndash; she hurr<strong>ies </strong></li>
+		</ul>
+	</li>
+	<li>
+		<p>
+			<strong>Если перед &ldquo;y&rdquo; стоит гласная ( a, e, I, o, u ), то добавляется &ldquo;s&rdquo; как обычно</strong></p>
+		<p>
+			Пример</p>
+		<ul class="listItem style6">
+			<li>
+				I play &ndash; he plays</li>
+		</ul>
+		<p>
+			&nbsp;</p>
+	</li>
+	<li>
+		<p>
+			Глаголы оканчивающиеся на звуки [s] [z] [ʃ] [ʒ] [ʧ] [ʤ] или на букву &ldquo;o&rdquo;, то окончание &ldquo;s&rdquo;</p>
+		<ul class="listItem style6">
+			<li>
+				I watch &ndash; He watches</li>
+			<li>
+				I pass &ndash; He passes</li>
+			<li>
+				I go &ndash; he goes</li>
+			<li>
+				I do &ndash; does</li>
+		</ul>
+	</li>
+</ul>
+<p>
+	Как узнать на какой звук оканчивается глагол?&nbsp; Эти данные можно взять из любого англо-русского словаря.</p>
+<p>
+	Пример:</p>
+<ul class="listItem style6">
+	<li>
+		watch [wɔʧ] &ndash; смотреть</li>
+</ul>
+<div class="imageBorder smallBorder" style="text-align: center;">
+	<div class="imageWrapper">
+		<img alt="Общее правило сокращений Present Simple" class="responsiveImage" src="http://xenglishx.ru/res/file/source/comp/3/12/2/grammar.png" title="Общее правило сокращений Present Simple" /></div>
+	<div class="imageShadow" style="max-width:360px;">
+		<img alt="" src="http://themes.curtycurt.com/inspired/wp-content/themes/options/images/shadows/shadow7.png" title="" /></div>
+</div>
+<h2>
+	Когда и в каких случаях его использовать?</h2>
+<div class="spacer spacer10">
+	&nbsp;</div>
+<h3>
+	Кратко об использовании</h3>
+<p style="margin-left:18.0pt;">
+	Мы используем Present Simple, когда хотим сказать об:</p>
+<ul class="listItem style6">
+	<li>
+		Короткие действия, которые повторяются всегда, изо дня в день</li>
+	<li>
+		О расписании</li>
+	<li>
+		Действия следующими друг за другом ( комментарии, рецепты, описание)</li>
+	<li>
+		Инструкциях</li>
+</ul>
+<div class="spacer spacer10">
+	&nbsp;</div>
+<h3>
+	Подробно об использовании:</h3>
+<p>
+	Итого 4 знака:</p>
+<ul class="listItem style13">
+	<li>
+		<strong>Обычные действия</strong>
+		<p>
+			Обычные действия, которые вы(кто то, они сами) совершаете, при этом часто, всегда, изо дня в день. Иначе говоря, ыы говорите об обычных, постоянных явлениях. Схематично можно запомнить с помощью значка цикла:</p>
+		<p align="center">
+			<img alt="" src="http://xenglishx.ru/res/file/source/comp/3/12/2/for.jpg" style="width: 93px; height: 85px;" /></p>
+		<p>
+			Примеры:</p>
+		<ul class="listItem style6">
+			<li>
+				Я пью чай утром ( я пью чай по утрам каждый раз, т.е. обычно я утром пью чашечку другую чая) - I drink tea in the morning</li>
+			<li>
+				Он часто смотрит BBC &ndash; He often wit<strong>ches </strong>BBC.</li>
+			<li>
+				Солнце восходит на востоке. ( оно всегда восходило, и будет восходить там ) - The sun rises in the East</li>
+		</ul>
+		<p>
+			&nbsp;</p>
+	</li>
+	<li value="2">
+		<strong>Когда вы(кто то) говорите о расписаниях</strong>
+		<p>
+			Изображения, для запоминания &ndash; часы.</p>
+		<p align="center">
+			<img alt="" src="http://xenglishx.ru/res/file/source/comp/3/12/2/time.jpg" style="width: 93px; height: 85px;" /></p>
+		<p>
+			Пример:</p>
+		<ul class="listItem style6">
+			<li>
+				Самолёт летает в Лондон каждый понедельник - The plane fl<strong>ie</strong><strong>s</strong> to London every Monday.</li>
+			<li>
+				Поезд прибывает в 7:35 после обеда. - The train arrives at 7:35 p.m.</li>
+			<li>
+				Уроки начинают в четыре часа - The lesson starts at four</li>
+		</ul>
+		<p>
+			&nbsp;</p>
+		<p>
+			Т.е. заметьте, мы говоримоб установленном расписании, которые выполняется каждый раз.</p>
+	</li>
+	<li value="3">
+		<strong>Вы</strong><strong>(кто то)</strong><strong> рассказываете о событиях, которые следуют друг за другом т.е. вы комментируете, вы рассказываете порядок дня, описываете как готовится блюдо.</strong>
+		<p>
+			Изображения, для запоминания:</p>
+		<p align="center">
+			<img alt="" src="http://xenglishx.ru/res/file/source/comp/3/12/2/follow.jpg" style="width: 237px; height: 88px;" /></p>
+		<p>
+			Примеры:</p>
+		<ul class="listItem style6">
+			<li>
+				Первым делом я встал, потом поел - First I get up, then I have breakfast.</li>
+			<li>
+				Он разбил три яйца в чашку и включил газ - He breaks three eggs into the bowl and lights the gas</li>
+		</ul>
+	</li>
+	<li value="4">
+		<strong>Когда вы(кто-то) даёте инструкции</strong>
+		<p>
+			Для образа применим следующее изображение</p>
+		<p align="center">
+			<img alt="" src="http://xenglishx.ru/res/file/source/comp/3/12/2/instruction.jpg" style="width: 92px; height: 90px;" /></p>
+		<p>
+			Пример:</p>
+		<ul class="listItem style6">
+			<li>
+				Откройте вашу книгу на странице 34 - Open your books at page 34.</li>
+		</ul>
+	</li>
+</ul>

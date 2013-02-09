@@ -2,6 +2,12 @@
 $categoryUrlTpl = self::get('categoryUrlTpl');
 $infoData = self::get('infoData');
 ?>
+<script type="text/javascript">
+	var article = {
+		caption: '<?= $infoData['caption'] ?>',
+		imgUrl: '<?= $infoData['prevImgUrl'] ?>'
+	}
+</script>
 <h1 class="single-title"><?= $infoData['caption'] ?></h1>
 	<div class="post-info">
         <span class="date">
@@ -30,8 +36,8 @@ $infoData = self::get('infoData');
 			</span>
 		</span>
 	</div>
-    <div class="post-social" id="socialBox"></div>
-
+    <div class="socialBtnBox"></div>
+	
 <article>	
 <? if ( $infoData['isCloaking'] ){
     self::loadFile(self::get('dir') . 'cloak.txt');
@@ -46,4 +52,5 @@ $(window).load(function() {
 });
 </script>
 <div class="clear"></div>
+<div class="socialBtnBox"></div>
 <div class="post-border-bottom"></div>                     

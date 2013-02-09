@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="http://theme.codecampus.ru/plugin/socialBtn/css/socialBtn.css?v=1">
+<script src="http://theme.codecampus.ru/plugin/socialBtn/js/socialBtn.js?v=1" type="text/javascript"></script>
+
+<script type="text/javascript" charset="utf-8">
+
+var socialBtnData = {};
+jQuery(document).ready(function() {
+	if ( typeof(article) != 'undefined' ){
+	  socialBtnData[location.href.replace(/#.*/, '')] = {
+		title: article.caption,
+		num: '1'
+	  }
+    jQuery('div.socialBtnBox').html('<div class="socialBtnList"><ul><li><a href="#share-twitter" class="socialBtn twitter" name="sharing-twitter-1" rel="nofollow"><span class="count">-</span></a></li><li><a  href="#share-facebook" class="socialBtn facebook" name="sharing-facebook-1" rel="nofollow"><span class="count">-</span></a></li><li><a href="#share-vkontakte" class="socialBtn vkontakte" name="sharing-vk-1" rel="nofollow"><span class="count">-</span></a></li></ul><div class="socailBtnclear"></div></div>');
+    socialBtnMvc.init();
+}
+});
+
+</script>

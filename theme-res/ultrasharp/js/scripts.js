@@ -88,7 +88,7 @@
 			
 		},
 		
-		ajaxSearch: function(formURL) {
+		/*ajaxSearch: function(formURL) {
 			
 			//// OUR MAIN VARIABLES
 			var maincont = this;
@@ -162,7 +162,7 @@
 				
 			});
 			
-		},
+		},*/
 		
 		stretchInput: function() {
 			
@@ -190,23 +190,19 @@
 			
 			//animates our menu so it stays full width
 			/// IF FULL MENU
+			// Движение логотипа в право. Анимация
 			if(ulCont.attr('class') == 'left') {
-				
 				var newPadding = (980 - (ulWidth + logoWidth)) + 19;
 				logoCont.children('a').animate({ 'padding-left': newPadding+'px' }, 250);
-				
 			} else {
-				
 				//// LETS CALCULATE THE SIZE OF THE LOGO
 				var logoWidth = jQuery('#logo-float').width();
 				var newPadding = (980 - (ulWidth + (logoWidth+25)));
 				jQuery('#complete-main-bar-menu').children('a').animate({ 'padding-left': newPadding+'px' }, 250);
-				
 			}
 			
-			//when user hovers Menu
+			// Когда навели мышкой на меню
 			ulCont.children('li').hover(function() {
-				
 				jQuery(this).stop().animate({ backgroundColor: '#'+colorTo }, 100, function() {
 					
 					//sees if we find any submenus
@@ -237,7 +233,7 @@
 			
 		},
 		
-		ddUltraSharpSlider: function(waitTime) {
+		/*ddUltraSharpSlider: function(waitTime) {
 			
 			//main vars
 			var mainCont = this;
@@ -346,9 +342,9 @@
 				
 			});
 			
-		},
+		},*/
 		
-		ddGallery: function() {
+		/*ddGallery: function() {
 			
 			//main vars
 			var wrapCont = this;
@@ -442,9 +438,9 @@
 				
 			});
 			
-		},
+		},*/
 		
-		ddGalleryCall: function(liIndex) {
+		/*ddGalleryCall: function(liIndex) {
 			
 			//main vars
 			var wrapCont = this;
@@ -480,9 +476,9 @@
 			});
 			
 			
-		},
+		},*/
 		
-		ddTwitterBar: function(waitTime) {
+		/*ddTwitterBar: function(waitTime) {
 			
 			//main vars
 			var mainCont = this;
@@ -504,7 +500,7 @@
 				
 			}, waitTime);
 			
-		},
+		},*/
 		
 		ddPreloadImage: function() {
 			
@@ -699,7 +695,7 @@
 			
 		},
 		
-		ddPortfolioSlider: function() {
+		/*ddPortfolioSlider: function() {
 			
 			//// MAIN VARS
 			var maincont = this;
@@ -840,7 +836,7 @@
 				
 			});
 			
-		},
+		},*/
 		
 		showCategoryDropdown: function() {
 			

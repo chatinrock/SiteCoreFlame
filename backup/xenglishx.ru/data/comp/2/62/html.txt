@@ -1,0 +1,33 @@
+                <div class="seven columns">
+                    <div class="promo_text">
+                        <h2>Это методика создана для тех, кто хочет:</h2>
+                        <!--<h4>Вставить текст</h4>-->
+						<ul class="number">
+							<li class="num1">изучать бесплатно!</li>
+							<li class="num2">овладеть сленгом англоговорящих</li>
+							<li class="num3">бегло и правильно говорить</li>
+							<li class="num4">понимать быструю речь</li>
+							<li class="num5">выучить, при этом думает, что ему не дано</li>
+							
+						</ul>
+                    </div> <!-- end promo_text -->
+
+                    <div class="download_button">
+                        <div><a href="/" title="Нажмите, чтобы перейти к сайту">&raquo; Перейти к сайту</a></div>
+                    </div>
+                </div> <!-- end seven columns -->
+
+                <div class="nine columns">
+                    <div class="promo_video">
+
+					<div class="peKenBurns" data-logo="disabled" data-controls="disabled">
+							<div class="peKb_active">
+								<a class="video hd autoplay loop" href="http://www.youtube.com/watch?v=tpJ-2xX5ZMg">
+									<img src="http://theme.codecampus.ru/plugin/estro/img/slide1.jpg" alt="Slider 1" />
+								</a>
+								<h1>Тонкости и хитрости изучения английского языка</h1>
+							</div>
+						</div>
+						
+                    </div>
+                </div> <!-- end nine -->

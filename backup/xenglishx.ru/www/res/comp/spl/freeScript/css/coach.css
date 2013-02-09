@@ -1,0 +1,53 @@
+#preload{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0.8;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #c7c7c7;
+    background:#FFFFFF url(http://theme.codecampus.ru/inspired/images/preloader/loader-16.gif) no-repeat center center;
+    display: none;
+}
+
+#timePanel{
+    margin-left: 20px;
+    width: 407px;
+    position: relative;
+}
+
+#timePanel tr:hover  td:hover.select, #timePanel tr:hover  td.select, td.select {
+    background-color: #69dd63;
+}
+
+/** Ячейка под мышкой **/
+#timePanel tr:hover  td:hover{
+	background-color: #c7ffc4;
+}
+
+/** Горизонтальная выделяющая линия **/
+#timePanel tr:hover td { 
+	background: #ececec; 
+}
+
+#timePanel tr:hover  td:hover.taken, #timePanel tr:hover  td.taken, td.taken {
+    background-color: #ffb1b1;
+}
+
+
+#timePanel  td.taken *{
+    display: none;
+}
+
+
+#datepicker{
+     margin-bottom: 10px;
+}
+
+#selectBtn{
+    width: 184px;
+}
+
+#priceText{
+    color: #737373;
+}

@@ -1,0 +1,28 @@
+
+<div class="block block-shadow" style="background-color: #fafafa;">
+	<div class="one-half">
+		<div class="padding" style="height: 10px;"></div>
+		<h3>Методика изучения состоит из :</h3>
+		<div class="padding" style="height: 10px;"></div>
+		<ul class="ddshortlist ddshortlist-tick">		
+			<li>Изучение связок слов из реальной речи, гарант того, что вы будите говорить и понимать обыденную речь англоговорящих </li>
+			<li>Эмоциональное закрепление – предложение должно оставлять образы в памяти, тогда они остаются на всю жизнь</li>
+			<li>Изучение грамматики без отреза с изучением материала</li>
+			<li>Грамотное произношение залог понимания вашей речи</li>
+			<li>Консультирование и коррекция репетитора</li>
+		</ul>
+		
+		
+		<div class="padding" style="height: 10px;"></div>
+		<a href="#how" class="button blue">» Как правильно учить?</a>
+	</div>
+	<div class="one-half last">
+		<div class="padding" style="height: 40px;"></div>
+		<span class="frame2">
+			<img src="/res/images/index/article/printscreen.png" alt="">
+		</span>
+	</div>
+
+	<div class="clear"></div>
+	<div class="padding" style="height: 35px;"></div>
+</div>

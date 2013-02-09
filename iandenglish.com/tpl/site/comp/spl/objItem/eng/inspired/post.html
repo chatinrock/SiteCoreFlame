@@ -1,0 +1,81 @@
+<?
+	$item=self::get('item');
+	$categoryUrlTpl = self::get('categoryUrlTpl');
+?>
+
+<link type="text/css" rel="stylesheet" href="/res/comp/spl/objItem/eng/css/main.css"/>
+<div class="post-head">
+	<div class="post-title">
+		<h1><?=$item['caption']?></h1>
+	</div>
+</div>
+<div class="clear"></div>
+<div class="post-meta">
+	<ul>
+		<li class="post-date">
+			<div class="meta-info">
+				Дата: <?=substr($item['date_add'], 0, 8)?>
+			</div>
+			<div class="clear"></div>
+		</li>
+		<li class="post-cat">
+			<div class="meta-info">
+				Категория:<a href="<?=sprintf($categoryUrlTpl, $item['seoName'])?>" title="Посмотреть все материалы в <?=$item['category']?>" rel="category"><?=$item['category']?></a>					
+			</div>
+			<div class="clear"></div>
+		</li>
+	</ul>	
+</div>
+<div class="clear"></div>
+<div class="post-text">
+
+	<div id="hintBox" class="hidden">
+        <div>
+            <span>Текст [фыва]</span>
+            <img src="/res/comp/spl/objItem/eng/img/rule16.png" alt="Правила" title="Правила" class="button" rel="rule"/>
+		    <img src="/res/comp/spl/objItem/eng/img/vip16.png" alt="VIP комментарии" title="VIP комментарии" class="button" rel="viprule"/>
+        </div>
+        <div class="vTipArrow"></div></div>
+
+
+
+	<!--<div id="partBtnBox" class="hidden">
+		<img src="/res/comp/spl/objItem/eng/img/play16.png" alt="Воспроизвести предложение" title="Воспроизвести предложение" class="button" rel="play"/>
+		<img src="/res/comp/spl/objItem/eng/img/repeat-d16.png" alt="Повторять предложение" title="Повторять предложение" class="button"/>
+	</div> -->
+
+    <div id="flashBox"></div>
+	<div id="playerBox">
+
+	</div>
+
+    <div id="sourceBox">
+        <div id="partBtnBox" class="hidden">
+            <img src="/res/comp/spl/objItem/eng/img/bookmark16.png"  class="button bookmark"  alt="Поставить закладку" title="Поставить закладку" rel="bookmark"/>
+            <img src="/res/comp/spl/objItem/eng/img/play16.png" class="button" alt="Воспроизвести предложение" title="Воспроизвести предложение" rel="play"/>
+        </div>
+
+        <div id="sentBtnBox" class="hidden">
+            <img src="/res/comp/spl/objItem/eng/img/rule16.png" alt="Правила" title="Правила" class="button" rel="rule"/>
+            <img src="/res/comp/spl/objItem/eng/img/vip16.png" alt="VIP комментарии" title="VIP комментарии" class="button" rel="viprule"/>
+        </div>
+
+        <?$this->loadFile(self::get('dir').'publish.txt')?>
+    </div>
+</div>
+
+<script type="text/javascript" src="http://theme.codecampus.ru/plugin/func/utils.js"></script>
+
+<script type="text/javascript">
+
+    yepnope({
+        test: jQuery.lightbox,
+        nope: [pluginResConf.lightboxJs, pluginResConf.lightboxCss, 'ie6!'+pluginResConf.lightboxIE6Css]
+    });
+
+    yepnope({
+        load: '/res/comp/spl/objItem/eng/js/mvc.js'
+    });
+</script>
+
+<link type="text/css" rel="stylesheet" href="http://theme.codecampus.ru/plugin/FancyMusicPlayer_v2.2.1/css/jquery.fancyMusicPlayer-white.css"/>

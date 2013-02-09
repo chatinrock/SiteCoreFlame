@@ -1,0 +1,63 @@
+<?
+$item=self::get('item');
+$categoryUrlTpl = self::get('categoryUrlTpl');
+?>
+<link type="text/css" rel="stylesheet" href="/res/comp/spl/objItem/eng/css/main.css"/>
+<h1 class="single-title"><?= $item['caption'] ?></h1>
+<a class="how-learn" title="Нажмите, чтобы узнать, как правильно учить материал" href="#how to"></a>
+<div class="post-info">
+	<span class="date">
+		<time datetime="<?=$item['date_add']?>" pubdate>
+			Дата: <?=$item['date_add']?>
+		</time>
+	</span>
+	<? if ( $item ) {?>
+		<span class="categories">
+			<a href="<?= vsprintf($categoryUrlTpl, $item['seoName']) ?>" title="Кликните, что бы прочитать все материалы из '<?= $item['category'] ?>'" rel="category tag">
+				Категория: <?= $item['category'] ?>
+			</a>
+		</span>
+	<?}?>
+			 
+</div>
+<div class="post-social" id="socialBox"></div>
+
+<div id="hintBox" class="hidden">
+	<div>
+		<span></span>
+		<img src="/res/comp/spl/objItem/eng/img/rule16.png" alt="Правила" title="Правила" class="pointer" rel="rule"/>
+		<img src="/res/comp/spl/objItem/eng/img/vip16.png" alt="VIP комментарии" title="VIP комментарии" class="pointer" rel="viprule"/>
+	</div>
+	<div class="vTipArrow"></div>
+</div>
+
+<div id="flashBox"></div>
+<div id="playerBox">
+
+</div>
+
+<div id="sourceBox">
+	<div id="partBtnBox" class="hidden">
+		<img src="/res/comp/spl/objItem/eng/img/bookmark16.png"  class="pointer bookmark"  alt="Поставить закладку" title="Поставить закладку" rel="bookmark"/>
+		<img src="/res/comp/spl/objItem/eng/img/play16.png" class="pointer" alt="Воспроизвести предложение" title="Воспроизвести предложение" rel="play"/>
+	</div>
+
+	<div id="sentBtnBox" class="hidden">
+		<img src="/res/comp/spl/objItem/eng/img/rule16.png" alt="Правила" title="Правила" class="pointer" rel="rule"/>
+		<img src="/res/comp/spl/objItem/eng/img/vip16.png" alt="VIP комментарии" title="VIP комментарии" class="pointer" rel="viprule"/>
+	</div>
+
+	<?$this->loadFile(self::get('dir').'publish.txt')?>
+</div>
+
+<script type="text/javascript" src="http://theme.codecampus.ru/plugin/func/utils.js"></script>
+
+<script type="text/javascript">
+    yepnope({
+		load: ['/res/comp/spl/objItem/eng/js/mvc.js']
+    });
+</script>
+
+<link type="text/css" rel="stylesheet" href="http://theme.codecampus.ru/plugin/FancyMusicPlayer_v2.2.1/css/jquery.fancyMusicPlayer-white.css"/>
+<div class="clear"></div>
+<div class="post-border-bottom"></div>             

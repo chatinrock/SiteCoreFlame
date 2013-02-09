@@ -1,1 +1,0 @@
-<div class="padding-20"></div>

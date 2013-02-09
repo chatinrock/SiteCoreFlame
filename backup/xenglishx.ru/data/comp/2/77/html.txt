@@ -1,0 +1,138 @@
+        
+<!-- SLIDER HEIGHT -->
+<style type="text/css" media="screen">
+	
+	#slider { margin: -80px 0 0; }    #layerslider, #layerslider-wrapper { height: -80px; }
+    #layerslider { height: px; }
+	
+	
+</style>
+<!-- SLIDER HEIGHT -->
+        
+<!-- JQUERY ACTIVATORS -->
+<script type="text/javascript">
+    
+    jQuery(window).load(function() {
+        
+        //opens up our menu
+        //jQuery('#slider').ddUltraSharpSlider(5000);
+		jQuery('.ls-nav-prev, .ls-nav-next, .ls-nav-start, .ls-nav-stop').css({ opacity: 0, display: 'block' });
+		jQuery('#slider').hover(function() {
+			
+			jQuery('.ls-nav-prev, .ls-nav-next').stop().animate({ opacity: .5 }, 200);
+			jQuery('.ls-nav-start, .ls-nav-stop').stop().animate({ opacity: 1 }, 200);
+			
+		}, function() {
+			
+			jQuery('.ls-nav-prev, .ls-nav-next').stop().animate({ opacity: 0 }, 200);
+			jQuery('.ls-nav-start, .ls-nav-stop').stop().animate({ opacity: 0 }, 200);
+			
+		});
+		jQuery('.ls-nav-prev, .ls-nav-next').hover(function() {
+			
+			jQuery(this).stop().animate({ opacity: 1 }, 100);
+			
+		}, function() {
+			
+			jQuery(this).stop().animate({ opacity: .5 }, 100);
+			
+		});
+        
+    });
+
+</script>
+
+
+<link rel='stylesheet' id='layerslider_css-css'  href='http://theme.codecampus.ru/ultrasharp/css/layerslider.css?ver=1.8.0' type='text/css' media='all' />
+<script type='text/javascript' src='http://theme.codecampus.ru/ultrasharp/js/layerslider.kreaturamedia.jquery.js'></script>
+
+<div id="slider">
+        
+	<div class="wrapper">
+<!-- /SLIDER MARKUP STARTS/ -->
+<div id="layerslider-wrapper">
+
+	<div class="wrapper">
+    
+        <div id="mainPageSlider" style="margin: 0px auto; width: 980px; height: 400px; ">
+			<div class="ls-layer" style="background-image: url(http://themes.ddwebstudios.net/wordpress/ultrasharp/wp-content/uploads/2012/06/slide1bg1.jpg);slidedirection: bottom; slidedelay: 4000; durationin: 1500; durationout: 1500; easingin: easeInOutQuint; easingout: easeInOutQuint; delayin: 0; delayout: 1000;">
+				<img class="ls-s2" src="http://themes.ddwebstudios.net/wordpress/ultrasharp/wp-content/uploads/2012/06/yourcompany1.png" alt="sublayer" style="position: absolute; top: 128px; left: 118px; slidedirection : top; slideoutdirection : top; parallaxin : .45; parallaxout : .45; durationin : 1500; durationout : 1500; easingin : easeInOutQuint; easingout : easeInOutQuint; delayin : 200; delayout : 0;">
+				<img class="ls-s2" src="http://themes.ddwebstudios.net/wordpress/ultrasharp/wp-content/uploads/2012/06/deserves1.png" alt="sublayer" style="position: absolute; top: 171px; left: 213px; slidedirection : top; slideoutdirection : bottom; parallaxin : .45; parallaxout : .45; durationin : 1500; durationout : 1500; easingin : easeInOutQuint; easingout : easeInOutQuint; delayin : 100; delayout : 250;">
+				<img class="ls-s2" src="http://themes.ddwebstudios.net/wordpress/ultrasharp/wp-content/uploads/2012/06/lines2.png" alt="sublayer" style="position: absolute; top: 191px; left: 361px; slidedirection : right; slideoutdirection : right; parallaxin : .45; parallaxout : .45; durationin : 1500; durationout : 1500; easingin : easeInOutQuint; easingout : easeInOutQuint; delayin : 300; delayout : 300;">
+				<img class="ls-s2" src="http://themes.ddwebstudios.net/wordpress/ultrasharp/wp-content/uploads/2012/06/slidewoman1.png" alt="sublayer" style="position: absolute; top: 0px; left: 541px; slidedirection : fade; slideoutdirection : fade; parallaxin : .45; parallaxout : .45; durationin : 1500; durationout : 1500; easingin : easeInOutQuint; easingout : easeInOutQuint; delayin : 100; delayout : 0;">
+				<img class="ls-s2" src="http://themes.ddwebstudios.net/wordpress/ultrasharp/wp-content/uploads/2012/06/lines3.png" alt="sublayer" style="position: absolute; top: 191px; left: 40px; slidedirection : left; slideoutdirection : left; parallaxin : .45; parallaxout : .45; durationin : 1500; durationout : 1500; easingin : easeInOutQuint; easingout : easeInOutQuint; delayin : 300; delayout : 300;">
+				<img class="ls-s2" src="http://themes.ddwebstudios.net/wordpress/ultrasharp/wp-content/uploads/2012/06/thebest1.png" alt="sublayer" style="position: absolute; top: 227px; left: 135px; slidedirection : bottom; slideoutdirection : bottom; parallaxin : .45; parallaxout : .45; durationin : 1500; durationout : 1500; easingin : easeInOutQuint; easingout : easeInOutQuint; delayin : 400; delayout : 150;">
+				<span class="ls-s2" style="position: absolute; top:320px; left: 112px; slidedirection : bottom; slideoutdirection : bottom; parallaxin : .45; parallaxout : .45; durationin : 1500; durationout : 1500; easingin : easeInOutQuint; easingout : easeInOutQuint; delayin : 500; delayout : 0; "> <a href="#" class="button blue" target="_blank">Purchase it now! ></a> </span>
+				<span class="ls-s2" style="position: absolute; top:320px; left: 295px; slidedirection : bottom; slideoutdirection : bottom; parallaxin : .45; parallaxout : .45; durationin : 1500; durationout : 1500; easingin : easeInOutQuint; easingout : easeInOutQuint; delayin : 500; delayout : 0; "> <a href="http://themes.ddwebstudios.net/wordpress/ultrasharp/shortcodes/" class="button white">View theme's features</a> </span>
+			</div>
+			
+			<!--<div class="ls-layer" style="background-image: url(http://themes.ddwebstudios.net/wordpress/ultrasharp/wp-content/uploads/2012/06/slide21.jpg);slidedirection: bottom; slidedelay: 4000; durationin: 1500; durationout: 1500; easingin: easeInOutQuint; easingout: easeInOutQuint; delayin: 0; delayout: 1200;">
+				<img class="ls-s4" src="http://themes.ddwebstudios.net/wordpress/ultrasharp/wp-content/uploads/2012/06/panel31.png" alt="sublayer" style="position: absolute; top: 114px; left: 0px; slidedirection : bottom; slideoutdirection : bottom; parallaxin : .45; parallaxout : .45; durationin : 1500; durationout : 1500; easingin : easeInOutQuint; easingout : easeInOutQuint; delayin : 500; delayout : 100;">
+				<img class="ls-s4" src="http://themes.ddwebstudios.net/wordpress/ultrasharp/wp-content/uploads/2012/06/panel23.png" alt="sublayer" style="position: absolute; top: 106px; left: 194px; slidedirection : bottom; slideoutdirection : bottom; parallaxin : .45; parallaxout : .45; durationin : 1500; durationout : 1500; easingin : easeInOutQuint; easingout : easeInOutQuint; delayin : 300; delayout : 200;">
+				<img class="ls-s4" src="http://themes.ddwebstudios.net/wordpress/ultrasharp/wp-content/uploads/2012/06/panel110.png" alt="sublayer" style="position: absolute; top: 78px; left: 100px; slidedirection : bottom; slideoutdirection : bottom; parallaxin : .45; parallaxout : .45; durationin : 1500; durationout : 1500; easingin : easeInOutQuint; easingout : easeInOutQuint; delayin : 100; delayout : 300;">
+				<img class="ls-s2" src="http://themes.ddwebstudios.net/wordpress/ultrasharp/wp-content/uploads/2012/06/amp1.png" alt="sublayer" style="position: absolute; top: 166px; left: 610px; slidedirection : top; slideoutdirection : bottom; parallaxin : .45; parallaxout : .45; durationin : 1500; durationout : 1500; easingin : easeInOutQuint; easingout : easeInOutQuint; delayin : 700; delayout : 0;">
+				<img class="ls-s2" src="http://themes.ddwebstudios.net/wordpress/ultrasharp/wp-content/uploads/2012/06/beautiful1.png" alt="sublayer" style="position: absolute; top: 127px; left: 644px; slidedirection : top; slideoutdirection : bottom; parallaxin : .45; parallaxout : .45; durationin : 1500; durationout : 1500; easingin : easeInOutQuint; easingout : easeInOutQuart; delayin : 500; delayout : 300;">
+				<img class="ls-s2" src="http://themes.ddwebstudios.net/wordpress/ultrasharp/wp-content/uploads/2012/06/interactive1.png" alt="sublayer" style="position: absolute; top: 193px; left: 675px; slidedirection : right; slideoutdirection : bottom; parallaxin : .45; parallaxout : .45; durationin : 1500; durationout : 1500; easingin : easeInOutQuint; easingout : easeInOutQuint; delayin : 800; delayout : 200;">
+				<img class="ls-s2" src="http://themes.ddwebstudios.net/wordpress/ultrasharp/wp-content/uploads/2012/06/backend1.png" alt="sublayer" style="position: absolute; top: 244px; left: 643px; slidedirection : bottom; slideoutdirection : bottom; parallaxin : .45; parallaxout : .45; durationin : 1500; durationout : 1500; easingin : easeInOutQuint; easingout : easeInOutQuint; delayin : 900; delayout : 100;">
+				<span class="ls-s2" style="position: absolute; top:319px; left: 644px; slidedirection : bottom; slideoutdirection : bottom; parallaxin : .45; parallaxout : .45; durationin : 1500; durationout : 1500; easingin : easeInOutQuint; easingout : easeInOutQuint; delayin : 1000; delayout : 0; "> 
+				
+				<a href="http://themes.ddwebstudios.net/wordpress/ultrasharp/custom-admin-panel/" class="button white medium">View Backend</a> </span>
+			</div>
+			
+			<div class="ls-layer" style="background-image: url(http://themes.ddwebstudios.net/wordpress/ultrasharp/wp-content/uploads/2012/06/slide31.png);slidedirection: bottom; slidedelay: 4000; durationin: 1500; durationout: 1500; easingin: easeInOutQuint; easingout: easeInOutQuint; delayin: 0; delayout: 1200;">
+				<img class="ls-s2" src="http://themes.ddwebstudios.net/wordpress/ultrasharp/wp-content/uploads/2012/06/wordpress-logo2.png" alt="sublayer" style="position: absolute; top: 126px; left: 386px; slidedirection : bottom; slideoutdirection : bottom; parallaxin : .45; parallaxout : .45; durationin : 1500; durationout : 1500; easingin : easeInOutQuint; easingout : easeInOutQuint; delayin : 200; delayout : 100;">
+				<img class="ls-s2" src="http://themes.ddwebstudios.net/wordpress/ultrasharp/wp-content/uploads/2012/06/ultra2.png" alt="sublayer" style="position: absolute; top: 209px; left: 299px; slidedirection : top; slideoutdirection : bottom; parallaxin : .45; parallaxout : .45; durationin : 1500; durationout : 1500; easingin : easeInOutQuint; easingout : easeInOutQuint; delayin : 700; delayout : 400;">
+				<img class="ls-s2" src="http://themes.ddwebstudios.net/wordpress/ultrasharp/wp-content/uploads/2012/06/sharp1.png" alt="sublayer" style="position: absolute; top: 208px; left: 457px; slidedirection : top; slideoutdirection : bottom; parallaxin : .45; parallaxout : .45; durationin : 1500; durationout : 1500; easingin : easeInOutQuint; easingout : easeInOutQuint; delayin : 700; delayout : 400;">
+				<img class="ls-s2" src="http://themes.ddwebstudios.net/wordpress/ultrasharp/wp-content/uploads/2012/06/wordpress1.png" alt="sublayer" style="position: absolute; top: 282px; left: 428px; slidedirection : fade; slideoutdirection : bottom; parallaxin : .45; parallaxout : .45; durationin : 1500; durationout : 1500; easingin : easeInOutQuint; easingout : easeInOutQuint; delayin : 1100; delayout : 270;">
+			</div> -->
+		</div>    
+    </div>
+    <!-- /.wrapper/ -->
+    
+</div>
+<!-- /#layerslider-wrapper/ -->        
+        <ul id="slider-selector"></ul>
+		<div id="slider-arrow-left"></div>
+		<div id="slider-arrow-right"></div>		
+    </div>
+    <!-- /SLIDER WRAPPER ENDS/ -->
+    
+</div>
+
+<script type="text/javascript">
+    
+    jQuery(document).ready(function(){
+    	
+    	    	jQuery("#mainPageSlider").layerSlider({    		
+   			autoStart			: true,
+   			pauseOnHover		: true,
+			firstLayer			: 1,
+			animateFirstLayer	: false,
+			twoWaySlideshow		: true,
+    		keybNav				: true,
+    		imgPreload			: true,
+    		navPrevNext			: true,
+    		navStartStop		: true,
+    		navButtons			: true,
+    		skin				: 'noskin',
+    		skinsPath			: 'http://themes.ddwebstudios.net/wordpress/ultrasharp/wp-content/plugins/LayerSlider/skins/',
+    		globalBGColor		: '#EAEBEB',
+    		yourLogo			: false,
+    		yourLogoStyle		: 'position: absolute; left: 10px; top: 10px; z-index: 99;',
+    		yourLogoLink		: false,
+    		yourLogoTarget		: '_self',
+    		
+    		cbInit				: function() { },
+    		cbStart				: function() { },
+    		cbStop				: function() { },
+    		cbPause				: function() { },
+    		cbAnimStart			: function() { },
+    		cbAnimStop			: function() { },
+    		cbPrev				: function() { },
+    		cbNext				: function() { }    	});
+    	    });
+    
+    </script>
+	
+
+

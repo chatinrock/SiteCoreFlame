@@ -1,13 +1,19 @@
-<h2>Введите E-mail(логин) и пароль:</h2>
+<h5>Введите E-mail(логин) и пароль:</h5>
 <div class="box error hidden" id="wrongLoginBox">Неверный логин или пароль!</div>
 <div class="box waiting hidden" id="ajaxLoadBox">Проверка логина и пароля!</div>
 <form id="authForm" onsubmit="return false">
-	<label>E-mail: </label>
-	<input type="text" value="" title="Адрес вашего Email" class="nameInput" name="login" />
-	<label>Пароль: </label>
-	<input type="password" value="" title="Ваш пароль" class="nameInput" name="pwd" onKeyPress="authMvc.pwdInputKeyPress(event)"/>
-	<a rel="enter" href="#enter" class="button orange medium">Войти</a>
-	<a rel="forget" href="#forget" class="button tiny white">Забыли пароль?</a>
+    <p>
+        <label>E-mail: </label>
+	    <input type="text" value="" title="Адрес вашего Email" class="nameInput" name="login" />
+    </p>
+    <p>
+	    <label>Пароль: </label>
+	    <input type="password" value="" title="Ваш пароль" class="nameInput" name="pwd" onKeyPress="authMvc.pwdInputKeyPress(event)"/>
+    </p>
+    <p>
+	    <a rel="enter" href="#enter" class="button blue" >Войти</a>
+	    <a rel="forget" href="#forget" class="button white">Забыли пароль?</a>
+    </p>
 </form>
 <script type="text/javascript">
 	jQuery('#authForm input[name="login"]').focus();

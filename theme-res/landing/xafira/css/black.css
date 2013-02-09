@@ -1,0 +1,75 @@
+
+
+header {background:url(../img/bg_black.jpg) repeat; background-position: center; height: 600px;}
+
+footer {background:url(../img/bg_black.jpg) repeat; background-position: center;padding-bottom: 1px;}
+
+.top_header {background:url(../img/border-line2.jpg); height: 8px;border-bottom:1px solid #8fe259;}
+
+.nav ul li a {color: #8fe259;}
+
+.banner h3 a {color: #6ab738;}
+
+span.roll {height:110px; background:url(../img/overlay-icon-01.png) center center no-repeat #000;position: absolute;width: 290px; height: 180px;z-index:1;} 
+
+.bline {background:url(../img/border-line2.jpg); height: 8px;border-bottom:1px solid #8fe259;}
+
+.sub_footer {margin:50px 0; border-top:1px solid #373737; padding-top:50px;}
+
+.sub_footer a:hover {color: #8fe259;}
+
+.how_works p:hover {color:#8fe259;}
+
+
+
+/* #Tablet (Portrait)
+================================================== */
+
+    /* Note: Design for a width of 768px */
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+
+
+.switch_out {display: none;}
+.nav ul li {display: inline; padding-left: 20px; font-size:15px;}
+.sponsors {background-color: #f2f2f2;height: 91px; border-bottom: 1px solid #dadada; margin-bottom: 100px}
+ul.sponsors li img {float:left;border:1px solid #ddd;margin-right:-1px;margin-top:-1px;}
+.service h3 {margin-bottom: 50px; width:180px;}
+.services img {display: none;}
+span.roll {background:url(../img/overlay-icon-01.png) center center no-repeat #3eb2ea;position: absolute;width: 245px; height:153px; z-index:1;} 
+}
+
+
+/*  #Mobile (Portrait)
+================================================== */
+
+    /* Note: Design for a width of 320px */
+
+@media only screen and (max-width: 767px) {
+
+body {text-align: center;}
+.nav ul {margin: -50px 0 0 -40px;}
+.nav ul img {display:none;}
+.promo_image img {position:absolute; top:20%; left:5%;}
+header {height: 900px;}
+.promo_text {margin-top: 250px;}
+.sponsors {background-color: #f2f2f2;height: 51px; border-bottom: 1px solid #dadada; margin-bottom: 100px}
+.introduce {margin-bottom: 50px;}
+.service p {margin-bottom: 50px;}
+.shots_img img {margin-bottom: 20px;}
+
+}
+
+
+/* #Mobile (Landscape)
+================================================== */
+
+    /* Note: Design for a width of 480px */
+
+@media only screen and (min-width: 400px) {
+.some_text {display: none;}
+}
+
+/* Target Mozilla */
+@-moz-document url-prefix() { 
+}

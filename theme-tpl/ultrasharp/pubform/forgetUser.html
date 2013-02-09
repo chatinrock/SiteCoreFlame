@@ -1,0 +1,11 @@
+<h2>Введите логин/email:</h2>
+<div>В течении 5 минут, придёт ссылка для изменения пароля</div>
+<div class="box hidden" id="eventBox"></div>
+<form id="forgetForm" onsubmit="return false">
+	<label>Email: </label>
+	<input type="text" value="" title="Введите ваш Email" class="emailInput" name="login" onKeyPress="authMvc.restorePwdKeyPress(event)"/>
+	<a rel="restore" href="#restore" title="Нажмите на кнопку, что бы восстановить пароль" class="button orange medium">Восстановить</a>
+</form>
+<script type="text/javascript">
+	jQuery('#forgetForm input[name="login"]').focus();
+</script>

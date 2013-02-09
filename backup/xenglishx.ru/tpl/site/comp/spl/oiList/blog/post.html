@@ -1,0 +1,89 @@
+<?
+$oiListData=self::get('oiListData');
+$categoryUrlTpl = self::get('categoryUrlTpl');
+$objItemDir = self::get('objItemDir');
+$previewCount = count($oiListData);
+
+for ($i = 0; $i < $previewCount; $i++) {
+	$item = $oiListData[$i];
+	$caption = $item['caption'];
+	$categoryUrl = vsprintf($categoryUrlTpl, $item['seoName']);
+	$isPrivate = isset($item['isPrivate']) && $item['isPrivate'] == '1';
+?>
+    <section>
+        <div
+            class="post-full post-full-left post-<?=$i?> post type-post status-publish format-standard hentry category-artists category-inspiration category-photography tag-example tag-featured tag-inspiration-2 tag-work "
+            id="post-<?=$i?>">
+            <article data-permalink="<?=$item['url']?>">
+                <header>
+                    <h2 class="post-title">
+                        <a title="<?= $item['caption']?>" href="<?= $item['url'] ?>"
+                           rel="bookmark"><?= $item['caption'] ?></a>
+                    </h2>
+
+                    <div class="post-info">
+
+                        <span class="date"><time datetime="<?= $item['dateAdd'] ?>"
+                                                 pubdate><?= $item['dateAdd'] ?></time></span>
+                        <!--<span class="author">[Автор]</span>-->
+                        <span class="categories">
+							Категория: <a href="<?= $categoryUrl ?>"
+                                          title="Открыть все статьи категории: <?=$item['category']?>" ><?= $item['category'] ?></a>
+						</span>                                    
+						<span class="comments">
+							<a href="<?= $item['url'] ?>#comments" title="Нажмите, что бы прокомментировать материал">Комментировать</a>
+						</span>
+                    </div>
+                    <? if ($item['prevImgUrl']) { ?>
+                    <div class="post-thumb">
+                        <a href="<?= $item['url'] ?>"><span class="imagePreload" style="width: 560px; height: 250px;"
+                                                            title="<?= $item['caption'] ?>"><span><?= $item['prevImgUrl'] ?></span></span></a>
+						<?=$isPrivate?'<div class="privatePost"></div>':''?>
+
+                    </div>
+                    <? } ?>
+
+                    <!--<span class="post-tags">
+                     <a href="#tag/example/" rel="tag">example</a> + <a href="#tag/featured/" rel="tag">featured</a> + <a href="#tag/inspiration-2/" rel="tag">inspiration</a> + <a href="#ultrasharp/tag/work/" rel="tag">work</a>
+                 </span>-->
+                </header>
+
+                <div class="post-content <?=$isPrivate?'private':''?>">
+                    <?self::loadFile($objItemDir . $item['idSplit'] . 'kat.txt'); ?>
+                    <div class="padding-10"></div>
+                    <p>
+                        <a href="<?= $item['url'] ?>" title='Нажмите, что бы прочитать полный текст об "<?= $item['caption'] ?>"' class="button-clear readnext">
+                            <?=$caption?>
+						</a>
+						<a class="howBecome button blue" style="visibility:hidden;margin-left: 5px;" href="#how" style="float:left;" target="_parent">Как стать членом клуба?</a>
+                    </p>
+
+                </div>
+
+            </article>
+        </div>
+    </section>
+    <?
+    } // for
+
+?>
+<script type="text/javascript">
+    jQuery(window).load(function() {
+        jQuery('.post-thumb img').ddFadeOnHover(0.7);
+    });
+    jQuery('a.readnext').html('Читать далее');
+
+	var userId = jQuery.cookie('userId');
+	if ( userId == null ){
+		jQuery('div.private .howBecome').css('visibility', 'visible');
+		jQuery('div.private .readnext').html('Доступ ограничен');
+	}else{
+		jQuery('.readnext').removeClass('button-clear').addClass('button blue');
+	}
+
+    jQuery(document).ready(function() {
+		jQuery('.imagePreload').each( function() { $(this).ddImagePreload(); });
+    });
+</script>
+
+

@@ -1,0 +1,249 @@
+#htmlDataBox{
+    margin-top: 30px;
+    margin-left: 0px;
+	width: 100%;
+	color: #3f3f3f;
+	
+    border: 0;
+    padding: 0;
+}
+
+#htmlDataBox tr.part{
+    min-height: 22px;
+}
+
+#htmlDataBox td{
+	background: none;
+    border-bottom: 0;
+    border-right: 0;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 0;
+    text-align: left;
+	vertical-align: middle;
+	line-height: 22px;
+}
+
+#htmlDataBox td:first-child{
+	padding-right: 20px;
+}
+
+#htmlDataBox.sound td:first-child{
+	padding-left: 28px;
+}
+
+#htmlDataBox.video td:first-child{
+	padding-left: 45px;
+}
+
+#htmlDataBox.sound td.time{
+	display: none;
+}
+
+#htmlDataBox.video td.time{
+	color: #dddddd;
+	padding-right: 10px;
+	vertical-align: middle;
+}
+
+#htmlDataBox tr:hover{
+	background-color: #f1f1f1;
+}
+
+#htmlDataBox.video tr:hover td.time{
+	color: #393939;
+}
+
+#htmlDataBox tr.bookmark{
+	background: #99ff8e;
+}
+
+#htmlDataBox tr.bookmark{
+	color: #076800;
+	border-top: 1px solid #18a800;
+	border-bottom: 1px solid #18a800;
+}
+
+#htmlDataBox tr.bookmark td.time{
+	color: #18a800;
+}
+
+#sentBtnBox{
+    position: absolute;
+    display: none;
+}
+
+#sentBtnBox img, #partBtnBox img{
+	border: 0px;
+}
+
+#partBtnBox{
+    position: absolute;
+    display: none;
+    width: 40px;
+    height: 20px;
+	padding-left: 4px;
+}
+
+#partBtnBox.sound .bookmark{
+	display: none;
+}
+
+span.word.osn{
+    /*text-decoration: underline;*/
+    color: #007fd9;
+    font-weight: bold;
+}
+
+span.word{
+    cursor: pointer;
+}
+
+span.word.sec{
+    color: #76afd8;
+    font-weight: bold;
+}
+
+img.pointer{
+    cursor: pointer;
+}
+
+
+span.translt{
+    font-weight: bold;
+}
+
+span.transkr{
+
+}
+
+.highlight{
+    background-color: #ffff9d;
+	border-top: 1px solid #ffc900;
+	border-bottom: 1px solid #ffc900;
+}
+
+
+#htmlDataBox tr.highlight td.time{
+	color: #cf6b00;
+}
+
+span.sentence span.word{
+	display: inline-block;
+	min-height: 22px;
+}
+
+/*
+span.sentence span.word:last-child{
+    padding-right: 40px;
+}
+span.sentence{
+    padding-right: 40px; 
+}
+
+*/
+
+#playerFlashBox{
+	text-align:	center;
+}
+
+.linkRule, .commentCaption{
+	font-weight: bold;
+}
+/*
+#hintBox{
+    position: absolute;
+    left:  100px;
+    top:  100px;
+    border: 1px solid black;
+    padding: 0px 10px 0px 10px;
+    height: 20px;
+    background-color: white;
+    display: none;
+}
+
+#hintBox  img{
+	border: 0px ;
+}*/
+
+
+#hintBox { 
+	display: none; 
+	position: absolute; 
+	padding: 2px 8px 2px 8px; 
+	left: 0px; 
+	font-family:"Droid Sans","Helvetica Neue",Helvetica,Arial,sans-serif; 
+	height: 19px;
+	z-index: 9999;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	color: white;
+	background-color: #444;
+	font: 14px;
+}
+
+#hintBox >div{
+	height: 19px;
+}
+
+#hintBox  img{
+	border: 0px ;
+}
+
+.vTipArrow{
+	border-style: solid;
+	border-width: 7px;
+	height:0;
+	width:0;
+	position:relative;
+	bottom:0px;
+	left:10px;
+	border-color: #444444 transparent transparent transparent;
+}
+
+#flashBox{
+	visibility: hidden;
+}
+.spa-tracks-container, .spa-next-button, .spa-previous-button{
+	display: none !important;
+}
+
+/*#sourceBox{
+	overflow: auto;
+	height: 300px;
+	width: 700px;
+}
+
+#sourceBox.video{
+	border: 1px solid #999;
+}
+
+#playerObjId.video{
+	width: 640px;
+	height: 333px;
+}*/
+
+#sourceBox{
+	width: 580px;
+	max-height: 400px;
+	overflow: auto;
+	margin-top: 10px;
+}
+
+#sourceBox.video{
+	border-top: 1px solid #d9d9d9;
+	border-bottom: 1px solid #d9d9d9;
+	border-left: 1px solid #d9d9d9;
+}
+
+#bookmarkBtn{
+	text-align: center;
+	width: 90%;
+}
+
+#bookmarkBtn.green{
+	color: #F7FFEA !important;
+}
+
+

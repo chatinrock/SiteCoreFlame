@@ -1,0 +1,28 @@
+<div class="block" style="background-color: #ffffff;">
+
+<div class="one-third" style="background: url('/res/images/index/icons/people.jpg') no-repeat bottom right;">
+
+	<h2 class="fancy6 no-margin-header" style="text-align: left;">Отзывы носителей</h2>
+    <p>Сервис создавался под руководством носителей языка. Они оценили качество и стиль изучаемого материала.</p>
+    <div class="padding" style="height: 5px;"></div>
+    <a href="#" class="button blue" title="Нажмите, что бы посмотреть отзывы">» Посмотреть!</a>
+    <div class="padding" style="height: 35px;"></div>
+</div>
+
+<div class="one-third" style="background: url('/res/images/index/icons/grammar.jpg') no-repeat bottom right;">
+    <h2 class="fancy6 no-margin-header" style="text-align: left;">Вся грамматика</h2>
+    <p>Вся грамматика представлена в виде текста и видео! Что позволит вам изучать материал в визуальной и аудиальной форме.</p>
+    <div class="padding" style="height: 5px;"></div>
+    <a href="http://xenglishx.ru/grammar/" class="button white" title="Нажмите, чтобы посмотреть Грамматику">» Посмотреть!</a>
+    <div class="padding" style="height: 35px;"></div> 
+</div>
+
+<div class="one-third last" style="background: url('/res/images/index/icons/phonetics.jpg') no-repeat bottom right;">
+    <h2 class="fancy6 no-margin-header" style="text-align: left;">Вся фонетика</h2>
+    <p>Фонетика озвучена с помощью носителей языка в видео форме. Что позволит вам изучить правильно произношение</p>
+    <div class="padding" style="height: 5px;"></div>
+    <a href="http://xenglishx.ru/phonetics/" class="button white" title="Нажмите, чтобы посмотреть Фонетику">» Посмотреть!</a>
+    <div class="padding" style="height: 35px;"></div>
+</div>
+
+</div>

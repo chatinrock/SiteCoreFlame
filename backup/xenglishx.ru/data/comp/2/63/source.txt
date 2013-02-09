@@ -1,0 +1,67 @@
+<div class="shots">
+                <h3>Отзывы носителей языка</h3>
+            </div> <!-- end shots -->
+
+            <div class="shot_container">
+
+            <div class="shots_img">
+                <div class="one-third column alpha">
+                    <a href="http://theme.codecampus.ru/landing/xafira/img/img_preview.jpg" class="lightbox">
+                        <span class="roll" ></span>
+                        <img src="http://theme.codecampus.ru/landing/xafira/img/shots/shot.jpg" alt="">
+                    </a>                    
+                </div> <!-- end one-third -->
+            </div> <!-- end shots_img -->
+
+            <div class="shots_img">
+                <div class="one-third column">
+                    <a href="http://theme.codecampus.ru/landing/xafira/img/img_preview.jpg" class="lightbox">
+                        <span class="roll" ></span>
+                        <img src="http://theme.codecampus.ru/landing/xafira/img/shots/shot.jpg" alt="">
+                    </a>                    
+                </div> <!-- end one-third -->
+            </div> <!-- end shots_img -->
+
+            <div class="shots_img">
+                <div class="one-third column omega">
+                    <a href="http://theme.codecampus.ru/landing/xafira/img/img_preview.jpg" class="lightbox" title="Нажмите, что бы просмотреть отзыв">
+                        <span class="roll" ></span>
+                        <img src="http://theme.codecampus.ru/landing/xafira/img/shots/shot.jpg" alt="">
+                    </a>                    
+                </div> <!-- end one-third -->
+            </div> <!-- end shots_img -->
+            <div class="clear"></div>
+            </div> <!-- end shot_container -->
+
+            <div class="shot_container_last">
+            
+            <div class="shots_img">
+                <div class="one-third column alpha">
+                    <a href="http://theme.codecampus.ru/landing/xafira/img/img_preview.jpg" class="lightbox">
+                        <span class="roll" ></span>
+                        <img src="http://theme.codecampus.ru/landing/xafira/img/shots/shot.jpg" alt="">
+                    </a>                    
+                </div> <!-- end one-third -->
+            </div> <!-- end shots_img -->
+
+            <div class="shots_img">
+                <div class="one-third column">
+                    <a href="http://theme.codecampus.ru/landing/xafira/img/img_preview.jpg" class="lightbox">
+                        <span class="roll" ></span>
+                        <img src="http://theme.codecampus.ru/landing/xafira/img/shots/shot.jpg" alt="">
+                    </a>                    
+                </div> <!-- end one-third -->
+            </div> <!-- end shots_img -->
+
+            <div class="shots_img">
+                <div class="one-third column omega">
+                    <a href="http://theme.codecampus.ru/landing/xafira/img/img_preview.jpg" class="lightbox">
+                        <span class="roll" ></span>
+                        <img src="http://theme.codecampus.ru/landing/xafira/img/shots/shot.jpg" alt="">
+                    </a>                    
+                </div> <!-- end one-third -->
+
+            </div> <!-- end shots_img -->
+            <div class="clear"></div>
+
+            </div> <!-- end shot_container_last -->

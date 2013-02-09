@@ -1,0 +1,76 @@
+<div class="fullWidth">
+	<h3 style="display:inline-block;">Всё бесплатно!</h3>
+	<p class="noBottomMargin">
+		Здравствуйте! Как я понимаю,  Вы зашли на эту страницу, что бы узнать цены. Если позволите, хочу громко заявить: Все <strong>правила</strong>, 
+		вся <strong>фонетика</strong>, все <strong>материалы</strong> - <strong>бесплатны</strong>  и будут таковыми всегда. 
+		Это <strong>правило</strong> сайта! 
+	</p>
+</div>
+					
+<div class="clear"></div>				
+<div style="height:10px;" class="horizontalRule"></div>		
+<div style="height:30px;" class="spacer"></div>		
+					
+<link rel="stylesheet" href="http://theme.codecampus.ru/plugin/pricer2-grid/css/pricer2.css">
+<script type="text/javascript" src="http://theme.codecampus.ru/plugin/pricer2-grid/js/pricer2.min.js"></script>	
+<div id="pricer2" class="p3cols">
+	<div class="col blue1"><span></span>
+		<div class="header">
+			<div class="product">Бесплатно</div>
+			<div class="price">
+				<p class="amount">0</p>
+				<p class="payment">руб</p>
+			</div>
+		</div>
+		<ul>
+			<li class="tooltip">Полный доступ к грамматике<span class="tip">У вас есть неограниченный доступ к правилам английского языка</span></li>
+			<li class="tooltip">Полный доступ к фонетике<span class="tip">У вас есть неограниченный доступ к фонетики английского языка</span></li>
+			<li class="tooltip">Уникальные статьи блога<span class="tip"></span></li>
+			<li class="tooltip">Полный доступ к материалам<span class="tip">У вас есть неограниченный доступ к изучению материалов по английскому языку</span></li>
+			<li class="tooltip">Перевод и комментарии к материалам<span class="tip">Все материалы переведены носителями языка</span></li>
+		</ul>
+		<!--<div class="signup"><a href="#"><span></span><strong></strong></a></div>-->
+	</div>
+	<div class="col blue1 selected" style="min-height: 519px;"><span></span>
+		<div class="header">
+			<div class="product">1 месяц</div>
+			<div class="price">
+				<p class="amount">850</p>
+				<p class="payment">руб</p>
+			</div>
+		</div>
+		<ul> 
+			<li>VIP комментарии к материалам</li>
+			<li>Доступ к эксклюзивным статьям блога</li>
+			<li class="last">Доступ к общению с репетитором</li>
+		</ul>
+		<div class="signup"><a href="#" title="Нажмите, что бы зарегистрироваться"><strong>Регистрация</strong></a></div>
+	</div>
+	<div class="col blue2" style="min-height: 519px;"><span></span>
+		<div class="header">
+			<div class="ribbon best-value"></div>
+			<div class="product">6 месяцев</div>
+			<div class="price">
+				<p class="amount">720</p>
+				<p class="payment">руб</p>
+			</div>
+		</div>
+		<ul>
+			<li><strong>15% скидка</strong> </li>
+			<li>VIP комментарии к материалам</li>
+			<li>Доступ к эксклюзивным статьям блога</li>
+			<li class="last">Доступ к общению с репетитором</li>
+		</ul>
+		<div class="signup"><a href="#" title="Нажмите, что бы зарегистрироваться"><strong>Регистрация</strong></a></div>
+	</div>
+
+	<div class="clearfix"></div>
+</div>
+<script>
+jQuery(document).ready(function() {
+	jQuery('#pricer2 div.signup>a').attr('href', '/pubform/regUser.html?lightbox[width]=300&lightbox[height]=200');
+	if ( typeof(authMvc) != 'undefined' ){ 
+		authMvc.initLigtbox('#pricer2 div.signup>a') 
+	};
+});
+</script>

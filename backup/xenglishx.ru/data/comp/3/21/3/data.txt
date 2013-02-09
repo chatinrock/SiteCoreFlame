@@ -1,0 +1,2 @@
+<p>
+	Пример <strong>VIP </strong>правило</p>

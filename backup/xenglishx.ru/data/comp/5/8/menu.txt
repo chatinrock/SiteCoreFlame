@@ -1,0 +1,1 @@
+a:2:{s:2:"id";i:0;s:4:"item";a:2:{i:1;a:6:{s:9:"sortValue";s:1:"0";s:4:"name";s:16:"Контакты";s:2:"id";s:2:"23";s:4:"link";s:10:"/feedback/";s:8:"nofollow";s:1:"0";s:5:"class";s:0:"";}i:0;a:6:{s:9:"sortValue";s:1:"0";s:4:"name";s:14:"Главная";s:2:"id";s:1:"3";s:4:"link";s:1:"/";s:8:"nofollow";s:1:"0";s:5:"class";s:0:"";}}}

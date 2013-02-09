@@ -1,0 +1,1 @@
+a:3:{s:8:"textfile";s:68:"/opt/www/SiteCoreFlame/xenglishx.ru/data/content/joke/a-cute-dog.txt";s:6:"resurl";s:32:"/pub/content/joke/a_cute_dog.mp3";s:4:"type";s:5:"sound";}

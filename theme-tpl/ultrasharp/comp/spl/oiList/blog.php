@@ -12,7 +12,6 @@ if (is_array($oiListData)) {
     for ($i = 0; $i < $oiListDataCount; $i++) {
         $item = $oiListData[$i];
         $categoryUrl = vsprintf($categoryUrlTpl, $item['seoName']);
-        // TODO: Вставить data-permalink
         ?>
     <section>
         <div
@@ -29,13 +28,13 @@ if (is_array($oiListData)) {
 
                         <span class="date"><time datetime="<?= $item['dateAdd'] ?>"
                                                  pubdate><?= $item['dateAdd'] ?></time></span>
-                        <span class="author">Козленко В.Л.</span>
+                        <!--<span class="author">[Автор]</span>-->
                         <span class="categories">
 							Категория: <a href="<?= $categoryUrl ?>"
-                                          title="<?= $item['category'] ?>"><?= $item['category'] ?></a>
+                                          title="Открыть все статьи категории: <?=$item['category']?>" ><?= $item['category'] ?></a>
 						</span>                                    
 						<span class="comments">
-							<a href="<?= $item['url'] ?>#comments" title="Комментировать">Комментировать</a>
+							<a href="<?= $item['url'] ?>#comments" title="Нажмите, что бы прокомментировать материал">Комментировать</a>
 						</span>
                     </div>
                     <? if ($item['prevImgUrl']) { ?>
@@ -54,20 +53,21 @@ if (is_array($oiListData)) {
                 <div class="post-content">
                     <!--<p>-->
 					<?
-                        $text = @file_get_contents($objItemDir . $item['idSplit'] . 'kat.txt');
+                       /* $text = @file_get_contents($objItemDir . $item['idSplit'] . 'kat.txt');
                         if ($text) {
                             echo $text;
                         } else {
                             self::loadFile($objItemDir . $item['idSplit'] . 'data.txt');
-                        }
+                        }*/
                         ?>
+                    <?self::loadFile($objItemDir . $item['idSplit'] . 'kat.txt'); ?>
                     <!--</p>-->
 
                     <div class="padding-10"></div>
 
                     <p>
-                        <a href="<?= $item['url'] ?>" title="<?= $item['caption'] ?>" class="button-clear">
-							Читать далее
+                        <a href="<?= $item['url'] ?>" title='Нажмите, что бы прочитать полный текст об "<?= $item['caption'] ?>"' class="button-clear readnext">
+                            <?=$caption?>
 						</a>
                     </p>
 
@@ -83,10 +83,11 @@ if (is_array($oiListData)) {
 } // is_array
 ?>
 <script type="text/javascript">
-jQuery(document).ready(function() {
-	$('.imagePreload').each( function() { $(this).ddImagePreload(); });
-});
-$(window).load(function() {
-	$('.post-thumb img').ddFadeOnHover(0.7);
-});
+    jQuery(document).ready(function() {
+        jQuery('.imagePreload').each( function() { $(this).ddImagePreload(); });
+    });
+    jQuery(window).load(function() {
+        jQuery('.post-thumb img').ddFadeOnHover(0.7);
+    });
+    jQuery('a.readnext').html('Читать далее');
 </script>

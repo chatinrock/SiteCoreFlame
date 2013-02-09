@@ -1,0 +1,1 @@
+a:1:{i:0;a:9:{s:7:"caption";s:23:"Wicked, Deadly, Bad ass";s:2:"id";s:1:"6";s:3:"url";s:34:"/blog/sleng/wicked-deadly-bad-ass/";s:7:"idSplit";s:12:"comp/3/30/6/";s:8:"category";s:10:"Сленг";s:7:"seoName";s:5:"sleng";s:9:"isPrivate";s:1:"1";s:7:"dateAdd";s:19:"2012-12-24 22:11:45";s:10:"prevImgUrl";s:65:"http://xenglishx.ru/res/file/source/comp/3/30/6/slang-bad-ass.png";}}
