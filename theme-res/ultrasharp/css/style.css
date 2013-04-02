@@ -69,12 +69,14 @@ li img { display: block; }
 	#top-info { float: left; width: 100%; text-shadow: 0 1px 0 #ffffff; font-size: 10px; padding: 8px 0; }
 	
 	#top-info .telephone, #top-info .fax,
-	#top-info .email, #top-info .address { float: left; margin-right: 20px; }
+	#top-info .email, #top-info .address, #top-info .skype, #top-info .icq { float: left; margin-right: 20px; }
 	
 	#top-info .telephone { background: url(images/icons/top-info-telephone.png) no-repeat left center; padding-left: 13px; }
 	#top-info .fax { background: url(images/icons/top-info-fax.png) no-repeat left center; padding-left: 14px; }
 	#top-info .address { background: url(images/icons/top-info-address.png) no-repeat left center; padding-left: 14px; }
 	#top-info .email { background: url(images/icons/top-info-email.png) no-repeat left center; padding-left: 14px; }
+	#top-info .skype { background: url(images/icons/top-info-skype.png) no-repeat left center; padding-left: 14px; }
+	#top-info .icq { background: url(images/icons/top-info-icq.png) no-repeat left center; padding-left: 14px; }
 	
 	
 	
@@ -821,24 +823,38 @@ div.privatePost{
 }
 
 
-#contactList {
+.contactList {
     list-style: none outside none;
     margin: 0.5em 0 1.2em;
     padding: 0;
+	float: left;
+	margin-right: 35px;
 }
 
-#contactList li {
+.contactList li {
     padding-left: 23px;
 }
 
-#contactList li.email{
+.contactList li.email{
 	background: url("../images/contact/email-16.png") no-repeat scroll left center transparent;;
 }
 
-#contactList li.icq{
+.contactList li.icq{
 	background: url("../images/contact/icq-16.png") no-repeat scroll left center transparent;;
 }
 
-#contactList li.skype{
+.contactList li.skype{
 	background: url("../images/contact/skype-16.png") no-repeat scroll left center transparent;;
+}
+
+.contactList li.facebook{
+	background: url("../images/contact/facebook-16.png") no-repeat scroll left center transparent;;
+}
+
+.contactList li.vkontakte{
+	background: url("../images/contact/vk-16.png") no-repeat scroll left center transparent;;
+}
+
+.contactList li.twitter{
+	background: url("../images/contact/twitter-16.png") no-repeat scroll left center transparent;;
 }

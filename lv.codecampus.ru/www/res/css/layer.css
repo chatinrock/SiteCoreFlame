@@ -1,0 +1,145 @@
+div.container {
+	padding-top: 40px;
+}
+
+#layerListBox{
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+
+#sliderShowBox{
+	height: 360px;
+	width: 640px;
+	border: 1px solid #d3d3d3;
+	margin-bottom:  5px;
+	position: relative;
+}
+
+.text-right{
+	text-align: right;
+}
+
+.text-center{
+	text-align: center;
+}
+
+.sliderSettingsPanel{
+	height: 22px;
+}
+
+#layerListBox{
+	margin-bottom: 0px;
+}
+
+#profileShowBox{
+	height: 360px;
+	width: 640px;
+	border: 1px solid #d3d3d3;
+	margin: 0 auto;
+	margin-bottom: 10px;
+}
+
+/*.imgWait{
+	width: 140px;
+	height: 80px;
+	border: 1px solid grey;
+	background: url('res/loader.gif') center center no-repeat;
+}*/
+
+#layerListBox li{
+	margin-bottom: 5px;
+}
+
+#layerListBox img{
+	cursor: pointer;
+	visibility: hidden;
+	margin-right: 3px;
+}
+
+#layerListBox li:hover img{
+	visibility: visible;
+}
+
+#layerName{
+	width: 150px;
+	margin-bottom: 5px;
+}
+
+#layerAddBtn{
+	width: 100%;
+	padding: 3px 0 3px 0;
+	margin-bottom: 5px;
+}
+
+#layerList{
+	cursor: pointer;
+}
+
+#layerList li:hover{
+	font-weight: bold;
+}
+
+#layerList li.select{
+	font-weight: bold;
+}
+
+#swfList{
+	margin-bottom: 5px;
+	display: inline;
+}
+
+#layerResBox{
+	text-align: right;
+	height: 30px;
+
+}
+
+#resImagBtn{
+	width: 220px;
+	padding: 3px 0 3px 0;
+	margin-bottom: 5px;
+}
+
+#emptyBox{
+	height: 30px;
+}
+
+#layerResBox .panel{
+	width: 640px;
+}
+
+div.res .panel{
+	left: 5px;
+	top: 5px;
+	height: 16px;
+	width: 16px;
+	position: absolute;
+	cursor: pointer;
+}
+
+#swfParamBox{
+	border: 1px solid #d3d3d3;
+	width: 640px;
+	padding: 10px 0px 30px 0px;
+
+}
+
+#swfSettings td{
+	padding-right: 10px;
+	vertical-align:middle
+}
+
+#swfSettings input{
+	margin: 0;
+	padding: 1px;
+}
+
+#swfSettings{
+	margin-left: 10px;
+}
+
+#saveBtn{
+	padding: 3px 0 3px 0;
+	width: 160px;;
+}

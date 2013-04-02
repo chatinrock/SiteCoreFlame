@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+    <!-- Basic Page Needs
+   ================================================== -->
+    <meta charset="utf-8">
+    <title>Explorer</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Mobile Specific Metas
+   ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- CSS
+   ================================================== -->
+    <link rel="stylesheet" href="http://theme.codecampus.ru/plugin/grid960/css/base/base.css">
+    <link rel="stylesheet" href="http://theme.codecampus.ru/plugin/grid960/css/base/skeleton.css">
+    <link rel="stylesheet" href="http://theme.codecampus.ru/plugin/grid960/css//base/layout.css">
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Favicons
+     ================================================== -->
+     <link rel="shortcut icon" href="/res/img/favicon.ico">
+     <link rel="apple-touch-icon" href="/res/img/apple-touch-icon.png">
+     <link rel="apple-touch-icon" sizes="72x72" href="/res/img/apple-touch-icon-72x72.png">
+     <link rel="apple-touch-icon" sizes="114x114" href="/res/img/apple-touch-icon-114x114.png">
+
+    <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
+    <script src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="http://theme.codecampus.ru/plugin/lightbox/themes/default/jquery.lightbox.css" />
+    <!--[if IE 6]>
+    <link rel="stylesheet" type="text/css" href="http://theme.codecampus.ru/plugin/lightbox/themes/default/jquery.lightbox.ie6.css" />
+    <![endif]-->
+    <script type="text/javascript" src="http://theme.codecampus.ru/plugin/lightbox/jquery.lightbox.min.js"></script>
+
+
+    <script src="http://theme.codecampus.ru/plugin/SWFUpload_v2.2.0.1/swfupload.js" type="text/javascript"></script>
+    <script src="/res/js/mvc-files.min.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" type="text/css" href="/res/css/main.css" />
+</head>
+<body>
+
+
+<div class="container">
+    <!-- ------------------------------------------------ -->
+    <div class="sixteen columns" id="controllPanel">
+        <div class="three columns">
+            <span href="#" id="uploadBtn"></span>
+        </div>
+        <div class="three columns">
+            <a href="#" id="selectBtn">Выбрать</a>
+        </div>
+        <div class="three columns">
+            <a href="#" id="rmBtn">Удалить</a>
+        </div>
+
+        <div class="three columns">
+            <a href="#" id="rmAllBtn">Удалить всё</a>
+        </div>
+
+        <div class="three columns">
+            <a href="#" id="selAllBtn">Выделить всё</a>
+        </div>
+    </div>
+    <div class="sixteen columns" id="explorerPanel"></div>
+
+    <!--<form id="formTest" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file"/>
+        <input type="submit">
+    </form>-->
+</div> <!--container-->
+<script>
+
+var explorerData = {
+    list: <?=self::get('list');?>,
+    dataUrl: '<?=self::get('dataUrl');?>',
+    profile: '<?=self::get('profile');?>',
+    group: '<?=self::get('group');?>',
+    subgroup: '<?=self::get('subgroup');?>',
+}
+
+$(document).ready(function () {
+    explorerMvc.init();
+});
+
+</script>
+
+</body>
+</html>

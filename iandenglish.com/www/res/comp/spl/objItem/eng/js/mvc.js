@@ -485,7 +485,7 @@ var engMvc = (function(){
                 return;
             }
 			
-			// Есть ли VIp комментарий
+			// Есть ли VIP комментарий для слова
 			if ( engWord.osnWord[wordRelMouseOn].vipId){
 				jQuery('#hintBox img[rel="viprule"]').show();
 			}else{

@@ -99,6 +99,7 @@ class model{
         $saveData['secondWordId'] = (string)substr($saveData['secondWordId'], 1);
 
         (new engwordOrm())->saveExt($wordId, $saveData);
+        return $wordId['wordId'];
         // func. saveWordRule
     }
 

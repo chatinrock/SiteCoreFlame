@@ -1,0 +1,23 @@
+.z-tabs.horizontal.medium > ul.z-tabs-nav > li > a.z-link {
+	padding: 3px 28px;
+}
+
+.z-tabs.horizontal > .z-container > .z-content {
+	padding: 0;
+}
+
+.z-tabs.silver > ul.z-tabs-nav > li.z-active.vk {
+	background-color:  #dae2e8;
+}
+
+.z-tabs.silver > ul.z-tabs-nav > li.z-active.vk:hover {
+	background-color:  #dae2e8;
+}
+
+.z-tabs.silver > ul.z-tabs-nav > li.z-active.vk > a.z-link {
+	color: #45688e;
+}
+
+#tabbed-nav{
+	width: 625px;
+}

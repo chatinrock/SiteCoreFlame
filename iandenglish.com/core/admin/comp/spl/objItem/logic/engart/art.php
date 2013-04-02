@@ -8,6 +8,8 @@ use core\classes\admin\dirFunc;
 use core\classes\arrays;
 use core\classes\event as eventCore;
 use core\classes\filesystem;
+use core\classes\word;
+
 
 // Conf
 use \DIR;
@@ -47,6 +49,9 @@ class art extends \core\classes\component\abstr\admin\comp implements \core\clas
         // func. init
     }
 
+    /**
+     * Основной метод отображения
+     */
     public function itemAction() {
         $contId = $this->contId;
         $compId = $this->compId;
@@ -120,7 +125,8 @@ class art extends \core\classes\component\abstr\admin\comp implements \core\clas
         $this->view->setMainTpl('main.tpl.php');
         // func. itemAction
     }
-	
+
+
 	public function loadParamAction(){
 		$compId = $this->compId;
         $contId = $this->contId;
@@ -143,6 +149,10 @@ class art extends \core\classes\component\abstr\admin\comp implements \core\clas
 		// func. loadParamAction
 	}
 
+    /**
+     * Ajax. onClick на кнопку опубликовать.<br/>
+     * Помечает, что нужно пересоздать статьи
+     */
     public function publishArticleAction(){
         $this->view->setRenderType(render::JSON);
 
@@ -152,8 +162,8 @@ class art extends \core\classes\component\abstr\admin\comp implements \core\clas
         $contId = $this->contId;
 		
 		// Директория с данными статьи
-        $saveDir = baseModel::getPath($compId, $contId, $objItemId);
-        $saveDir = dirFunc::getSiteDataPath($saveDir);
+        //$saveDir = baseModel::getPath($compId, $contId, $objItemId);
+        //$saveDir = dirFunc::getSiteDataPath($saveDir);
 
         eventCore::callOffline(
             eventBase::NAME,
@@ -171,6 +181,10 @@ class art extends \core\classes\component\abstr\admin\comp implements \core\clas
         // func. publishArticleAction
     }
 
+    /**
+     * Ajax. Сохраняем данные по слову или предложению.
+     * @throws \Exception
+     */
     public function saveWordDataAction(){
         $this->view->setRenderType(render::JSON);
         $json = self::post('json');
@@ -184,17 +198,29 @@ class art extends \core\classes\component\abstr\admin\comp implements \core\clas
         $itemId = self::postInt('itemId');
         $ruleMaxId = self::postInt('ruleMaxId');
 
+        $compId = $this->compId;
+        $contId = $this->contId;
+
+        // Директория с данными статьи
+        $saveDir = baseModel::getPath($compId, $contId, $itemId);
+        $saveDir = dirFunc::getSiteDataPath($saveDir);
+
+        $vipComment = self::post('vipcomment');
+
         $type = self::post('type');
         switch($type){
             case 'sentence':
                 $sentId = self::postInt('id');
                 engartModel::saveSentenceRule($itemId, $sentId, $ruleData, $ruleMaxId);
+                $prefSentId = word::idToSplit($sentId);
+                filesystem::saveFile($saveDir.'sent/'.$prefSentId, 'vip.html', $vipComment);
                 break;
             case 'word':
-                engartModel::saveWordRule($itemId, $ruleData, $ruleMaxId);
+                $wordId = engartModel::saveWordRule($itemId, $ruleData, $ruleMaxId);
+                $prefWordId = word::idToSplit($wordId);
+                filesystem::saveFile($saveDir.'word/'.$prefWordId, 'vip.html', $vipComment);
                 break;
         } // switch
-
         // func. saveDataAction
     }
 	
@@ -203,11 +229,24 @@ class art extends \core\classes\component\abstr\admin\comp implements \core\clas
         return articleOrm::TABLE;
     }
 
+    /**
+     * Ajax. Удаляет правило для предложения или слова
+     */
     public function removeRuleAction(){
         $this->view->setRenderType(render::JSON);
         $wordId = self::post('rel');
         $objItemId = self::postInt('itemId');
         $type = self::post('type');
+
+        $compId = $this->compId;
+        $contId = $this->contId;
+
+        // Директория с данными статьи
+        /*$saveDir = baseModel::getPath($compId, $contId, $objItemId);
+        $saveDir = dirFunc::getSiteDataPath($saveDir);
+
+        $prefWordId = word::idToSplit($wordId);*/
+
         switch($type){
             case 'sentence':
                 (new engsentOrm())->delete(['sentId'=>$wordId, 'objItemId'=>$objItemId]);
@@ -219,6 +258,26 @@ class art extends \core\classes\component\abstr\admin\comp implements \core\clas
 
         self::setVar('json', ['rel'=>$wordId, 'type'=> $type]);
         // func. removeRuleAction
+    }
+
+    public function getVipCommentAction (){
+        $this->view->setRenderType(render::NONE);
+        header('Content-Type: text/html; charset=utf-8');
+
+        $type = self::get('type') == 'word' ? 'word' : 'sent';
+        $objItemId = self::getInt('itemId');
+        $wordId = self::getInt('wordId');
+
+        $compId = $this->compId;
+        $contId = $this->contId;
+
+        // Директория с данными статьи
+        $loadData = baseModel::getPath($compId, $contId, $objItemId);
+        $loadData = dirFunc::getSiteDataPath($loadData);
+        $prefWordId = word::idToSplit($wordId);
+
+        filesystem::printFile($loadData.$type.'/'.$prefWordId.'vip.html');
+        // func. getVipCommentAction
     }
 	
 	public function saveParamDataAction(){

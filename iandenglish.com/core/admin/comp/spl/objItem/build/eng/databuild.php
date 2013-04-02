@@ -78,12 +78,11 @@ class databuild{
 
             file_put_contents($loadDir.$filename, $engHtml);
 
-
-
             $paramOptions['resUrl'] = $paramData['resurl'];
             $paramOptions['type'] = $paramData['type'];
             $paramOptions['objId'] = $objItemId;
             $paramOptions['path'] = trim(substr($longId, 5), '/');
+
             $paramOptions = json_encode($paramOptions);
 
             $fa = fopen($loadDir.$filename, 'a' );

@@ -14,9 +14,14 @@ if ( !is_string($siteName) || !trim($siteName) ){
 chdir('/opt/www/SiteCoreFlame/');
  
 filesystem::mkdir($siteName.'/www/', 0755);
-filesystem::mkdir($siteName.'/data/comp/', 0755);
+filesystem::mkdir($siteName.'/data/comp/', 0775);
 $chown = 'sudo /bin/chown -R www-data:www-data /opt/www/SiteCoreFlame/'.$siteName.'/data/comp';
 system($chown);
+
+filesystem::mkdir($siteName.'/data/utils/', 0775);
+$chown = 'sudo /bin/chown -R www-data:www-data /opt/www/SiteCoreFlame/'.$siteName.'/data/utils';
+system($chown);
+
 filesystem::mkdir($siteName.'/core/', 0755);
 filesystem::mkdir($siteName.'/conf/', 0755);
 system('cp site-tpl/conf/* '.$siteName.'/conf/');

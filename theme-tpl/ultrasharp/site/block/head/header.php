@@ -9,6 +9,8 @@
                 <span class="email">
 					<a href="mailto:<?=self::varible('email');?>" title="Нажмите, что бы отправить письмо"><?=self::varible('email', 'E-mail');?></a>
 				</span>
+                <span class="skype"><a href="skype:<?=self::varible('skype' , 'Skype');?>?call"><?=self::varible('skype');?></a></span>
+                <span class="icq"><?=self::varible('icq', 'Icq');?></span>
             </div>
         </div>
         <div id="top-bar">
@@ -24,15 +26,9 @@
                 </div>
 
                 <div id="mySocialBtn">
-                    <a href="<?=self::varible('vkUrl', 'VKontakte URL');?>" target="_blank" rel="nofollow">
-						<img title="Наша страница Twitter" src="http://theme.codecampus.ru/plugin/mySocialBtn/images/white/twitter23.png" alt="Twitter">
-					</a>
-                    <a href="<?=self::varible('fbUrl', 'Facebook URL');?>" target="_blank" rel="nofollow">
-						<img title="Наша страница Facebook" src="http://theme.codecampus.ru/plugin/mySocialBtn/images/white/facebook23.png" alt="Facebook">
-					</a>
-                    <a href="<?=self::varible('twitterUrl');?>" target="_blank" rel="nofollow">
-						<img title="Наша страница Вконтакте" src="http://theme.codecampus.ru/plugin/mySocialBtn/images/white/vkontakte23.png" alt="Вконтакте">
-					</a>
+                    <a href="<?=self::varible('vkUrl', 'VKontakte URL');?>" target="_blank" rel="nofollow"><img title="Наша страница Вконтакте" src="http://theme.codecampus.ru/plugin/mySocialBtn/images/white/vkontakte23.png" alt="Вконтакте"></a>
+                    <a href="<?=self::varible('fbUrl', 'Facebook URL');?>" target="_blank" rel="nofollow"><img title="Наша страница Facebook" src="http://theme.codecampus.ru/plugin/mySocialBtn/images/white/facebook23.png" alt="Facebook"></a>
+                    <a href="<?=self::varible('twitterUrl');?>" target="_blank" rel="nofollow"><img title="Наша страница Twitter" src="http://theme.codecampus.ru/plugin/mySocialBtn/images/white/twitter23.png" alt="Twitter"></a>
                 </div>
 
                 <span id="search-box">

@@ -24,7 +24,7 @@
         <div class="linkRule">Связанные правила</div>
         <ul class="rules"><?
             foreach(self::get('rule') as $rule ){
-                echo '<li><a href="'.$rule['href'].'" title="'.$rule['title'].'">'.$rule['title'].'</a></li>';
+                echo '<li><a href="'.$rule['href'].'" title="'.$rule['title'].'" target="_blank">'.$rule['title'].'</a></li>';
             }
             ?>
         </ul>

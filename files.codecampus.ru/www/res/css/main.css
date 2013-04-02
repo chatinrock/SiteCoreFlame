@@ -1,0 +1,65 @@
+div.container {
+	padding-top: 40px;
+}
+
+div.file{
+	float: left;
+	margin-left: 5px;
+	margin-bottom: 5px;
+	opacity: 0.5;
+	cursor: pointer;
+	width: 128px;
+	height: 128px;
+	position: relative;
+
+}
+
+div.file>img{
+	border: 1px solid black;
+}
+
+div.file .panel{
+	visibility: hidden;
+	margin-bottom: 5px;
+	text-align: right;
+	bottom: 0px;
+	right: 0px;
+	/*opacity: 0.9;*/
+	width: 100%;
+	height: 16px;
+	position: absolute;
+}
+
+div.file:hover .panel{
+	visibility: visible;
+}
+
+div.file div.status{
+	width: 48px;
+	height: 48px;
+	position: absolute;
+	top: 40px;
+	left: 40px;
+}
+
+div.file.type-sel div.status{
+	background-image: url('http://theme.codecampus.ru/plugin/icons/img/ok-48.png');
+}
+
+div.file.type-rm div.status{
+	background-image: url('http://theme.codecampus.ru/plugin/icons/img/delete-48.png');
+}
+
+.panel>img{
+	margin-right: 5px;
+}
+
+div.file:hover{
+	opacity: 1;
+}
+
+#controllPanel{
+	margin-bottom: 20px;
+	background-color: #eaeaea;
+	padding: 4px 4px 4px 4px;
+}

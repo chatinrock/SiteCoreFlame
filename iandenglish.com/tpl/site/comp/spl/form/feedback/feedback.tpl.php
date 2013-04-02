@@ -6,11 +6,18 @@
     Я постараюсь ответить сразу же, после получения сообщения. <strong>Я буду рад вам помочь!</strong>
 </p>
 <div>
-	<ul id="contactList">
-		<li class="skype">Skype:</li>
-		<li class="icq">ICQ:</li>
+	<ul class="contactList">
+		<li class="skype"><a href="skype:<?=self::tplVarible('skype');?>?call"><?=self::tplVarible('skype');?></a></li>
+		<li class="icq"><?=self::tplVarible('icq');?></li>
 		<li class="email"><a href="mailto:<?=self::tplVarible('email');?>" title="Нажмите, что бы отправить письмо"><?=self::tplVarible('email');?></a></li>
 	</ul>
+
+    <ul class="contactList">
+        <li class="vkontakte"><a href="<?=self::tplVarible('vkUrl');?>" target="_blank" rel="nofollow" title="Наша страница Вконтакте"><?=self::tplVarible('vkUrl');?></a></li>
+        <li class="facebook"><a href="<?=self::tplVarible('fbUrl');?>" target="_blank" rel="nofollow" title="Наша страница Facebook"><?=self::tplVarible('fbUrl');?></a></li>
+        <li class="twitter"><a href="<?=self::tplVarible('twitterUrl');?>" target="_blank" rel="nofollow" title="Наша страница Twitter"><?=self::tplVarible('twitterUrl');?></a></li>
+    </ul>
+    <div class="clear"></div>
 </div>
 
 <h4>Онлайн форма связи</h4>

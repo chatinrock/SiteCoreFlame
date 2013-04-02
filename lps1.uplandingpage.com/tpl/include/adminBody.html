@@ -1,0 +1,38 @@
+<div class="hidden" id="controlMainPanel">
+    <table>
+        <tr>
+            <td>Уровень</td>
+            <td><select id="levelList"></select></td>
+        </tr>
+        <tr>
+            <td><label>Текст <input type="radio" name="type" id="textTypeInput" value="text"/></label></td>
+            <td><label>Файл <input type="radio" name="type" id="fileTypeInput" value="file"/></label></td>
+        </tr>
+    </table>
+    <div id="treeTypeBox" class="hidden"></div>
+    <div id="textTypeBox" class="hidden"><textarea id="cmpText"></textarea></div>
+    <div style="margin-top: 5px;">
+        <input type="button" id="cmpSaveBtn" value="Сохранить"/>
+    </div>
+</div>
+
+<div class="hidden" id="controlVariblePanel">
+    <table class="varibleTable">
+        <thead><tr><th>Название</th><th>Значение</th></tr></thead>
+        <tbody></tbody>
+    </table>
+    <div>
+        <input type="button" id="cvpSaveBtn" value="Сохранить"/>
+    </div>
+</div>
+
+<div class="fixedLeftPanel">
+    <img src="http://theme.codecampus.ru/plugin/icons/img/refresh16.png" alt="publish" class="button" id="publishHtmlBtn" title="Public"/>
+    <img src="http://theme.codecampus.ru/plugin/icons/img/save16.png" alt="save" class="button" id="saveHtmlBtn" title="Save"/>
+    <img src="http://theme.codecampus.ru/plugin/icons/img/settings16.png" alt="settings" class="button" id="showSettingBtn" title="Settings"/>
+    <a href="../../edit/">
+        <img src="http://theme.codecampus.ru/plugin/icons/img/edit16.png" alt="edit" class="button" id="editBtn" title="Edit"/>
+    </a>
+</div>
+
+<script src="/res/js/blockMvc.js" type="text/javascript"></script>

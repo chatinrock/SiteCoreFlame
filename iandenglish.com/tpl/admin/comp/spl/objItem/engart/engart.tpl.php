@@ -3,7 +3,6 @@
 <script type="text/javascript" src="/res/plugin/fancybox/source/jquery.fancybox.js"></script>
 <link rel="stylesheet" type="text/css" href="/res/plugin/fancybox/source/jquery.fancybox.css" media="screen" />
 
-
 <link   href="res/plugin/dhtmlxTree/codebase/dhtmlxtree.css" rel="stylesheet" type="text/css"/>
 <script src="res/plugin/dhtmlxTree/codebase/dhtmlxcommon.js"></script>
 <script src="res/plugin/dhtmlxTree/codebase/dhtmlxtree.js"></script>
@@ -14,6 +13,9 @@
 
 <script src="res/plugin/classes/utils.js" type="text/javascript"></script>
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+
+<script type="text/javascript" src="res/plugin/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="res/plugin/ckeditor/config.js"></script>
 
 <style>
     div .dt{font-weight: bold}
@@ -123,6 +125,12 @@
           background-repeat: no-repeat;
           padding-right: 18px;
           margin-right: 18px;*/
+    }
+
+
+    #tabs-vipcomment textarea{
+        width: 100%;
+        height: 200px;
     }
 </style>
 <div class="column">
@@ -293,6 +301,7 @@
             <li><a href="#tabs-settings">Осн. настр.</a></li>
             <li><a href="#tabs-dynamic">Расширен. настр</a></li>
             <li><a href="#tabs-rule">Правила</a></li>
+            <li><a href="#tabs-vipcomment">VIP коммент</a></li>
         </ul>
 
         <div id="tabs-type">
@@ -357,6 +366,7 @@
         </div> <!-- <div id="tabs-settings"> -->
 
         <div id="tabs-dynamic"></div>
+
         <div id="tabs-rule">
             <div><input type="button" value="Add rule" id="addArtRuleBtn"/></div>
             <div class="childLeft">
@@ -367,6 +377,8 @@
                 <br class="clear"/>
             </div>
         </div>
+
+        <div id="tabs-vipcomment"><textarea id="vipcomment"></textarea></div>
     </div><!-- <div id="tabs"> -->
     <div>
         <input type="button" value="Сохранить" id="saveFormRuleBtn"/>
@@ -678,7 +690,17 @@
                     href: '#ruleDlg',
                     width: 700,
                     height: 500,
-                    autoSize: false
+                    autoSize: false,
+                    'afterShow': function(){
+                        if ( CKEDITOR.instances.vipcomment ){
+                            CKEDITOR.instances.vipcomment.destroy(true);
+                        }
+                        var query = { type: 'sent', itemId: engartData.objItemId, wordId: saveRuleObj.id};
+                        var url = utils.url({ method: 'getVipComment', query: query});;
+                        $('#vipcomment').load(url, function() {
+                            CKEDITOR.replace( 'vipcomment', {toolbar: 'Article'} );
+                        });
+                    }
                 }]);
             }
             // func. htmlDataBoxClick
@@ -708,34 +730,36 @@
         function setRuleBtnClick(){
             var htmlTmpBuff = '';
             var num = 0;
-            var nameWord = '';
+
+            var firstRel = selectedBuff[0];
+            var nameWord = '';//$(options.htmlDataBox + ' span.word[rel='+firstRel+']:first').html();;
+
             for( var i in selectedBuff ){
                 var rel = selectedBuff[i];
 
-                var isOsn = engartData.wordList[rel] != undefined;
+                var isOsn = num == 0;
                 if ( !isOsn){
-                    isOsn = $.inArray(rel, wordListLink ) != -1;
+                    isOsn = wordListLink[rel] != undefined;
                 }
                 var disableStr = ' disabled="disabled"';
                 var checkedStr = ' checked="checked"';
                 var osnStr = '<input type="hidden" name="w'+rel+'" value="osn"/>';
 
+                // получаем название слова
                 var name = $(options.htmlDataBox + ' span.word[rel='+rel+']:first').html();
 
-                var advStr1 = (isOsn?disableStr:'');
-                var advStr2 = (isOsn?checkedStr+disableStr:'');
-                if ( num == 0 ){
-                    advStr1 += checkedStr+disableStr;
-                    advStr2 = disableStr;
-                    nameWord += name + ' ';
-                }
+                nameWord += isOsn ? name + ' ' : '';
 
-                var input1 = '<input type="radio" name="w'+rel+'" value="osn"'+advStr1+'/>';
-                input1 += isOsn ? osnStr : (num == 0? osnStr: '');
+                // Если слово помеченно как основное, то osn radiobox - должен быть заморозен
+                var osnParamStr, secParamStr;
+                osnParamStr = secParamStr = num == 0 ? disableStr : '';
+                osnParamStr += num == 0 ? checkedStr : '';
 
-                var input2  = '<input type="radio" name="w'+rel+'" value="scn"'+advStr2+'/>';
-                input2 += isOsn ? '<input type="hidden" name="w'+rel+'" value="scn"/>' : '';
+                var input1 = '<input type="radio" name="w'+rel+'" value="osn"'+osnParamStr+'/>';
+                input1 += num == 0 ? '<input type="hidden" name="w'+rel+'" value="osn"/>' : '';
 
+                var input2  = '<input type="radio" name="w'+rel+'" value="scn"'+secParamStr+'/>';
+                //input2 += !isOsn ? '<input type="hidden" name="w'+rel+'" value="scn"/>' : '';
 
                 htmlTmpBuff += '<tr><td>'+name+'</td>'
                         +'<td rel="osn">'+input1+'</td>'
@@ -744,7 +768,6 @@
                             +'<a href="#rmTypeWord"><img src="'+engartData.resUrl+'del_16.png" alt="Удалить"/></a>'
                         +'</td>'
                         +'</tr>';
-
                 num++;
             } // for
             $(options.tabsType +' table>tbody').html(htmlTmpBuff);
@@ -755,7 +778,17 @@
                 href: '#ruleDlg',
                 width: 700,
                 height: 500,
-                autoSize: false
+                autoSize: false,
+                'afterShow': function(){
+                    if ( CKEDITOR.instances.vipcomment ){
+                        CKEDITOR.instances.vipcomment.destroy(true);
+                    }
+                    var query = { type: 'word', itemId: engartData.objItemId, wordId: firstRel};
+                    var url = utils.url({ method: 'getVipComment', query: query});;
+                    $('#vipcomment').load(url, function() {
+                        CKEDITOR.replace( 'vipcomment', {toolbar: 'Article'} );
+                    });
+                }
             }]);
             // func. setRuleBtnClick
         }
@@ -849,14 +882,20 @@
                 sentIdMouseOn = null;
             } // if
 
-            $.fancybox.close();
-            clearSelected();
 
             var id = saveRuleObj.id == undefined ? '' : saveRuleObj.id;
+
+            var data = 'json='+saveData+'&type='+saveRuleObj.type+'&id=' + id;
+            data += '&itemId='+engartData.objItemId+'&ruleMaxId='+ruleArtNumNew;
+            data += '&vipcomment='+CKEDITOR.instances.vipcomment.getData();
+
             HAjax.saveWordData({
-                data: 'json='+saveData+'&type='+saveRuleObj.type+'&id='+id+'&itemId='+engartData.objItemId+'&ruleMaxId='+ruleArtNumNew,
+                data: data,
                 methodType: 'POST'
             });
+
+            $.fancybox.close();
+            clearSelected();
             // func. saveFormRuleBtnClick
         }
 
@@ -954,6 +993,12 @@
             // func. cbRemoveRule
         }
 
+        /**
+         * Устанавливаем выбранную статью для правил
+         * @param pId ID записи
+         * @param pCaption Заголовок статьи
+         * @param userData пользовательские данные
+         */
         function getContentCallBack(pId, pCaption, userData){
             var ruleArtCurrentId = userData.ruleArtCurrentId;
             var contId = userData.contId;
@@ -997,7 +1042,7 @@
             $(options.rulesArtBox + ' tbody:first').append('<tr id="rart' + num + '">' +
                         '<input type="hidden" name="ruleart[' + num + ']" value=""/>'+
                         '<input type="hidden" name="rcontid[' + num + ']" value=""/>'+
-                        '<td rel="vip"><input type="radio" name="vip" value="'+num+'"/>' +
+
                         '<td rel="set">' +
                             '{Click and select rule}'+
                         '</td>' +
@@ -1056,33 +1101,38 @@
 
             var artRuleNum = $parentObj.attr('id').substr(4);
 
+            // Удаляем выделение над правилом ранее выделенным ( если оно было)
             if ( ruleArtCurrentId != null ){
                 $('#rart' + ruleArtCurrentId).removeClass('ruleArtSelect');
             }
             ruleArtCurrentId = artRuleNum;
             $parentObj.addClass('ruleArtSelect');
 
-            //var itemObjId = $('input ruleart[' + ruleArtCurrentId + ']').val();
+            // Получаем contId статьи
             var contId = $('#rart'+ruleArtCurrentId+' input[name="rcontid[' + ruleArtCurrentId + ']"]').val();
-
             if ( contId == '' ){
+                // Если contId пуст, т.е. мы ранее не было сохранения
+                // Закрываем дерево
                 artRuleTree.closeAllItems(0);
+                // Ощичаем выделения
                 artRuleTree.clearSelection();
             }else{
+                // Если ранее было сохранения, то выделяем эту ветку
                 artRuleTree.selectItem(contId);
             }
 
+            // Обработка нажатия кнопки
             switch(btnName){
+                // Показываем дерево статей
                 case 'set':
                     $(options.artRuleTreeBox).show();
                     break;
+                // Удаляем элемент
                 case 'remove':
                      if (confirm('Удалить элемент?')) {
                         $('#rart'+ruleArtCurrentId).remove();
                      }
                      break;
-                case 'vip':
-                    return true;
             } // switch
             return false;
             // func. rulesArtBoxClick
@@ -1095,7 +1145,7 @@
             });
  			$.get(url, null, function(responseText){
 				$.fancybox({
-				  'content': responseText,
+				  'content': responseText
 			  });
 			});
 			  
@@ -1140,6 +1190,15 @@
 			
 			$(options.paramBtn).click(paramBtnClick);
 
+            CKEDITOR.config.filebrowserBrowseUrl = utils.url({method: 'fileManager', query: {type: 'file', id: engartData.objItemId}});
+            CKEDITOR.config.filebrowserImageBrowseUrl = utils.url({method: 'fileManager', query: {type: 'img', id: engartData.objItemId}});
+            CKEDITOR.config.filebrowserFlashBrowseUrl = utils.url({method: 'fileManager', query: {type: 'flash', id: engartData.objItemId}});
+            CKEDITOR.config.filebrowserUploadUrl = '/res/plugin/kcfinder/upload.php?type=files';
+            CKEDITOR.config.filebrowserImageUploadUrl = '/res/plugin/kcfinder/upload.php?type=images';
+            CKEDITOR.config.filebrowserFlashUploadUrl = '/res/plugin/kcfinder/upload.php?type=flash';
+
+
+
             // func. init
         }
 
@@ -1147,6 +1206,11 @@
             init: init
         }
     })();
+
+    function fileManagerCallBack(pFuncNum , pUrl){
+         CKEDITOR.tools.callFunction(pFuncNum, pUrl);
+        // func. getContentCallBack
+    }
 
     $(document).ready(function(){
         <?if ( !self::get('isNew')){?>

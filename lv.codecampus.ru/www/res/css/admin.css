@@ -1,0 +1,83 @@
+div.container {
+	padding-top: 40px;
+}
+
+#sliderListBox{
+	height: 450px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+#sliderListBox img{
+	border: 1px solid grey;
+	cursor: pointer;
+}
+
+#sliderShowImg{
+	/*height: 100%;
+	width: 100%;*/
+}
+
+#sliderShowBox{
+	height: 394px;
+	width: 100%;
+	border: 1px solid #d3d3d3;
+	margin-bottom:  5px;
+}
+
+.text-right{
+	text-align: right;
+}
+
+.text-center{
+	text-align: center;
+}
+
+.sliderSettingsPanel{
+	height: 22px;
+}
+
+#layerListBox{
+	margin-bottom: 0px;
+}
+
+#profileSettingsBox, #profileShowBox{
+	height: 360px;
+	width: 640px;
+	border: 1px solid #d3d3d3;
+	margin: 0 auto;
+	margin-bottom: 10px;
+}
+
+#profileSettingsBox{
+	height: 22px;
+	border: none;
+	text-align: right;
+}
+
+/*#footerBox{
+	height: 50px;
+}*/
+
+#statusPanel{
+	margin-bottom: 20px;
+}
+
+.conn-success{
+	color: #32cd32;
+}
+
+/*.imgWait{
+	width: 140px;
+	height: 80px;
+	border: 1px solid grey;
+	background: url('res/loader.gif') center center no-repeat;
+}*/
+
+#sliderListBox li img{
+	width: 140px;
+}
+
+#sliderListBox li{
+	margin-bottom: 5px;
+}

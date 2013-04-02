@@ -5,6 +5,7 @@ namespace site\core\site\comp\spl\objItem\ajax\eng;
 // Core
 use core\classes\request;
 use core\classes\filesystem;
+use core\classes\word;
 
 // Site Core
 use \site\core\site\comp\spl\objItem\model\common;
@@ -20,7 +21,7 @@ use ORM\users as usersOrm;
 
 class eng{
 
-    private function _getSentVipPath($pId, $objId){
+    /*private function _getSentVipPath($pId, $objId){
         return (new engsentOrm())->get('path', ['objItemId'=>$objId, 'sentId'=>$pId]);
         // func. _getSentVipFile
     }
@@ -28,7 +29,7 @@ class eng{
     private function _getWordVipPath($pId, $objId){
         return (new engwordOrm())->get('path', ['objItemId'=>$objId, 'wordId'=>$pId]);
         // func. _getSentVipFile
-    }
+    }*/
 
     /**
      * Основной метод. Вызывается из файла в папке<br/>
@@ -43,19 +44,25 @@ class eng{
         $path = request::get('path');
         // Обрабатываем путь на правильность. Разрешены только цифры в пути
         if ( !preg_match('/^\d+(\/\d+)+$/', $path)){
-            die('Bad path');
+            die('Bad var path');
         }
 
         switch($type){
             case 'word':
                 $id = request::getInt('id');
-                $file = DIR_SITE::SITE_CORE.'data/comp/'.$path.'/word/'.$id.'.html';
+                $prefWordId = word::idToSplit($id);
+                $file = DIR_SITE::SITE_CORE.'data/comp/'.$path.'/word/'.$prefWordId.'word.html';
+                break;
+            case 'sent':
+                $id = request::getInt('id');
+                $prefWordId = word::idToSplit($id);
+                $file = DIR_SITE::SITE_CORE.'data/comp/'.$path.'/sent/'.$prefWordId.'sent.html';
                 break;
             // Получаение VIP правила
             case 'vip':
                 $id = request::getInt('id');
-                $obj = request::get('obj');
-                $objId = request::get('objid');
+                $obj = request::get('obj') == 'sent' ? 'sent' : 'word';
+                //$objId = request::get('objid');
 
                 $file = DIR_SITE::SITE_CORE.'data/comp/'.$path.'/count.txt';
                 $countData = @filesystem::loadFileContentUnSerialize($file);
@@ -82,16 +89,17 @@ class eng{
                     }
                 } // if (!$isFree)
 
-                $path = ( $obj == 'sent' ) ? self::_getSentVipPath($id, $objId) : self::_getWordVipPath($id, $objId);
+                /*$path = ( $obj == 'sent' ) ? self::_getSentVipPath($id, $objId) : self::_getWordVipPath($id, 'Id);
                 if ( !$path ){
                     die('Bad vip path');
                 }
 
-                $file = DIR_SITE::SITE_CORE.'data/comp/'.$path.'/data.txt';
-                break;
-            case 'sent':
+                $prefWordId = word::idToSplit($id);
+                $file = DIR_SITE::SITE_CORE.'data/comp/'.$path.'/data.txt';*/
+
                 $id = request::getInt('id');
-                $file = DIR_SITE::SITE_CORE.'data/comp/'.$path.'/sent/'.$id.'.html';
+                $prefWordId = word::idToSplit($id);
+                $file = DIR_SITE::SITE_CORE.'data/comp/'.$path.'/'.$obj.'/'.$prefWordId.'vip.html';
                 break;
             default:
                 die('Bad type');

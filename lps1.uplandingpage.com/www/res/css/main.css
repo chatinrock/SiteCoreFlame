@@ -1,0 +1,76 @@
+.block-edit{
+	border: 1px #a9a9a9 solid !important;
+}
+span.varible-edit{
+	color: inherit !important;
+	font-size: inherit !important;
+}
+
+.hidden{
+	display: none;
+}
+.fancybox-wrap {
+	/*    top: 100px !important;*/
+}
+
+#treeTypeBox{
+	width: 400px;
+	height: 200px;
+}
+
+#cmpText{
+	width: 95%;
+	height: 190px;
+}
+
+/*Фиксированая панель слева*/ 
+.fixedLeftPanel {
+	height: 105px;
+	left: 0;
+	width: 16px;
+	opacity: 0.5;
+	position: fixed;
+	top: 30%;
+	z-index: 1100;
+	background-color: white;
+	padding: 2px 2px 2px 2px;
+}
+.fixedLeftPanel:hover {
+	opacity: 1;
+}
+
+.fixedLeftPanel img{
+	cursor: pointer;
+	margin-bottom: 10px;
+}
+
+table.varibleTable td.caption{
+	font-weight: bold;
+	width: 100px;
+}
+
+table.varibleTable tr>td{
+	padding-bottom: 5px;
+}
+
+/*
+#controlMainPanel.hidden{
+	display: none !important;
+    visibility: hidden;
+}*/
+
+#controlMainPanel, #controlVariblePanel{
+	margin: 5px 5px;
+}
+
+#controlMainPanel input, #controlVariblePanel input{
+	background-color: #e0e0e0;
+    border: 1px solid #E2E4E9;
+    border-radius: 3px 3px 3px 3px;
+    color: #2d2d2d;
+    padding: 5px 5px;
+}
+
+#controlMainPanel input:hover, #controlVariblePanel input:hover{
+	background-color: #ffffff;
+}

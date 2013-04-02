@@ -1,0 +1,29 @@
+#flashContent {
+	width: 640px;
+	height: 360px;
+}
+
+#lv-parent{
+	display: block;
+	position: relative;
+	height: 1160px;
+}
+
+#lv-child{
+	width: 640px;
+	height: 360px;
+	margin: auto;
+}
+
+#pointer{
+	width: 8px;
+	height: 8px;
+	position: absolute;
+}
+
+#commentBox{
+	border: 0px;
+	width: 640px;
+	overflow-x: hidden;
+	height: 800px;
+}
