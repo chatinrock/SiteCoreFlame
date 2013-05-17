@@ -6,6 +6,7 @@
 	
     border: 0;
     padding: 0;
+	box-shadow: none;
 }
 
 #htmlDataBox tr.part{
@@ -46,7 +47,7 @@
 	vertical-align: middle;
 }
 
-#htmlDataBox tr:hover{
+#htmlDataBox tr:hover, #htmlDataBox tr:hover td{
 	background-color: #f1f1f1;
 }
 
@@ -80,7 +81,7 @@
 #partBtnBox{
     position: absolute;
     display: none;
-    width: 40px;
+    /*width: 40px;*/
     height: 20px;
 	padding-left: 4px;
 }
@@ -117,7 +118,7 @@ span.transkr{
 
 }
 
-.highlight{
+#htmlDataBox .highlight,#htmlDataBox  .highlight td{
     background-color: #a7ddff;
 	border-top: 1px solid #3f7394;
 	border-bottom: 1px solid #3f7394;
@@ -133,7 +134,6 @@ span.sentence span.word{
 	min-height: 22px;
 }
 
-
 /*
 span.sentence span.word:last-child{
     padding-right: 40px;
@@ -143,6 +143,16 @@ span.sentence{
 }
 
 */
+
+.empty-body #header{
+	margin-bottom: 20px;
+}
+
+#playerObjId{
+	height: 1px;
+	position: absolute;
+	left: -1000;
+}
 
 #playerFlashBox{
 	text-align:	center;
@@ -247,6 +257,10 @@ span.sentence{
 	color: #F7FFEA !important;
 }
 
+#htmlDataBox .sentence.select{
+	background-color: #a5ffb2;
+}
+
 .wordBox{
 	font-size: 18px;
 	font-weight: bold;
@@ -289,6 +303,9 @@ span.sentence{
 	height: 50px;
 	background: url('/res/comp/spl/objItem/eng/img/how-learn-passive.png') no-repeat;
 	opacity: 0.2; 
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+	filter: alpha(opacity=20);
+    -moz-opacity: 0.2;
 	position: absolute;
 	right: 318px;
 	top: 50px;
@@ -299,5 +316,27 @@ span.sentence{
 .how-learn:hover{
 	background: url('/res/comp/spl/objItem/eng/img/how-learn-active.png') no-repeat;
 	opacity: 1; 
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter: alpha(opacity=100);
+    -moz-opacity: 100;
 	position: absolute;
 }
+
+#main-content{
+	width: 580px;
+}
+
+#sidebar{
+	width: 280px;
+}
+
+
+#sidebar-right{
+	background-position: -80px 0 ;
+	background-color: #fafafa;
+}
+
+.post-border-bottom{
+	display: none;
+}
+

@@ -18,10 +18,6 @@ use site\core\admin\comp\spl\freeScript\ORM\userSpeakTime;
 
 class user{
 
-
-
-
-
     public function action(){
 
         if ( !isset($_SESSION['userData'])){

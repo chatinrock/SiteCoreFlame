@@ -3,9 +3,12 @@ if ( !function_exists('menuChild') ){
     function menuChild($item){
         $count = count($item);
         for( $i = 0; $i < $count; $i++ ){
+			$nameList = explode('|', $item[$i]['name'], 2);
+			$nameFirst = $nameList[0];
+			$nameSecond = isset($nameList[1])?$nameList[1]:'';
             ?>
         <li class="<?=$item[$i]['class']?>">
-            <a href="<?=$item[$i]['link']?>"><?=$item[$i]['name']?><span><?='вписать'?>&nbsp;	</span></a>
+            <a href="<?=$item[$i]['link']?>"><?=$nameFirst?><span><?=$nameSecond?>&nbsp;	</span></a>
 
 
             <?if(isset($item[$i]['item'])){?>

@@ -41,9 +41,13 @@
     <![endif]-->
     <script type="text/javascript" src="http://theme.codecampus.ru/plugin/lightbox/jquery.lightbox.min.js"></script>
 
+    <script src="//yandex.st/jquery/cookie/1.0/jquery.cookie.min.js"></script>
+
 
     <script src="http://theme.codecampus.ru/plugin/SWFUpload_v2.2.0.1/swfupload.js" type="text/javascript"></script>
-    <script src="/res/js/mvc-files.min.js" type="text/javascript"></script>
+    <!--<script src="http://theme.codecampus.ru/plugin/SWFUpload_v2.2.0.1/plugins/swfupload.cookies.js" type="text/javascript"></script>-->
+    <script src="/res/js/min/mvc-files.js" type="text/javascript"></script>
+
 
     <link rel="stylesheet" type="text/css" href="/res/css/main.css" />
 </head>
@@ -73,12 +77,12 @@
     </div>
     <div class="sixteen columns" id="explorerPanel"></div>
 
-    <!--<form id="formTest" method="POST" enctype="multipart/form-data">
+    <!--<form id="formTest" method="POST" enctype="multipart/form-data" action="/?group=group&subgroup=subgroup&profile=profile&action=upload">
         <input type="file" name="file"/>
         <input type="submit">
-    </form>-->
+    </form> -->
 </div> <!--container-->
-<script>
+<script type="text/javascript">
 
 var explorerData = {
     list: <?=self::get('list');?>,
@@ -86,6 +90,7 @@ var explorerData = {
     profile: '<?=self::get('profile');?>',
     group: '<?=self::get('group');?>',
     subgroup: '<?=self::get('subgroup');?>',
+    mark: '<?=self::get('mark');?>'
 }
 
 $(document).ready(function () {

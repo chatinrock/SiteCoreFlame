@@ -30,11 +30,7 @@ $infoData = self::get('infoData');
                  
     </div>
 	<div class="post-thumb">
-		<span class="imagePreload" style="width: 560px; height: 250px;" title="<?= $infoData['category'] ?>">
-			<span>
-				<?=$infoData['prevImgUrl']?>
-			</span>
-		</span>
+         <img style="width: 630px; height: 272px;" title="<?= $infoData['caption'] ?>" src="<?= $infoData['prevImgUrl'] ?>">
 	</div>
     <div class="socialBtnBox"></div>
 	
@@ -48,7 +44,7 @@ $infoData = self::get('infoData');
 </article>
 <script type="text/javascript">
 $(window).load(function() {
-	$('.imagePreload').each( function() { $(this).ddImagePreload(); });
+	//$('.imagePreload').each( function() { $(this).ddImagePreload(); });
 });
 </script>
 <div class="clear"></div>

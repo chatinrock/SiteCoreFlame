@@ -5,10 +5,11 @@ include('/opt/www/FlameCore/engine/core/function/errorHandler.php');
 use core\classes\filesystem;
 
 $consoleData = getopt('n:');
-$siteName=$consoleData['n'];
+$siteName=isset($consoleData['n'])?$consoleData['n']:'';
 
 if ( !is_string($siteName) || !trim($siteName) ){
 	echo "Use: createSite.php -n={sitename}".PHP_EOL;
+	exit;
 } // if
 
 chdir('/opt/www/SiteCoreFlame/');

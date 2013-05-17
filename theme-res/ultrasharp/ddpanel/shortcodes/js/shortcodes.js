@@ -239,7 +239,7 @@
 			
 		},
 		
-		ddImagePreload: function() {
+		/*ddImagePreload: function() {
 			
 			//// main vars
 			var mainCont = this;
@@ -247,6 +247,7 @@
 			
 			var thisImageObj = new Image();
 			jQuery(thisImageObj).attr('src', imageUrl);
+
 			
 			jQuery(thisImageObj).load(function() {
 				
@@ -262,7 +263,7 @@
 				
 			});
 			
-		},
+		},*/
 		
 		ddFadeOnHover: function(thisOpacity) {
 			

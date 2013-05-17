@@ -24,6 +24,11 @@ body {
 	background-repeat: repeat;
 }
 
+body.empty-body{
+	background: #ffffff; 
+	background-image: none;
+}
+
 .wrapper { width: 980px; margin: 0 auto; position: relative; }
 
 .button-clear, .button-clear:focus, .button-clear:active { width: auto; font: bold 11px/11px Helvetica, Arial, sans-serif; padding: 8px 15px 7px 15px; display: inline-block; cursor: pointer; border-radius: 2px; -moz-border-radius: 2px; -webkit-border-radius: 2px; margin-right: 7px; }
@@ -188,7 +193,7 @@ li img { display: block; }
 	
 	
 /* === SUBMENU === */
-#main-bar ul ul { position: absolute; top: 51px; width: 200px; padding: 7px 0; display: none; }
+#main-bar ul ul { position: absolute; top: 50px; width: 200px; padding: 7px 0; display: none; border-top: 1px solid #EAEBEB;}
 #main-bar ul ul li { margin: 0; float: left; width: 100%; }
 #main-bar ul ul li a { font: normal 12px/17px Helvetica, Arial, sans-serif; color: rgba(255, 255, 255, .7); padding: 5px 15px 5px 15px; }
 #main-bar ul ul li a:hover { font: bold 14px/17px Helvetica, Arial, sans-serif; color: rgba(255, 255, 255, 1); padding: 5px 15px 5px 15px; }
@@ -256,14 +261,14 @@ li img { display: block; }
 #content-bottom-bg { width: 978px; height: 5px; position: absolute; background: #ffffff; bottom: -3px; left: 1px; z-index: 2; box-shadow: 0 1px 3px #999999; }
 #content-bottom-bg2 { width: 976px; height: 5px; position: absolute; background: #ffffff; bottom: -5px; left: 2px; z-index: 1; box-shadow: 0 1px 3px #999999; }
 
-.block { padding: 20px 40px 0 40px; float: left; width: 900px; }
+.block { padding: 20px 40px 0 40px; float: left; width: 910px; }
 
 .page-title { font: bold 40px/42px Helvetica, Arial, sans-serif; margin: -10px 0 30px 20px; color: #111111; text-shadow: 0 1px 0 #ffffff; }
 .page-slogan { font: italic 20px/24px Georgia, "Times New Roman", Times, serif; color: #999999; margin: -23px 0 35px 20px; }
 
 .single-title { color: #111111; margin: 10px 0 .8em 0; }
 
-.main-content { padding: 30px 40px 30px 40px; float: left; }
+.main-content { padding: 30px 40px 30px 30px; float: left; }
 #main-content { width: 650px; float: left; }
 #sidebar-left #main-content { float: right; }
 #full-width #main-content { width: 900px; float: left; }
@@ -294,7 +299,7 @@ li img { display: block; }
 	.sidebar-item ul li a { -webkit-transition: background-color .3s ease-out, color .3s ease-out; -moz-transition: background-color .3s ease-out, color .3s ease-out; -o-transition: background-color .3s ease-out, color .3s ease-out; -ms-transition: background-color .3s ease-out, color .3s ease-out; transition: background-color .3s ease-out, color .3s ease-out; }
 	.sidebar-item ul li a:hover { background-color: rgba(255, 255, 255, .5); text-decoration: none; color: #626262; }
 	
-	#sidebar-right .subpages { list-style: none; padding: 0; margin: 1em 0 1.2em -30px; border-top: 1px solid #e9e9e9; }
+	#sidebar-right .subpages { list-style: none; padding: 0; margin: 1em 0 1.2em -15px; border-top: 1px solid #e9e9e9; }
 	#sidebar-left .subpages { list-style: none; padding: 0; margin: 1em -30px 1.2em 0; border-top: 1px solid #e9e9e9; }
 	.subpages li { border-bottom: 1px solid #e9e9e9; border-top: 1px solid #ffffff; }
 	#sidebar-right .subpages li > a { padding: 8px 15px 8px 42px !important; display: block; background: url(images/icons/subpages-arrow.png) no-repeat 30px center !important; font: italic 14px/18px Georgia, "Times New Roman", Times, serif !important; color: #999999 !important; }
@@ -616,7 +621,7 @@ li img { display: block; }
 	
 	/* ===== PAGINATION ===== */
 	
-	#pagination { float: left; width: 100%; background: #fbfbfb url(images/shortcodes/block-dashed.png) repeat-x top left; margin: -42px 0 -30px -40px; padding: 30px 40px 30px 40px; }
+	#pagination { float: left; width: 100%; background: #fbfbfb url(images/shortcodes/block-dashed.png) repeat-x top left; margin: -42px 0 -30px -30px; padding: 30px 40px 30px 30px; }
 	#pagination ul { list-style: none; padding: 0; margin: 0; float: left; width: 100%; }
 	#pagination ul li { float: left; margin-right: 6px; }
 	
@@ -625,7 +630,7 @@ li img { display: block; }
 	#pagination ul li a:active { background: url(images/button-bg.gif) repeat-x left top; border-top: 1px solid #ababab; border-left: 1px solid #c4c4c5; border-right: 1px solid #c4c4c5; border-bottom: 1px solid #d6d6d6; box-shadow: 0 1px 0 #ffffff, inset 0 1px 3px #bababa; color: #717171; text-shadow: 0 1px 1px #ffffff; }
 	
 	.fixed-page #full-width #pagination { margin-top: 40px; }
-	.fixed-page #sidebar-right #pagination, .fixed-page #sidebar-left #pagination { width: 580px; margin-top: 30px; }
+	.fixed-page #sidebar-right #pagination, .fixed-page #sidebar-left #pagination { width: 644px; margin-top: 30px; }
 	
 	
 	
@@ -857,4 +862,12 @@ div.privatePost{
 
 .contactList li.twitter{
 	background: url("../images/contact/twitter-16.png") no-repeat scroll left center transparent;;
+}
+
+div.center{
+	text-align: center;
+}
+
+blockquote.gray{
+	background-color: #f2f2f2;
 }

@@ -22,6 +22,16 @@ include DIR::CORE.'core/function/errorHandler.php';
 $siteName = request::get('category');
 $landingPageName = request::get('num');
 
+session_start();
+if ( !isset($_SESSION['userData']) ){
+    header('Location: http://lps1.uplandingpage.com/auth/');
+    exit;
+}
+
+if ( $_SESSION['userData']['site'] != $siteName ){
+    die('Access forbidden');
+}
+
 if ( !wordvalid::isLatin($landingPageName) ){
     die('Bad landing page name');
 }
@@ -81,4 +91,4 @@ $adminBlockParser->setTplPath($tplPath);
 $adminBlockParser->setAdminResPath(DIR::SITE_CORE.'tpl/include/');
 $adminBlockParser->parseBlock($tplFile, adminBlockParser::RETURN_TYPE_ECHO);
 
-//var_dump($adminBlockParser);
+//var_dump($treeFile);

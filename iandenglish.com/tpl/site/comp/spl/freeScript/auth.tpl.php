@@ -13,11 +13,18 @@
     </div>
 </div>
 
+<!--
+<script src="/res/comp/spl/freeScript/js/auth.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+-->
+
 <script type="text/javascript">
-    yepnope({
-        load: ['/res/comp/spl/freeScript/js/auth.js'],
-        complete:function(){
-            authMvc.init();
-        }
-    });
+
+        yepnope({
+            load: ['/res/comp/spl/freeScript/js/auth.js'],
+            complete:function(){
+                authMvc.init();
+            }
+        });
+
 </script>

@@ -13,6 +13,8 @@ use core\classes\dbus;
 use core\classes\render;
 use core\classes\site\dir as sitePath;
 
+use ORM\users as usersOrm;
+
 /**
  * Общие функции
  *

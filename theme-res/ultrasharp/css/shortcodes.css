@@ -1032,3 +1032,7 @@ border-radius: 3px; -moz-border-radius: 3px; -o-border-radius: 3px; -webkit-bord
 
 
 .group { float: left; width: 100%; }
+
+.textCenter{
+	text-align:center;
+}

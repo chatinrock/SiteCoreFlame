@@ -26,16 +26,16 @@
                 </div>
 
                 <div id="mySocialBtn">
-                    <a href="<?=self::varible('vkUrl', 'VKontakte URL');?>" target="_blank" rel="nofollow"><img title="Наша страница Вконтакте" src="http://theme.codecampus.ru/plugin/mySocialBtn/images/white/vkontakte23.png" alt="Вконтакте"></a>
-                    <a href="<?=self::varible('fbUrl', 'Facebook URL');?>" target="_blank" rel="nofollow"><img title="Наша страница Facebook" src="http://theme.codecampus.ru/plugin/mySocialBtn/images/white/facebook23.png" alt="Facebook"></a>
-                    <a href="<?=self::varible('twitterUrl');?>" target="_blank" rel="nofollow"><img title="Наша страница Twitter" src="http://theme.codecampus.ru/plugin/mySocialBtn/images/white/twitter23.png" alt="Twitter"></a>
+                    <?if ( self::varible('vkUrl') ){?><a href="<?=self::varible('vkUrl', 'VKontakte URL');?>" target="_blank" rel="nofollow"><img title="Наша страница Вконтакте" src="http://theme.codecampus.ru/plugin/mySocialBtn/images/white/vkontakte23.png" alt="Вконтакте"></a><?}?>
+                    <?if ( self::varible('fbUrl') ){?><a href="<?=self::varible('fbUrl', 'Facebook URL');?>" target="_blank" rel="nofollow"><img title="Наша страница Facebook" src="http://theme.codecampus.ru/plugin/mySocialBtn/images/white/facebook23.png" alt="Facebook"></a><?}?>
+                    <?if ( self::varible('twitterUrl') ){?><a href="<?=self::varible('twitterUrl');?>" target="_blank" rel="nofollow"><img title="Наша страница Twitter" src="http://theme.codecampus.ru/plugin/mySocialBtn/images/white/twitter23.png" alt="Twitter"></a><?}?>
                 </div>
 
                 <span id="search-box">
 					<div class="pop-up">
 						<div class="pop-up-wrapper">
 							<form action="#ultrasharp" method="get">
-								<input type="text" name="s" id="s-input" value="Keywords..." onFocus="if(jQuery(this).val() == 'Keywords...') { jQuery(this).val(''); }" autocomplete="off" />
+								<input type="text" name="s" id="s-input" value="Поиск..." onFocus="if(jQuery(this).val() == 'Поиск...') { jQuery(this).val(''); }" autocomplete="off" />
 								<input type="submit" id="s-submit" value="Search" class="button-color" />
 								<div id="ajax-search"></div>
 							</form>

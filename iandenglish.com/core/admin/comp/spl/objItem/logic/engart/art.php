@@ -71,6 +71,7 @@ class art extends \core\classes\component\abstr\admin\comp implements \core\clas
             $paramData['resurl'] = self::post('resurl');
             $paramData['type'] = self::post('type');
             filesystem::saveFile($saveDir, 'param.txt', serialize($paramData));
+            (new articleOrm())->insert(['objItemId'=>$objItemId]);
         }
 
         if ( is_file($saveDir.'param.txt') || $paramData){
@@ -98,11 +99,11 @@ class art extends \core\classes\component\abstr\admin\comp implements \core\clas
             self::setJson('objItemNameListJson', $objItemData);
 
             $engartText = filesystem::loadFileContent($saveDir.'engart.txt');
-            if ( !$engartText || true  ){
+            if ( !$engartText  ){
                 $engartData = engartModel::html2data($textfile);
                 //echo 'File: '.$textfile;
                 $engartText = $engartData['text'];
-                //filesystem::saveFile($saveDir, 'engart.txt', $engartText);
+                filesystem::saveFile($saveDir, 'engart.txt', $engartText);
                 unset($engartData['text']);
                 filesystem::saveFile($saveDir, 'count.txt', serialize($engartData));
             }
@@ -194,6 +195,7 @@ class art extends \core\classes\component\abstr\admin\comp implements \core\clas
             throw new \Exception('Bad data', 34);
             return;
         }
+        $ruleData->transcr = trim($ruleData->transcr,'[]');
 
         $itemId = self::postInt('itemId');
         $ruleMaxId = self::postInt('ruleMaxId');
@@ -206,6 +208,9 @@ class art extends \core\classes\component\abstr\admin\comp implements \core\clas
         $saveDir = dirFunc::getSiteDataPath($saveDir);
 
         $vipComment = self::post('vipcomment');
+        $vipData['voice'] = self::post('vipVoice');
+
+        //echo $vipComment;
 
         $type = self::post('type');
         switch($type){
@@ -214,11 +219,13 @@ class art extends \core\classes\component\abstr\admin\comp implements \core\clas
                 engartModel::saveSentenceRule($itemId, $sentId, $ruleData, $ruleMaxId);
                 $prefSentId = word::idToSplit($sentId);
                 filesystem::saveFile($saveDir.'sent/'.$prefSentId, 'vip.html', $vipComment);
+                filesystem::saveFile($saveDir.'sent/'.$prefSentId, 'vip.data', json_encode($vipData));
                 break;
             case 'word':
                 $wordId = engartModel::saveWordRule($itemId, $ruleData, $ruleMaxId);
                 $prefWordId = word::idToSplit($wordId);
                 filesystem::saveFile($saveDir.'word/'.$prefWordId, 'vip.html', $vipComment);
+                filesystem::saveFile($saveDir.'word/'.$prefWordId, 'vip.json', json_encode($vipData));
                 break;
         } // switch
         // func. saveDataAction
@@ -261,8 +268,9 @@ class art extends \core\classes\component\abstr\admin\comp implements \core\clas
     }
 
     public function getVipCommentAction (){
-        $this->view->setRenderType(render::NONE);
-        header('Content-Type: text/html; charset=utf-8');
+        //$this->view->setRenderType(render::NONE);
+        //header('Content-Type: text/html; charset=utf-8');
+        $this->view->setRenderType(render::JSON);
 
         $type = self::get('type') == 'word' ? 'word' : 'sent';
         $objItemId = self::getInt('itemId');
@@ -276,7 +284,10 @@ class art extends \core\classes\component\abstr\admin\comp implements \core\clas
         $loadData = dirFunc::getSiteDataPath($loadData);
         $prefWordId = word::idToSplit($wordId);
 
-        filesystem::printFile($loadData.$type.'/'.$prefWordId.'vip.html');
+        $vipData['html'] = filesystem::loadFileContent($loadData.$type.'/'.$prefWordId.'vip.html');
+        $vipData['data'] = json_decode(filesystem::loadFileContent($loadData.$type.'/'.$prefWordId.'vip.json'));
+        $vipData['type'] = $type;
+        self::setVar('json', $vipData);
         // func. getVipCommentAction
     }
 	

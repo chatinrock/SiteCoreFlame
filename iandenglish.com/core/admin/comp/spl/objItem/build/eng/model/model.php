@@ -89,7 +89,7 @@ class model{
 
         foreach( $pData as $obj ){
             $data = json_decode($obj['data'], true);
-            $render->setVar('comment', $data['comment']);
+            $render->setVar('comment', $data['comment'], false);
             $render->setVar('transcr', $data['transcr']);
             $render->setVar('translate', $data['translate']);
             $render->setVar('word', $data['word']);

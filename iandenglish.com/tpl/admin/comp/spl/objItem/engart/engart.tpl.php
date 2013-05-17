@@ -14,8 +14,10 @@
 <script src="res/plugin/classes/utils.js" type="text/javascript"></script>
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
 
-<script type="text/javascript" src="res/plugin/ckeditor/ckeditor.js"></script>
-<script type="text/javascript" src="res/plugin/ckeditor/config.js"></script>
+<!--<script type="text/javascript" src="res/plugin/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="res/plugin/ckeditor/config.js"></script>-->
+<script type="text/javascript" src="http://theme.codecampus.ru/plugin/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="http://theme.codecampus.ru/plugin/ckeditor/config.js"></script>
 
 <style>
     div .dt{font-weight: bold}
@@ -378,7 +380,14 @@
             </div>
         </div>
 
-        <div id="tabs-vipcomment"><textarea id="vipcomment"></textarea></div>
+        <div id="tabs-vipcomment">
+            <div>MP3 файл комментария(полный путь до файла в системе)</div>
+            <div><input type="text" id="vipVoice" style="width: 300px"/></div>
+            <div>
+                Текст комментария
+                <textarea id="vipcomment"></textarea>
+            </div>
+        </div>
     </div><!-- <div id="tabs"> -->
     <div>
         <input type="button" value="Сохранить" id="saveFormRuleBtn"/>
@@ -692,18 +701,41 @@
                     height: 500,
                     autoSize: false,
                     'afterShow': function(){
-                        if ( CKEDITOR.instances.vipcomment ){
-                            CKEDITOR.instances.vipcomment.destroy(true);
-                        }
-                        var query = { type: 'sent', itemId: engartData.objItemId, wordId: saveRuleObj.id};
-                        var url = utils.url({ method: 'getVipComment', query: query});;
-                        $('#vipcomment').load(url, function() {
+                        //if ( CKEDITOR.instances.vipcomment ){
+                        //    CKEDITOR.instances.vipcomment.destroy(true);
+                        //}
+
+                        //var url = utils.url({ method: 'getVipComment', query: query});;
+                        /*$('#vipcomment').load(url, function() {
                             CKEDITOR.replace( 'vipcomment', {toolbar: 'Article'} );
+                        });*/
+                        HAjax.getVipComment({
+                            data: {
+                                type: 'sent',
+                                itemId: engartData.objItemId,
+                                wordId: saveRuleObj.id
+                            }
                         });
+
+
+                    },
+                    'beforeClose':function(){
+                        //console.log('close');
+                        //CKEDITOR.remove(CKEDITOR.instances.vipcomment);
+                        CKEDITOR.instances.vipcomment.destroy(true);
                     }
                 }]);
             }
             // func. htmlDataBoxClick
+        }
+
+        function cbGetVipComment(pData){
+            jQuery('#vipcomment').val(pData['html']);
+            CKEDITOR.replace( 'vipcomment', {toolbar: 'Article'} );
+            if ( pData['data'] != null ){
+                jQuery('#vipVoice').val(pData['data']['voice']);
+            }
+            // func. cbGetVipComment
         }
 
         /**
@@ -780,15 +812,28 @@
                 height: 500,
                 autoSize: false,
                 'afterShow': function(){
-                    if ( CKEDITOR.instances.vipcomment ){
-                        CKEDITOR.instances.vipcomment.destroy(true);
-                    }
-                    var query = { type: 'word', itemId: engartData.objItemId, wordId: firstRel};
-                    var url = utils.url({ method: 'getVipComment', query: query});;
+                    //if ( CKEDITOR.instances.vipcomment ){
+                        //CKEDITOR.instances.vipcomment.destroy(true);
+                        //CKEDITOR.remove(CKEDITOR.instances.vipcomment);
+                    //}
+                    //var query = { type: 'word', itemId: engartData.objItemId, wordId: firstRel};
+                    /*var url = utils.url({ method: 'getVipComment', query: query});;
                     $('#vipcomment').load(url, function() {
                         CKEDITOR.replace( 'vipcomment', {toolbar: 'Article'} );
-                    });
-                }
+                    });*/
+                    HAjax.getVipComment({
+                        data: {
+                            type: 'word',
+                            itemId: engartData.objItemId,
+                            wordId: firstRel
+                        }
+                    }); // HAjax.getVipComment(
+                }, // 'afterShow': function()
+                'beforeClose':function(){
+                    //console.log('close');
+                    //CKEDITOR.remove(CKEDITOR.instances.vipcomment);
+                    CKEDITOR.instances.vipcomment.destroy(true);
+                } // 'beforeClose':function()
             }]);
             // func. setRuleBtnClick
         }
@@ -885,12 +930,16 @@
 
             var id = saveRuleObj.id == undefined ? '' : saveRuleObj.id;
 
+            var vipcomment = encodeURIComponent(CKEDITOR.instances.vipcomment.getData());
+            var vipVoice = encodeURIComponent(jQuery('#vipVoice').val());
+
             var data = 'json='+saveData+'&type='+saveRuleObj.type+'&id=' + id;
             data += '&itemId='+engartData.objItemId+'&ruleMaxId='+ruleArtNumNew;
-            data += '&vipcomment='+CKEDITOR.instances.vipcomment.getData();
+            data += '&vipcomment='+vipcomment+'&vipVoice='+vipVoice;
 
             HAjax.saveWordData({
                 data: data,
+                dataType: "text",
                 methodType: 'POST'
             });
 
@@ -1158,7 +1207,8 @@
             HAjax.create({
                 saveWordData: cbSaveWordDataSuccess,
                 removeRule: cbRemoveRule,
-                publishArticle: cbPublishArticle
+                publishArticle: cbPublishArticle,
+                getVipComment: cbGetVipComment
             });
 
             initWordList();

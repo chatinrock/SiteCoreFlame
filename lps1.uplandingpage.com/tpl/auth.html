@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+    <!-- Basic Page Needs
+   ================================================== -->
+    <meta charset="utf-8">
+    <title>Auth</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Mobile Specific Metas
+   ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- CSS
+   ================================================== -->
+    <link rel="stylesheet" href="http://theme.codecampus.ru/plugin/grid960/css/base/base.css">
+    <link rel="stylesheet" href="http://theme.codecampus.ru/plugin/grid960/css/base/skeleton.css">
+    <link rel="stylesheet" href="http://theme.codecampus.ru/plugin/grid960/css/base/layout.css">
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Favicons
+     ================================================== -->
+    <link rel="shortcut icon" href="/res/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/res/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/res/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/res/img/apple-touch-icon-114x114.png">
+
+    <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
+
+    <style>
+
+        .btn-primary {
+            background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5);
+            border-style: none;
+            border-width: 1px;
+            color: #FFFFFF;
+            text-shadow: none;
+            border-radius: 0 0 0 0;
+            box-shadow: none;
+            font-weight: 400;
+            float: right;
+            padding: 8px 19px;
+            font-size: 17.5px;
+        }
+
+
+        input.input-block-level{
+            background: none repeat scroll 0 0 #FFFFFF;
+            border: 1px solid #E6E6E6;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) inset;
+            font-size: 16px;
+            height: auto;
+            margin-bottom: 10px;
+            padding: 7px 9px;
+            border-radius: 0 0 0 0;
+            color: #A7A7A7;
+            min-height: 30px;
+            width: 100%;
+            vertical-align: middle;
+            line-height: 20px;
+            display: inline-block;
+            transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+        }
+
+        #login{
+            margin: 180px auto 0 auto;
+            max-width: 325px;
+        }
+
+        .alert {
+            background-color: #FCF8E3;
+            border: 1px solid #FBEED5;
+            border-radius: 4px 4px 4px 4px;
+            color: #C09853;
+            margin-bottom: 20px;
+            padding: 8px 35px 8px 14px;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+            width: 300px;
+        }
+
+        .alert-danger, .alert-error {
+            background-color: #F2DEDE;
+            border-color: #EED3D7;
+            color: #B94A48;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container top">
+    <div class="sixteen columns">
+
+        <div id="login">
+
+            <?if ( self::get('error') ){?>
+            <div class="alert alert-error">
+                <strong>Error</strong> <?=self::get('error')?>
+            </div>
+            <?}?>
+
+            <form action="/auth/?a=auth" method="post" class="form-signin">
+
+                <label class="strong">Email</label>
+                <input type="text" name="login" placeholder="Email адрес" class="input-block-level"/>
+                <label class="strong">Пароль</label>
+                <input type="password" name="pwd" placeholder="Пароль" class="input-block-level"/>
+
+                <button type="submit" class="btn btn-large btn-primary pull-right">Войти</button>
+                <div class="clearfix"></div>
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
+
+</body>
+</html>

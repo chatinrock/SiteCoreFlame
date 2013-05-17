@@ -1,0 +1,35 @@
+<body>
+<script src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+<link type="text/css" rel="stylesheet" href="/res/comp/spl/objItem/eng/css/main.css"/>
+<div id="flashBox"></div>
+
+<script>
+    /**
+     http://{sitename}/lessons/{category}/{artname}/
+     Логика страницы на странице материалов.
+     Содержит 3 класса:
+     playerAudioMvc - обработка mp3 плеера
+     playerVideoMvc - обработка youtube плеера
+     engMvc - обработка страницы
+     */
+
+    var playerAudioMvc = (function(){
+        function cbfInit(pVersion){
+            alert('sdf: ' + pVersion);
+            // func. cbfInit
+        }
+        return {
+            cbfInit: cbfInit
+        }
+    })();
+
+    swfobject.embedSWF("/res/plugin/swfPlayerApi/player.swf",
+            "flashBox", 100, 20, "9.0.124", null,  {},
+            { menu: "false", wmode: "opaque", allowScriptAccess: 'always'},
+            {id: "playerObjId", name: "playerObjId"}, function(){}
+    );
+
+</script>
+
+<!--<object id="playerObjId" name="playerObjId" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="100" height="20"><PARAM NAME="_cx" VALUE="5080"><PARAM NAME="_cy" VALUE="5080"><PARAM NAME="FlashVars" VALUE=""><PARAM NAME="Movie" VALUE="/res/plugin/swfPlayerApi/player.swf"><PARAM NAME="Src" VALUE="/res/plugin/swfPlayerApi/player.swf"><PARAM NAME="WMode" VALUE="Opaque"><PARAM NAME="Play" VALUE="-1"><PARAM NAME="Loop" VALUE="-1"><PARAM NAME="Quality" VALUE="High"><PARAM NAME="SAlign" VALUE=""><PARAM NAME="Menu" VALUE="0"><PARAM NAME="Base" VALUE=""><PARAM NAME="AllowScriptAccess" VALUE="always"><PARAM NAME="Scale" VALUE="ShowAll"><PARAM NAME="DeviceFont" VALUE="0"><PARAM NAME="EmbedMovie" VALUE="0"><PARAM NAME="BGColor" VALUE=""><PARAM NAME="SWRemote" VALUE=""><PARAM NAME="MovieData" VALUE=""><PARAM NAME="SeamlessTabbing" VALUE="1"><PARAM NAME="Profile" VALUE="0"><PARAM NAME="ProfileAddress" VALUE=""><PARAM NAME="ProfilePort" VALUE="0"><PARAM NAME="AllowNetworking" VALUE="all"><PARAM NAME="AllowFullScreen" VALUE="false"><PARAM NAME="AllowFullScreenInteractive" VALUE=""><PARAM NAME="IsDependent" VALUE="0"><param name="menu" value="false"><param name="wmode" value="opaque"><param name="allowScriptAccess" value="always"><param name="movie" value="/res/plugin/swfPlayerApi/player.swf"></object>-->
+</body>

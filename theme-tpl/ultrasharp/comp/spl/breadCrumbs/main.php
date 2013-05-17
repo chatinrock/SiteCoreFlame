@@ -1,9 +1,9 @@
 <section id="breadcrumb">
-		<block itemscope="itemscope" itemtype="http://data-vocabulary.org/Breadcrumb">
-			<a href="/" itemprop="url">
-				<block itemprop="title">Главная</block>
-			</a>
-</block>
+    <block itemscope="itemscope" itemtype="http://data-vocabulary.org/Breadcrumb">
+        <a href="/" itemprop="url">
+            <block itemprop="title">Главная</block>
+        </a>
+    </block>
         <?
         $breadcrumbs = self::get('breadcrumbs');
         $iCount = count($breadcrumbs);
@@ -16,3 +16,4 @@
         ?><span class="breadarrow">&nbsp;/&nbsp; </span><span class='current_crumb'><?=$breadcrumbs[$i]['caption']?></span>
         <?}?>
 </section>
+<div class="clear"></div>

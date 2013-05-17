@@ -49,6 +49,7 @@ var playerAudioMvc = (function(){
 	var playerObj;
 
 	function load(url){
+		//playerObj = document.getElementById('playerObjId');
 		playerObj.loadSound(url);
 		// func. load
 	}
@@ -65,13 +66,13 @@ var playerAudioMvc = (function(){
 	
 	function intervalAction(){
 		var posSec = playerObj.getPosition() / 1000;
-		
 		jQuery.swfPlayerApi.setSliderPosition(posSec);
 		engMvc.highlightPart(posSec);
 		// intervalAction
 	}
 	
 	function play(){
+        intervalAction();
 		timeInterval = setInterval(intervalAction, 900);
 		playerObj.playSound();
 	}
@@ -86,7 +87,6 @@ var playerAudioMvc = (function(){
 	}
 	
 	function cbfInit(pVersion){
-		console.log(pVersion);
 		// func. cbfInit
 	}
 
@@ -159,7 +159,6 @@ var playerVideoMvc = (function(){
 			scrollOffset -= getMaskHeight() / 2  - $obj.outerHeight();
 			
 			//jQuery('#sourceBox').scrollbar.goto({v:scrollOffset});	
-			//console.log(scrollOffset);			
 			jQuery('#sourceBox').scrollTo( {top:scrollOffset+ 'px', left: '0px'}, 300);
 		}
 		// func. scrollGoto
@@ -410,10 +409,10 @@ var engMvc = (function(){
 			
 			$sentBtnBox.find('img[rel="rule"]:first').attr('title', $sentObj.attr('stitle'));
 			
-			if ( !engSent[sentId] ){
-				$sentBtnBox.find('img[rel="viprule"]').hide();
-			}else{
+			if ( engSent[sentId] && engSent[sentId].vipId ){
 				$sentBtnBox.find('img[rel="viprule"]').show();
+			}else{
+				$sentBtnBox.find('img[rel="viprule"]').hide();
 			}
 
             /*if ( sentMouseOn == sentId ){
@@ -519,19 +518,27 @@ var engMvc = (function(){
         }
 
         function hintBoxButtonClick(pButtonRel){
+			var param = {};
             switch(pButtonRel){
                 case 'rule':
                     var url = '/webcore/func/utils/ajax/?name=eng&type=word&path='+paramOptions.path + '&id='+wordRelSelect;
-                    url += '&lightbox[width]=600&lightbox[height]=400'
+                    //url += '&lightbox[width]=600&lightbox[height]=400'
+					param = {width: 400, height: 225};
                     break;
                 case 'viprule':
                     var url = '/webcore/func/utils/ajax/?name=eng&type=vip&objid='+paramOptions.objId+'&obj=word&id='+wordRelSelect+'&path='+paramOptions.path;
-                    url += '&lightbox[width]=800&lightbox[height]=600'
+                    //url += '&lightbox[width]=800&lightbox[height]=600'
+					param = {width: 600, height: 338, iframe: true};
                     break;
             }
-            jQuery.lightbox(url);
+            jQuery.lightbox(url, param);
             // func. hintBoxButtonClick
         }
+		
+		function setVipVoice(pUrl){
+			// #
+			// func. setVipVoice
+		}
 
         function hintBoxClick(pEvent){
             var rel = jQuery(pEvent.target).attr('rel');
@@ -632,20 +639,24 @@ var engMvc = (function(){
 
         function sentBtnBoxClick(pEvent){
             var rel = jQuery(pEvent.target).attr('rel');
+			var param = {};
             switch( rel ){
                 case 'rule':
-                    var url = '/webcore/func/utils/ajax/?name=eng&type=sent&path='+paramOptions.path + '&id='+sentMouseOn
-                    url += '&lightbox[width]=600&lightbox[height]=400'
+                    var url = '/webcore/func/utils/ajax/?name=eng&type=sent&path='+paramOptions.path + '&id='+sentMouseOn;
+                    //url += '&lightbox[width]=600&lightbox[height]=400';
+					param = {width: 400, height: 225};
                     break;
                 case 'viprule':
                     if ( !engSent[sentMouseOn] ){
                         break;
                     }
-                    var url = '/webcore/func/utils/ajax/?name=eng&type=vip&objid='+paramOptions.objId+'&id='+sentMouseOn+'&obj=sent&path='+paramOptions.path;;
-                    url += '&lightbox[width]=800&lightbox[height]=600'
+                    var url = '/webcore/func/utils/ajax/?name=eng&type=vip&objid='+paramOptions.objId+'&id='+sentMouseOn+'&obj=sent&path='+paramOptions.path;
+                    //url += '&lightbox[width]=800&lightbox[height]=600';
+					param = {width: 600, height: 338};
                     break;
             }
-            jQuery.lightbox(url);
+			
+            jQuery.lightbox(url, param);
             // func. sentBtnBoxClick
         }
 		
@@ -654,14 +665,14 @@ var engMvc = (function(){
 				alert('Ошибка: Не удалось загрузить плееер');
 				return;
 			}
-			
-			playerMvc.init({playerObjId:'playerObjId'});
+			//playerMvc.init({playerObjId:'playerObjId'});
 			// func. flashSoundPlayerLoad			
 		}
 		
 		function initSound(){
 			playerMvc = playerAudioMvc;
 			playerMvc.cbfInit = function(pVersion){
+				playerMvc.init({playerObjId:'playerObjId'});
 				playerMvc.load(paramOptions.resUrl);
 				//playerMvc.play();
 			};
@@ -768,6 +779,16 @@ var engMvc = (function(){
 			// func. bookmarkBtnClick
 		}
 
+        function sentBtnMouseOver(){
+            jQuery('#sent'+sentMouseOn).addClass('select');
+            // func. sentBtnMouseOver
+        }
+
+        function sentBtnMouseOut(){
+            jQuery('#sent'+sentMouseOn).removeClass('select');
+            // func. sentBtnMouseOut
+        }
+
         function init(pOptions){
             options = pOptions;
 			
@@ -778,11 +799,13 @@ var engMvc = (function(){
             jQuery(options.htmlDataBox).mousemove(htmlDataBoxMouseMove).click(htmlDataBoxClick);
             jQuery(options.hintBox).click(hintBoxClick);
             jQuery(options.partBtnBox).click(partBtnBoxClick);
-            jQuery(options.sentBtnBox).click(sentBtnBoxClick);
+            jQuery(options.sentBtnBox).click(sentBtnBoxClick).mouseover(sentBtnMouseOver).mouseout(sentBtnMouseOut);
 			
 			jQuery('#sourceBox').addClass(paramOptions.type);
 			jQuery('#playerObjId').addClass(paramOptions.type);
 			jQuery('#partBtnBox').addClass(paramOptions.type);
+			
+			jQuery('#sidebar').append('<div id="commmentBox">sdf</div>');
 
 			if ( paramOptions.type == 'sound'){
 				initSound();
@@ -796,7 +819,8 @@ var engMvc = (function(){
             init: init,
 			highlightPart: highlightPart,
 			findHighLightPart: findHighLightPart,
-			removeHighlight: removeHighlight
+			removeHighlight: removeHighlight,
+			setVipVoice: setVipVoice
         }
     })(); // engMvc
 	

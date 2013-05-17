@@ -39,9 +39,9 @@ if (is_array($oiListData)) {
                     </div>
                     <? if ($item['prevImgUrl']) { ?>
                     <div class="post-thumb">
-                        <a href="<?= $item['url'] ?>"><span class="imagePreload" style="width: 560px; height: 250px;"
-                                                            title="<?= $item['caption'] ?>"><span><?= $item['prevImgUrl'] ?></span></span></a>
-
+                        <!--<a href="<?= $item['url'] ?>"><span class="imagePreload" style="width: 560px; height: 250px;"
+                                                            title="<?= $item['caption'] ?>"><span><?= $item['prevImgUrl'] ?></span></span></a>-->
+                        <a href="<?= $item['url'] ?>"><img style="width: 630px; height: 272px;" title="<?= $item['caption'] ?>" src="<?= $item['prevImgUrl'] ?>"></a>
                     </div>
                     <? } ?>
 
@@ -83,9 +83,9 @@ if (is_array($oiListData)) {
 } // is_array
 ?>
 <script type="text/javascript">
-    jQuery(document).ready(function() {
+    /*jQuery(document).ready(function() {
         jQuery('.imagePreload').each( function() { $(this).ddImagePreload(); });
-    });
+    });*/
     jQuery(window).load(function() {
         jQuery('.post-thumb img').ddFadeOnHover(0.7);
     });

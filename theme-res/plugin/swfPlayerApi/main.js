@@ -4,25 +4,24 @@
     jQuery.fn.swfPlayerApi = function(arg) {
         var options = $.extend({},$.fn.swfPlayerApi.defaults,arg);
         var $elem;
-		// Проигрывается ли что либо в данный момент
+		// РџСЂРѕРёРіСЂС‹РІР°РµС‚СЃСЏ Р»Рё С‡С‚Рѕ Р»РёР±Рѕ РІ РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚
         var isPlay = false;
         var timeSliderMoving = false;
-		// Ширина перемотки
+		// РЁРёСЂРёРЅР° РїРµСЂРµРјРѕС‚РєРё
         var timeBarWidth;
 
-        var currentTime;
-		// Длинна трека
+		// Р”Р»РёРЅРЅР° С‚СЂРµРєР°
         var duration;
 
         function _init(elem) {
             $elem = $(elem);
-            $elem.addClass('spa-container').append("<p>Загрузка плеера</p>");
+            $elem.addClass('spa-container').append("<p>Р—Р°РіСЂСѓР·РєР° РїР»РµРµСЂР°</p>");
             _buildPlayer();
             // func. _init
         };
 
 		/**
-		* Когда отпустили ползунок прогресс бара
+		* РљРѕРіРґР° РѕС‚РїСѓСЃС‚РёР»Рё РїРѕР»Р·СѓРЅРѕРє РїСЂРѕРіСЂРµСЃСЃ Р±Р°СЂР°
 		*/
         function _dropTimeSlider() {
             var timeBox = $elem.find('.spa-time');
@@ -44,7 +43,7 @@
         };
 		
 		/**
-		* Когда движем ползунком прогресс бара
+		* РљРѕРіРґР° РґРІРёР¶РµРј РїРѕР»Р·СѓРЅРєРѕРј РїСЂРѕРіСЂРµСЃСЃ Р±Р°СЂР°
 		*/
 		function _onTimeSliderMove(evt) {
             if($elem.find('.spa-loading-bar').width() == 0) { return false };
@@ -117,13 +116,13 @@
         };
 
         function _buildPlayer(){
-            // Удаляем инициализацию
+            // РЈРґР°Р»СЏРµРј РёРЅРёС†РёР°Р»РёР·Р°С†РёСЋ
             $elem.find('p:first, div').remove();
 
-            // Создаём главную панель
+            // РЎРѕР·РґР°С‘Рј РіР»Р°РІРЅСѓСЋ РїР°РЅРµР»СЊ
             $elem.append('<div class="clearfix"><a href="#" class="spa-previous-button spa-previous-button-normal"><div class="spa-previous"></div></a><a href="#" class="spa-pp-button spa-play-button-normal"><div class="spa-play"></div></a><a href="#" class="spa-next-button spa-next-button-normal"><div class="spa-next"></div></a><div class="spa-time-bar"><div class="spa-time"><span></span><div class="spa-time-arrow-border"></div><div class="spa-time-arrow"></div></div><div class="spa-loading-bar"></div><div class="spa-progress-bar"></div><div class="spa-time-slider"></div></div></div>');
 
-            // Получаем ширину прогрес бара
+            // РџРѕР»СѓС‡Р°РµРј С€РёСЂРёРЅСѓ РїСЂРѕРіСЂРµСЃ Р±Р°СЂР°
             timeBarWidth = $elem.find('.spa-time-bar').width();
 
             $elem.find('.spa-time').css({opacity: 0, top: -40});
@@ -132,72 +131,72 @@
                 //hide time arrows in IE-6-8
                 $elem.find('.spa-time').children('.spa-time-arrow-border, .spa-time-arrow').hide();
             }
-            // Создаём звуковой контроллер
+            // РЎРѕР·РґР°С‘Рј Р·РІСѓРєРѕРІРѕР№ РєРѕРЅС‚СЂРѕР»Р»РµСЂ
             $elem.find("div:first").append('<div class="spa-sound-control"><div class="spa-volume-button spa-button-normal"></div><div class="spa-volume-bar"><div class="spa-volume-arrow-border"></div><div class="spa-volume-arrow"></div><div class="spa-volume-slider"></div><div class="spa-volume-state-background"><div class="spa-volume-state"></div></div></div></div>');
-            // Создаём панель, где будет выводиться название трека
+            // РЎРѕР·РґР°С‘Рј РїР°РЅРµР»СЊ, РіРґРµ Р±СѓРґРµС‚ РІС‹РІРѕРґРёС‚СЊСЃСЏ РЅР°Р·РІР°РЅРёРµ С‚СЂРµРєР°
             $elem.append('<div class="spa-tracks-container clearfix"><span class="spa-current-title"></span></div>');
 
 
-            // Навели мышку на кнопку старта/пауза
+            // РќР°РІРµР»Рё РјС‹С€РєСѓ РЅР° РєРЅРѕРїРєСѓ СЃС‚Р°СЂС‚Р°/РїР°СѓР·Р°
 
             $elem.find('.spa-previous-button').hover(
-                    function() {
-                        var $this = $(this);
-                        $this.removeClass('spa-previous-button-normal').addClass('spa-previous-button-hover').children('div').stop().fadeTo(500, 1);
-                    },
-                    function() {
-                        var $this = $(this);
-                        $this.removeClass('spa-previous-button-hover spa-previous-button-press').addClass('spa-previous-button-normal').children('div').stop().fadeTo(400, 0.8);
-                    }
+                function() {
+                    var $this = $(this);
+                    $this.removeClass('spa-previous-button-normal').addClass('spa-previous-button-hover').children('div').stop().fadeTo(500, 1);
+                },
+                function() {
+                    var $this = $(this);
+                    $this.removeClass('spa-previous-button-hover spa-previous-button-press').addClass('spa-previous-button-normal').children('div').stop().fadeTo(400, 0.8);
+                }
             ).children('div').fadeTo(0, 0.8);
 
             $elem.find('.spa-next-button').hover(
-                    function() {
-                        var $this = $(this);
-                        $this.removeClass('spa-next-button-normal').addClass('spa-next-button-hover').children('div').stop().fadeTo(500, 1);
-                    },
-                    function() {
-                        var $this = $(this);
-                        $this.removeClass('spa-next-button-hover spa-next-button-press').addClass('spa-next-button-normal').children('div').stop().fadeTo(400, 0.8);
-                    }
+                function() {
+                    var $this = $(this);
+                    $this.removeClass('spa-next-button-normal').addClass('spa-next-button-hover').children('div').stop().fadeTo(500, 1);
+                },
+                function() {
+                    var $this = $(this);
+                    $this.removeClass('spa-next-button-hover spa-next-button-press').addClass('spa-next-button-normal').children('div').stop().fadeTo(400, 0.8);
+                }
             ).children('div').fadeTo(0, 0.8);
 
             $elem.find('.spa-time-slider').hover(
-                    function() {
-                        //if(tracks.length > 0) {
-                            var timeBox = $elem.find('.spa-time').data('hover', true);
-                            if(!timeSliderMoving) {
-                                timeBox.stop().css({opacity: 0, top: -40}).animate({opacity: 1, top: -30}, 300);
-                            }
-                       // }
-                    },
-                    function() {
-                       // if(tracks.length > 0) {
-                            var timeBox = $elem.find('.spa-time').data('hover', false);
-                            if(!timeSliderMoving) {
-                                timeBox.stop().animate({opacity: 0, top: -40}, 200);
-                            }
-                    //    }
-                    }
+                function() {
+                    //if(tracks.length > 0) {
+                        var timeBox = $elem.find('.spa-time').data('hover', true);
+                        if(!timeSliderMoving) {
+                            timeBox.stop().css({opacity: 0, top: -40}).animate({opacity: 1, top: -30}, 300);
+                        }
+                   // }
+                },
+                function() {
+                   // if(tracks.length > 0) {
+                        var timeBox = $elem.find('.spa-time').data('hover', false);
+                        if(!timeSliderMoving) {
+                            timeBox.stop().animate({opacity: 0, top: -40}, 200);
+                        }
+                //    }
+                }
             );
 
-            // Mouse UP на кнопку Prev
+            // Mouse UP РЅР° РєРЅРѕРїРєСѓ Prev
             $(".spa-previous-button").mouseup(
-                    function(){
-                        $(this).removeClass('spa-previous-button-press');
-                    }).mousedown(
-                    function(){
-                        $(this).addClass('spa-previous-button-press');
-                    });
+                function(){
+                    $(this).removeClass('spa-previous-button-press');
+                }).mousedown(
+                function(){
+                    $(this).addClass('spa-previous-button-press');
+                });
 
-            /// Mouse UP на кнопку Next
+            /// Mouse UP РЅР° РєРЅРѕРїРєСѓ Next
             $(".spa-next-button").mouseup(
-                    function(){
-                        $(this).removeClass('spa-next-button-press');;
-                    }).mousedown(
-                    function(){
-                        $(this).addClass('spa-next-button-press');
-                    });
+                function(){
+                    $(this).removeClass('spa-next-button-press');;
+                }).mousedown(
+                function(){
+                    $(this).addClass('spa-next-button-press');
+                });
 
             //play previous track
             $elem.find('.spa-previous-button').click(function() {
@@ -235,15 +234,15 @@
                 $(document).bind('mouseup', _dropVolumeSlider);
                 $(document).bind('mousemove', _onVolumeSliderMove);
             }).dblclick(function() {
-                        if($elem.find('.spa-volume-slider').position().top == 0) {
-                            options.onVolume(1);
-                            _setVolume(1);
-                        }
-                        else {
-                            options.onVolume(0);
-                            _setVolume(0);
-                        }
-                    });
+                if($elem.find('.spa-volume-slider').position().top == 0) {
+                    options.onVolume(1);
+                    _setVolume(1);
+                }
+                else {
+                    options.onVolume(0);
+                    _setVolume(0);
+                }
+            });
 
             //toggle slide of playlist
             $elem.find('.spa-playlist-button').click(function() {
@@ -294,7 +293,7 @@
             }
 
             $.swfPlayerApi.setSliderPosition = function(posSec){
-				// Не выходит ли за диапазон
+				// РќРµ РІС‹С…РѕРґРёС‚ Р»Рё Р·Р° РґРёР°РїР°Р·РѕРЅ
 				if ( posSec * 1000 > duration ){
 					return;
 				}
@@ -309,7 +308,8 @@
                 $elem.find('.spa-time span').text(time);
             };
 			
-			$.swfPlayerApi.soundComplete = function(pos) {
+			$.swfPlayerApi.soundComplete = function(pos){
+                isPlay = false;
                 _setSliderPosition(0);
 				_setMainButtonIcon('play');
             };

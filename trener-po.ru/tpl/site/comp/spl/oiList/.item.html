@@ -1,0 +1,47 @@
+<?
+$oiListData = self::get('oiListData');
+
+$iCount = count($oiListData);
+for( $i = 0; $i < $iCount; $i++){
+    $obj = $oiListData[$i];
+    $email = $obj['seoUrl'].'@trener-po.ru';
+?>
+<div class="imgFile">
+    <div class='frame' data-src="/res/file/resize/<?=$obj['idSplit']?>preview.jpg" id="people<?=$i?>"></div>
+    <div class="description">
+        <h3><a href="<?=$obj['url']?>"><?=$obj['fio']?></a></h3>
+        <div>
+            <div class="item"><span>Стаж:</span><span><?=$obj['exp']?></span></div>
+            <div class="item"><span>Метро:</span><span><?=$obj['metro']?></span></div>
+            <div class="item"><span>Email:</span><a href="mailto:<?=$email?>?Subject=Свяжитесь со мной"><?=$email?></a></div>
+            <div class="feature"><?=$obj['feature']?></div>
+            <div class="note"><?$this->loadFile($obj['notefile'])?></div>
+        </div>
+    </div>
+    <div class="star star<?=$obj['rating']?>"><div></div></div>
+    <a class="imgHover" href="<?=$obj['url']?>"></a>
+    <div class="ribbon"><?=$obj['price']?> руб/час</div>
+    <div class="moreInfoBtn"><a href="<?=$obj['url']?>" class="button blue" style="opacity: 1;">Больше информации</a></div>
+</div>
+
+<?}?>
+
+
+<script>
+    jQuery(document).ready(function(){
+        jQuery('div.frame').each(function(num, obj){
+            var img = new Image();
+            img.src = jQuery(obj).attr('data-src');
+            img['data-id'] = obj.id;
+            img.onload = function() {
+                if ( this.width < 200 ){
+                    this.style.marginLeft = ((200-this.width)/2) + 'px';
+                }
+                if ( this.height < 200 ){
+                    this.style.marginTop = ((200-this.height)/2) + 'px';
+                }
+                jQuery('#' + this['data-id']).append(this);
+            } // img.onload
+        }); // jQuery('#imgPeopleList div.frame')
+    })
+</script>

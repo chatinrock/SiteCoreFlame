@@ -23,8 +23,18 @@ include DIR::CORE.'core/function/errorHandler.php';
 $siteName = request::get('category');
 if ( $siteName == 'default'){
     die('Default site don\'t edit');
+} // if ( $siteName == 'default')
+
+session_start();
+
+if ( !isset($_SESSION['userData']) ){
+    header('Location: http://lps1.uplandingpage.com/auth/');
+    exit;
 }
 
+if ( $_SESSION['userData']['site'] != $siteName ){
+    die('Access forbidden');
+}
 
 if ( !filesystemValid::isSafe($siteName) ){
     die('Bad site name');
@@ -46,7 +56,12 @@ foreach($list as $nameFolder ){
     }
     $item = json_decode($item, true);
     $item['id'] = $nameFolder;
-    $item['isCreate'] = is_dir($dataSiteDir.'/'.$nameFolder);
+	//echo $dataSiteDir.'/'.$nameFolder."<br/>";
+	$item['val'] = '';
+	if ( is_dir($dataSiteDir.'/'.$nameFolder) ){
+		$item['val'] = is_file($dataSiteDir.'/'.$nameFolder.'/off') ? 'turnoff' : 'exists';
+	}
+    
     $dirList[$nameFolder] = $item;
     // foreach
 }
@@ -76,7 +91,7 @@ if ( $typeAction == 'update' ){
                 filesystem::copyR($siteDir.'d/e/default/'.$id, $dataSiteDir, true);
 
                 filesystem::copy(DIR::SITE_CORE.'tpl/index.html', $wwwPath, 'index.html');
-                $dirList[$id]['isCreate'] = true;
+                $dirList[$id]['val'] = 'exists';
                 break;
             case 'update':
                 $theme = $dirList[$id]['theme'];
@@ -94,13 +109,24 @@ if ( $typeAction == 'update' ){
             case 'remove':
                 filesystem::rmdirR($dataSiteDir.$id, true);
                 filesystem::rmdirR($wwwPath);
-                $dirList[$id]['isCreate'] = false;
+                $dirList[$id]['val'] = '';
+                break;
+			case 'turnoff':
+			    $fempty = fopen($dataSiteDir.$id.'/off', 'w');
+				if ( $fempty ){
+					fclose($fempty);
+				}
+                $dirList[$id]['val'] = 'turnoff';
+				break;
+            case 'turnon':
+                filesystem::unlink($dataSiteDir.$id.'/off');
+                $dirList[$id]['val'] = 'exists';
                 break;
         } // switch
     } // foreach
 
     $dirListKey = array_filter($dirList, function($item){
-        return $item['isCreate'];
+        return $item['val'] && $item['val'] != 'turnoff';
     });
     $dirListKey = var_export(array_keys($dirListKey), true);
 
@@ -108,7 +134,7 @@ if ( $typeAction == 'update' ){
     $render->setMainTpl('distribution.php.tpl')
         ->setVar('dirList', $dirListKey, false)
         ->setVar('dirCount', count($dirListKey))
-        ->setVar('host', $_SERVER['SERVER_NAME'])
+        ->setVar('host', $_SERVER['HTTP_HOST'])
         ->setVar('duri', $duri)
         ->renderToFile(DIR::SITE_CORE.'core/www/site'.$duri.'index.php');
 } // if
@@ -117,7 +143,7 @@ $render = new render(DIR::SITE_CORE.'tpl/', '');
 $render->setMainTpl('core.tpl.php')
     ->setBlock('content', 'add/content.tpl.php')
     ->setVar('dirList', $dirList)
-    ->setVar('host', $_SERVER['SERVER_NAME'])
+    ->setVar('host', $_SERVER['HTTP_HOST'])
     ->setVar('duri', $duri)
     ->setVar('siteName', $siteName)
     ->render();

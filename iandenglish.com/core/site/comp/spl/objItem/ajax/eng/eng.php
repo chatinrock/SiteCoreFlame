@@ -99,8 +99,15 @@ class eng{
 
                 $id = request::getInt('id');
                 $prefWordId = word::idToSplit($id);
-                $file = DIR_SITE::SITE_CORE.'data/comp/'.$path.'/'.$obj.'/'.$prefWordId.'vip.html';
-                break;
+                $path = DIR_SITE::SITE_CORE.'data/comp/'.$path.'/'.$obj.'/'.$prefWordId;
+
+                //echo '<div id="#vipVoice"></div><script>engMvc.setVipVoice('. (@file_get_contents($path.'vip.json')?:'{}').');</script>';
+
+                //header('Content-Type: javascript/json');
+                //echo json_encode($data);
+                self::printVipData($path);
+
+                exit;
             default:
                 die('Bad type');
         }
@@ -113,5 +120,55 @@ class eng{
         }
         // func. echoArticle
 	}
+
+
+    function printVipData($path){
+        $vipData = (@json_decode(file_get_contents($path.'vip.json'))?:'');
+
+        echo <<<EOD
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="ru-RU">
+    <head>
+      <meta charset="UTF-8" />
+      <link rel="shortcut icon" href="/res/icons/favicon.ico" />
+      <link href="/res/icons/icon128.png" rel="icon"/>
+      <link href="/res/icons/icon128.png" rel="apple-touch-icon-precomposed"/>
+
+      <link rel="stylesheet" type="text/css" media="all" href="http://theme.codecampus.ru/ultrasharp/css/style.css" />
+      <link rel="stylesheet" href="http://theme.codecampus.ru/ultrasharp/css/colors/blue.css" media="screen" />
+      <link rel="stylesheet" href="http://theme.codecampus.ru/ultrasharp/css/shortcodes.css" media="screen" />
+      <link rel="stylesheet" href="http://theme.codecampus.ru/ultrasharp/css/fixed.css" media="screen" />
+    </head>
+    <body class="empty-body">
+EOD;
+
+    if ( $vipData && isset($vipData->voice) && $vipData->voice ){
+        echo <<<EOD
+         <div id="header">
+            <div id="flashBox"></div>
+            <div id="playerBox"></div>
+        </div>
+
+        <script>var vipVoiceUrl='{$vipData->voice}';</script>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+        <script src="http://theme.codecampus.ru/plugin/swfPlayerApi/main.js"></script>
+        <link type="text/css" rel="stylesheet" href="/res/comp/spl/objItem/eng/css/main.css"/>
+        <link type="text/css" rel="stylesheet" href="http://theme.codecampus.ru/plugin/FancyMusicPlayer_v2.2.1/css/jquery.fancyMusicPlayer-white.css"/>
+        <script src="/res/comp/spl/objItem/eng/js/vipPlayer.js"></script>
+EOD;
+    }
+
+        $file = $path.'vip.html';
+        $fr = fopen($file, 'r');
+        if ( @fpassthru($fr) ){
+            fclose($fr);
+        }
+
+        echo '<body></html>';
+        // func. printVipData
+    }
+
     // class eng
 }

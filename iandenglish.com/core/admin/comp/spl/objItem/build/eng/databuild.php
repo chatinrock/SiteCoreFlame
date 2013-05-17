@@ -78,6 +78,7 @@ class databuild{
 
             file_put_contents($loadDir.$filename, $engHtml);
 
+            $paramOptions = [];
             $paramOptions['resUrl'] = $paramData['resurl'];
             $paramOptions['type'] = $paramData['type'];
             $paramOptions['objId'] = $objItemId;

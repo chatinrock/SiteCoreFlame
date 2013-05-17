@@ -17,10 +17,7 @@ class userRoomMvc{
     public function run($comp){
         $tplPath = sitePath::getSiteCompTplPath($comp['isTplOut'], $comp['nsPath']);
 
-        if ( !dbus::$user){
-            echo '<p>Авторизуйтесь</p>';
-            return;
-        }
+        
         $render = new render($tplPath, '');
 
         $usersOrm = new usersOrm();
@@ -52,8 +49,14 @@ class userRoomMvc{
                 }
                 break;
             default:
+				if ( !dbus::$user){
+					echo '<p>Авторизуйтесь</p>';
+					return;
+				}
                 $tpl = self::_defaultView($comp, $render, $usersOrm);
         }
+		
+		
 
         $render->setMainTpl($tpl)
             ->setContentType(null)

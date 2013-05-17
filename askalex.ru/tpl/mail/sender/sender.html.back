@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <title>Maestro - Responsive Email Template</title>
+    <style type="text/css">
+            /* Email Client BUG Fixes */
+        .ReadMsgBody, .ExternalClass {width:100%; background-color: #ffffff;}
+        .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height:100%;}
+        body {-webkit-text-size-adjust:none; -ms-text-size-adjust:none;}
+        body {margin:0; padding:0;}
+        table {border-spacing:0; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;}
+        table td {border-collapse:collapse;}
+        img { border: 0; }
+        html {width: 100%; height: 100%;}
+            /* End Email Client BUG Fixes */
+
+            /* Embedded CSS link color */
+            /*a         {color:#ffffff; text-decoration:none;}
+            a:link    {color:#ffffff; text-decoration:none;}
+            a:visited {color:#ffffff; text-decoration:none;}
+            a:focus   {color:#242424 !important;}
+            a:hover   {color:#242424 !important;}*/
+            /* End of Embedded CSS link color */
+    </style>
+</head>
+<body style="width:100% !important; color:#333333; background:#f5f5f5; font-family: Helvetica,sans-serif; font-size:13px; line-height:130%; margin:0; padding:0;">
+
+<!-- * Header Module * -->
+<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" style="width:100% !important; margin:0; padding:0; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; background:black;">
+    <tr>
+        <td height="12px"></td>
+    </tr>
+
+    <tr>
+        <td>
+            <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="table">
+                <tr>
+                    <td>
+                        <a href="http://askalex.ru/" target="_blank">
+                            <img src="images/logo.png" width="183" height="22" border="0" alt="Logo Header" style="display:block; border:none; outline:none; text-decoration:none;"/>
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <tr>
+        <td style="font-size: 10px; line-height: 10px;">&nbsp;</td>
+    </tr>
+
+</table>
+<!-- * End of Header Module * -->
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" style="width:100% !important; margin:0; padding:0; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+    <tr>
+        <td height="20px"></td>
+    </tr>
+
+    <tr>
+        <td>
+            <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="table">
+                <tr>
+                    <td width="510">
+                        <h1 style="font-size: 32px; line-height:100%; margin:0px; padding: 0px;">Самый дешевый способ достижения целей</h1>
+                    </td>
+                    <td width="90">
+                        <table width="64" height="64" cellpadding="0" cellspacing="0" border="0" align="center" class="table" style="background: #aaaaaa; height: 64px;">
+                            <tr>
+                                <td style="text-align: center; color: white;">
+                                    Апр
+                                    <table width="60" height="25" cellpadding="0" cellspacing="0" border="0" align="center" style="margin-top: 3px;">
+                                        <tr><td style="color: #aaaaaa; font-size: 18px; font-weight: bold; text-align: center; vertical-align: middle; line-height: 25px; background: white;">26</td></tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr><td style="font-size: 4px; line-height: 4px">&nbsp;</td></tr>
+                        </table>
+                    </td>
+                    <td height="4px"></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <tr>
+        <td height="17px"></td>
+    </tr>
+
+</table>
+
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" style="width:100% !important; margin:0; padding:0; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+    <tr>
+        <td>
+            <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="table">
+                <tr>
+                    <td>
+                        <a href="#" target="_blank"><img src="images/youtube-1.jpg" width="600" height="343" border="0" alt="YouTube Image" style="display:block; border:none; outline:none; text-decoration:none;"/></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="images/image_header_shadow.jpg" width="600" height="27" border="0" alt="Shadow" style="display:block; border:none; outline:none; text-decoration:none;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background: #e9e9e9; padding: 0 15px 15px 15px;">
+                        <h2 style="font-size: 28px; line-height:100%; margin:0px; padding: 0px;">Здравствуйте, Александр!</h2>
+                        <p>
+                            Этот выпуск я сопровождаю цитатой:<br/>
+                        "Сон может приснится сам, целей надо добиваться."</p>
+                        <p style="margin: 0px; text-align: right; font-size: 13px">- Алексадр Герасименко</p>
+                        <p>Какие инструменты достижения целей используете вы?</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td><img src="images/body_header_shadow.jpg" width="600" height="27" border="0" alt="Shadow" style="display:block; border:none; outline:none; text-decoration:none;"/></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="table">
+                <tr>
+                    <td>
+                        <h2 style="font-size: 28px; line-height:100%; margin:0px; padding: 0px; text-align: center;">Ближайшие события</h2>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <tr>
+        <td height="17px"></td>
+    </tr>
+
+    <tr>
+        <td>
+            <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="table" style="background: #ebebeb;">
+                <tr>
+                    <td style="padding: 18px;">
+                        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td>
+                                    <img src="images/none.jpg" width="172" height="190" border="0" style="display:block; border:none;"/>
+                                </td>
+                                <td style="padding-left: 19px;">
+                                    <h3 style="font-size: 23px; line-height:100%; margin:0px; padding: 0px; text-align: center;">Тренинг "Взлётная полоса"</h3>
+                                    <p>Тренинг успеха взрывной силы. Самый интерактивный из тренингов личностного роста в России и возможно в мире.</p>
+                                    <p>Продолжительность: 2 дня по 6 часов</p>
+                                    <p><a href="#">Идут продажи</a></p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td><img src="images/body_header_shadow.jpg" width="600" height="27" border="0" alt="Shadow" style="display:block; border:none; outline:none; text-decoration:none;"/></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <tr>
+        <td height="40"></td>
+    </tr>
+
+</table>
+
+</body>
+</html>

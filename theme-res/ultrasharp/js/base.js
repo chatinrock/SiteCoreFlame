@@ -23,6 +23,8 @@ jQuery(document).ready(function() {
 	$('select:not(#select-preview-color)').each(function() { $(this).ddReplaceSelect(); });
 	$('input[type="radio"]').each(function() { $(this).ddReplaceRadio(); });
 	$('input[type="checkbox"]').each(function() { $(this).ddReplaceCheckbox(); });
+
+    //jQuery('.image-hover').each(function() { jQuery(this).ddImageHover('.55'); });
 	
 });
 
@@ -32,3 +34,7 @@ $(window).load(function() {
 	//jQuery('.post-thumb img, #related-posts img, #portfolio-slider-thumbs li img').ddFadeOnHover(.8);
 
 });
+
+/*jQuery(window).load(function() {
+    jQuery('.tooltip').each(function() { jQuery(this).ddTooltip(); });
+});*/

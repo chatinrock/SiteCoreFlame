@@ -1,0 +1,13 @@
+<link rel="stylesheet" href="http://theme.codecampus.ru/plugin/star/css/star20.css"/>
+<link rel="stylesheet" href="/res/css/main.css"/>
+
+<script>
+    var categoryId = <?=(int)self::get('categoryId');?>;
+</script>
+
+<div id="imgPeopleList">
+    <?self::includeBlock('item');?>
+</div>
+<div class="clear"></div>
+<div class="divider-top" onclick="jQuery(this).ddGoToTop();"><span>Вверх</span></div>
+

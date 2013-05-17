@@ -2,7 +2,7 @@
 <html>
 <head>
 
-    <title></title>
+    <title><?=self::varible('titlePage', 'Title Page', true);?></title>
 
     <meta charset="UTF-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -78,147 +78,102 @@
     <?self::block('::headEnd');?>
 </head>
 <body>
+    <header>
 
+        <div class="top_header">
+            <div class="container">
 
-<header>
-
-    <div class="top_header">
-        <div class="container">
-            <?=self::blockdata([
-                    'div'=>'{"name":"header", "text":"Блок шапка"}',
-            'style'=>'margin-bottom: 20px; width: 975px; height: 100px;']);
-            ?>
-
-            <!-- --------------------------------------------------------------------- -->
-            <div class="seven columns">
-                <div class="promo_text">
-                    <h2><?=self::varible('Заголовок')?></h2>
+                <div class="twelve columns">
                     <?=self::blockdata([
-                            'div'=>'{"name":"caplist", "text":"Список требований"}',
-                    'style' => 'width:410px; height:152px']);
+                            'div'=>'{"name":"logoBox", "text":"Logo"}',
+                    'style' => 'width:715px; height:167px;']);
                     ?>
-                </div> <!-- end promo_text -->
+                </div> <!-- eight_columns -->
 
-                <div class="download_button">
-                    <div><a href="<?=self::varible('cpaHref');?> " title="Нажмите, чтобы перейти к сайту">» <?=self::varible('cpaCaption');?> </a></div>
-                </div>
-            </div>
+                <div class="seven columns">
+                    <div class="promo_text">
+                        <?=self::blockdata([
+                            'div'=>'{"name":"mainMessage", "text":"Главное сообщение"}',
+                        'style' => 'width:410px; min-height:200px']);
+                        ?>
+                    </div> <!-- end promo_text -->
 
-            <div class="nine columns">
+
+                    <?=self::blockdata([
+                            'div'=>'{"name":"actionBox", "text":"actionBox"}',
+                    'style' => 'width:410px; min-height:62px']);
+                    ?>
+                </div> <!-- end seven columns -->
+
+                <div class="nine columns">
+                    <?=self::blockdata([
+                            'div'=>'{"name":"promoImg", "text":"promoImg"}',
+                            'style' => 'width:530px; min-height:273px']);
+                    ?>
+                </div> <!-- end nine -->
+
+            </div> <!-- end container -->
+        </div> <!-- end top_header -->
+
+    </header>
+
+    <?=self::blockdata(['div'=>'{"name":"sponsors", "text":"sponsors"}',
+    'style' => 'width:100%; min-height:170px;']);
+    ?>
+
+    <?=self::blockdata(['div'=>'{"name":"textBox1", "text":"textBox1"}',
+    'style' => 'width:100%; min-height:170px;']);
+    ?>
+
+    <?=self::blockdata(['div'=>'{"name":"textBox2", "text":"textBox2"}',
+    'style' => 'width:100%; min-height:170px;']);
+    ?>
+
+    <?=self::blockdata(['div'=>'{"name":"imgGallery", "text":"imgGallery"}',
+    'style' => 'width:100%; min-height:170px;']);
+    ?>
+
+    <footer>
+
+        <div class="bline"></div>
+        <div class="container">
+
+            <div class="one-third column">
                 <?=self::blockdata([
-                        'div'=>'{"name":"mainshow", "text":"Главный объект"}',
-                'style' => 'width:530px; height:398px']);?>
-            </div>
+                        'div'=>'{"name":"footerBlock2", "text":"footerBlock2"}',
+                'style' => 'width:300px; height:245px']);
+                ?>
+            </div> <!-- end one-third -->
 
+            <div class="one-third column">
+
+                    <?=self::blockdata([
+                            'div'=>'{"name":"footerBlock1", "text":"footerBlock1"}',
+                    'style' => 'width:300px; height:245px']);
+                    ?>
+
+            </div> <!-- end one-third -->
+
+            <div class="one-third column">
+                <?=self::blockdata([
+                        'div'=>'{"name":"footerBlock3", "text":"footerBlock2"}',
+                'style' => 'width:300px; height:245px']);
+                ?>
+
+            </div> <!-- end one-third -->
         </div> <!-- end container -->
-    </div> <!-- end top_header -->
 
-</header>
+        <div class="container">
+            <div class="sixteen">
+                <div class="sub_footer">
+                    <p>Copyright © 2011-<?=date('Y')?> <?=self::varible('siteCaption');?> </p>
+                </div> <!-- end sub_footer -->
+            </div> <!-- end sixteen -->
+        </div> <!-- end container -->
 
-
-<!--
-<div class="sponsors">
-   <div class="container">
-   <ul class="sponsors sixteen columns">
-       <li><a href="#"><img src="http://theme.codecampus.ru/landing/xafira/img/sponsors/sponsor1.jpg" alt="" /></a></li>
-       <li><a href="#"><img src="http://theme.codecampus.ru/landing/xafira/img/sponsors/sponsor2.jpg" alt="" /></a></li>
-       <li><a href="#"><img src="http://theme.codecampus.ru/landing/xafira/img/sponsors/sponsor3.jpg" alt="" /></a></li>
-       <li><a href="#"><img src="http://theme.codecampus.ru/landing/xafira/img/sponsors/sponsor4.jpg" alt="" /></a></li>
-       <li><a href="#"><img src="http://theme.codecampus.ru/landing/xafira/img/sponsors/sponsor5.jpg" alt="" /></a></li>
-   </ul>
-   </div>
-</div> -->
-
-<div class="container block-edit" block-param='{"name":"logoimg", "text":"Логотип","width":300, "height":20}' <?=self::blockinfo(['name'=>'logoimg', 'type'=>'img']);?>>
-<?self::block('cont-1');?>
-</div>
-
-<div class="container">
-    <?self::block('cont-2');?>
-</div>
-<div class="divider"></div>
-
-<div class="container">
-    <?self::block('cont-3');?>
-</div>
-<div class="divider"></div>
-
-<!-- <div class="banner">
-   <div class="container">
-       <h3>Try xafira right now, <a href="#">its free ! </a> </h3>
-   </div>
-</div>
-<div class="divider"></div>-->
-
-
-
-
-<!--<div class="banner">
-
-   <div class="container">
-       <div class="sixteen columns">
-           <h3> Lorem ipsum ? <a href="#">  Sit ame interdum sed euismod, Cmon!</a> </h3>
-       </div>
-   </div>
-
-</div>
-
-<div class="divider"></div>-->
-
-
-<footer>
-
-    <div class="bline"></div>
-
-    <div class="container">
-
-        <div class="one-third column">
-            <div class="about">
-                <h3>О нас</h3>
-                <?self::block('aboutus');?>
-            </div>
-        </div> <!-- end one-third -->
-
-        <div class="one-third column">
-            <!--<div class="how_works">
-                <h3>How it Works?</h3>
-                <a href="#"><p>+ More information, Aenean erat diam, interdum.</p></a>
-                <a href="#"><p>+ More specs, Aenean erat diam, interdum.</p></a>
-                <a href="#"><p>+ Fully Support, Aenean erat diam, interdum.</p></a>
-                <a href="#"><p>+ All Platform, Aenean erat diam, interdum.</p></a>
-                <a href="#"><p>+ Cutie App, Aenean erat diam, interdum.</p></a>
-            </div>-->
-        </div>
-
-        <div class="one-third column">
-            <div class="contact">
-                <h3>Оставайтесь на связи!</h3>
-                <p>Наши контакты</p>
-                <p>E-mail: <?=self::varible('email', 'E-mail');?> </p>
-                <p>Мы в социальных сетях:</p>
-            </div>
-            <div class="social_icons">
-                <ul>
-                    <li><a href="<?=self::varible('vkUrl', 'VKontakte URL', true);?>" target="_blank" rel="nofollow"><img src="http://theme.codecampus.ru/landing/xafira/img/social_icons/social1.png" alt=""></a></li>
-                    <li><a href="<?=self::varible('fbUrl', 'Facebook URL', true);?>" target="_blank" rel="nofollow"><img src="http://theme.codecampus.ru/landing/xafira/img/social_icons/social3.png" alt=""></a></li>
-                    <li><a href="<?=self::varible('twitterUrl', true);?>" target="_blank" rel="nofollow"><img src="http://theme.codecampus.ru/landing/xafira/img/social_icons/social4.png" alt=""></a></li>
-
-                </ul>
-            </div> <!-- end social_icons -->
-        </div> <!-- end one-third -->
-    </div> <!-- end container -->
-
-    <div class="container">
-        <div class="sixteen">
-            <div class="sub_footer">
-                <p>Copyright © 2011-<?=date('Y')?> <?=self::varible('siteCaption');?> </p>
-            </div> <!-- end sub_footer -->
-        </div> <!-- end sixteen -->
-    </div> <!-- end container -->
-
-</footer>
-<?self::block('::bodyEnd');?>
-<?=self::block('::adminBody');?>
+    </footer>
+    <?self::block('::bodyEnd');?>
+    <?=self::block('::adminBody');?>
 
 </body>
 </html>

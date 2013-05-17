@@ -503,7 +503,6 @@
 		},*/
 		
 		ddPreloadImage: function() {
-			
 			//main vars
 			var mainCont = this;
 			var imageUrl = mainCont.children('span').text();
@@ -586,7 +585,7 @@
 			
 			//main var
 			var mainCont = this;
-			var selectedContent = mainCont.children('option:selected').val();
+			var selectedContent = mainCont.children('option:selected').html();
 			mainCont.css({ opacity: 0 }).wrap(function() {
 				
 				return '<span class="select-container"></span>';
@@ -599,7 +598,7 @@
 			mainCont.change(function() {
 				
 				//updates outer container
-				var newSelectedItem = mainCont.children('option:selected').val();
+				var newSelectedItem = mainCont.children('option:selected').html();
 				parentCont.children('span').html(newSelectedItem+'<span></span>');
 				
 			});

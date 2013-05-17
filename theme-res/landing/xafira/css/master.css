@@ -38,7 +38,7 @@ h2 {font-family: 'open_sans_lightregular'; font-size:40px; color:#fff; letter-sp
 h3 {font-family: 'open_sans_lightregular'; font-size:30px; color:#252525; letter-spacing: -2px;}
 h4 {font-family: 'open_sans_lightregular'; font-size:20px; color:#fff; line-height:25px;}
 .center {width:960px; margin:0 auto;}
-.divider {margin-bottom: 100px;}
+.divider {margin-bottom: 50px;}
 .clear {clear:both; height:1px;}
 .fullwidth {width:100%;}
 ::selection {background-color:#767676; color:#fff;}
@@ -58,7 +58,7 @@ header {background:url(../img/bg.jpg) repeat; background-position: center; heigh
 .nav ul li img {float:right; margin-top: 7px;}
 
 .promo_text h2 {margin-bottom: 50px;}
-.promo_text h4 {margin-bottom: 70px;}
+.promo_text h4 {margin-bottom: 20px;}
 
 
 ul.number li{
@@ -121,14 +121,14 @@ margin-top: 50px;
 /* 3 - SPONSORS
 ================================================== */
 
-/*
-.sponsors {background-color: #f2f2f2;height: 117px; border-bottom: 1px solid #dadada; margin-bottom: 100px}
+
+.sponsors {background-color: #f2f2f2;height: 117px; border-bottom: 1px solid #dadada; margin-bottom: 50px}
 ul.sponsors img {opacity:0.5;}
 ul.sponsors img:hover {opacity:1;}
 ul.sponsors {float:left;width:940px;position:relative;margin: 0;}
 ul.sponsors li {display:inline;}
 ul.sponsors li img {width:19.7%;float:left;border:1px solid #ddd;margin-right:-1px;margin-top:-1px;}
-*/
+
 
 
 /* 4 - INTRODUCE

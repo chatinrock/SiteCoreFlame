@@ -1,5 +1,6 @@
 .block-edit{
 	border: 1px #a9a9a9 solid !important;
+	background-image: url('/res/img/bg.png');
 }
 span.varible-edit{
 	color: inherit !important;
@@ -9,9 +10,7 @@ span.varible-edit{
 .hidden{
 	display: none;
 }
-.fancybox-wrap {
-	/*    top: 100px !important;*/
-}
+
 
 #treeTypeBox{
 	width: 400px;
@@ -25,18 +24,21 @@ span.varible-edit{
 
 /*Фиксированая панель слева*/ 
 .fixedLeftPanel {
-	height: 105px;
-	left: 0;
-	width: 16px;
+	height: 170px;
+	left: -30px;
+	width: 35px;
 	opacity: 0.5;
 	position: fixed;
 	top: 30%;
 	z-index: 1100;
 	background-color: white;
-	padding: 2px 2px 2px 2px;
+	padding: 2px 2px 2px 4px;
+	border-radius: 4px 4px 4px 4px;
+	border: 1px solid #c1c1c1;
 }
 .fixedLeftPanel:hover {
 	opacity: 1;
+	left: -4px;
 }
 
 .fixedLeftPanel img{
@@ -46,7 +48,7 @@ span.varible-edit{
 
 table.varibleTable td.caption{
 	font-weight: bold;
-	width: 100px;
+	width: 200px;
 }
 
 table.varibleTable tr>td{
@@ -72,5 +74,9 @@ table.varibleTable tr>td{
 }
 
 #controlMainPanel input:hover, #controlVariblePanel input:hover{
+	background-color: #f4f4f4;
+}
+
+#controlMainPanel input:focus, #controlVariblePanel input:focus{
 	background-color: #ffffff;
 }

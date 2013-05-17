@@ -27,11 +27,11 @@
         <form class="contactForm" id="contactForm">
             <p>
                 <label>Ваше имя: </label>
-                <input type="text" value="" name="feedback[name]" class="nameInput" title="Напишите Ваше имя">
-            </p
+                <input type="text" value="" name="feedback[name]" class="nameInput" title="Напишите Ваше имя"/>
+            </p>
             <p>
                 <label>Ваш Email: </label>
-                <input type="text" name="feedback[email]" value="" class="emailInput" title="Напишите Ваш Email">
+                <input type="text" name="feedback[email]" value="" class="emailInput" title="Напишите Ваш Email"/>
             </p>
             <p>
                 <label>Тема сообщения: </label>
@@ -57,4 +57,4 @@
         <div class="clear"></div>
     </div>
 </div>
-<script type="text/javascript" src="/res/comp/spl/form/feedback/js/feedback.js?v=1"></script>
+<script src="http://theme.codecampus.ru/core/comp/spl/form/feedback.js"></script>
