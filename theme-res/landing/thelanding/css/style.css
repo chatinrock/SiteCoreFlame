@@ -1,0 +1,189 @@
+/* reset css */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+body {
+	padding:0 0 0 0;
+	margin:0 0 0 0 ;
+	font-family: Arial, Helvetica, sans-serif; font-size:14px; background:#fff;
+}
+
+/*@font-face {
+	font-family: 'ChunkFiveRegular';
+	src: url('fonts/Chunkfive-webfont.eot');
+	src: local('☺'), url('fonts/Chunkfive-webfont.woff') format('woff'), url('fonts/Chunkfive-webfont.ttf') format('truetype'), url('fonts/Chunkfive-webfont.svg#webfontb5K2fJwj') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}*/
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: separate;
+	border-spacing: 0;
+}
+caption, th, td {
+	text-align: left;
+	font-weight: normal;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+	content: "";
+}
+blockquote, q {
+	quotes: "" "";
+}
+a{text-decoration:none;}
+
+/*---------------------------reset code----------------------------*/
+body	{ background:url(../img/bgall.jpg);}
+.clear	{ clear:both; line-height:1px; font-size:1px;}
+/*---------------------------Main Body Start ----------------------------*/
+
+
+/*---------------------------Main Body Start ----------------------------*/
+
+#wrapper			        {width:100%; margin:0 auto; background:url(../img/bg.jpg) repeat-x;}
+#innerWrapper				{width:765px; margin:0 auto; padding:0 0 45px 0;  }
+/*---------------------------Main Body End-------------------------------*/
+
+
+/*---------------------------Header Start ----------------------------*/
+.header_wrapper			{ width:765px; height:90px; margin:0 auto; padding:0 0 51px 0;}
+
+.logo { width:232px; height:42px; margin:0; padding:25px 0 0 0; float:left;}
+.contact_us { width:290px; height:16px; margin:0; padding:34px 0 0; float:right;}
+/*---------------------------Header End ----------------------------*/
+
+
+/*---------------------------Menu ----------------------------*/
+
+.Banner_wrapper { width:765px; margin:0; padding:0 0 15px 0;} 
+.middlecurve { background:url(../img/banner_middlecurve.jpg) no-repeat right 0; width:765px; height:auto; padding:15px 0 0 0 }
+.bottomcurve{ background:url(../img/bottomcurve.jpg) no-repeat right 0; width:765px; height:9px; margin:0; padding:0; }
+
+.full_video {
+	padding:0px 15px 4px 15px;
+	float:left;
+}
+.lftbanner { float:left; width:326px; min-height:239px; margin:0; padding:30px 0 0 25px; float:left;}
+.lftbanner p { font:normal 16px/24px "Helvetica", Arial, Helvetica, sans-serif; color:#494949; padding:0 0 20px 0;}
+h1 { font:normal 28px 'Yeseva One', cursive; color:#494949; padding:0 0 10px 0; }
+.searchDiv { width:309px; height:47px; margin:0; padding:0;}
+.searchDiv .inputbg { background:url(../img/searchbg.jpg) no-repeat; width:170px; height:39px; margin: 0 5px 0; padding:0 10px 0 10px; font: italic 14px/35px Georgia, "Times New Roman", Times, serif; color:#494949; text-align:center; border:0; float:left;}
+.searchDiv .submit { background:url(../img/submitbg.png) no-repeat; width:98px; height:38px; margin:0; padding:0; font: bold 14px "Myriad Pro", Arial, Helvetica, sans-serif; color:#fff; text-align:center; border:0; float:left;}
+
+
+.banner_rht { width:359px; height:273px; margin:0; padding:0 14px 0 0; float:right;}
+.banner_thum{ width:359px; height:129px; margin:0; padding:0 0 14px 0;}
+.banner_thum2{ width:359px; height:129px; margin:0; padding: 0 0 14px 0;}
+.thumb1{ width:172px; height:129px; float:left; margin:0; padding:0 14px 0 0;}
+.thumb2{ width:173px; height:129px; float:left; margin:0; padding:0;}
+/*---------------------------Menu End ----------------------------*/
+
+
+
+/*---------------------------Container  ----------------------------*/
+.container_wrapper		{ width:765px; height:auto; margin:0 auto; padding:0px 0px 0px 0px;}
+.main_cont { width:765px; margin:0; padding:0;}
+
+
+.cont_lft_div { width:365px; margin:0; padding:0px; float:left;}
+
+.con_box1 { width:365px; height:79px; margin: 0 auto; padding:0 0 20px 0;}
+
+.lft_con_box1 { width:77px; height:79px; margin:0; padding:0; float:left;}
+.img{ width:44px; height:56px; margin:0 auto; padding:10px 0 0 0}
+.img2{ width:53px; height:56px; margin:0 auto; padding:10px 0 0 0}
+.img3{ width:52px; height:67px; margin:0 auto; padding:10px 0 0 0}
+.img4{ width:58px; height:43px; margin:0 auto; padding:10px 0 0 0}
+
+.rht_con_box1 { width:287px; height:79px; margin:0; padding:0; float:left;}
+.rht_con_box1 p {font:normal 12px/18px "Helvetica", Arial, Helvetica, sans-serif; color:#2e2e2e; padding:0 0 10px 0;}
+
+h2{ font:normal 16px, 'Yeseva One', cursive; color:#3e3e3e; padding:0 0 10px 0;}
+h2 a{ font:normal 16px 'Yeseva One', cursive; color:#3e3e3e; text-decoration:none;}
+
+.con_box2 { width:365px; height:79px; margin: 0 auto;}
+
+.cont_rht_div { width:365px; margin:0; padding:0px 0 0 20px; float:left;}
+
+.bottomline { background:url(../img/bottomline.jpg) no-repeat; width:759px; height:15px; margin:0 auto; padding:0 0 60px 0;}
+
+h3{ font:normal 16px 'Yeseva One', cursive; color:#4b4b4b; padding:0 0 10px 0;}
+
+
+/*---------------------------Container End  ----------------------------*/
+
+/*--------------------------- Body Styles  ----------------------------*/
+#introbox {
+	padding:15px;
+	float:left;
+	width:100%;
+	margin-bottom:25px;
+}
+
+#introbox h2 {
+	font-size:18px;
+	font-family: 'Yeseva One', cursive;
+}
+
+#introbox p {
+	font-size:14px;
+	font-family: 'Helvetica';
+	color:#545454;
+	line-height:20px;
+}
+
+#slickbox {
+	padding:35px 15px 15px 15px;
+	float:left;
+	width:100%;
+}
+
+#slickbox h2 {
+	font-size:18px;
+	font-family: 'Yeseva One', cursive;
+}
+
+#slickbox p {
+	font-size:14px;
+	font-family: 'Helvetica';
+	color:#545454; 
+	line-height:20px;
+}
+#slick-toggle {
+	margin:20px 0px 0px 0px;
+	float:left;
+}
+
+/*---------------------------Body Styles End  ----------------------------*/
+
+/*---------------------------Footer  ----------------------------*/
+.footer_wrapper	{ width:100%; margin:0 auto; }
+.footer_Div	{ width:765px; margin:0 auto; height:100px;}
+.footer_cell { width:745px; float:left; background: url(../img/footerbg.jpg); padding:0 10px 10px 10px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; margin-bottom:25px !important;}
+
+.copyright { width:383px; height:16px; margin:0; padding:20px 0 0 0; float:left;}
+.copyright p { font:normal 11px "Helvetica", Arial, Helvetica, sans-serif; color:#3e3e3e;}
+
+.links{ width:188px; height:32px; margin:0; padding:10px 0 0 0; float:right;}
+.links ul { list-style:none; margin:0; padding:0;}
+.links ul li { list-style:none; float:left; padding:0 8px;}
+/*---------------------------Footer End  ----------------------------*/
