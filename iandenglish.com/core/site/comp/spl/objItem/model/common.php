@@ -31,7 +31,7 @@ class common {
         }
 
         // Проверем по числу, не истёк ли срок приватного просмотра
-        $isAllow = (boolean)(new usersOrm())->selectFirst('1', 'accessDate >= now() AND id='.$user['id']);
+        $isAllow = (boolean)(new usersOrm())->selectFirst('1', 'balance > 0 AND id='.$user['id']);
         if (!$isAllow){
             return self::ACCESS_SMALL_BALANCE;
         } // if !$isAllow

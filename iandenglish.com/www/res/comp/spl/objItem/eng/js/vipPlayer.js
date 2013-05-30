@@ -1,7 +1,10 @@
+/**
+	РЈРїСЂРѕС‰С‘РЅРЅР°СЏ РІРµСЂСЃРёСЏ РїР»РµРµСЂР° РґР»СЏ VIP РєРѕРјРјРµРЅС‚Р°СЂРёРµРІ
+*/
 var playerAudioMvc = (function(){
-	// Длина трека
+	// Р”Р»РёРЅР° С‚СЂРµРєР°
 	var soundLength = 0;
-	// Текущий позиция звучания
+	// РўРµРєСѓС‰РёР№ РїРѕР·РёС†РёСЏ Р·РІСѓС‡Р°РЅРёСЏ
 	var timeInterval;
 
 	function cbfId3Handler(pEvent, id3){
@@ -123,7 +126,7 @@ var playerAudioMvc = (function(){
 
 function flashSoundPlayerLoad(pEvent){
 	if ( !pEvent.success ){
-		alert('Ошибка: Не удалось загрузить плееер');
+		alert('РћС€РёР±РєР°: РќРµ СѓРґР°Р»РѕСЃСЊ Р·Р°РіСЂСѓР·РёС‚СЊ РїР»РµРµРµСЂ');
 		return;
 	}
 

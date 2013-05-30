@@ -76,5 +76,9 @@
         isBalance: <?=self::get('isBalance')?'true':'false'?>,
         userData: <?=self::get('userData', '{}')?>
     }
+
+    yepnope({
+        load: ['http://theme.codecampus.ru/plugin/payment/walletone.com/payMvc.js']
+    });
 </script>
 <script type="text/javascript" src="/res/comp/spl/freeScript/js/coach.js"></script>

@@ -23,11 +23,11 @@ $id = ftok(__FILE__, 'A');
 
 // Varible whis allow landing page
 $list = array (
-  0 => 'bo1',
-  1 => 't1',
+  0 => 't1',
+  1 => 'bo1',
 );
 // Count landing page
-$listCount = 1;
+$listCount = 2;
 
 // Get memory id
 $semId = sem_get($id);

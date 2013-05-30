@@ -14,7 +14,7 @@
 <div class="sidebar-item" id="profileBox">
     <h5>Личный кабинет</h5>
     <div>
-		<p><a href="/user/" class="button blue width90" title="Нажмите, что бы войти в личный кабинет">Личный кабинет</a></p>
-		<p><a href="#" id="exitBtn" class="button white lightbox" title="Нажмите, что бы выйти">Выход</a></p>
+		<p><a href="/user/" class="button blue width90" title="Нажмите, чтобы войти в личный кабинет">Личный кабинет</a></p>
+		<p><a href="#" id="exitBtn" class="button white lightbox" title="Нажмите, чтобы выйти">Выход</a></p>
     </div>
 </div>

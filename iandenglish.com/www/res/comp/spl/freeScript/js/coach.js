@@ -246,11 +246,17 @@ var timeMvc = (function(){
 		return dateNow+'.'+monthNow+'.'+date.getFullYear();
 		// func. getFormatDate
 	}
-
+	
 	function noMoney(price, balance){
 		var need = price - balance;
 		jQuery('#informationBox').html('Недостаточно средств для заявки. Ваш баланс: '+balance+' руб. Необходимо '+ need
-				+' руб.<br/> <a href="/user/" class="button blue small">&raquo; Пополнить баланс</a>').show();
+				+' руб.<div style="height: 10px;"></div><a href="/res/form/payAuth.html" id="addBalanceBtn" class="button bright-green small">&raquo; Пополнить баланс</a>').show();
+		jQuery('#addBalanceBtn').lightbox({
+			width: 350,
+			height: 196,
+			iframe: true
+		});
+		// func. noMoney
 	}
 
 	function init(){

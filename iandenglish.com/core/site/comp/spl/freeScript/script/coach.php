@@ -21,7 +21,7 @@ class coachMvc{
     public function run($comp){
 
         if ( !dbus::$user ){
-            $file = DIR::SITE_CORE.'tpl/site/other/blog/forbid.tpl.php';
+            $file = DIR::SITE_CORE.'tpl/site/other/coach/forbid.tpl.php';
             (new render('', ''))->setMainTpl($file)->setContentType(null)->render();
             return;
         }

@@ -22,6 +22,7 @@ $categoryUrlTpl = self::get('categoryUrlTpl');
 </div>
 <div class="post-social" id="socialBox"></div>
 
+<!--
 <div id="hintBox" class="hidden">
 	<div>
 		<span></span>
@@ -30,6 +31,7 @@ $categoryUrlTpl = self::get('categoryUrlTpl');
 	</div>
 	<div class="vTipArrow"></div>
 </div>
+-->
 
 <div id="flashBox"></div>
 <div id="playerBox"></div>
@@ -40,9 +42,9 @@ $categoryUrlTpl = self::get('categoryUrlTpl');
 		<img src="/res/comp/spl/objItem/eng/img/play16.png" class="pointer" alt="Воспроизвести предложение" title="Воспроизвести предложение" rel="play"/>
 	</div>
 
-	<div id="sentBtnBox" class="hidden">
-		<img src="/res/comp/spl/objItem/eng/img/rule16.png" alt="Правила" title="Правила" class="pointer" rel="rule"/>
-		<img src="/res/comp/spl/objItem/eng/img/vip16.png" alt="VIP комментарии" title="VIP комментарии" class="pointer" rel="viprule"/>
+	<div id="sentBtnBox" class="hidden pointer">
+		<img src="/res/comp/spl/objItem/eng/img/rule16.png"/>
+		<!--<img src="/res/comp/spl/objItem/eng/img/vip16.png" alt="VIP комментарии" title="VIP комментарии" class="pointer" rel="viprule"/>-->
 	</div>
 
 	<?$this->loadFile(self::get('dir').'publish.txt')?>
@@ -54,9 +56,12 @@ $categoryUrlTpl = self::get('categoryUrlTpl');
     yepnope({
 		load: ['/res/comp/spl/objItem/eng/js/mvc.js']
     });
+    yepnope({
+        load: ['http://theme.codecampus.ru/plugin/payment/walletone.com/payMvc.js']
+    });
 </script>
 
 <link type="text/css" rel="stylesheet" href="http://theme.codecampus.ru/plugin/FancyMusicPlayer_v2.2.1/css/jquery.fancyMusicPlayer-white.css"/>
 
 <div class="clear"></div>
-<div class="post-border-bottom"></div>             
+<div class="post-border-bottom"></div>

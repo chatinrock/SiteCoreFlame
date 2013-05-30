@@ -1,23 +1,22 @@
 <div class="card">
-    <div class="wordBox">
-        <span class="word"><?=self::get('word')?></span>
-        <span class="transcr">[<?=self::get('transcr')?>]</span>
-        <span class="translate"><?=self::get('translate')?></span>
-    </div>
-    <div class="commentBox">
-        <?=self::get('comment')?>
-    </div>
 
-    <?$vipRule = self::get('vipRule');
-    if ( $vipRule ){?>
-    <div class="vipCommentBox">
-        <div class="linkRule">VIP комментарий</div>
-        <ul class="rules">
-            <li><a href="<?=$vipRule['href']?>" title="<?=$vipRule['title']?>"><?=$vipRule['title']?></a></li>
-        </ul>
-    </div>
+    <?if ( self::get('isVip')){?>
+        <div class="box success vipComment">Доступен VIP комментарий.<br/><strong>Кликните по слову.</strong></div>
     <?}?>
 
+    <div class="translateCaption">Перевод слова</div>
+    <div class="translateBox word">
+        <?=self::get('translate')?>
+    </div>
+
+    <?if ( self::get('comment')){?>
+        <div class="commentCaption">Комментарий</div>
+        <div class="commentBox">
+            <?=self::get('comment')?>
+        </div>
+    <?}?>
+
+    <?if ( self::get('rule') ){?>
     <div class="linkBox">
         <div class="linkRule">Связанные правила</div>
         <ul class="rules"><?
@@ -27,4 +26,5 @@
             ?>
         </ul>
     </div>
+    <?}?>
 </div>

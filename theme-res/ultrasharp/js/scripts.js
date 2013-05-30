@@ -190,7 +190,7 @@
 			
 			//animates our menu so it stays full width
 			/// IF FULL MENU
-			// Движение логотипа в право. Анимация
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			if(ulCont.attr('class') == 'left') {
 				var newPadding = (980 - (ulWidth + logoWidth)) + 19;
 				logoCont.children('a').animate({ 'padding-left': newPadding+'px' }, 250);
@@ -201,7 +201,7 @@
 				jQuery('#complete-main-bar-menu').children('a').animate({ 'padding-left': newPadding+'px' }, 250);
 			}
 			
-			// Когда навели мышкой на меню
+			// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
 			ulCont.children('li').hover(function() {
 				jQuery(this).stop().animate({ backgroundColor: '#'+colorTo }, 100, function() {
 					
@@ -587,16 +587,13 @@
 			var mainCont = this;
 			var selectedContent = mainCont.children('option:selected').html();
 			mainCont.css({ opacity: 0 }).wrap(function() {
-				
 				return '<span class="select-container"></span>';
-				
 			});
 			mainCont.after('<span>'+selectedContent+'<span></span></span>');
 			var parentCont = mainCont.parent();
 			
 			//when select changes
 			mainCont.change(function() {
-				
 				//updates outer container
 				var newSelectedItem = mainCont.children('option:selected').html();
 				parentCont.children('span').html(newSelectedItem+'<span></span>');

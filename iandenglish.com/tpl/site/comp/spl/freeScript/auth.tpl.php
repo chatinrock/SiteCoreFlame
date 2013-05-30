@@ -2,29 +2,22 @@
 <!--[if IE 6]>
   <link rel="stylesheet" type="text/css" href="http://theme.codecampus.ru/plugin/lightbox/themes/default/jquery.lightbox.ie6.css" />
 <![endif]-->
-<script type="text/javascript" src="http://theme.codecampus.ru/plugin/lightbox//jquery.lightbox.min.js"></script>
+<script type="text/javascript" src="http://theme.codecampus.ru/plugin/lightbox/jquery.lightbox.min.js"></script>
 
 <div class="sidebar-item" id="authBox">
     <h5>Личный кабинет</h5>
     <div>
-        <a href="/pubform/authUser.html?lightbox[width]=400&lightbox[height]=300" class="button blue lightbox" title="Нажмите, что бы авторизоваться">Вход</a>
+        <a href="/pubform/authUser.html" class="button blue lightbox" title="Нажмите, чтобы авторизоваться">Вход</a>
         /
-        <a href="/pubform/regUser.html?lightbox[width]=300&lightbox[height]=250" class="button blue lightbox" title="Нажмите, что бы зарегистрироваться">Регистрация</a>
+        <a href="/pubform/regUser.html" class="button blue lightbox" title="Нажмите, чтобы зарегистрироваться">Регистрация</a>
     </div>
 </div>
 
-<!--
-<script src="/res/comp/spl/freeScript/js/auth.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
--->
-
 <script type="text/javascript">
-
         yepnope({
             load: ['/res/comp/spl/freeScript/js/auth.js'],
             complete:function(){
                 authMvc.init();
             }
         });
-
 </script>

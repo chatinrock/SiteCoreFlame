@@ -139,7 +139,10 @@ var authMvc = (function(){
 	* Функция пользоваляет биндить сторонние кнопки для авторизации и регистрации
 	*/
 	function initLigtbox(pSelector){
+
 		jQuery(pSelector).lightbox({
+            width: 400,
+            height: 300,
 			'onOpen'  : function() {
 				if ( $lightboxObj != null ){
 					return;

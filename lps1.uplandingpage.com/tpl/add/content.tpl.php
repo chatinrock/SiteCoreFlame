@@ -117,48 +117,56 @@
 		<div class="sixteen columns">
 			<h3><?=self::get('siteName')?></h3>
 
-			<form action="?" method="POST" id="listForm">
-				<input type="hidden" name="type" value="update"/>
-				<table id="themeList">
-					<thead>
-						<tr>
-							<th>ID</th>
-							<th>Статус</th>
-							<th>Тема</th>
-							<th>Описание</th>
-							<th>См.</th>
-							<th>Ред.</th>
-						</tr>
-					</thead>
-					<tbody>
-				<?
-					$list = self::get('dirList');
-					foreach($list as $item){
-						$value = $item['val'];// ? 'exists' : '';
-						echo '<tr>
-								<td>'.$item['id'].'</td>
-								<td>
-									<select class="createType" val="'.$value.'" name="createType['.$item['id'].']">
-										<option value="none" class="none">---</option>
-										<option value="exists" class="exists">Создана</option>
-										<option value="create" class="create">Создать</option>
-										<option value="remove" class="remove">Удалить</option>
-										<option value="update" class="update">Обновить</option>
-										<option value="turnoff" class="turnoff">Отключить</option>
-										<option value="turnon" class="turnon">Включить</option>
-									</select>
-								</td>
-								<td>'.$item['theme'].'</td>
-								<td>'.$item['descr'].'</td>
-								<td><a href="http://'.self::get('host'). self::get('duri').$item['id'].'/" target="_blank" title="смотреть">см.</a></td>
-								<td><a href="http://'.self::get('host'). self::get('duri').$item['id'].'/edit/" title="редактировать">ред.</a></td>
-							</tr>';
-					}
-				?>
-					<tr><td colspan="6" class="endTr"><input type="submit" value="Применить"/></td></tr>
-					</tbody>
-				</table>
-			</form>
+            <?
+            $themeData = self::get('themeData');
+            $profileList = self::get('profileList');
+            //var_dump($profileList);
+            foreach($profileList as $profile){?>
+                <h4 id="box-<?=$profile['name']?>"><?=$profile['name']?></h4>
+                <form action="?" method="POST" class="listForm">
+                    <input type="hidden" name="type" value="update"/>
+                    <input type="hidden" name="profile" value="<?=$profile['name']?>"/>
+                    <table id="themeList">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Статус</th>
+                                <th>Тема</th>
+                                <th>Имя</th>
+                                <th>См.</th>
+                                <th>Ред.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                    <?
+                        foreach($profile['list'] as $subName=>$themeId){
+                            $themeDataItem = $themeData[$themeId];
+                            $value = $profile['data'][$subName];
+                            echo '<tr data-theme="'.$themeId.'">
+                                    <td>'.$themeId.'</td>
+                                    <td>
+                                        <select class="createType" val="'.$value.'" name="createType['.$subName.']">
+                                            <option value="none" class="none">---</option>
+                                            <option value="exists" class="exists">Создана</option>
+                                            <option value="create" class="create">Создать</option>
+                                            <option value="remove" class="remove">Удалить</option>
+                                            <option value="update" class="update">Обновить</option>
+                                            <option value="turnoff" class="turnoff">Отключить</option>
+                                            <option value="turnon" class="turnon">Включить</option>
+                                        </select>
+                                    </td>
+                                    <td>'.$themeDataItem['theme'].'</td>
+                                    <td>'.$subName.'</td>
+                                    <td><a href="http://'.self::get('host'). '/'.$profile['name'].'/'.$subName.'/" target="_blank" title="смотреть">см.</a></td>
+                                    <td><a href="http://'.self::get('host'). self::get('duri').$profile['name'].'/'.$subName.'/edit/" title="редактировать">ред.</a></td>
+                                </tr>';
+                        }
+                    ?>
+                        <tr><td colspan="6" class="endTr"><input type="submit" value="Применить"/></td></tr>
+                        </tbody>
+                    </table>
+                </form>
+            <?}?>
 		</div>
 	</div>
 
@@ -182,7 +190,7 @@
 					changeTypeTr(obj);
 				});
 
-				jQuery('#listForm').submit(function(){
+				jQuery('.listForm').submit(function(){
 					jQuery(this).attr('action', '?'+Math.random());
 				})
 				// func. init

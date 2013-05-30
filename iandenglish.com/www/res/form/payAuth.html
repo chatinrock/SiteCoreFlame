@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="ru-RU">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="shortcut icon" href="/res/icons/favicon.ico" />
+    <link href="/res/icons/icon128.png" rel="icon"/>
+    <link href="/res/icons/icon128.png" rel="apple-touch-icon-precomposed"/>
+
+    <link rel="stylesheet" type="text/css" media="all" href="http://theme.codecampus.ru/ultrasharp/css/style.css" />
+    <link rel="stylesheet" href="http://theme.codecampus.ru/ultrasharp/css/colors/blue.css" media="screen" />
+    <link rel="stylesheet" href="http://theme.codecampus.ru/ultrasharp/css/shortcodes.css" media="screen" />
+    <link rel="stylesheet" href="http://theme.codecampus.ru/ultrasharp/css/fixed.css" media="screen" />
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+
+    <script type='text/javascript' src='http://theme.codecampus.ru/ultrasharp/js/scripts.js?ver=3.4'></script>
+    <script type='text/javascript' src='http://theme.codecampus.ru/ultrasharp/js/base.js?ver=3.4'></script>
+
+    <script src="//yandex.st/jquery/cookie/1.0/jquery.cookie.min.js"></script>
+    <style>
+        #regForm .select-container > span{
+            width: 200px;
+        }
+
+    </style>
+</head>
+<body class="empty-body">
+    <form id="regForm">
+        <p>
+            <label>Период: </label>
+            <select name="amount" class="selectInput">
+                <option value="990">1 месяц - 990 руб за месяц</option>
+                <option value="4740">6 месяцев - 790 руб за месяц</option>
+            </select>
+        </p>
+
+        <div style="margin-top: 10px;"></div>
+        <a id="addBalanceBtn" href="#reg" title="Нажмите на кнопку, чтобы пополнить баланс" class="button bright-green medium">Оплатить VIP доступ</a>
+    </form>
+
+    <script>
+        var userPayMvc = (function(){
+            /**
+             * Результат по регистрации
+             */
+            function addBalanceBtnClick(){
+
+                var email = JSON.parse(jQuery.cookie('userData')).email;
+                var amount = jQuery('#regForm select[name="amount"]').val();
+                var description = 'BASE64:'+parent.payMvc.base64Encode('Регистрация и оплата для ['+email+']');
+                parent.payMvc.setFormInput('WMI_DESCRIPTION', description);
+                parent.payMvc.setFormInput('WMI_PAYMENT_NO', email+'?'+(new Date()).getTime());
+                parent.payMvc.setFormInput('WMI_PAYMENT_AMOUNT', amount);
+                parent.payMvc.setFormInput('login', email);
+
+                parent.payMvc.submit();
+                return false;
+                // func. addBalanceBtnClick
+            }
+
+            function init(){
+                jQuery('#addBalanceBtn').click(addBalanceBtnClick);
+                parent.payMvc.init({
+                    WMI_MERCHANT_ID: 175436398732,
+                    WMI_SUCCESS_URL: 'http://iandenglish.com/paystatus/?status=success',
+                    WMI_FAIL_URL: 'http://iandenglish.com/paystatus/?status=fail',
+                    'project': 'iandenglish'
+                });
+                // func. init
+            }
+
+            return{
+                init: init
+            }
+        })();
+
+        userPayMvc.init();
+    </script>
+</body>
+</html>

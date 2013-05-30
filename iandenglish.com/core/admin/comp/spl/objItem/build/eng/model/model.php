@@ -94,16 +94,19 @@ class model{
             $render->setVar('translate', $data['translate']);
             $render->setVar('word', $data['word']);
 
-            //self::setVipRuleVar($data, $render);
-            self::setRuleVar($data, $render);
+            $wordId = word::idToSplit($obj['wordId']);
 
+            $vipFile = $pLoadDir.'word/'.$wordId.'/vip.html';
+            $render->setVar('isVip', is_file($vipFile) && (filesize($vipFile)>0));
+
+            self::setRuleVar($data, $render);
             $render->setMainTpl('help/cardWord.tpl.php');
 
             ob_start();
             $render->render();
             $codeData = ob_get_clean();
 
-            $wordId = word::idToSplit($obj['wordId']);
+
 
             filesystem::saveFile($pLoadDir.'word/'.$wordId, 'word.html', $codeData);
         } // foreach $pData
@@ -120,6 +123,11 @@ class model{
             $render->setVar('comment', $data['comment']);
             $render->setVar('translate', $data['translate']);
 
+            $sentId = word::idToSplit($obj['sentId']);
+
+            $vipFile = $pLoadDir.'sent/'.$sentId.'/vip.html';
+            $render->setVar('isVip', is_file($vipFile) && (filesize($vipFile)>0));
+
             //self::setVipRuleVar($data, $render);
             self::setRuleVar($data, $render);
 
@@ -128,8 +136,6 @@ class model{
             ob_start();
             $render->render();
             $codeData = ob_get_clean();
-
-            $sentId = word::idToSplit($obj['sentId']);
 
             filesystem::saveFile($pLoadDir.'sent/'.$sentId, 'sent.html', $codeData);
         } // foreach $pData
@@ -160,11 +166,11 @@ class model{
             $formData = \json_decode($value['data'], true);
 
             $osnWord[$sentId] = [];
-            $osnWord[$sentId]['translt'] = $formData['translate'];
+            //$osnWord[$sentId]['translt'] = $formData['translate'];
 
             $prefixWordId = word::idToSplit($sentId);
             $vipFile = $loadDir.'sent/'.$prefixWordId.'vip.html';
-            $osnWord[$sentId]['vipId'] = is_file($vipFile) && filesize($vipFile) != 0;
+            $osnWord[$sentId]['vipId'] = is_file($vipFile) && filesize($vipFile) > 0;
         } // foreach
 
         model::createSentCard($loadDir, $saveWordData);
@@ -185,14 +191,14 @@ class model{
                 $formData = \json_decode($value['data'], true);
 
                 $osnWord[$wordId] = [];
-                $osnWord[$wordId]['translt'] = $formData['translate'];
+                //$osnWord[$wordId]['translt'] = $formData['translate'];
                 $osnWord[$wordId]['transkr'] = $formData['transcr'];
                 $osnWord[$wordId]['link'] = explode(',', $value['osnWordId']);
                 $osnWord[$wordId]['sec'] = explode(',', $value['secondWordId']);
 
                 $prefixWordId = word::idToSplit($wordId);
                 $vipFile = $loadDir.'word/'.$prefixWordId.'vip.html';
-                $osnWord[$wordId]['vipId'] = is_file($vipFile) && filesize($vipFile) != 0;
+                $osnWord[$wordId]['vipId'] = is_file($vipFile) && filesize($vipFile) > 0;
 
                 foreach($osnWord[$wordId]['link'] as $secondId ){
                     $linkWord[$secondId] = $wordId;

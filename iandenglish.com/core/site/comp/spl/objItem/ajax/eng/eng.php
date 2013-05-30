@@ -21,15 +21,19 @@ use ORM\users as usersOrm;
 
 class eng{
 
-    /*private function _getSentVipPath($pId, $objId){
-        return (new engsentOrm())->get('path', ['objItemId'=>$objId, 'sentId'=>$pId]);
-        // func. _getSentVipFile
+    private function getVipAccess($obj, $path, $id){
+        $file = DIR_SITE::SITE_CORE.'data/comp/'.$path.'/count.txt';
+        $countData = @filesystem::loadFileContentUnSerialize($file);
+        if ( !$countData){
+            die('Bad count data');
+        }
+        $isFree = ( $obj == 'sent' && $countData['sentNum'] * 0.15 >= $id ) || ($countData['wordNum'] * 0.15 >= $id);
+        if ( !$isFree ){
+            return common::getUserAccess($_SESSION['userData']);
+        } // if (!$isFree)
+        return -1;
+        // func. getVipAccess
     }
-
-    private function _getWordVipPath($pId, $objId){
-        return (new engwordOrm())->get('path', ['objItemId'=>$objId, 'wordId'=>$pId]);
-        // func. _getSentVipFile
-    }*/
 
     /**
      * Основной метод. Вызывается из файла в папке<br/>
@@ -52,32 +56,29 @@ class eng{
                 $id = request::getInt('id');
                 $prefWordId = word::idToSplit($id);
                 $file = DIR_SITE::SITE_CORE.'data/comp/'.$path.'/word/'.$prefWordId.'word.html';
+                $userSuccess = self::getVipAccess('word', $path, $id);
+                echo '<script>var userVipAccess='.$userSuccess.';</script>';
+
                 break;
             case 'sent':
                 $id = request::getInt('id');
                 $prefWordId = word::idToSplit($id);
                 $file = DIR_SITE::SITE_CORE.'data/comp/'.$path.'/sent/'.$prefWordId.'sent.html';
+
+                $userSuccess = self::getVipAccess('sent', $path, $id);
+                echo '<script>var userVipAccess='.$userSuccess.';</script>';
                 break;
             // Получаение VIP правила
             case 'vip':
                 $id = request::getInt('id');
                 $obj = request::get('obj') == 'sent' ? 'sent' : 'word';
-                //$objId = request::get('objid');
 
-                $file = DIR_SITE::SITE_CORE.'data/comp/'.$path.'/count.txt';
-                $countData = @filesystem::loadFileContentUnSerialize($file);
-                if ( !$countData){
-                    die('Bad count data');
-                }
-
-                $isFree = ( $obj == 'sent' && $countData['sentNum'] * 0.15 >= $id ) || ($countData['wordNum'] * 0.15 >= $id);
-                if ( !$isFree ){
-                    $userSuccess = common::getUserAccess($_SESSION['userData']);
-
+                $userSuccess = self::getVipAccess($obj, $path, $id);
+                if ( $userSuccess != -1 ){
                     // Авторизован ли пользователь
                     if ( $userSuccess == common::ACCESS_NOT_AUTH ){
                         // Пользователь не авторизован
-                        $file = DIR_SITE::SITE_CORE.'tpl/site/other/user/forbid.tpl.php';
+                        $file = DIR_SITE::SITE_CORE.'tpl/site/other/user/vipforbid.html';
                         break;
                     }
 
@@ -87,24 +88,11 @@ class eng{
                         $file = DIR_SITE::SITE_CORE.'tpl/site/other/user/badbalance.html';
                         break;
                     }
-                } // if (!$isFree)
-
-                /*$path = ( $obj == 'sent' ) ? self::_getSentVipPath($id, $objId) : self::_getWordVipPath($id, 'Id);
-                if ( !$path ){
-                    die('Bad vip path');
                 }
-
-                $prefWordId = word::idToSplit($id);
-                $file = DIR_SITE::SITE_CORE.'data/comp/'.$path.'/data.txt';*/
-
                 $id = request::getInt('id');
                 $prefWordId = word::idToSplit($id);
                 $path = DIR_SITE::SITE_CORE.'data/comp/'.$path.'/'.$obj.'/'.$prefWordId;
 
-                //echo '<div id="#vipVoice"></div><script>engMvc.setVipVoice('. (@file_get_contents($path.'vip.json')?:'{}').');</script>';
-
-                //header('Content-Type: javascript/json');
-                //echo json_encode($data);
                 self::printVipData($path);
 
                 exit;

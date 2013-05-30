@@ -11,10 +11,11 @@ core/www/logic/add.php
 
 // Form url 
 $url = 'http://<?=self::get('host').self::get('duri')?>';
+$profileName = '<?=self::get('profileName');?>';
 
 // If cookie exist then redirect user to page
 if ( isset($_COOKIE['lpnum']) && !isset($_GET['clear'])){
-    header('Location: '.$url.$_COOKIE['lpnum'].'/');
+    header('Location: '.$url.$profileName.'/'.$_COOKIE['lpnum'].'/');
     exit;
 }  
 
@@ -25,6 +26,7 @@ $id = ftok(__FILE__, 'A');
 $list = <?=self::get('dirList');?>;
 // Count landing page
 $listCount = <?=self::get('dirCount');?>;
+
 
 // Get memory id
 $semId = sem_get($id);
@@ -49,6 +51,6 @@ sem_release($semId);
 // get landgin page
 $lpname = $list[$counter % $listCount];
 // Set new cookie. See "if ( isset($_COOKIE['lpnum']) && !isset($_GET['clear'])){" in head 
-setcookie('lpnum', $lpname, time()+60*60*24*30 * 365 * 2, '<?=self::get('duri')?>');
+setcookie('lpnum', $lpname, time()+60*60*24*30 * 365 * 2, '<?=self::get('duri')?>'.$profileName.'/');
 // Redirect user
-header('Location: '.$url.$lpname.'/');
+header('Location: '.$url.$profileName.'/'.$lpname.'/');

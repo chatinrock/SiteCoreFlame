@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="ru-RU">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="shortcut icon" href="/res/icons/favicon.ico" />
+    <link href="/res/icons/icon128.png" rel="icon"/>
+    <link href="/res/icons/icon128.png" rel="apple-touch-icon-precomposed"/>
+
+    <link rel="stylesheet" type="text/css" media="all" href="http://theme.codecampus.ru/ultrasharp/css/style.css" />
+    <link rel="stylesheet" href="http://theme.codecampus.ru/ultrasharp/css/colors/blue.css" media="screen" />
+    <link rel="stylesheet" href="http://theme.codecampus.ru/ultrasharp/css/shortcodes.css" media="screen" />
+    <link rel="stylesheet" href="http://theme.codecampus.ru/ultrasharp/css/fixed.css" media="screen" />
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+
+    <script type='text/javascript' src='http://theme.codecampus.ru/ultrasharp/js/scripts.js?ver=3.4'></script>
+    <script type='text/javascript' src='http://theme.codecampus.ru/ultrasharp/js/base.js?ver=3.4'></script>
+    <style>
+        #regForm .select-container > span{
+            width: 200px;
+        }
+
+        #regForm input{
+            width: 222px;
+        }
+    </style>
+</head>
+<body class="empty-body">
+    <h2>Введите логин/email и выберите сумму:</h2>
+    <div>В течении 5 минут, на почту придёт пароль</div>
+    <div class="box hidden" id="eventBox"></div>
+    <form id="regForm">
+        <p>
+            <label>Email: </label>
+            <input type="text" value="" title="Введите ваш Email" class="emailInput" name="login" onKeyPress="anonimPayMvc.regEmailKeyPress(event)"/>
+        </p>
+
+        <p>
+            <label>Период: </label>
+            <select name="amount" class="selectInput">
+                <option value="990">1 месяц - 990 руб за месяц</option>
+                <option value="4740">6 месяцев - 790 руб за месяц</option>
+            </select>
+        </p>
+
+        <div style="margin-top: 10px;"></div>
+        <a id="regBtn" href="#reg" title="Нажмите на кнопку, чтобы зарегистрироваться" class="button bright-green medium">Зарегистрироваться и получить VIP аккаунт</a>
+    </form>
+    <script type="text/javascript">
+        jQuery('#regForm input[name="login"]').focus();
+    </script>
+
+
+    <script>
+        var anonimPayMvc = (function(){
+            /**
+             * Результат по регистрации
+             */
+            function cbRegistrUserAction(pData){
+                if ( pData['result'] ){
+                    jQuery('#eventBox').removeClass('waiting').addClass('error').html('Такой логин уже существует');
+                    return;
+                }
+                jQuery('#eventBox').addClass('success').html(
+                        'Вы успешно зарегистрированы.<br/>Пароль будет выслан на '+email+'<br/>Сейчас вы будите переведены на страницу оплаты');
+
+                var email = jQuery('#regForm input[name="login"]').val();
+                var amount = jQuery('#regForm select[name="amount"]').val();
+                var description = 'BASE64:'+parent.payMvc.base64Encode('Регистрация и оплата для ['+email+']');
+                parent.payMvc.setFormInput('WMI_DESCRIPTION', description);
+                parent.payMvc.setFormInput('WMI_PAYMENT_NO', email+'?'+(new Date()).getTime());
+                parent.payMvc.setFormInput('WMI_PAYMENT_AMOUNT', amount);
+                parent.payMvc.setFormInput('login', email);
+
+                parent.payMvc.submit();
+                // func. cbRegistrUserAction
+            }
+
+            /**
+             * Отправка данных о регистрации на сервер
+             */
+            function registrUserAction(){
+                jQuery('#eventBox').removeClass('error').addClass('waiting').html('Проверка Email. Ожидайте.').show();
+                jQuery.ajax({
+                    url: "/webcore/func/utils/user/",
+                    data: 'type=regist&'+jQuery('#regForm').serialize(),
+                    type: 'POST'
+                }).done(cbRegistrUserAction);
+                // func. registrUserAction
+            }
+
+            function regEmailKeyPress(pEvent){
+                if( pEvent && pEvent.keyCode == 13){
+                    registrUserAction();
+                }
+                // func. pwdInputKeyPress
+            }
+
+            function regBtnClick(){
+                registrUserAction();
+                return false;
+                // func. regBtnClick
+            }
+
+            function init(){
+                jQuery('#regBtn').click(regBtnClick);
+                parent.payMvc.init({
+                    WMI_MERCHANT_ID: 175436398732,
+                    WMI_SUCCESS_URL: 'http://iandenglish.com/paystatus/?status=success',
+                    WMI_FAIL_URL: 'http://iandenglish.com/paystatus/?status=fail'
+                });
+                // func. init
+            }
+
+            return{
+                init: init,
+                regEmailKeyPress: regEmailKeyPress
+            }
+        })();
+
+        anonimPayMvc.init();
+    </script>
+</body>
+</html>

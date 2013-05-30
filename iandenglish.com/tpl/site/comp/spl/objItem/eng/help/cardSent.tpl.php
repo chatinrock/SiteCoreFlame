@@ -1,25 +1,22 @@
 <div class="card">
-    <div class="translateCaption">Перевод</div>
+
+    <?if ( self::get('isVip')){?>
+        <div class="box success vipComment">Доступен VIP комментарий.<br/><strong>Кликните по иконке.</strong></div>
+    <?}?>
+
+    <div class="translateCaption">Перевод предложения</div>
     <div class="translateBox">
         <?=self::get('translate')?>
     </div>
 
+    <?if ( self::get('comment')){?>
     <div class="commentCaption">Комментарий</div>
     <div class="commentBox">
         <?=self::get('comment')?>
     </div>
-
-    <?$vipRule = self::get('vipRule');
-    if ( $vipRule ){?>
-    <div class="vipCommentBox">
-        <div class="linkRule">VIP комментарий</div>
-        <ul class="rules">
-            <li><a href="<?=$vipRule['href']?>" title="<?=$vipRule['title']?>"><?=$vipRule['title']?></a></li>
-        </ul>
-
-    </div>
     <?}?>
 
+    <?if ( self::get('rule') ){?>
     <div class="linkBox">
         <div class="linkRule">Связанные правила</div>
         <ul class="rules"><?
@@ -29,4 +26,5 @@
             ?>
         </ul>
     </div>
+    <?}?>
 </div>

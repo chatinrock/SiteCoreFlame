@@ -134,6 +134,11 @@
         width: 100%;
         height: 200px;
     }
+
+    #tabs-settings textarea{
+        width: 100%;
+        height: 200px;
+    }
 </style>
 <div class="column">
     <div class="panel corners">
@@ -350,7 +355,7 @@
                 </tr>
                 <tr>
                     <td>Слово</td>
-                    <td><input type="text" name="word"/></td>
+                    <td><input type="text" name="word"/> <select id="similarWord"></select> <input type="button" id="similarUpdBtn" value="Обновить"/></td>
                 </tr>
                 <tr>
                     <td>Транскрип.</td>
@@ -363,7 +368,7 @@
             </table>
 
             <div>Комментарий.</div>
-            <div><textarea name="comment" style="width: 100%"></textarea></div>
+            <div><textarea id="commentTA"></textarea></div>
 
         </div> <!-- <div id="tabs-settings"> -->
 
@@ -605,17 +610,44 @@
                 $('#ruleDlg input[name="w'+wordSecondList[i]+'"]').filter('[value="scn"]').attr('checked', true);
             }
 
-            var ruleData = JSON.parse(engartData.wordList[rel].data);
-
+            /*var ruleData = JSON.parse(engartData.wordList[rel].data);
             // Установка формы динамичного контента
             $('#tabs-dynamic').html($('#'+ruleData.classWord+'AdvBox').html());
+            unserializeRule(ruleData);*/
 
-            unserializeRule(ruleData);
-
+            setWordData(rel);
             // func. setRuleField
         }
 
+        function createSimilarList(pWord){
+            var $similarWord = jQuery('#similarWord').html('<option value="-">-</option>');
+            // ruleData.word
+            for(var key in engartData.wordList ){
+                var data = JSON.parse(engartData.wordList[key].data);
+                if ( data.word.toUpperCase() != pWord.toUpperCase() ){
+                    continue;
+                }
+                $similarWord.append('<option value="'+key+'">'+key+'</option>');
+            } // for
+            // func. createSimilarList
+        }
+
+        function setWordData(pRel){
+            var ruleData = JSON.parse(engartData.wordList[pRel].data);
+            // Установка формы динамичного контента
+            $('#tabs-dynamic').html($('#'+ruleData.classWord+'AdvBox').html());
+            unserializeRule(ruleData);
+            return ruleData;
+            // func. setWordData
+        }
+
         function unserializeRule(ruleData){
+            if ( CKEDITOR.instances.commentTA ){
+                CKEDITOR.instances.commentTA.setData(ruleData['comment'])
+            }else{
+                jQuery('#commentTA').val(ruleData['comment']);
+            }
+
             for( var key in ruleData ){
                 var num = key.match(/ruleart\[(\d+)\]/);
                 if ( num == null ){
@@ -625,8 +657,6 @@
                 var text = engartData.objItemNameListJson[ruleData[key]];
                 $('#rart'+num[1]+' td[rel="set"]').html(text);
             } // for
-
-
 
             unserializeForm(options.tabsBox, ruleData)
             // func. unserializeRule
@@ -698,17 +728,10 @@
                 $.fancybox.open([{
                     href: '#ruleDlg',
                     width: 700,
-                    height: 500,
+                    height: 900,
                     autoSize: false,
                     'afterShow': function(){
-                        //if ( CKEDITOR.instances.vipcomment ){
-                        //    CKEDITOR.instances.vipcomment.destroy(true);
-                        //}
-
-                        //var url = utils.url({ method: 'getVipComment', query: query});;
-                        /*$('#vipcomment').load(url, function() {
-                            CKEDITOR.replace( 'vipcomment', {toolbar: 'Article'} );
-                        });*/
+                        CKEDITOR.replace( 'commentTA', {toolbar: 'Article'} );
                         HAjax.getVipComment({
                             data: {
                                 type: 'sent',
@@ -716,12 +739,11 @@
                                 wordId: saveRuleObj.id
                             }
                         });
-
-
                     },
                     'beforeClose':function(){
                         //console.log('close');
                         //CKEDITOR.remove(CKEDITOR.instances.vipcomment);
+                        CKEDITOR.instances.commentTA.destroy(true);
                         CKEDITOR.instances.vipcomment.destroy(true);
                     }
                 }]);
@@ -809,29 +831,22 @@
             $.fancybox.open([{
                 href: '#ruleDlg',
                 width: 700,
-                height: 500,
+                height: 900,
                 autoSize: false,
                 'afterShow': function(){
-                    //if ( CKEDITOR.instances.vipcomment ){
-                        //CKEDITOR.instances.vipcomment.destroy(true);
-                        //CKEDITOR.remove(CKEDITOR.instances.vipcomment);
-                    //}
-                    //var query = { type: 'word', itemId: engartData.objItemId, wordId: firstRel};
-                    /*var url = utils.url({ method: 'getVipComment', query: query});;
-                    $('#vipcomment').load(url, function() {
-                        CKEDITOR.replace( 'vipcomment', {toolbar: 'Article'} );
-                    });*/
+                    CKEDITOR.replace( 'commentTA', {toolbar: 'Article'} );
+
                     HAjax.getVipComment({
                         data: {
                             type: 'word',
                             itemId: engartData.objItemId,
                             wordId: firstRel
                         }
-                    }); // HAjax.getVipComment(
+                    }); // HAjax.getVipComment
                 }, // 'afterShow': function()
                 'beforeClose':function(){
                     //console.log('close');
-                    //CKEDITOR.remove(CKEDITOR.instances.vipcomment);
+                    CKEDITOR.instances.commentTA.destroy(true);
                     CKEDITOR.instances.vipcomment.destroy(true);
                 } // 'beforeClose':function()
             }]);
@@ -917,6 +932,9 @@
          */
         function saveFormRuleBtnClick(){
             var serialArr = $('#ruleDlg').serializeArray();
+
+            var value = CKEDITOR.instances.commentTA.getData();
+            serialArr.push({name:'comment', value:value});
 
             var saveData = '';
             if ( saveRuleObj.type == 'word'){
@@ -1124,7 +1142,7 @@
                         var secondList = engartData.wordList[wordRelSelect].secondWordId;
                         engartData.wordList[wordRelSelect].secondWordId = secondList.replace(new RegExp(',?'+num,'g'), '');
 
-                        var osnWordId = engartData.wordList[wordRelSelect].osnWordId;
+                        //var osnWordId = engartData.wordList[wordRelSelect].osnWordId;
                         engartData.wordList[wordRelSelect].osnWordId = secondList.replace(new RegExp(',?'+num,'g'), '');
 
                         $(pEvent.target).parents('tr:first').remove();
@@ -1197,9 +1215,20 @@
 				  'content': responseText
 			  });
 			});
-			  
 			// func. paramBtnClick
 		}
+
+        function similarWordChange(pEvent){
+            var rel = jQuery(pEvent.target).val();
+            setWordData(rel);
+            // func. similarWordChange
+        }
+
+        function similarUpdBtnClick(){
+            var word = jQuery('#tabs-settings input[name="word"]:first').val();
+            createSimilarList(word);
+            // func. similarUpdBtnClick
+        }
 
         function init(pOptions){
             options = pOptions;
@@ -1233,7 +1262,10 @@
             $(options.cancelRuleBtn).click(cancelRuleBtnClick);
             $(options.addArtRuleBtn).click(addArtRuleBtnClick);
             $(options.rulesArtBox).click(rulesArtBoxClick);
-            
+
+            jQuery('#similarWord').change(similarWordChange);
+            jQuery('#similarUpdBtn').click(similarUpdBtnClick);
+
             $(options.tabsType+' table').click(tabsTypeTableClick);
 			
 			$(options.backBtn).attr('href', utils.url({}));

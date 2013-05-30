@@ -44,17 +44,17 @@ class databuild{
 
             // Добавляем title для слов
             foreach( $wordData['osnWord'] as $rel => $data ){
-                $title = isset($data['translt']) ? $data['translt'] : '';
+                $title = isset($data['transkr']) ? $data['transkr'] : '';
                 $searchStr = 'rel="'.$rel.'"';
-                $targetStr = 'rel="'.$rel.'" title="'.$title.'"';
+                $targetStr = 'rel="'.$rel.'" title="['.$title.']"';
                 $engHtml = str_replace($searchStr, $targetStr, $engHtml);
             } // for
 
             // Добавляем title для предложения
             foreach( $sentData as $num => $data ){
-                $title = isset($data['translt']) ? $data['translt'] : '';
+                //$title = isset($data['translt']) ? $data['translt'] : '';
                 $searchStr = 'id="sent'.$num.'"';
-                $targetStr = 'id="sent'.$num.'" stitle="'.$title.'"';
+                $targetStr = 'id="sent'.$num.'"';// stitle="'.$title.'"';
                 $engHtml = str_replace($searchStr, $targetStr, $engHtml);
             } // for
 

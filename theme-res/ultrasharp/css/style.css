@@ -261,7 +261,7 @@ li img { display: block; }
 #content-bottom-bg { width: 978px; height: 5px; position: absolute; background: #ffffff; bottom: -3px; left: 1px; z-index: 2; box-shadow: 0 1px 3px #999999; }
 #content-bottom-bg2 { width: 976px; height: 5px; position: absolute; background: #ffffff; bottom: -5px; left: 2px; z-index: 1; box-shadow: 0 1px 3px #999999; }
 
-.block { padding: 20px 40px 0 40px; float: left; width: 910px; }
+.block { padding: 20px 40px 0 40px; float: left; width: 900px; }
 
 .page-title { font: bold 40px/42px Helvetica, Arial, sans-serif; margin: -10px 0 30px 20px; color: #111111; text-shadow: 0 1px 0 #ffffff; }
 .page-slogan { font: italic 20px/24px Georgia, "Times New Roman", Times, serif; color: #999999; margin: -23px 0 35px 20px; }

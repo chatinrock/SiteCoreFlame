@@ -36,8 +36,11 @@ for ($i = 0; $i < $previewCount; $i++) {
                     </div>
                     <? if ($item['prevImgUrl']) { ?>
                     <div class="post-thumb">
-                        <a href="<?= $item['url'] ?>"><span class="imagePreload" style="width: 560px; height: 250px;"
-                                                            title="<?= $item['caption'] ?>"><span><?= $item['prevImgUrl'] ?></span></span></a>
+                        <!--<a href="<?= $item['url'] ?>"><span class="imagePreload" style="width: 560px; height: 250px;"
+                                                            title="<?= $item['caption'] ?>"><span><?= $item['prevImgUrl'] ?></span></span></a>-->
+
+                        <a href="<?= $item['url'] ?>"><img style="width: 630px; height: 272px;" title="<?= $item['caption'] ?>" src="<?= $item['prevImgUrl'] ?>"></a>
+
 						<?=$isPrivate?'<div class="privatePost"></div>':''?>
 
                     </div>
@@ -52,7 +55,7 @@ for ($i = 0; $i < $previewCount; $i++) {
                     <?self::loadFile($objItemDir . $item['idSplit'] . 'kat.txt'); ?>
                     <div class="padding-10"></div>
                     <p>
-                        <a href="<?= $item['url'] ?>" title='Нажмите, что бы прочитать полный текст об "<?= $item['caption'] ?>"' class="button-clear readnext">
+                        <a href="<?= $item['url'] ?>" title='Нажмите, чтобы прочитать полный текст об "<?= $item['caption'] ?>"' class="button-clear readnext">
                             <?=$caption?>
 						</a>
 						<a class="howBecome button blue" style="visibility:hidden;margin-left: 5px;" href="#how" style="float:left;" target="_parent">Как стать членом клуба?</a>
@@ -81,9 +84,9 @@ for ($i = 0; $i < $previewCount; $i++) {
 		jQuery('.readnext').removeClass('button-clear').addClass('button blue');
 	}
 
-    jQuery(document).ready(function() {
+    /*jQuery(document).ready(function() {
 		jQuery('.imagePreload').each( function() { $(this).ddImagePreload(); });
-    });
+    });*/
 </script>
 
 
